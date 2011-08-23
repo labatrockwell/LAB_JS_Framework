@@ -1,7 +1,6 @@
 // include required files
 var lab = lab || {};
 
-
 // AWESOME INCLUDE STUFF SHAMELESSLY STOLEN FROM TDL!
 
 /**
@@ -176,3 +175,7 @@ lab.findBasePath_();
 lab.isDef = function(val) {
   return typeof val != 'undefined';
 };
+
+// start including stuff
+lab.require("lab.EventDispatcher");
+lab.require("lab.BaseApp");

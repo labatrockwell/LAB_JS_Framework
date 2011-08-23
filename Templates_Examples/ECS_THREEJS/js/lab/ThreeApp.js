@@ -53,17 +53,5 @@ lab.ThreeApp.prototype.begin = function()
 }
 
 /************************************************************
-	DRAW
+	DRAW: override the draw function in your app!
 ************************************************************/
-
-lab.ThreeApp.prototype.setupScreen 	= function(){
-};
-
-lab.ThreeApp.prototype.teardownScreen 	= function(){
-};
-
-lab.ThreeApp.prototype.predraw			= function() {
-	lab.self.setupScreen();
-   	lab.self.draw();
-	lab.self.teardownScreen();
-};
