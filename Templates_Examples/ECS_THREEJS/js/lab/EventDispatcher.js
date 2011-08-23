@@ -1,10 +1,10 @@
-lab.EventDispatcher = function()
+LAB.EventDispatcher = function()
 {
 	this.events = [];
 }
 
-lab.EventDispatcher.prototype = {
-	constructor:lab.EventDispatcher,
+LAB.EventDispatcher.prototype = {
+	constructor:LAB.EventDispatcher,
 	addEventListener: function(event, callback){
 		this.events[event] = this.events[event] || []; // check for undefined arg
 		if (this.events[event]){

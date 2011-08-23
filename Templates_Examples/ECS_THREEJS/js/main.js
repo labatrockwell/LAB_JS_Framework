@@ -1,12 +1,13 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-lab.require("lab.ThreeApp");
-lab.require("utils.utils");
+LAB.require("js/lab/ECSApp.js");
+LAB.require("js/lab/ThreeApp.js");
+LAB.require("js/utils/utils.js");
 
 var demoApp;
 
 $(document).ready( function() {
-	demoApp 	= new DemoApp();		
+	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
 	demoApp.begin();
 });
@@ -16,202 +17,165 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		lab.ThreeApp.call( this );
+		LAB.ThreeApp.call( this );
+		LAB.ECSApp.call( this );
+		
+		
+		var _self = this;
 	
 		// webgl vars
-	
-		this.radius	= 5;
-		this.thetaX	= 0;
-		this.thetaY	= 0;
-		this.thetaZ	= 0;
 		
-		this.lastMouse = {x:0, y:0};
-	
-		// ECS vars
-		this._api				= null;
-		this.ecs_in_port			= -1; // dummy val
-		this.ecs_out_port		= -1; // dummy val
-		this.uuid				= 0; // dummy val
-		this.bECSSetup			= false;
-		this.bPerformanceStarted	= false;
+		var radius	= 5;
+		var thetaX	= 0;
+		var thetaY	= 0;
+		var thetaZ	= 0;
 		
-		// catch mouse events!
-		this.registerMouseEvents();
-	}
-
-	DemoApp.prototype 				= new lab.ThreeApp();
-	DemoApp.prototype.constructor 	= DemoApp;
-	DemoApp.prototype.supr 			= lab.ThreeApp.prototype;
-	
-// ===========================================
-// ===== SETUP
-// ===========================================
-
-	DemoApp.prototype.setup = function (){
+		var lastMouse = {x:0, y:0};
 			
-		// get ports from query string
-		demoApp.ecs_in_port 	= getQueryString('inport');
-		demoApp.ecs_out_port 	= getQueryString('outport');
-	
-		// setup ECS
-		if ( demoApp.ecs_in_port != "" && demoApp.ecs_out_port != "" ){
-			demoApp.setupECS( demoApp.ecs_in_port, demoApp.ecs_out_port);
-		}
-	
-		// add some random squares
-	
-		var geometry = new THREE.CubeGeometry( 20, 20, 20 );
-
-		for ( var i = 0; i < 500; i ++ ) {
-
-			var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-			object.position.x = Math.random() * 800 - 400;
-			object.position.y = Math.random() * 800 - 400;
-			object.position.z = Math.random() * 800 - 400;
-			object.rotation.x = ( Math.random() * 360 ) * Math.PI / 180;
-			object.rotation.y = ( Math.random() * 360 ) * Math.PI / 180;
-			object.rotation.z = ( Math.random() * 360 ) * Math.PI / 180;
-			object.scale.x = Math.random() * 2 + 1;
-			object.scale.y = Math.random() * 2 + 1;
-			object.scale.z = Math.random() * 2 + 1;
-			lab.self.scene.addObject( object );
-
-		}
-	}
-
-// ===========================================
-// ===== UPDATE
-// ===========================================
-
-	DemoApp.prototype.update = function (){
-		if (demoApp.bPerformanceStarted){
-			// do something
-		}
-	}
-
-// ===========================================
-// ===== DRAW
-// ===========================================
-
-	DemoApp.prototype.draw = function (){
-		if (demoApp.bPerformanceStarted){
-			// do something
-		}
-	
-		// rotate + render
-	
-		demoApp.radius = 2;
-		demoApp.thetaZ += 0.2;
-		lab.self.camera.position.x = demoApp.radius * ( demoApp.thetaX * Math.PI / 360 );
-		lab.self.camera.position.y = demoApp.radius * ( demoApp.thetaY * Math.PI / 360 );
-		lab.self.camera.position.z = demoApp.radius * ( demoApp.thetaZ * Math.PI / 360 );
-
-		lab.self.camera.update();
+	// ===========================================
+	// ===== SETUP
+	// ===========================================
 		
-		// should this auto-render?
-		lab.self.renderer.render( lab.self.scene, lab.self.camera );
-	}	
-	
-// ===========================================
-// ===== MOUSE
-// ===========================================
-	
-	lab.BaseApp.prototype.onMouseMoved		= function( event )
-	{
-		console.log(demoApp.lastMouse.x+":"+demoApp.lastMouse.y);
-		demoApp.thetaX += (demoApp.lastMouse.x - event.clientX)/4;
-		demoApp.thetaY += (demoApp.lastMouse.y - event.clientY)/4;
-		
-		demoApp.lastMouse.x = event.clientX;
-		demoApp.lastMouse.y = event.clientY;
-	}
-	
-// ===========================================
-// ===== ECS
-// ===========================================
+		this.setup = function (){
+			
+			// get ports from query string
+			var ecs_in_port  = getQueryString('inport');
+			var ecs_out_port = getQueryString('outport');
 
-// setup: call this from your main app
+			// setup ECS
+			if ( ecs_in_port != "" && ecs_out_port != "" ){
+				this.setupECS("11111111-1111-1111-1111-11111111111", ecs_in_port, ecs_out_port);
+			}
 
-	DemoApp.prototype.setupECS = 	function setupECS(inport, outport)
-	{
-		demoApp.ecs_in_port 	= inport;
-		demoApp.ecs_out_port 	= outport;
+			setupLights();
+			generateSquares();
 
-		console.log("Connecting to ECS on ports "+demoApp.ecs_in_port+", "+demoApp.ecs_out_port);
-
-		// quick ajax request to get UUID from config
-		//$.get('./config.xml', self.configXMLLoaded);
-	
-		// if not running via --allow-file-access...
-		// hard code your UUID
-		demoApp.uuid = "43a47b6c-6ad9-449c-9ab8-90ca53aab269";
-	
-		demoApp._api = new ApplicationMessageHandler(demoApp.uuid);
-
-		demoApp._api.addEventListener("handleStartPerformance", demoApp.handleStartPerformance);
-		demoApp._api.addEventListener("handleStopPerformance", demoApp.handleStopPerformance);
-		demoApp._api.addEventListener("handleConfig", demoApp.handleConfig);
-		demoApp._api.addEventListener("handlePerformanceConfig", demoApp.handlePerformanceConfig);
-
-		demoApp._api.connect(demoApp.ecs_in_port, demoApp.ecs_out_port);
-		demoApp.bECSSetup = true;		
-	};
-
-	// load UUID from config xml
-
-	DemoApp.prototype.configXMLLoaded	= 	function(data)
-	{
-		console.log("configs loaded");
-	       // Analyze the type of this message
-		if (data.getElementsByTagName("uuid").length < 1){
-			alert("no uuid in config! not starting ECS");
-			return;
-		};
-	
-		demoApp.uuid = data.getElementsByTagName("uuid")[0].childNodes[0].nodeValue;
-
-		console.log ("uuid is "+uuid)
-		demoApp._api = new ApplicationMessageHandler(uuid);
-
-		demoApp._api.addEventListener("handleStartPerformance", demoApp.handleStartPerformance);
-		demoApp._api.addEventListener("handleStopPerformance", 	demoApp.handleStopPerformance);
-		demoApp._api.addEventListener("handleConfig", 			demoApp.handleConfig);
-		demoApp._api.addEventListener("handlePerformanceConfig", demoApp.handlePerformanceConfig);
-
-		demoApp._api.connect(demoApp.ecs_in_port, demoApp.ecs_out_port);
-		demoApp.bECSSetup = true;
-	}
-
-	// start performace: assumes all is good, starts updating / drawing
-
-	DemoApp.prototype.handleStartPerformance		= function()
-	{
-		console.log("performance started");
-		demoApp.bPerformanceStarted = true;
-	}
-
-	DemoApp.prototype.handleStopPerformance		= function()
-	{
-		console.log("performance stopped");
-		demoApp.bPerformanceStarted = false;
-	}
-
-	DemoApp.prototype.handleConfig				= function(data)
-	{
-		//unpack object for legibility
-		var a_key 	= data.a_key;
-		var a_value	= data.a_value;
-
-		console.log("handle config "+a_key);
-
-		// setup configs
-		if (a_key == "avalue"){
-			// do something with a_value
+			// catch mouse events!
+			this.registerMouseEvents();
 		}
-	}
+	
+	// ===========================================
+	// ===== THREE.JS: Setup scene
+	// ===========================================
+		
+		function setupLights()
+		{
+			// add some lights			
+			var light = new THREE.DirectionalLight( 0xffffff, 2 );
+			light.position.x = 1;
+			light.position.y = 1;
+			light.position.z = 1;
+			light.position.normalize();
+			LAB.self.scene.addLight( light );
 
-	DemoApp.prototype.handlePerformanceConfig	= function(data)
-	{
-		console.log("handle performance config "+data.a_key+":"+data.a_value);	
+			var light = new THREE.DirectionalLight( 0xffffff );
+			light.position.x = - 1;
+			light.position.y = - 1;
+			light.position.z = - 1;
+			light.position.normalize();
+			LAB.self.scene.addLight( light );
+		}
+		
+		function generateSquares(){
+			// add some random squares
+
+			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
+
+			for ( var i = 0; i < 500; i ++ ) {
+
+				var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+				object.position.x = Math.random() * 800 - 400;
+				object.position.y = Math.random() * 800 - 400;
+				object.position.z = Math.random() * 800 - 400;
+				object.rotation.x = ( Math.random() * 360 ) * Math.PI / 180;
+				object.rotation.y = ( Math.random() * 360 ) * Math.PI / 180;
+				object.rotation.z = ( Math.random() * 360 ) * Math.PI / 180;
+				object.scale.x = Math.random() * 2 + 1;
+				object.scale.y = Math.random() * 2 + 1;
+				object.scale.z = Math.random() * 2 + 1;
+				LAB.self.scene.addObject( object );
+			}
+		}
+		
+	// ===========================================
+	// ===== UPDATE
+	// ===========================================
+
+		this.update = function (){
+			if (LAB.self.bPerformanceStarted){
+				// do something
+			}
+		}
+	
+	// ===========================================
+	// ===== DRAW
+	// ===========================================
+
+		this.draw = function (){
+			if (LAB.self.bPerformanceStarted){
+				// do something
+			}
+
+			// rotate + render
+
+			radius = 2;
+			thetaZ += 0.2;
+			this.camera.position.x = radius * ( thetaX * Math.PI / 360 );
+			this.camera.position.y = radius * ( thetaY * Math.PI / 360 );
+			this.camera.position.z = radius * ( thetaZ * Math.PI / 360 );
+
+			this.camera.update();
+			
+			// should this auto-render?
+			this.renderer.render( this.scene, this.camera );
+		}
+		
+	// ===========================================
+	// ===== MOUSE
+	// ===========================================
+
+		this.onMouseMoved		= function( event )
+		{
+			thetaX += (lastMouse.x - event.clientX)/4;
+			thetaY += (lastMouse.y - event.clientY)/4;
+
+			lastMouse.x = event.clientX;
+			lastMouse.y = event.clientY;
+		}
+		
+		
+	// ===========================================
+	// ===== ECS
+	// ===========================================
+		
+		this.handleConfig		= function(data)
+		{
+			//unpack object for legibility
+			var a_key 	= data.a_key;
+			var a_value	= data.a_value;
+			
+			// setup configs
+			if (a_key == "newBox"){
+				var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+				object.position.x = Math.random() * 800 - 400;
+				object.position.y = Math.random() * 800 - 400;
+				object.position.z = Math.random() * 800 - 400;
+				object.rotation.x = ( Math.random() * 360 ) * Math.PI / 180;
+				object.rotation.y = ( Math.random() * 360 ) * Math.PI / 180;
+				object.rotation.z = ( Math.random() * 360 ) * Math.PI / 180;
+				object.scale.x = Math.random() * 2 + 1;
+				object.scale.y = Math.random() * 2 + 1;
+				object.scale.z = Math.random() * 2 + 1;
+				this.scene.addObject( object );
+			}
+		}
+		
 	}
+	
+	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, LAB.ECSApp.prototype, DemoApp.prototype);
+
+	/*DemoApp.prototype 				= new LAB.ThreeApp();
+	DemoApp.prototype.constructor 	= DemoApp;
+	DemoApp.prototype.supr 			= LAB.ThreeApp.prototype;	
+	*/	
 
