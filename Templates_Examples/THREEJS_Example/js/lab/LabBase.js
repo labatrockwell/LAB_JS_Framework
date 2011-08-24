@@ -1,27 +1,28 @@
 // include required files
 var LAB = LAB || {};
 
-// require based on: http://stackoverflow.com/questions/950087/include-javascript-file-inside-javascript-file
+// reference to global context, in most cases 'window'.
+LAB.global = this;
+
+// require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js
 
 /*
  * helper (for javascript importing within javascript).
  */
 
-var import_js_imported = [];
+var included = {}
 
-LAB.require = function(script)
-{
-    var found = false;
-    for (var i = 0; i < import_js_imported.length; i++)
-        if (import_js_imported[i] == script) {
-            found = true;
-            break;
-        }
+LAB.writeScriptTag_ = function(src) {
+	var doc = LAB.global.document;
+	doc.write(
+		'<script type="text/javascript" src="' + src + '"></' + 'script>');
+	included[src] = true;
+	return true;
+}
 
-    if (found == false) {
-        $("head").append('<script type="text/javascript" src="' + script + '"></script>');
-        import_js_imported.push(script);
-    }
+
+LAB.require = function(src) {
+	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
 }
 
 // start including stuff
