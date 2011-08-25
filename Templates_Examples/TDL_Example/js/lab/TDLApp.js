@@ -80,6 +80,8 @@ LAB.TDLApp = function()
 		labSetMatrices();
 		this.setup();
 		this.animate();
+		
+		this.bOrthographic = false;
 	}
 
 /************************************************************
@@ -109,6 +111,7 @@ LAB.TDLApp = function()
 	DRAWING: OVERRIDE PREDRAW AND POSTDRAW TO SET UP GL CTX
 ************************************************************/
 
+
 	LAB.TDLApp.prototype.predraw = function(){
 	   	// turn off logging after 1 frame.
 	   	g_logGLCalls = false;
@@ -121,21 +124,25 @@ LAB.TDLApp = function()
 		GL.blendFunc( GL.SRC_ALPHA , GL.ONE_MINUS_SRC_ALPHA);
 	
 		GL.viewport(0, 0, this.canvas.width, this.canvas.height);//fit viewport to screen
+		
 		labPushMatrix();
-		labPushProjection();
-		//remake perspective     
-		fast.identity4( projectionMatrix );                          
-		projectionMatrix = tdl.math.matrix4.orthographic(0, canvas.width, 0, canvas.height, nearClip, farClip);
-		//remake modelview matrix
-		fast.identity4(modelviewMatrix);
+		
+		// give you an option to push to orthographic (flat) projection
+		if (this.bOrthographic){			
+			labPushProjection();
+			//remake perspective     
+			fast.identity4( projectionMatrix );                          
+			projectionMatrix = tdl.math.matrix4.orthographic(0, canvas.width, 0, canvas.height, nearClip, farClip);
+			//remake modelview matrix
+			fast.identity4(modelviewMatrix);
 
-		labPushMatrix();
-
-		//move to upper left corner and scale. mimics openframeworks setup
-		labScale(1,-1,1);
-		labTranslate(0, -canvas.height, 0);
+			//move to upper left corner and scale. mimics openframeworks setup
+			labScale(1,-1,1);
+			labTranslate(0, -canvas.height, 0);
+		}
 	};
 	
 	LAB.TDLApp.prototype.postdraw = function(){
+		if (this.bOrthographic) labPopProjection();
 		labPopMatrix();
 	}
