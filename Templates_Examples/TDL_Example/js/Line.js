@@ -41,7 +41,7 @@
 			//indices.push(index);
 			indices.push(index++);
 			
-			if (points.length > 1000){
+			if (points.length > 500){
 				points.unshift();
 				colors.unshift();
 				indices.unshift();

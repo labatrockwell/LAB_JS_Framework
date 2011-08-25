@@ -31,6 +31,7 @@ LabShader.prototype = {
       GL.useProgram(this.program);
       
       //add typical attributes(if they exist). might be confusing down the road....
+      this.addAttriubte("aColor");
       this.addAttriubte("aPosition");
       this.addAttriubte("aNormal");
       this.addAttriubte("aTexCoord");

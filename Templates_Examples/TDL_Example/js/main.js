@@ -37,7 +37,6 @@ $(document).ready( function() {
 		this.setup = function (){
 			shapeShader = new LabShader();
 			shapeShader.setup( 'shapeShader-vs', 'shapeShader-fs');
-			shapeShader.addAttribute( 'aColor' );
 		
 			rectMesh 		= new Rectangle(shapeShader); // see below
 			line			= new Line(shapeShader);
