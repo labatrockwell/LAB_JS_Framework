@@ -36,23 +36,12 @@
 tdl.provide('tdl.webgl');
 
 tdl.require('tdl.log');
-tdl.require('tdl.misc');
 
 /**
  * A module for log.
  * @namespace
  */
 tdl.webgl = tdl.webgl || {};
-
-/**
- * The current GL context
- * @type {WebGLRenderingContext}
- */
-gl = null;
-
-tdl.webgl.makeCurrent = function(context) {
-  gl = context;
-}
 
 /**
  * Creates the HTLM for a failure message
@@ -122,8 +111,29 @@ tdl.webgl.setupWebGL = function(canvas, opt_attribs, opt_onError) {
     if (!window.WebGLRenderingContext) {
       opt_onError("");
     }
+  } else {
+    canvas.addEventListener(
+        "webglcontextrestored",
+        function(canvas) {
+          return function() {
+            tdl.webgl.handleContextRestored_(canvas);
+          }
+        }(canvas),
+        false);
   }
   return context;
+};
+
+tdl.webgl.contextRestoredHandlers_ = {};
+
+tdl.webgl.handleContextRestored_ = function(canvas) {
+  for (var key in tdl.webgl.lostContextHandlers_) {
+    tdl.webgl.lostContextHandlers_[key]();
+  }
+};
+
+tdl.webgl.addContextRestoredHandler = function(id, handler) {
+  tdl.webgl.contextRetoredHandlers_[id] = handler;
 };
 
 /**
@@ -133,10 +143,6 @@ tdl.webgl.setupWebGL = function(canvas, opt_attribs, opt_onError) {
  * @return {!WebGLRenderingContext} The created context.
  */
 tdl.webgl.create3DContext = function(canvas, opt_attribs) {
-  if (opt_attribs === undefined) {
-    opt_attribs = {};
-    tdl.misc.applyUrlSettings(opt_attribs, 'webgl');
-  }
   var names = ["webgl", "experimental-webgl", "webkit-3d", "moz-webgl"];
   var context = null;
   for (var ii = 0; ii < names.length; ++ii) {
@@ -151,8 +157,6 @@ tdl.webgl.create3DContext = function(canvas, opt_attribs) {
     if (!tdl.webgl.glEnums) {
       tdl.webgl.init(context);
     }
-    tdl.webgl.makeCurrent(context);
-    context.tdl = {};
 
     // Disallow selection by default. This keeps the cursor from changing to an
     // I-beam when the user clicks and drags.  It's easier on the eyes.
@@ -425,41 +429,85 @@ tdl.webgl.makeDebugContext = function(ctx, opt_onErrorFunc, opt_onFunc) {
 };
 
 /**
+ * Returns the animationTime in a cross browser way.
+ * @return {number} The current animationTime
+ */
+tdl.webgl.animationTime = function() {
+  if (!tdl.webgl.getAnimationTimeImpl_) {
+    tdl.webgl.getAnimationTimeImpl_ = function() {
+      var attribNames = [
+        "animationTime",
+        "webkitAnimationTime",
+        "mozAnimationTime",
+        "operaAnimationTime",
+        "msAnimationTime"
+      ];
+      for (var ii = 0; ii < attribNames.length; ++ii) {
+        var name = attribNames[ii];
+        if (window[name]) {
+          tdl.log("using window." + name);
+          return function() {
+            return window[name];
+          };
+        }
+      }
+      tdl.log("using Date.getTime");
+      return function() {
+        return (new Date()).getTime();
+      }
+    }();
+  }
+  return tdl.webgl.getAnimationTimeImpl_();
+};
+
+/**
  * Provides requestAnimationFrame in a cross browser
  * way.
+ * @param {!Element} element Element to request an animation frame for.
  * @param {function(RequestAnimationEvent): void} callback. Callback that will
  *        be called when a frame is ready.
- * @param {!Element} element Element to request an animation frame for.
  */
-tdl.webgl.requestAnimationFrame = function(callback, element) {
+tdl.webgl.requestAnimationFrame = function(element, callback) {
   if (!tdl.webgl.requestAnimationFrameImpl_) {
     tdl.webgl.requestAnimationFrameImpl_ = function() {
+      var objects = [element, window];
       var functionNames = [
         "requestAnimationFrame",
         "webkitRequestAnimationFrame",
         "mozRequestAnimationFrame",
-        "oRequestAnimationFrame",
-        "msRequestAnimationFrame"
+        "operaRequestAnimationFrame",
+        "requestAnimationFrame"
       ];
-      for (var jj = 0; jj < functionNames.length; ++jj) {
-        var functionName = functionNames[jj];
-        if (window[functionName]) {
-          tdl.log("using ", functionName);
-          return function(name) {
-            return function(callback, element) {
-              window[name].call(window, callback, element);
-            };
-          }(functionName);
+      var functions = [
+        function (name) {
+          return function(element, callback) {
+            element[name].call(element, callback);
+          };
+        },
+        function (name) {
+          return function(element, callback) {
+            window[name].call(window, callback);
+          };
+        }
+      ];
+      for (var ii = 0; ii < objects.length; ++ii) {
+        var obj = objects[ii];
+        for (var jj = 0; jj < functionNames.length; ++jj) {
+          var functionName = functionNames[jj];
+          if (obj[functionName]) {
+            tdl.log("using ", functionName);
+            return functions[ii](functionName);
+          }
         }
       }
       tdl.log("using window.setTimeout");
-      return function(callback, element) {
+      return function(element, callback) {
            window.setTimeout(callback, 1000 / 70);
         };
     }();
   }
 
-  tdl.webgl.requestAnimationFrameImpl_(callback, element);
+  tdl.webgl.requestAnimationFrameImpl_(element, callback)
 };
 
 
