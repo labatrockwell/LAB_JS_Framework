@@ -19,7 +19,7 @@ LabMesh = function () {
    this.mBuffers = [],
    this.boundBool = false,
    
-   this.renderType = GL.TRIANGLES ;
+   this.renderType = GL.TRIANGLES;
 };
 
 LabMesh.prototype = {
@@ -134,7 +134,6 @@ LabMesh.prototype = {
    addIndexBuffer : function( indexArray ){
       this.indexBuffer = GL.createBuffer();
       GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
-      
       GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexArray), GL.DYNAMIC_DRAW);
       this.indexBuffer.itemSize = 1;
       this.indexBuffer.numItems = indexArray.length;// / itemSize;
@@ -166,6 +165,7 @@ LabMesh.prototype = {
          //this.boundBool = true;
          currentMesh = this;
       }
+	//console.log(this.indexBuffer.numItems);
       //if(this.indexBuffer ){
          var count = opt_count || this.indexBuffer.numItems;
          var start = opt_start || 0;
@@ -192,7 +192,6 @@ LabMesh.prototype = {
    createIndexBuffer : function (dataArray, itemSize){
       var buffer = GL.createBuffer();
       GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, buffer);
-      
       GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(dataArray), GL.DYNAMIC_DRAW);
       buffer.itemSize = itemSize;
       buffer.numItems = dataArray.length / itemSize;
@@ -204,4 +203,15 @@ LabMesh.prototype = {
       GL.bindBuffer(GL.ARRAY_BUFFER, _buffer );
       GL.bufferSubData( GL.ARRAY_BUFFER, 0, new Float32Array( _data) );
    },
+
+	updateIndexBuffer : function( _data ){
+      //http://stackoverflow.com/questions/5497722/how-can-i-animate-an-object-in-webgl-modify-specific-vertices-not-full-transform
+      GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.indexBuffer );
+      GL.bufferSubData( GL.ELEMENT_ARRAY_BUFFER, 0, new Uint16Array( _data) );
+      //this.indexBuffer.numItems = _data.length;
+   },
+
+	deleteBuffer : function( _buffer ){
+		GL.deleteBuffer(_buffer);
+	}
 };

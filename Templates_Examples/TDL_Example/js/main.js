@@ -5,6 +5,7 @@ LAB.require("js/utils/utils.js");
 
 // include custom class
 LAB.require("js/Rectangle.js");
+LAB.require("js/Line.js");
 
 var demoApp;
 
@@ -28,6 +29,7 @@ $(document).ready( function() {
 		// webgl vars		
 		var shapeShader, texShader;
 		var rectMesh;
+		var line;
 		var lastMouse = {x:0, y:0};
 			
 	// SETUP
@@ -35,9 +37,9 @@ $(document).ready( function() {
 		this.setup = function (){
 			shapeShader = new LabShader();
 			shapeShader.setup( 'shapeShader-vs', 'shapeShader-fs');
-			
+		
 			rectMesh 		= new Rectangle(shapeShader); // see below
-
+			line			= new Line(shapeShader);
 			// catch mouse events!
 			this.registerMouseEvents();
 		}
@@ -48,15 +50,20 @@ $(document).ready( function() {
 			rectMesh.width = rectMesh.height = (Math.abs(LAB.self.mouse.x - lastMouse.x)/10.+1)*100;
 			rectMesh.x = LAB.self.mouse.x - rectMesh.width/2;
 			rectMesh.y = LAB.self.mouse.y - rectMesh.height/2;
+			
+			line.addPoint( LAB.self.mouse.x, LAB.self.mouse.y );
+						
 			lastMouse.x = LAB.self.mouse.x;
-			lastMouse.y = LAB.self.mouse.x;
+			lastMouse.y = LAB.self.mouse.y;
 			rectMesh.update();
+			line.update();
 		}
 
 	// DRAW
 	
 		this.draw = function (){
-			rectMesh.draw();
+			line.draw();
+			//rectMesh.draw();
 		}	
 	}
 	
