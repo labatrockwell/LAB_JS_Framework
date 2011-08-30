@@ -6,6 +6,7 @@ LAB.require("js/utils/utils.js");
 var demoApp;
 
 $(document).ready( function() {
+	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, DemoApp.prototype);
 	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
 	demoApp.begin();
@@ -123,8 +124,6 @@ $(document).ready( function() {
 		}		
 	}
 	
-	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, DemoApp.prototype);
-
 	/*DemoApp.prototype 				= new LAB.ThreeApp();
 	DemoApp.prototype.constructor 	= DemoApp;
 	DemoApp.prototype.supr 			= LAB.ThreeApp.prototype;	
