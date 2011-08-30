@@ -1,8 +1,12 @@
-function Agent() {
+/** @namespace LAB.agents */
+LAB.agents = LAB.agents || {};
+
+/** @constructor */
+LAB.agents.Agent = function() {
 
 };
 
-Agent.prototype.setup = function(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible) {
+LAB.agents.Agent.prototype.setup = function(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible) {
 	this.pos = [];
 	this.myID = _id || 0;
 	this.groupSize;
@@ -21,25 +25,25 @@ Agent.prototype.setup = function(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, 
 	this.Behaviors = [];
 };
 
-Agent.prototype.addBehavior = function(Behavior) {
+LAB.agents.Agent.prototype.addBehavior = function(Behavior) {
 	this.Behaviors.push(Behavior);
 	Behavior.setup(this);
 	console.log(this.Behaviors);
 };
 
-Agent.prototype.removeBehavior = function(Behavior) {
+LAB.agents.Agent.prototype.removeBehavior = function(Behavior) {
 	// this.Behaviors.push(Behavior);
 	// Behavior.setup(this);
 	// console.log(this.Behaviors);
 };
 
-Agent.prototype.applyBehaviors = function() {
+LAB.agents.Agent.prototype.applyBehaviors = function() {
 	var i=0;
 	for (i=0; i<this.Behaviors.length; i++) {
 		this.Behaviors[i].apply(this);
 	}
 }
 
-Agent.prototype.checkIt = function() {
+LAB.agents.Agent.prototype.checkIt = function() {
 	console.log("check!");
 };

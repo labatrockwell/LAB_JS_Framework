@@ -1,3 +1,4 @@
+/** @namespace LAB */
 LAB.EventDispatcher = function()
 {
 	this.events = [];

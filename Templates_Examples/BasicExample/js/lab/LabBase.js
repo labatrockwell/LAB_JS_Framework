@@ -1,4 +1,5 @@
 // include required files
+/** @namespace LAB*/
 var LAB = LAB || {};
 
 // reference to global context, in most cases 'window'.
@@ -12,6 +13,10 @@ LAB.global = this;
 
 var included = {}
 
+/**
+@function
+@private
+*/
 LAB.writeScriptTag_ = function(src) {
 	var doc = LAB.global.document;
 	doc.write(
@@ -20,11 +25,15 @@ LAB.writeScriptTag_ = function(src) {
 	return true;
 }
 
-
+/**
+	Use this to load script files! (only script files right now)
+	@function
+	@public
+*/
 LAB.require = function(src) {
 	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
 }
 
 // start including stuff
 LAB.require("js/lab/EventDispatcher.js");
-LAB.require("js/lab/BaseApp.js");
+LAB.require("js/lab/app/BaseApp.js");

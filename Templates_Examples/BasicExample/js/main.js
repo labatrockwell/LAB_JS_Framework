@@ -1,6 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/BaseApp.js");
+LAB.require("js/lab/app/BaseApp.js");
 LAB.require("js/utils/utils.js");
 
 var demoApp;
@@ -16,7 +16,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.BaseApp.call( this );		
+		LAB.app.BaseApp.call( this );		
 		
 		var amazingDiv = document.getElementById("amazingDiv");
 		
@@ -50,4 +50,4 @@ $(document).ready( function() {
 	// YourAppName.prototype = $.extend(true, whatYouWantToExtend.prototype, ..., YourApp.prototype)
 	// ... = extend as many classes as you want (within reason, dude)
 	
-	DemoApp.prototype = $.extend(true, LAB.BaseApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.BaseApp.prototype, DemoApp.prototype);
