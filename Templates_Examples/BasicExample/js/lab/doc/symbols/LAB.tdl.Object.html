@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.app.ECSApp</title>
+		<title>JsDoc Reference - LAB.tdl.Object</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -230,7 +230,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.app.ECSApp
+				Class LAB.tdl.Object
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -241,13 +241,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_ECSApp.js.html">ECSApp.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_tdl_Object.js.html">Object.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.ECSApp.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.tdl.Object.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -260,7 +260,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ECSApp.html#constructor">LAB.app.ECSApp</a></b>()
+								<b><a href="../symbols/LAB.tdl.Object.html#constructor">LAB.tdl.Object</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -271,12 +271,42 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.tdl.Object.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.tdl.Object.html#transformationMatrix">transformationMatrix</a></b>
+								</div>
+								<div class="description">**********************************************************
+    TODO:  seperate translate, scale, and rotate matrices????????
+***********************************************************</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.ECSApp.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.tdl.Object.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -289,47 +319,64 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ECSApp.html#handleConfig">handleConfig</a></b>(data)
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#addChild">addChild</a></b>(child)
 								</div>
-								<div class="description">handle configs sent from your role or from other apps
-		override this in your main app to make custom handlers</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ECSApp.html#handlePerformanceConfig">handlePerformanceConfig</a></b>(data)
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#draw">draw</a></b>()
 								</div>
-								<div class="description">catches performance configs (sent to all members of a performance)
-		override this in your main app to make custom handler</div>
+								<div class="description">**********************************************************
+    TODO:  pass transform matrix to the shader as a third matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ECSApp.html#handleStartPerformance">handleStartPerformance</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getPosition">getPosition</a></b>()
 								</div>
-								<div class="description">start performace: assumes all is good, starts updating / drawing.</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ECSApp.html#handleStopPerformance">handleStopPerformance</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getScale">getScale</a></b>()
 								</div>
-								<div class="description">stop performace: teardown is happening, time to start shutting down</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ECSApp.html#setupECS">setupECS</a></b>(uuid, inport, outport)
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#move">move</a></b>(x, y, z)
 								</div>
-								<div class="description">setup: call this from your main app</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#rotate">rotate</a></b>(angle, x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#scale">scale</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
@@ -350,7 +397,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.app.ECSApp</b>()
+						<b>LAB.tdl.Object</b>()
 				</div>
 				
 				<div class="description">
@@ -374,6 +421,35 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="transformationMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>transformationMatrix</b>
+					
+					</div>
+					<div class="description">
+						**********************************************************
+    TODO:  seperate translate, scale, and rotate matrices????????
+***********************************************************
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -381,16 +457,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="handleConfig"> </a>
+					<a name="addChild"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>handleConfig</b>(data)
+					<b>addChild</b>(child)
 					
 					</div>
 					<div class="description">
-						handle configs sent from your role or from other apps
-		override this in your main app to make custom handlers
+						
 						
 						
 					</div>
@@ -402,44 +477,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Object}</span> <b>data</b>
-									
-								</dt>
-								<dd>contains data.a_key, data.a_value</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="handlePerformanceConfig"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>handlePerformanceConfig</b>(data)
-					
-					</div>
-					<div class="description">
-						catches performance configs (sent to all members of a performance)
-		override this in your main app to make custom handler
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>data</b>
+									<b>child</b>
 									
 								</dt>
 								<dd></dd>
@@ -455,15 +493,18 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="handleStartPerformance"> </a>
+					<a name="draw"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>handleStartPerformance</b>()
+					<b>draw</b>()
 					
 					</div>
 					<div class="description">
-						start performace: assumes all is good, starts updating / drawing.
+						**********************************************************
+    TODO:  pass transform matrix to the shader as a third matrix. 
+    that way we can do matrx math in update & improve performance
+***********************************************************
 						
 						
 					</div>
@@ -480,15 +521,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="handleStopPerformance"> </a>
+					<a name="getPosition"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>handleStopPerformance</b>()
+					<b>getPosition</b>()
 					
 					</div>
 					<div class="description">
-						stop performace: teardown is happening, time to start shutting down
+						
 						
 						
 					</div>
@@ -505,15 +546,40 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setupECS"> </a>
+					<a name="getScale"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setupECS</b>(uuid, inport, outport)
+					<b>getScale</b>()
 					
 					</div>
 					<div class="description">
-						setup: call this from your main app
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="move"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>move</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
 						
 						
 					</div>
@@ -525,19 +591,121 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>uuid</b>
+									<b>x</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>inport</b>
+									<b>y</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>outport</b>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rotate"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rotate</b>(angle, x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>angle</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scale"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>scale</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
 									
 								</dt>
 								<dd></dd>
@@ -565,7 +733,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 30 2011 16:38:54 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 30 2011 16:38:55 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

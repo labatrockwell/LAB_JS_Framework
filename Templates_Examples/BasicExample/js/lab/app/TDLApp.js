@@ -4,10 +4,10 @@
 LAB.require("js/lab/app/BaseApp.js");
 
 // include TDL utils from Lars
-LAB.require('js/lab/app/tdlUtils/LabUtils.js');
-LAB.require('js/lab/app/tdlUtils/LabMesh.js');
-LAB.require('js/lab/app/tdlUtils/LabObject.js');
-LAB.require('js/lab/app/tdlUtils/LabShader.js');
+LAB.require('js/lab/app/tdl/Utils.js');
+LAB.require('js/lab/app/tdl/Mesh.js');
+LAB.require('js/lab/app/tdl/Object.js');
+LAB.require('js/lab/app/tdl/Shader.js');
 
 /** 
 	@constructor 
@@ -51,7 +51,7 @@ LAB.app.TDLApp = function()
 ************************************************************/
 	
 	/** 
-		Call to set up WebGL, initialize the canvas, build matrices,
+		Call to set up Webgl, initialize the canvas, build matrices,
 		and start animate() loop
 		@function 
 		@public
@@ -81,17 +81,14 @@ LAB.app.TDLApp = function()
 		}
 		
 		g_fpsTimer = new tdl.fps.FPSTimer();
-		
-		console.log(tdl);
-		console.log(tdl.webGL);
 
-		GL = tdl.webgl.setupWebGL(this.canvas);
-		if (!GL) {
-			console.log("ERROR SETTING UP GL");
+		gl = tdl.webGL.setupWebgl(this.canvas);
+		if (!gl) {
+			console.log("ERROR SETTING UP gl");
 			return false;
 		}
 		if (g_debug) {
-			GL = tdl.webgl.makeDebugContext(GL, undefined, LogGLCall);
+			gl = tdl.webgl.makeDebugContext(gl, undefined, LogglCall);
 		}
 
 		// util function stored in LabUtils
@@ -131,27 +128,27 @@ LAB.app.TDLApp = function()
 	}
 
 /************************************************************
-	DRAWING: OVERRIDE PREDRAW AND POSTDRAW TO SET UP GL CTX
+	DRAWING: OVERRIDE PREDRAW AND POSTDRAW TO SET UP gl CTX
 ************************************************************/
 	
 	/** 
-		Sets up WebGL drawing context, blending, projection/modelview matrices
+		Sets up Webgl drawing context, blending, projection/modelview matrices
 		@function 
 		@private
 	*/
 
 	LAB.app.TDLApp.prototype.predraw = function(){
 	   	// turn off logging after 1 frame.
-	   	g_logGLCalls = false;
+	   	g_logglCalls = false;
 	
-		GL.clearColor( 1,1,1,1 );
-		GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+		gl.clearColor( 1,1,1,1 );
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
 
-		GL.disable( GL.DEPTH_TEST );
-		GL.enable( GL.BLEND );
-		GL.blendFunc( GL.SRC_ALPHA , GL.ONE_MINUS_SRC_ALPHA);
+		gl.disable( gl.DEPTH_TEST );
+		gl.enable( gl.BLEND );
+		gl.blendFunc( gl.SRC_ALPHA , gl.ONE_MINUS_SRC_ALPHA);
 	
-		GL.viewport(0, 0, this.canvas.width, this.canvas.height);//fit viewport to screen
+		gl.viewport(0, 0, this.canvas.width, this.canvas.height);//fit viewport to screen
 		
 		labPushMatrix();
 		

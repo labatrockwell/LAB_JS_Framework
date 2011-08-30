@@ -1,8 +1,8 @@
-/*••••••••
- •••LAB•••
- ••••••••*/
+/** @namespace LAB.tdl */
+LAB.tdl = LAB.tdl || {};
 
-LabMesh = function () {
+/** @constructor */
+LAB.tdl.Mesh = function () {
    
    this.indices, 
    this.vertices = null,
@@ -22,7 +22,7 @@ LabMesh = function () {
    this.renderType = gl.TRIANglES;
 };
 
-LabMesh.prototype = {
+LAB.tdl.Mesh.prototype = {
    //BUFFERS, ATTRIBUTES, BINDING, DRAWING, SHADER
    /********************************************************************
     TO DO: add a generic function function for adding custume attributes
