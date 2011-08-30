@@ -1,5 +1,5 @@
 /************************************************
-	LAB JS BASE APP
+	LAB JS BASE BEHAVIORS APP
 ************************************************/
 
 INCLUDED LIBRARIES
@@ -7,19 +7,12 @@ INCLUDED LIBRARIES
 	
 // WHAT THIS APP SHOULD DO
 
-Move an amazing div across the screen. The div is placed in
-html + styled 
+Move a group of 6 divs around in a circle on the screen.
 
-// KNOWN ISSUES
+// WHAT TO LOOK AT
 
-1)
-LAB.require is blocking, which is nice... HOWEVER: errors in 
-your included .js files WILL NOT show up at the correct line
-number in the chrome debugger. If you are getting errors and
-can't figure them out, include the offending JS file in your 
-HTML.
+In general this app tries to abstract out and create a sprite 
+class (Agents.js). After agents are created they can be assigned 
+behaviors which alter the Agent properties. These agents can then 
+be added to groups. Behaviors can alter both Groups and Agents.
 
-2) 
-because of Chrome security issues, LAB.require needs either a 
-hosted file, or be launched with the Chrome dev flag --allow-file-access-from-files
-e.g. /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files
