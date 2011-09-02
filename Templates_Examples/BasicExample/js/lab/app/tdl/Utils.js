@@ -1,6 +1,7 @@
 //shamelessly borrowed...
 
-/** @namespace LAB */
+/** @namespace LAB.tdl */
+LAB.tdl = LAB.tdl || {};
 
 //includes
 tdl.require('tdl.buffers');

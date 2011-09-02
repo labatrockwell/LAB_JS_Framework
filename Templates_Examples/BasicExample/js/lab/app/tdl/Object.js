@@ -1,8 +1,8 @@
-/*••••••••
- •••LAB•••
- ••••••••*/
+/** @namespace LAB.tdl */
+LAB.tdl = LAB.tdl || {};
 
-LabObject = function () {
+/** @constructor */
+LAB.tdl.Object = function () {
    
    /*************************************************************
     TODO:  seperate translate, scale, and rotate matrices????????
@@ -13,7 +13,7 @@ LabObject = function () {
    this.scl =  new Float32Array(3);
 };
 
-LabObject.prototype = {
+LAB.tdl.Object.prototype = {
    
    addChild : function( child ){
       this.children.push( child );

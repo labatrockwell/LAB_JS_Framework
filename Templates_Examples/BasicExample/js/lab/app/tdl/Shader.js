@@ -1,8 +1,8 @@
-/*••••••••
- •••LAB•••
- ••••••••*/
+/** @namespace LAB.tdl */
+LAB.tdl = LAB.tdl || {};
 
-LabShader = function () {
+/** @constructor */
+LAB.tdl.Shader = function () {
    
 	this.program;
    this.attributes = [];
@@ -12,14 +12,14 @@ LabShader = function () {
    this.normMatrixUniform;
 };
 
-LabShader.prototype = {
+LAB.tdl.Shader.prototype = {
    
 	setup : function ( vertexShaderID, fragmentShaderID ) {
       
 		var vertexShader = this.getShader( vertexShaderID );
 		var fragmentShader = this.getShader( fragmentShaderID );
       
-      this.program = gl.createProgram();
+		this.program = gl.createProgram();
       gl.attachShader(this.program, vertexShader);
       gl.attachShader(this.program, fragmentShader);
       gl.linkProgram(this.program);
