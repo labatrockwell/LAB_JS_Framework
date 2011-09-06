@@ -417,16 +417,10 @@
             location = "group:Texture.js">
          </FileRef>
       </Group>
-      <FileRef
-         location = "group:Three.js">
-      </FileRef>
    </Group>
    <Group
-      location = "group:js"
+      location = "group:../THREEJS_Example/js"
       name = "js">
-      <FileRef
-         location = "group:main.js">
-      </FileRef>
       <Group
          location = "group:ecs"
          name = "ecs">
@@ -447,28 +441,77 @@
       <Group
          location = "group:lab"
          name = "lab">
-         <FileRef
-            location = "group:labThree">
-         </FileRef>
-         <FileRef
-            location = "group:BaseApp.js">
-         </FileRef>
-         <FileRef
-            location = "group:ECSApp.js">
-         </FileRef>
+         <Group
+            location = "group:agents"
+            name = "agents">
+            <FileRef
+               location = "group:Agent.js">
+            </FileRef>
+            <FileRef
+               location = "group:Behavior.js">
+            </FileRef>
+            <FileRef
+               location = "group:Group.js">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:app"
+            name = "app">
+            <FileRef
+               location = "group:BaseApp.js">
+            </FileRef>
+            <FileRef
+               location = "group:ECSApp.js">
+            </FileRef>
+            <Group
+               location = "group:tdl"
+               name = "tdl">
+               <FileRef
+                  location = "group:Mesh.js">
+               </FileRef>
+               <FileRef
+                  location = "group:Object.js">
+               </FileRef>
+               <FileRef
+                  location = "group:Shader.js">
+               </FileRef>
+               <FileRef
+                  location = "group:Utils.js">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:TDLApp.js">
+            </FileRef>
+            <Group
+               location = "group:three"
+               name = "three">
+               <FileRef
+                  location = "group:LabThreeCamera.js">
+               </FileRef>
+               <FileRef
+                  location = "group:LabThreeGeometry.js">
+               </FileRef>
+               <FileRef
+                  location = "group:LabThreeObject.js">
+               </FileRef>
+               <FileRef
+                  location = "group:LabThreeUtils.js">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:ThreeApp.js">
+            </FileRef>
+         </Group>
          <FileRef
             location = "group:EventDispatcher.js">
          </FileRef>
          <FileRef
             location = "group:LabBase.js">
          </FileRef>
-         <FileRef
-            location = "group:LabUtils.js">
-         </FileRef>
-         <FileRef
-            location = "group:ThreeApp.js">
-         </FileRef>
       </Group>
+      <FileRef
+         location = "group:main.js">
+      </FileRef>
       <Group
          location = "group:three"
          name = "three">
