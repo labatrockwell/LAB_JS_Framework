@@ -10,7 +10,7 @@ LAB.BaseApp = function()
 	
 	//utils
 	this.mouse	= {x:0, y:0, bDown:false};
-	this.startTime 		= Date.now();
+	this.startTime 		= new Date().getTime();
 	this.elapsedTime 	= 0;
 }
 
@@ -36,10 +36,7 @@ LAB.BaseApp.prototype.postdraw 	= function(){}; // e.g. teardown screen
 // starts off animation + sets up update/draw loop
 LAB.BaseApp.prototype.animate	= function(time){
 	// update time
-	if (time === undefined){
-	} else {
-		LAB.self.elapsedTime = time - LAB.self.startTime;
-	}
+	LAB.self.elapsedTime = new Date().getTime() - LAB.self.startTime;
 	
 	requestAnimationFrame(LAB.self.animate, this);
 			

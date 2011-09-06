@@ -34,7 +34,7 @@ LAB.ThreeApp.prototype.supr = LAB.BaseApp.prototype;
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
-      this.renderer.autoClear = false;
+      	this.renderer.autoClear = false;
 
 		// do we have a container?
 	

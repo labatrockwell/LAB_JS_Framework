@@ -1030,8 +1030,8 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>337037443.50143999</real>
-		<string>{4511, 1910}</string>
+		<real>337037553.293769</real>
+		<string>{4458, 1850}</string>
 		<string>{5819, 0}</string>
 		<string>main.js</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
@@ -3264,7 +3264,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337037443.50001198</real>
+		<real>337037553.29256999</real>
 		<string>{1824, 1014}</string>
 		<string>{16319, 0}</string>
 		<string>THREE.Matrix4.makeInvert</string>
@@ -4336,8 +4336,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337037443.500682</real>
-		<string>{1941, 1768}</string>
+		<real>337037553.29325902</real>
+		<string>{1913, 1835}</string>
 		<string>{3417, 0}</string>
 		<string>main.js</string>
 		<dict>
@@ -6418,7 +6418,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337037443.49812102</real>
+		<real>337037553.29075199</real>
 		<string>{1824, 1014}</string>
 		<string>{16319, 0}</string>
 		<dict>
@@ -6466,8 +6466,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337037443.498294</real>
-		<string>{1941, 1768}</string>
+		<real>337037553.29090202</real>
+		<string>{1913, 1835}</string>
 		<string>{3417, 0}</string>
 		<dict>
 			<key>$class</key>
@@ -6847,7 +6847,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337037406.67762601</real>
+		<real>337037548.453448</real>
 		<string>{0, 1428}</string>
 		<string>{802, 15}</string>
 		<dict>
