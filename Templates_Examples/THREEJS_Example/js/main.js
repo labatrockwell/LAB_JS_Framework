@@ -41,8 +41,6 @@ $(document).ready( function() {
 	// ===========================================
 		
 		this.setup = function (){
-         gl = this.renderer.getContext();
-
 			// catch mouse events!
 			this.registerMouseEvents();
          

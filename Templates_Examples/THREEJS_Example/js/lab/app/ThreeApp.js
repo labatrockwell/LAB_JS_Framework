@@ -1,4 +1,5 @@
 // include LabBase files
+/** @namespace LAB.app */
 LAB.require("js/three/Three.js");
 LAB.require("js/lab/app/BaseApp.js");
 
@@ -9,6 +10,10 @@ LAB.require("js/lab/app/three/LabThreeGeometry.js");
 LAB.require("js/lab/app/three/LabThreeObject.js");
 LAB.require("js/lab/app/three/LabThreeUtils.js");
 
+/** 
+	@constructor 
+	@extends LAB.app.BaseApp
+*/
 LAB.app.ThreeApp = function()
 {
 	LAB.app.BaseApp.call( this );
@@ -27,16 +32,40 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 	SETUP
 ************************************************************/
 
+	/** 
+		Call to set up Webgl, initialize the canvas, provide default THREE vars
+		and start animate() loop
+		@function 
+		@public
+	*/
+
 	LAB.app.ThreeApp.prototype.begin = function()
 	{
+		/**
+		* default THREE camera
+		* @type THREE.Camera
+		*/
 		console.log("base app set up");
 		this.camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 		this.camera.position.y = 300;
 		this.camera.position.z = 500;
-
+		
+		/**
+		* default THREE scene
+		* @type THREE.Scene
+		*/
 		this.scene = new THREE.Scene();
+		
+		/**
+		* default THREE projector
+		* @type THREE.Projector
+		*/
 		this.projector = new THREE.Projector();
-
+		
+		/**
+		* default THREE renderer with anti-aliasing, depth sorting off
+		* @type THREE.WebGLRenderer
+		*/
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -56,6 +85,13 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		}
 		
 		this.container.appendChild(this.renderer.domElement);	
+		
+		/**
+		* global gl reference to mirror normal openGL
+		* @type WebGLContext
+		*/
+		gl = gl || this.renderer.getContext();
+		
 		this.setup();
 		this.animate();
 	}
