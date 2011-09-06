@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.three.Camera</title>
+		<title>JsDoc Reference - LAB.app.TDLApp</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -238,26 +238,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.three.Camera
+				Class LAB.app.TDLApp
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					THREE.Camera.<br />
+					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_three_Camera.js.html">Camera.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_TDLApp.js.html">TDLApp.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Camera.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.TDLApp.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -270,7 +270,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.three.Camera.html#constructor">LAB.three.Camera</a></b>(fov, aspect, near, far)
+								<b><a href="../symbols/LAB.app.TDLApp.html#constructor">LAB.app.TDLApp</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -281,12 +281,44 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.app.TDLApp.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.TDLApp.html#bOrthographic">bOrthographic</a></b>
+								</div>
+								<div class="description">Is screen orthographic or not? (can change from frame to frame)</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Camera.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.TDLApp.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -299,82 +331,37 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#popMatrix">popMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#begin">begin</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">Call to set up Webgl, initialize the canvas, build matrices,
+		and start animate() loop</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#projectToScreen">projectToScreen</a></b>(worldPos)
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#postdraw">postdraw</a></b>()
 								</div>
-								<div class="description">project a THREE.Vector3 from world to screen coords</div>
+								<div class="description">Pops matrices</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#pushMatrix">pushMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#predraw">predraw</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">Sets up Webgl drawing context, blending, projection/modelview matrices</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#rotateMatrix">rotateMatrix</a></b>(angle, x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#preupdate">preupdate</a></b>()
 								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#scaleMatrix">scaleMatrix</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowOrtho">setToWindowOrtho</a></b>(_nearClip, _farClip)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowPerspective">setToWindowPerspective</a></b>(_fov, _nearClip, _farClip)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#translateMatrix">translateMatrix</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#updateMatrix">updateMatrix</a></b>()
-								</div>
-								<div class="description">this overwrites the THREE.Camera.updateMatrix() called by the renderer
-	without this the camera would automaticllay update according to it's position scale and rotation vectors</div>
+								<div class="description">Calculates elapsed + delta time</div>
 							</td>
 						</tr>
 					
@@ -382,6 +369,10 @@ ul.inheritsList
 				</table>
 				
 				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -395,7 +386,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.three.Camera</b>(fov, aspect, near, far)
+						<b>LAB.app.TDLApp</b>()
 				</div>
 				
 				<div class="description">
@@ -406,35 +397,6 @@ ul.inheritsList
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>fov</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>aspect</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>near</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>far</b>
-								
-							</dt>
-								<dd></dd>
-						
-						</dl>
 					
 					
 					
@@ -448,6 +410,33 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="bOrthographic"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>bOrthographic</b>
+					
+					</div>
+					<div class="description">
+						Is screen orthographic or not? (can change from frame to frame)
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -455,15 +444,16 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="popMatrix"> </a>
+					<a name="begin"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>popMatrix</b>()
+					<b>begin</b>()
 					
 					</div>
 					<div class="description">
-						
+						Call to set up Webgl, initialize the canvas, build matrices,
+		and start animate() loop
 						
 						
 					</div>
@@ -480,51 +470,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="projectToScreen"> </a>
-					<div class="fixedFont">
+					<a name="postdraw"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>projectToScreen</b>(worldPos)
-					
-					</div>
-					<div class="description">
-						project a THREE.Vector3 from world to screen coords
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>worldPos</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="pushMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>pushMatrix</b>()
+					<b>postdraw</b>()
 					
 					</div>
 					<div class="description">
-						
+						Pops matrices
 						
 						
 					</div>
@@ -541,50 +495,21 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="rotateMatrix"> </a>
-					<div class="fixedFont">
+					<a name="predraw"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>rotateMatrix</b>(angle, x, y, z)
+					<b>predraw</b>()
 					
 					</div>
 					<div class="description">
-						
+						Sets up Webgl drawing context, blending, projection/modelview matrices
 						
 						
 					</div>
 					
 					
 					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>angle</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
 						
 						
 						
@@ -595,202 +520,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="scaleMatrix"> </a>
-					<div class="fixedFont">
+					<a name="preupdate"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>scaleMatrix</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setToWindowOrtho"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setToWindowOrtho</b>(_nearClip, _farClip)
+					<b>preupdate</b>()
 					
 					</div>
 					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>_nearClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_farClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setToWindowPerspective"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setToWindowPerspective</b>(_fov, _nearClip, _farClip)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>_fov</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_nearClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_farClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="translateMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>translateMatrix</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="updateMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>updateMatrix</b>()
-					
-					</div>
-					<div class="description">
-						this overwrites the THREE.Camera.updateMatrix() called by the renderer
-	without this the camera would automaticllay update according to it's position scale and rotation vectors
+						Calculates elapsed + delta time
 						
 						
 					</div>
@@ -819,7 +557,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:55 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:52:12 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

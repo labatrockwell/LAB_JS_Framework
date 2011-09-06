@@ -24,47 +24,49 @@ tdl.require('tdl.webgl');
 	var gl = gl || null;
 	var math;                 // the math lib.
 	var fast;                 // the fast math lib.
-	var g_fpsTimer;           // object to measure frames per second;
-	var g_logglCalls = true;  // whether or not to log webgl calls
-	var g_debug = false;      // whether or not to debug.
-	var g_drawOnce = false;   // draw just one frame.
+	LAB.tdl.g_logglCals = true;  // whether or not to log webgl calls
+	LAB.tdl.g_debug = false;      // whether or not to debug.
+	LAB.tdl.g_drawOnce = false;   // draw just one frame.
 	
-	var nearClip = 10, farClip = 10000, fov = 60, aspect;
+	LAB.tdl.nearClip = 10;
+	LAB.tdl.farClip = 10000;
+	LAB.tdl.fov = 60, aspect;
 	
-	var currentShader = null, currentMesh = null;
+	LAB.tdl.currentShader = null;
+	LAB.tdl.currentMesh = null;
 
 /********************
  ******MATRICES******
  *********************/
 
 // pre-allocate a bunch of arrays
-var projection       = new Float32Array(16);
-var view             = new Float32Array(16);
-var projectionMatrix = new Float32Array(16);
-var modelviewMatrix  = new Float32Array(16);
-var mvMatrixStack    = [];
-var projectionStack = [];
+LAB.tdl.projection       = new Float32Array(16);
+LAB.tdl.view             = new Float32Array(16);
+LAB.tdl.projectionMatrix = new Float32Array(16);
+LAB.tdl.modelviewMatrix  = new Float32Array(16);
+LAB.tdl.mvMatrixStack    = [];
+LAB.tdl.projectionStack  = [];
 
-var eyePosition = new Float32Array(3);
-var target = new Float32Array(3);
-var up = new Float32Array([0,-1,0]);
+LAB.tdl.eyePosition 	= new Float32Array(3);
+LAB.tdl.target 			= new Float32Array(3);
+LAB.tdl.up 				= new Float32Array([0,-1,0]);
 
 
-function labPushMatrix() {
+LAB.tdl.pushMatrix = function() {
    
    var copy = new Float32Array(16);
-   tdl.fast.matrix4.copy(copy, modelviewMatrix);
-   mvMatrixStack.push(copy);
+   tdl.fast.matrix4.copy(copy, LAB.tdl.modelviewMatrix);
+   LAB.tdl.mvMatrixStack.push(copy);
 }
 
-function labPopMatrix() {
-   if (mvMatrixStack.length == 0) {
+LAB.tdl.popMatrix	= function() {
+   if (LAB.tdl.mvMatrixStack.length == 0) {
       throw "Invalid labPopMatrix!";
    }
-   modelviewMatrix = mvMatrixStack.pop();
+   LAB.tdl.modelviewMatrix = LAB.tdl.mvMatrixStack.pop();
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();//<-- so we can make transforms after shader.begin()
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();//<-- so we can make transforms after shader.begin()
    }
 }
 
@@ -81,39 +83,39 @@ function labPopMatrix() {
 //}
 
 
-function labSetPerspective( _fov, _aspect, _near, _far ){
-   fov = _fov;
-   aspect = _aspect;
-   nearClip = _near;
-   farClip = _far;
+LAB.tdl.setPerspective	= function( _fov, _aspect, _near, _far ){
+   LAB.tdl.fov = _fov;
+   LAB.tdl.aspect = _aspect;
+   LAB.tdl.nearClip = _near;
+   LAB.tdl.farClip = _far;
    
-   fast.matrix4.perspective(projection, math.degToRad(fov), aspect, nearClip, farClip);
+   fast.matrix4.perspective(LAB.tdl.projection, math.degToRad(LAB.tdl.fov), LAB.tdl.aspect, LAB.tdl.nearClip, LAB.tdl.farClip);
 }
 
-function labTranslate(  x,  y, z ){
-   fast.matrix4.translate(modelviewMatrix, [x, y, z]);
+LAB.tdl.translate	= function(  x,  y, z ){
+   fast.matrix4.translate(LAB.tdl.modelviewMatrix, [x, y, z]);
    
-   if(currentShader){//<-- so we can make transforms after shader.begin()
-      currentShader.setMatrixUniforms();
+   if(LAB.tdl.currentShader){//<-- so we can make transforms after shader.begin()
+      LAB.tdl.currentShader.setMatrixUniforms();
    }
 }
-function labScale( x, y, z ){
-   fast.matrix4.scale(modelviewMatrix, [x, y, z]);
+LAB.tdl.scale	= function( x, y, z ){
+   fast.matrix4.scale(LAB.tdl.modelviewMatrix, [x, y, z]);
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();
    }
 }
-function labRotate( angle, x, y, z){
+LAB.tdl.rotate	= function( angle, x, y, z){
    
-   fast.matrix4.axisRotate(modelviewMatrix, [x, y, z], angle); 
+   fast.matrix4.axisRotate(LAB.tdl.modelviewMatrix, [x, y, z], angle); 
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();
    }
 }
 
-//function labLookAt( _eyepos, _target, _up ){
+//LAB.tdl.lookAt( _eyepos, _target, _up ){
 //   //fast.matrix4.lookAt(modelviewMatrix, _eyepos, _target, _up);
 //   
 //   
@@ -124,23 +126,23 @@ function labRotate( angle, x, y, z){
 //   //fast.rowMajor.mulMatrixMatrix4(modelviewMatrix, m, modelviewMatrix);
 //   
 //   
-//   if(currentShader){
-//      currentShader.setMatrixUniforms();
+//   if(LAB.tdl.currentShader){
+//      LAB.tdl.currentShader.setMatrixUniforms();
 //   }
 //}
 
-function labMatrixMult( m ){
-   fast.rowMajor.mulMatrixMatrix4(modelviewMatrix, m, modelviewMatrix);
+LAB.tdl.matrixMult	= function( m ){
+   fast.rowMajor.mulMatrixMatrix4(LAB.tdl.modelviewMatrix, m, LAB.tdl.modelviewMatrix);
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();
    }
 }
 //function labRotate( q ){
 //   modelviewMatrix.setRotationFromQuaternion( q );
 //}
 
-function setSceneTile( scenePos, sceneScl, canvasPos, canvasDim ){
+LAB.tdl.setSceneTile	= function( scenePos, sceneScl, canvasPos, canvasDim ){
 	gl.enable(gl.SCISSOR_TEST);
 	gl.viewport(-scenePos[0]*sceneScl + canvasPos[0],// -position + screenposition(centers the view)
               -scenePos[1]*sceneScl + canvasPos[1],
@@ -153,130 +155,130 @@ function setSceneTile( scenePos, sceneScl, canvasPos, canvasDim ){
 /***********************
  ******MISC UTILS*******
  ************************/
-function labGetWidth(){
+LAB.tdl.getWidth	= function(){
    return window.innerWidth;
 }
-function labGetHeight(){
+LAB.tdl.getHeight	= function(){
    return window.innerHeight;
 }
-function labGetElapsedTime(){
+LAB.tdl.getElapsedTime	= function(){
    return elapsedTime;
 }
-function labGetCanvasWidth(){
-   return canvas.width;
+LAB.tdl.LAB.tdl.getCanvasWidth	= function(){
+   return LAB.tdl.canvas.width;
 }
-function labGetCanvasHeight(){
-   return canvas.height ;
+LAB.tdl.getCanvasHeight	= function(){
+   return LAB.tdl.canvas.height ;
 }
 
 /********************
  ****SETUP&UPDATE****
  ********************/
-function labSetup(){
+LAB.tdl.setup	= function(){
    //math and matrix
    math = tdl.math;
    fast = tdl.fast;
    
    //setup canvas and context
-   canvas = document.getElementById("canvas");
-   g_fpsTimer = new tdl.fps.FPSTimer();
+   LAB.tdl.canvas = document.getElementById("canvas");
+   LAB.tdl.g_fpsTimer = new tdl.fps.FPSTimer();
    
-   gl = tdl.webgl.setupWebGL(canvas);
+   gl = tdl.webgl.setupWebGL(LAB.tdl.canvas);
    if (!gl) {
       return false;
    }
-   if (g_debug) {
+   if (LAB.tdl.g_debug) {
       gl = tdl.webgl.makeDebugContext(gl, undefined, LogglCall);
    }
    
-   labSetMatrices();
+   LAB.tdl.setMatrices();
 }
 
-function labUpdate(){
+LAB.tdl.update	= function(){
    
    var now = (new Date()).getTime();
-   if(lastTime == 0.0) {
-      deltaTime = 0.0;
+   if(LAB.tdl.lastTime == 0.0) {
+      LAB.tdl.deltaTime = 0.0;
    } else {
-      deltaTime = now - lastTime;
+      LAB.tdl.deltaTime = now - LAB.tdl.lastTime;
    }
-   lastTime = now;
-   labTimeDelta = deltaTime;
+   LAB.tdl.lastTime = now;
+   LAB.tdl.labTimeDelta = deltaTime;
    
-   g_fpsTimer.update(deltaTime * .001);//<--- to milliseconds?
+   LAB.tdl.g_fpsTimer.update(deltaTime * .001);//<--- to milliseconds?
    if (fpsElem != null){
-		fpsElem.innerHTML = g_fpsTimer.averageFPS;		
+		fpsElem.innerHTML = LAB.tdl.g_fpsTimer.averageFPS;		
 	} 
    
-   labFPS = g_fpsTimer.instantaneousFPS;
-   elapsedTime += deltaTime;
+   LAB.tdl.labFPS = LAB.tdl.g_fpsTimer.instantaneousFPS;
+   LAB.tdl.elapsedTime += LAB.tdl.deltaTime;
 }
 
-function labSetMatrices(){
+LAB.tdl.setMatrices	= function(){
    //taken from openframeworks
-   eyePosition[0] = labGetCanvasWidth()/2;
-   eyePosition[1] = labGetCanvasHeight()/2;
-   eyePosition[2] = eyePosition[1] / Math.tan( Math.PI * fov / 360 );
-   aspect = labGetCanvasWidth() / labGetCanvasHeight();
+   LAB.tdl.eyePosition[0] = LAB.tdl.getCanvasWidth()/2;
+   LAB.tdl.eyePosition[1] = LAB.tdl.getCanvasHeight()/2;
+   LAB.tdl.eyePosition[2] = eyePosition[1] / Math.tan( Math.PI * LAB.tdl.fov / 360 );
+   LAB.tdl.aspect = LAB.tdl.getCanvasWidth() / LAB.tdl.getCanvasHeight();
    target[0] = eyePosition[0];
    target[1] = eyePosition[1];
    target[2] = 0;
    
-   nearClip = eyePosition[2] / 10;
-   farClip = eyePosition[2] * 10;
+   LAB.tdl.nearClip = eyePosition[2] / 10;
+   LAB.tdl.farClip = eyePosition[2] * 10;
    
-   fast.identity4( projectionMatrix );
-   fast.matrix4.perspective( projectionMatrix, math.degToRad(fov), aspect, nearClip, farClip);
+   fast.identity4( LAB.tdl.projectionMatrix );
+   fast.matrix4.perspective( LAB.tdl.projectionMatrix, math.degToRad(LAB.tdl.fov), LAB.tdl.aspect, LAB.tdl.nearClip, LAB.tdl.farClip);
    
-   fast.identity4(modelviewMatrix);
-   fast.matrix4.lookAt(modelviewMatrix, eyePosition, target, up);
+   fast.identity4(LAB.tdl.modelviewMatrix);
+   fast.matrix4.lookAt(LAB.tdl.modelviewMatrix, LAB.tdl.eyePosition, LAB.tdl.target, LAB.tdl.up);
    
    
    //move to upper left corner and scale. mimics openframeworks setup
    labScale(-1,1,1);
-   labTranslate(-labGetCanvasWidth(), 0, 0);
+   labTranslate(-LAB.tdl.getCanvasWidth(), 0, 0);
 }
 
-function labLookAt(eyePos, targetPos, up){
+LAB.tdl.lookAt	= function(eyePos, targetPos, up){
    fast.identity4(modelviewMatrix);
    fast.matrix4.lookAt(modelviewMatrix, eyePosition, target, up);
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();
    }
 }
 
-function labSetPerspectiveToCanvas(){
-   aspect = labGetCanvasWidth() / labGetCanvasHeight();
-   fast.matrix4.perspective( projectionMatrix, math.degToRad(fov), aspect, nearClip, farClip);
+LAB.tdl.setPerspectiveToCanvas	= function(){
+   aspect = LAB.tdl.getCanvasWidth() / LAB.tdl.getCanvasHeight();
+   fast.matrix4.perspective( LAB.tdl.projectionMatrix, math.degToRad(LAB.tdl.fov), LAB.tdl.aspect, LAB.tdl.nearClip, LAB.tdl.farClip);
 }
-function labSetPerspectiveToWindow(){
+LAB.tdl.setPerspectiveToWindow	= function(){
    aspect = labGetWidth() / labGetHeight();
-   fast.matrix4.perspective( projectionMatrix, math.degToRad(fov), aspect, nearClip, farClip);
+   fast.matrix4.perspective( LAB.tdl.projectionMatrix, math.degToRad(LAB.tdl.fov), LAB.tdl.aspect, LAB.tdl.nearClip, LAB.tdl.farClip);
 }
-function labSetAspect(w, h){
-   fast.matrix4.perspective( projectionMatrix, math.degToRad(fov), w/h, nearClip, farClip);
+LAB.tdl.labSetAspect	= function(w, h){
+   fast.matrix4.perspective( LAB.tdl.projectionMatrix, math.degToRad(LAB.tdl.fov), w/h, LAB.tdl.nearClip, LAB.tdl.farClip);
 }
-function labPushProjection(){
+LAB.tdl.labPushProjection	= function(){
    var copy = new Float32Array(16);
-   tdl.fast.matrix4.copy(copy, projectionMatrix);
-   projectionStack.push(copy);
+   tdl.fast.matrix4.copy(copy, LAB.tdl.projectionMatrix);
+   LAB.tdl.projectionStack.push(copy);
 }
-function labPopProjection(){
-   if (projectionStack.length == 0) {
+LAB.tdl.labPopProjection	= function(){
+   if (LAB.tdl.projectionStack.length == 0) {
       throw "no more porjections to pop!";
    }
-   projectionMatrix = projectionStack.pop();
+   LAB.tdl.projectionMatrix = LAB.tdl.projectionStack.pop();
    
-   if(currentShader){
-      currentShader.setMatrixUniforms();//<-- so we can make transforms after shader.begin()
+   if(LAB.tdl.currentShader){
+      LAB.tdl.currentShader.setMatrixUniforms();//<-- so we can make transforms after shader.begin()
    }
 }
 
 /*******************
  ********LOG********
  *******************/
-function ValidateNoneOfTheArgsAreUndefined(functionName, args) {
+LAB.tdl.ValidateNoneOfTheArgsAreUndefined	= function(functionName, args) {
    for (var ii = 0; ii < args.length; ++ii) {
       if (args[ii] === undefined) {
          tdl.error("undefined passed to gl." + functionName + "(" +
@@ -285,25 +287,25 @@ function ValidateNoneOfTheArgsAreUndefined(functionName, args) {
    }
 }
 
-function Log(msg) {
-   if (g_logglCalls) {
+LAB.tdl.Log	= function(msg) {
+   if (LAB.tdl.g_logglCalls) {
       tdl.log(msg);
    }
 }
 
-function LogglCall(functionName, args) {
-   if (g_logglCalls) {
+LAB.tdl.LogglCall	= function(functionName, args) {
+   if (LAB.tdl.g_logglCalls) {
       ValidateNoneOfTheArgsAreUndefined(functionName, args)
       tdl.log("gl." + functionName + "(" +
       tdl.webgl.glFunctionArgsToString(functionName, args) + ")");
    }
 }
 
-function labLog( labOut ){
-   var currentLog = g_logglCalls;
-   g_logglCalls = true;
+LAB.tdl.labLog	= function( labOut ){
+   var currentLog = LAB.tdl.g_logglCalls;
+   LAB.tdl.g_logglCalls = true;
    Log( labOut );
-   g_logglCalls = currentLog;
+   LAB.tdl.g_logglCalls = currentLog;
 }
 
 /*******************
@@ -311,11 +313,11 @@ function labLog( labOut ){
  *******************/
 
 
-function labRandom( min, max ){
+LAB.tdl.labRandom	= function( min, max ){
    return tdl.math.pseudoRandom()*(max-min) + min;
 }
 
-function labMap(value, oldMin, oldMax, min, max){    
+LAB.tdl.labMap	= function(value, oldMin, oldMax, min, max){    
    return min + ((value-oldMin)/(oldMax-oldMin)) * (max-min);
 }
 
@@ -327,9 +329,9 @@ function labMap(value, oldMin, oldMax, min, max){
 //   var x = Math.max(Math.min((_b - e0)/(e1 - e0), 1), 0);
 //   return x*x*x*(x*(x*6 - 15) + 10);// Evaluate polynomial
 //}
-function labSmootherStep( edge0,  edge1, x)
+LAB.tdl.labSmootherStep	= function( edge0,  edge1, x)
 {
    x = Math.min(Math.max(x, 0), 1);
 // Evaluate polynomial
-return labMap(x*x*x*(x*(x*6 - 15) + 10), 0,1,edge0, edge1);
+return LAB.tdl.labMap(x*x*x*(x*(x*6 - 15) + 10), 0,1,edge0, edge1);
 }

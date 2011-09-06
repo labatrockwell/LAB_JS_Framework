@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.app.TDLApp</title>
+		<title>JsDoc Reference - LAB.tdl.Object</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -238,26 +238,24 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.app.TDLApp
+				Class LAB.tdl.Object
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_TDLApp.js.html">TDLApp.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_tdl_Object.js.html">Object.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.TDLApp.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.tdl.Object.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -270,7 +268,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.TDLApp.html#constructor">LAB.app.TDLApp</a></b>()
+								<b><a href="../symbols/LAB.tdl.Object.html#constructor">LAB.tdl.Object</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -283,7 +281,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.app.TDLApp.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.tdl.Object.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -297,9 +295,11 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.TDLApp.html#bOrthographic">bOrthographic</a></b>
+								<b><a href="../symbols/LAB.tdl.Object.html#transformationMatrix">transformationMatrix</a></b>
 								</div>
-								<div class="description">Is screen orthographic or not? (can change from frame to frame)</div>
+								<div class="description">**********************************************************
+    TODO:  seperate translate, scale, and rotate matrices????????
+***********************************************************</div>
 							</td>
 						</tr>
 					
@@ -308,17 +308,13 @@ ul.inheritsList
 				
 				
 				
-				<dl class="inheritsList">
-				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
-				</dl>
-				
 			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.TDLApp.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.tdl.Object.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -331,37 +327,64 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#begin">begin</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#addChild">addChild</a></b>(child)
 								</div>
-								<div class="description">Call to set up Webgl, initialize the canvas, build matrices,
-		and start animate() loop</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#postdraw">postdraw</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#draw">draw</a></b>()
 								</div>
-								<div class="description">Pops matrices</div>
+								<div class="description">**********************************************************
+    TODO:  pass transform matrix to the shader as a third matrix.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#predraw">predraw</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getPosition">getPosition</a></b>()
 								</div>
-								<div class="description">Sets up Webgl drawing context, blending, projection/modelview matrices</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.TDLApp.html#preupdate">preupdate</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getScale">getScale</a></b>()
 								</div>
-								<div class="description">Calculates elapsed + delta time</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#move">move</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#rotate">rotate</a></b>(angle, x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#scale">scale</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
@@ -369,10 +392,6 @@ ul.inheritsList
 				</table>
 				
 				
-				
-				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
-				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -386,7 +405,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.app.TDLApp</b>()
+						<b>LAB.tdl.Object</b>()
 				</div>
 				
 				<div class="description">
@@ -414,15 +433,17 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="bOrthographic"> </a>
+					<a name="transformationMatrix"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{boolean}</span>
-					<b>bOrthographic</b>
+					
+					<b>transformationMatrix</b>
 					
 					</div>
 					<div class="description">
-						Is screen orthographic or not? (can change from frame to frame)
+						**********************************************************
+    TODO:  seperate translate, scale, and rotate matrices????????
+***********************************************************
 						
 						
 					</div>
@@ -444,16 +465,54 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="begin"> </a>
+					<a name="addChild"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>begin</b>()
+					<b>addChild</b>(child)
 					
 					</div>
 					<div class="description">
-						Call to set up Webgl, initialize the canvas, build matrices,
-		and start animate() loop
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="draw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>draw</b>()
+					
+					</div>
+					<div class="description">
+						**********************************************************
+    TODO:  pass transform matrix to the shader as a third matrix. 
+    that way we can do matrx math in update & improve performance
+***********************************************************
 						
 						
 					</div>
@@ -470,15 +529,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="postdraw"> </a>
-					<div class="fixedFont">&lt;private&gt; 
+					<a name="getPosition"> </a>
+					<div class="fixedFont">
 					
 					
-					<b>postdraw</b>()
+					<b>getPosition</b>()
 					
 					</div>
 					<div class="description">
-						Pops matrices
+						
 						
 						
 					</div>
@@ -495,15 +554,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="predraw"> </a>
-					<div class="fixedFont">&lt;private&gt; 
+					<a name="getScale"> </a>
+					<div class="fixedFont">
 					
 					
-					<b>predraw</b>()
+					<b>getScale</b>()
 					
 					</div>
 					<div class="description">
-						Sets up Webgl drawing context, blending, projection/modelview matrices
+						
 						
 						
 					</div>
@@ -520,21 +579,146 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="preupdate"> </a>
-					<div class="fixedFont">&lt;private&gt; 
+					<a name="move"> </a>
+					<div class="fixedFont">
 					
 					
-					<b>preupdate</b>()
+					<b>move</b>(x, y, z)
 					
 					</div>
 					<div class="description">
-						Calculates elapsed + delta time
+						
 						
 						
 					</div>
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rotate"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rotate</b>(angle, x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>angle</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scale"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>scale</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
 						
 						
 						
@@ -557,7 +741,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:55 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:52:13 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

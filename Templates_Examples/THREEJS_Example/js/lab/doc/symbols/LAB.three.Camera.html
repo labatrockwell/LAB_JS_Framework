@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.agents.Agent</title>
+		<title>JsDoc Reference - LAB.three.Camera</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -238,24 +238,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.agents.Agent
+				Class LAB.three.Camera
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					THREE.Camera.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_agents_Agent.js.html">Agent.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_three_Camera.js.html">Camera.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.agents.Agent.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Camera.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -268,7 +270,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.agents.Agent.html#constructor">LAB.agents.Agent</a></b>()
+								<b><a href="../symbols/LAB.three.Camera.html#constructor">LAB.three.Camera</a></b>(fov, aspect, near, far)
 							</div>
 							<div class="description"></div>
 						</td>
@@ -284,7 +286,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.agents.Agent.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Camera.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -297,7 +299,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#addBehavior">addBehavior</a></b>(Behavior)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#popMatrix">popMatrix</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -306,7 +308,16 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#applyBehaviors">applyBehaviors</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#projectToScreen">projectToScreen</a></b>(worldPos)
+								</div>
+								<div class="description">project a THREE.Vector3 from world to screen coords</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#pushMatrix">pushMatrix</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -315,7 +326,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#checkIt">checkIt</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#rotateMatrix">rotateMatrix</a></b>(angle, x, y, z)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -324,7 +335,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#removeBehavior">removeBehavior</a></b>(Behavior)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#scaleMatrix">scaleMatrix</a></b>(x, y, z)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -333,9 +344,37 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#setup">setup</a></b>(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowOrtho">setToWindowOrtho</a></b>(_nearClip, _farClip)
 								</div>
 								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowPerspective">setToWindowPerspective</a></b>(_fov, _nearClip, _farClip)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#translateMatrix">translateMatrix</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#updateMatrix">updateMatrix</a></b>()
+								</div>
+								<div class="description">this overwrites the THREE.Camera.updateMatrix() called by the renderer
+	without this the camera would automaticllay update according to it's position scale and rotation vectors</div>
 							</td>
 						</tr>
 					
@@ -356,7 +395,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.agents.Agent</b>()
+						<b>LAB.three.Camera</b>(fov, aspect, near, far)
 				</div>
 				
 				<div class="description">
@@ -367,6 +406,35 @@ ul.inheritsList
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>fov</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>aspect</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>near</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>far</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -387,11 +455,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addBehavior"> </a>
+					<a name="popMatrix"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addBehavior</b>(Behavior)
+					<b>popMatrix</b>()
 					
 					</div>
 					<div class="description">
@@ -403,11 +471,36 @@ ul.inheritsList
 					
 					
 						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="projectToScreen"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>projectToScreen</b>(worldPos)
+					
+					</div>
+					<div class="description">
+						project a THREE.Vector3 from world to screen coords
+						
+						
+					</div>
+					
+					
+					
+						
 							<dl class="detailList">
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>Behavior</b>
+									<b>worldPos</b>
 									
 								</dt>
 								<dd></dd>
@@ -423,11 +516,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="applyBehaviors"> </a>
+					<a name="pushMatrix"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>applyBehaviors</b>()
+					<b>pushMatrix</b>()
 					
 					</div>
 					<div class="description">
@@ -448,36 +541,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="checkIt"> </a>
+					<a name="rotateMatrix"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>checkIt</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeBehavior"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeBehavior</b>(Behavior)
+					<b>rotateMatrix</b>(angle, x, y, z)
 					
 					</div>
 					<div class="description">
@@ -493,7 +561,25 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>Behavior</b>
+									<b>angle</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
 									
 								</dt>
 								<dd></dd>
@@ -509,11 +595,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setup"> </a>
+					<a name="scaleMatrix"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setup</b>(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible)
+					<b>scaleMatrix</b>(x, y, z)
 					
 					</div>
 					<div class="description">
@@ -529,54 +615,188 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_id</b>
+									<b>x</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_x</b>
+									<b>y</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_z</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_rotation</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_sWidth</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_sHeight</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_isVisible</b>
+									<b>z</b>
 									
 								</dt>
 								<dd></dd>
 							
 							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setToWindowOrtho"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setToWindowOrtho</b>(_nearClip, _farClip)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>_nearClip</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>_farClip</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setToWindowPerspective"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setToWindowPerspective</b>(_fov, _nearClip, _farClip)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>_fov</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>_nearClip</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>_farClip</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="translateMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>translateMatrix</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="updateMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>updateMatrix</b>()
+					
+					</div>
+					<div class="description">
+						this overwrites the THREE.Camera.updateMatrix() called by the renderer
+	without this the camera would automaticllay update according to it's position scale and rotation vectors
+						
+						
+					</div>
+					
+					
+					
 						
 						
 						
@@ -599,7 +819,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:54 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:52:13 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.three.Geometry</title>
+		<title>JsDoc Reference - LAB.app.ThreeApp</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -238,26 +238,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.three.Geometry
+				Class LAB.app.ThreeApp
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					THREE.Geometry.<br />
+					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_three_Geometry.js.html">Geometry.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_ThreeApp.js.html">ThreeApp.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Geometry.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.ThreeApp.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -270,7 +270,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.three.Geometry.html#constructor">LAB.three.Geometry</a></b>()
+								<b><a href="../symbols/LAB.app.ThreeApp.html#constructor">LAB.app.ThreeApp</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -281,12 +281,64 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.app.ThreeApp.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#projector">projector</a></b>
+								</div>
+								<div class="description">default THREE projector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#renderer">renderer</a></b>
+								</div>
+								<div class="description">default THREE renderer with anti-aliasing, depth sorting off</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#scene">scene</a></b>
+								</div>
+								<div class="description">default THREE scene</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Geometry.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.ThreeApp.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -299,45 +351,10 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addFace">addFace</a></b>(i0, i1, i2)
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.ThreeApp.html#begin">begin</a></b>()
 								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addVertex">addVertex</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#calcuateNormalsFaceted">calcuateNormalsFaceted</a></b>()
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#calcuateNormalsSmooth">calcuateNormalsSmooth</a></b>()
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#update">update</a></b>()
-								</div>
-								<div class="description"></div>
+								<div class="description">Call to set up Webgl, initialize the canvas, provide default THREE vars
+		and start animate() loop</div>
 							</td>
 						</tr>
 					
@@ -345,6 +362,10 @@ ul.inheritsList
 				</table>
 				
 				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -358,7 +379,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.three.Geometry</b>()
+						<b>LAB.app.ThreeApp</b>()
 				</div>
 				
 				<div class="description">
@@ -382,6 +403,77 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="projector"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.Projector}</span>
+					<b>projector</b>
+					
+					</div>
+					<div class="description">
+						default THREE projector
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="renderer"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.WebGLRenderer}</span>
+					<b>renderer</b>
+					
+					</div>
+					<div class="description">
+						default THREE renderer with anti-aliasing, depth sorting off
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scene"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.Scene}</span>
+					<b>scene</b>
+					
+					</div>
+					<div class="description">
+						default THREE scene
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -389,161 +481,16 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addFace"> </a>
+					<a name="begin"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addFace</b>(i0, i1, i2)
+					<b>begin</b>()
 					
 					</div>
 					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>i0</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>i1</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>i2</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="addVertex"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>addVertex</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="calcuateNormalsFaceted"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>calcuateNormalsFaceted</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="calcuateNormalsSmooth"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>calcuateNormalsSmooth</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="update"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>update</b>()
-					
-					</div>
-					<div class="description">
-						
+						Call to set up Webgl, initialize the canvas, provide default THREE vars
+		and start animate() loop
 						
 						
 					</div>
@@ -572,7 +519,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:55 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:52:12 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>
