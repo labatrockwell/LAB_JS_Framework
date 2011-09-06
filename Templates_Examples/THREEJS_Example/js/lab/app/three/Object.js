@@ -2,7 +2,7 @@
  lars berg
  */
 
-LabThreeObject = function( _renderer, _scene ) {
+LAB.three.Object = function( _renderer, _scene ) {
    
    this.renderer = _renderer;
    this.scene = _scene || new THREE.Scene();;
@@ -18,9 +18,9 @@ LabThreeObject = function( _renderer, _scene ) {
 };
 
 
-LabThreeObject.prototype = {
+LAB.three.Object.prototype = {
    
-constructor: LabThreeObject,
+constructor: LAB.three.Object,
 
 addGeometry: function( _geometry, _material){
    this.labObj.addChild( new THREE.Mesh( _geometry, _material  ) );

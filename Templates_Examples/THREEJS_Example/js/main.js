@@ -32,82 +32,80 @@ DemoApp = function(){
 	// ===========================================
 	// ===== SETUP
 	// ===========================================
-   
-   this.setup = function (){
-      gl = this.renderer.getContext();
-      
-      // catch mouse events!
-      this.registerMouseEvents();
-      
-      //cameras
-      labCam = new LabThreeCamera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
-      labCam.setToWindowPerspective();
-      
-      //materials
-      materials.push( new THREE.MeshNormalMaterial() );
-      materials.push( new THREE.MeshBasicMaterial( { color: 0xffff33} ));
-      materials.push( new THREE.MeshLambertMaterial( { color: 0xff33ff} ));
-      materials.push( new THREE.MeshPhongMaterial( { color: 0x33ffff} ));
-      
-      //lights
-      ambientLight = new THREE.AmbientLight( 0x888888 );
-      this.scene.addLight( ambientLight );
-      
-      pointLight = new THREE.PointLight( 0xeeeeff );
-      pointLight.position.set( 0, -1000, 100 );
-      this.scene.addLight( pointLight );
-      
-      //geometry
-      generateCubes();
-      
-      particles = new LabThreeGeometry();
-      particles.vel = [];
-      for(var i=0; i<20000; i++){
-         particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
-         particles.vel.push( new THREE.Vector3(0,0,0) );
-      }
-      
-      var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefffff, size: 2.5, sizeAttenuation: false } );
-      labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
-      labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
-      
-      circle = new LabThreeGeometry();
-      for(var i=0; i<30; i++){
-         //add vertices to geometry
-         circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
-      }
-      for(var i=0; i<circle.vertices.length-1;i++){
-         //create faces from vertex indices. this here makes a triangle fan 
-         circle.addFace( 0, i, i+1);
-      }
-      //calculate normals amd add to scene
-      circle.calcuateNormalsSmooth();
-      circleMesh = new THREE.Mesh( circle, materials[1] );
-      this.scene.addObject( circleMesh );
-   }
-   
-   function generateCubes(){
-      // add some random squares
-      
-      var geometry = new THREE.CubeGeometry( 20, 20, 20 );
-      
-      for ( var i = 0; i < 100; i ++ ) {
+
+		
+		this.setup = function (){
+			// catch mouse events!
+			this.registerMouseEvents();
          
-         var object = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial());
-         object.position.set(labRandom(0, window.innerWidth),
-                             labRandom(0, window.innerHeight),
-                             0);
-         object.rotation.set(labDegToRad( labRandom(0,360 )),
-                             labDegToRad( labRandom(0,360 )),
-                             labDegToRad( labRandom(0,360 )));
-         object.scale.set(labRandom( .25, 1.75),
-                          labRandom( .25, 1.75),
-                          labRandom( .25, 1.75));
-         cubes.push( object );
-         LAB.self.scene.addObject( object );
-      }
-   }
-   
+         //cameras
+         labCam = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
+         labCam.setToWindowPerspective();
+         
+         //materials
+         materials.push( new THREE.MeshNormalMaterial() );
+         materials.push( new THREE.MeshBasicMaterial( { color: 0xffff33} ));
+         materials.push( new THREE.MeshLambertMaterial( { color: 0xff33ff} ));
+         materials.push( new THREE.MeshPhongMaterial( { color: 0x33ffff} ));
+         
+         //lights
+         ambientLight = new THREE.AmbientLight( 0x888888 );
+         this.scene.addLight( ambientLight );
+         
+         pointLight = new THREE.PointLight( 0xeeeeff );
+         pointLight.position.set( 0, -1000, 100 );
+         this.scene.addLight( pointLight );
+         
+         //geometry
+			generateCubes();
+         
+         particles = new LAB.three.Geometry();
+         particles.vel = [];
+         for(var i=0; i<20000; i++){
+            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
+            particles.vel.push( new THREE.Vector3(0,0,0) );
+         }
+         
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
+         labParticleObj = new LAB.three.Object( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
+         labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
+         
+         circle = new LAB.three.Geometry();
+         for(var i=0; i<30; i++){
+            //add vertices to geometry
+            circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
+         }
+         for(var i=0; i<circle.vertices.length-1;i++){
+            //create faces from vertex indices
+            circle.addFace( 0, i, i+1);
+         }
+         //calculate normals amd add to scene
+         circle.calcuateNormalsSmooth();
+         circleMesh = new THREE.Mesh( circle, materials[1] );
+         this.scene.addObject( circleMesh );
+		}
+      
+		function generateCubes(){
+			// add some random squares
+
+			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
+
+			for ( var i = 0; i < 100; i ++ ) {
+
+				var object = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial());
+				object.position.set(labRandom(0, window.innerWidth),
+                                labRandom(0, window.innerHeight),
+                                0);
+				object.rotation.set(labDegToRad( labRandom(0,360 )),
+                                labDegToRad( labRandom(0,360 )),
+                                labDegToRad( labRandom(0,360 )));
+				object.scale.set(labRandom( .25, 1.75),
+                             labRandom( .25, 1.75),
+                             labRandom( .25, 1.75));
+            cubes.push( object );
+				LAB.self.scene.addObject( object );
+			}
+		}
 	// ===========================================
 	// ===== UPDATE
 	// ===========================================
