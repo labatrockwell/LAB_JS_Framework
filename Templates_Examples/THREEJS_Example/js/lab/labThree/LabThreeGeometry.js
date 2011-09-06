@@ -20,6 +20,19 @@ LabThreeGeometry.prototype.addVertex = function( x,y,z){
    return this.vertices.length - 1;
 };
 
+LabThreeGeometry.prototype.addFace = function( i0, i1, i2 ){
+   this.faces.push( new THREE.Face3( i0, i1, i2 ) );
+   return this.faces.length - 1;
+};
+
 LabThreeGeometry.prototype.update = function(){
    this.__dirtyVertices = true;
+};
+
+LabThreeGeometry.prototype.calcuateNormalsSmooth = function(){
+   this.computeFaceNormals();
+   this.computeVertexNormals();
+};
+LabThreeGeometry.prototype.calcuateNormalsFaceted = function(){
+   this.computeFaceNormals();
 };

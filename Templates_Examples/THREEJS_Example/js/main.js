@@ -42,6 +42,7 @@ $(document).ready( function() {
       var materials = [];
       var particles;
       var cubes = [];
+      var circle, circleMesh;
       
 	// ===========================================
 	// ===== SETUP
@@ -50,7 +51,6 @@ $(document).ready( function() {
 		this.setup = function (){
          gl = this.renderer.getContext();
          
-			generateSquares();
 
 			// catch mouse events!
 			this.registerMouseEvents();
@@ -67,30 +67,39 @@ $(document).ready( function() {
          
          //lights
          ambientLight = new THREE.AmbientLight( 0x888888 );
+         this.scene.addLight( ambientLight );
+         
          pointLight = new THREE.PointLight( 0xeeeeff );
          pointLight.position.set( 0, -1000, 100 );
+         this.scene.addLight( pointLight );
          
          //geometry
+			generateCubes();
+         
          particles = new LabThreeGeometry();
          particles.vel = [];
          for(var i=0; i<1000; i++){
-            particles.addVertex(labRandom(0, window.innerWidth),
-                                labRandom(0, window.innerHeight),
-                                0);
+            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight), 0);
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
-         var particleMaterial = new THREE.ParticleBasicMaterial({ 
-                                                                color: 0xffff33,
-                                                                size: 2.5,
-                                                                sizeAttenuation: false
-                                                                } );
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xffff33, size: 2.5, sizeAttenuation: false } );
          labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
+         circle = new LabThreeGeometry();
+         for(var i=0; i<30; i++){
+            circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
+         }
+         for(var i=0; i<circle.vertices.length-1;i++){
+            circle.addFace( 0, i, i+1);
+         }
+         circle.calcuateNormalsSmooth();
+         circleMesh = new THREE.Mesh( circle, materials[3] );
+         this.scene.addObject( circleMesh );
 		}
       
-		function generateSquares(){
+		function generateCubes(){
 			// add some random squares
 
 			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
@@ -138,12 +147,19 @@ $(document).ready( function() {
          }
          particles.update();
          
+         //move and rotate cubes to particles
          for(var i=0; i<cubes.length; i++){
             cubes[i].position.copy( particles.vertices[i].position );
             cubes[i].rotation.set(labDegToRad( cubes[i].position.x ),
                                    labDegToRad( cubes[i].position.y ),
                                    labDegToRad( cubes[i].position.z ));
          }
+         
+         //move circle to mouse
+         circleMesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0 );
+         circleMesh.rotation.set(labDegToRad( elapsedTime *.1),
+                                 labDegToRad( elapsedTime *.01),
+                                 0);
       }
 	
 	// ===========================================
@@ -156,6 +172,7 @@ $(document).ready( function() {
                        .2 + Math.cos( elapsedTime * .00001 ) * .05,
                        .2 + Math.cos( elapsedTime * .001 ) * .05 );
          gl.clear( gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT );
+         gl.disable( gl.CULL_FACE );
 			
 			// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 			this.renderer.render( this.scene, labCam );
