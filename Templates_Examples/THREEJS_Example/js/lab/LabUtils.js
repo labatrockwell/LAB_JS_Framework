@@ -39,9 +39,9 @@ var currentShader = null, currentMesh = null;
 
 
 
-/*•••••••••••••••••••
- ••••••MATRICES••••••
- ••••••••••••••••••••*/
+/********************
+ ******MATRICES******
+ *********************/
 
 // pre-allocate a bunch of arrays
 var projection       = new Float32Array(16);
@@ -156,9 +156,9 @@ function setSceneTile( scenePos, sceneScl, canvasPos, canvasDim ){
 	gl.disable(gl.SCISSOR_TEST);
 }
 
-/*••••••••••••••••••••••
- ••••••MISC UTILS•••••••
- •••••••••••••••••••••••*/
+/***********************
+ ******MISC UTILS*******
+ ************************/
 function labGetWidth(){
    return window.innerWidth;
 }
@@ -175,9 +175,9 @@ function labGetCanvasHeight(){
    return canvas.height ;
 }
 
-/*•••••••••••••••••••
- ••••SETUP&UPDATE••••
- •••••••••••••••••••*/
+/********************
+ ****SETUP&UPDATE****
+ ********************/
 function labSetup(){
    //math and matrix
    math = tdl.math;
@@ -279,9 +279,9 @@ function labPopProjection(){
    }
 }
 
-/*••••••••••••••••••
- ••••••••LOG••••••••
- ••••••••••••••••••*/
+/*******************
+ ********LOG********
+ *******************/
 function ValidateNoneOfTheArgsAreUndefined(functionName, args) {
    for (var ii = 0; ii < args.length; ++ii) {
       if (args[ii] === undefined) {
@@ -312,9 +312,9 @@ function labLog( labOut ){
    g_logGLCalls = currentLog;
 }
 
-/*••••••••••••••••••
- ••••••utils•••••••
- ••••••••••••••••••*/
+/*******************
+ ******utils*******
+ *******************/
 
 
 function labRandom( min, max ){
