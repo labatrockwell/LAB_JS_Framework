@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.tdl.Object</title>
+		<title>JsDoc Reference - LAB.utils.WebSocket</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -242,24 +242,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.tdl.Object
+				Class LAB.utils.WebSocket
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					<a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_tdl_Object.js.html">Object.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_utils_WebSocket.js.html">WebSocket.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.tdl.Object.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.utils.WebSocket.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -272,9 +274,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.tdl.Object.html#constructor">LAB.tdl.Object</a></b>()
+								<b><a href="../symbols/LAB.utils.WebSocket.html#constructor">LAB.utils.WebSocket</a></b>(_host, params)
 							</div>
-							<div class="description"></div>
+							<div class="description">Creates a new Websocket with host (defaults to "ws://localhost:8888")</div>
 						</td>
 					</tr>
 				</tbody>
@@ -283,42 +285,12 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.tdl.Object.">
-					<caption>Field Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Field Attributes</th>
-							<th scope="col">Field Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/LAB.tdl.Object.html#transformationMatrix">transformationMatrix</a></b>
-								</div>
-								<div class="description">**********************************************************
-    TODO:  seperate translate, scale, and rotate matrices????????
-***********************************************************</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.tdl.Object.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.utils.WebSocket.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -329,9 +301,27 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#addChild">addChild</a></b>(child)
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#_onConnectionClosed">_onConnectionClosed</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#_onConnectionOpened">_onConnectionOpened</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#_onMessageReceived">_onMessageReceived</a></b>(data)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -340,17 +330,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#draw">draw</a></b>()
-								</div>
-								<div class="description">**********************************************************
-    TODO:  pass transform matrix to the shader as a third matrix.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getPosition">getPosition</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#connect">connect</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -359,34 +339,34 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#getScale">getScale</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionClosed">onConnectionClosed</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">Override in your main app</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#move">move</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionOpened">onConnectionOpened</a></b>()
 								</div>
-								<div class="description"></div>
+								<div class="description">Override in your main app, e.g.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#rotate">rotate</a></b>(angle, x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onMessageReceived">onMessageReceived</a></b>(data)
 								</div>
-								<div class="description"></div>
+								<div class="description">Override in your main app</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.tdl.Object.html#scale">scale</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#sendData">sendData</a></b>(data)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -396,6 +376,10 @@ ul.inheritsList
 				</table>
 				
 				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -409,17 +393,34 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.tdl.Object</b>()
+						<b>LAB.utils.WebSocket</b>(_host, params)
 				</div>
 				
 				<div class="description">
-					
+					Creates a new Websocket with host (defaults to "ws://localhost:8888")
 					
 				</div>
 				
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>_host</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>params</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -433,35 +434,6 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
-				<div class="sectionTitle">
-					Field Detail
-				</div>
-				
-					<a name="transformationMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>transformationMatrix</b>
-					
-					</div>
-					<div class="description">
-						**********************************************************
-    TODO:  seperate translate, scale, and rotate matrices????????
-***********************************************************
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					
-				
-			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -469,11 +441,61 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addChild"> </a>
-					<div class="fixedFont">
+					<a name="_onConnectionClosed"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>addChild</b>(child)
+					<b>_onConnectionClosed</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="_onConnectionOpened"> </a>
+					<div class="fixedFont">&lt;private&gt; 
+					
+					
+					<b>_onConnectionOpened</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="_onMessageReceived"> </a>
+					<div class="fixedFont">&lt;private&gt; 
+					
+					
+					<b>_onMessageReceived</b>(data)
 					
 					</div>
 					<div class="description">
@@ -489,7 +511,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>data</b>
 									
 								</dt>
 								<dd></dd>
@@ -505,39 +527,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="draw"> </a>
+					<a name="connect"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>draw</b>()
-					
-					</div>
-					<div class="description">
-						**********************************************************
-    TODO:  pass transform matrix to the shader as a third matrix. 
-    that way we can do matrx math in update & improve performance
-***********************************************************
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="getPosition"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>getPosition</b>()
+					<b>connect</b>()
 					
 					</div>
 					<div class="description">
@@ -558,15 +552,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="getScale"> </a>
+					<a name="onConnectionClosed"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>getScale</b>()
+					<b>onConnectionClosed</b>()
 					
 					</div>
 					<div class="description">
-						
+						Override in your main app
 						
 						
 					</div>
@@ -583,15 +577,42 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="move"> </a>
+					<a name="onConnectionOpened"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>move</b>(x, y, z)
+					<b>onConnectionOpened</b>()
 					
 					</div>
 					<div class="description">
+						Override in your main app, e.g.:
+var socket = new LAB.utils.WebSocket;
+socket.onConnectionOpened = this.onConnect;
 						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onMessageReceived"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onMessageReceived</b>(data)
+					
+					</div>
+					<div class="description">
+						Override in your main app
 						
 						
 					</div>
@@ -603,19 +624,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>data</b>
 									
 								</dt>
 								<dd></dd>
@@ -631,11 +640,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="rotate"> </a>
+					<a name="sendData"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>rotate</b>(angle, x, y, z)
+					<b>sendData</b>(data)
 					
 					</div>
 					<div class="description">
@@ -651,73 +660,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>angle</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="scale"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>scale</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>data</b>
 									
 								</dt>
 								<dd></dd>
