@@ -1,27 +1,33 @@
 // include LabBase files
 LAB.require("js/three/Three.js");
-LAB.require("js/lab/BaseApp.js");
+LAB.require("js/lab/app/BaseApp.js");
 
-LAB.ThreeApp = function()
+// LAB Three includes
+
+LAB.require("js/lab/app/three/LabThreeCamera.js");
+LAB.require("js/lab/app/three/LabThreeGeometry.js");
+LAB.require("js/lab/app/three/LabThreeObject.js");
+LAB.require("js/lab/app/three/LabThreeUtils.js");
+
+LAB.app.ThreeApp = function()
 {
-	LAB.BaseApp.call( this );
+	LAB.app.BaseApp.call( this );
 	
 	this.container;
 	this.camera, this.scene, this.projector, this.renderer;
 
-   
 	this.mouse = { x: 0, y: 0 };
 }
 
-LAB.ThreeApp.prototype = new LAB.BaseApp();
-LAB.ThreeApp.prototype.constructor = LAB.ThreeApp;
-LAB.ThreeApp.prototype.supr = LAB.BaseApp.prototype;
+LAB.app.ThreeApp.prototype = new LAB.app.BaseApp();
+LAB.app.ThreeApp.prototype.constructor = LAB.app.ThreeApp;
+LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 /************************************************************
 	SETUP
 ************************************************************/
 
-	LAB.ThreeApp.prototype.begin = function()
+	LAB.app.ThreeApp.prototype.begin = function()
 	{
 		console.log("base app set up");
 		this.camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 10000 );

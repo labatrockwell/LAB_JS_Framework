@@ -1,16 +1,12 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/ThreeApp.js");
+LAB.require("js/lab/app/ThreeApp.js");
 LAB.require("js/utils/utils.js");
-LAB.require("js/lab/labThree/LabThreeCamera.js");
-LAB.require("js/lab/labThree/LabThreeGeometry.js");
-LAB.require("js/lab/labThree/LabThreeObject.js");
-LAB.require("js/lab/labThree/LabThreeUtils.js");
 
 var demoApp;
 
 $(document).ready( function() {
-	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
 	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
 	demoApp.begin();
@@ -21,7 +17,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.ThreeApp.call( this );		
+		LAB.app.ThreeApp.call( this );		
 		
 		var _self = this;
 	
@@ -35,10 +31,10 @@ $(document).ready( function() {
 		var lastMouse = {x:0, y:0};
             
 		var labCam;	
-      var materials = [];
-      var particles;
-      var cubes = [];
-      var circle, circleMesh;
+      	var materials = [];
+      	var particles;
+      	var cubes = [];
+      	var circle, circleMesh;
       
 	// ===========================================
 	// ===== SETUP
@@ -182,13 +178,13 @@ $(document).ready( function() {
 	// ===== MOUSE
 	// ===========================================
 
-		this.onMouseMoved		= function( event )
+		this.onMouseMoved		= function( x, y )
 		{
-			thetaX += (lastMouse.x - event.clientX)/4;
-			thetaY += (lastMouse.y - event.clientY)/4;
+			thetaX += (lastMouse.x - x)/4;
+			thetaY += (lastMouse.y - y)/4;
 
-			lastMouse.x = event.clientX;
-			lastMouse.y = event.clientY;
+			lastMouse.x = x;
+			lastMouse.y = y;
 		}		
 	}
 	

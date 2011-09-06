@@ -1,5 +1,7 @@
 //shamelessly borrowed...
 
+/** @namespace LAB.tdl */
+LAB.tdl = LAB.tdl || {};
 
 //includes
 tdl.require('tdl.buffers');
@@ -15,29 +17,21 @@ tdl.require('tdl.programs');
 tdl.require('tdl.textures');
 tdl.require('tdl.webgl');
 
+/********************
+ ******glOBAL VARS******
+ *********************/
 
-// global vars
-var gl = null;                   // the gl context.
-var canvas;               // the canvas
-var math;                 // the math lib.
-var fast;                 // the fast math lib.
-var g_fpsTimer;           // object to measure frames per second;
-var g_logGLCalls = true;  // whether or not to log webgl calls
-var g_debug = false;      // whether or not to debug.
-var g_drawOnce = false;   // draw just one frame.
-var nearClip = 10, farClip = 10000, fov = 60, aspect;
-
-var lastTime = 0, elapsedTime = 0, labTimeDelta=0;
-var fpsElem = null;
-var labFPS;
-var deltaTime;
-
-var mouseX = 0, mouseY = 0;
-var labEyePos = [0, 0, 0];
-
-var currentShader = null, currentMesh = null;
-
-
+	var gl = gl || null;
+	var math;                 // the math lib.
+	var fast;                 // the fast math lib.
+	var g_fpsTimer;           // object to measure frames per second;
+	var g_logglCalls = true;  // whether or not to log webgl calls
+	var g_debug = false;      // whether or not to debug.
+	var g_drawOnce = false;   // draw just one frame.
+	
+	var nearClip = 10, farClip = 10000, fov = 60, aspect;
+	
+	var currentShader = null, currentMesh = null;
 
 /********************
  ******MATRICES******
@@ -192,7 +186,7 @@ function labSetup(){
       return false;
    }
    if (g_debug) {
-      gl = tdl.webgl.makeDebugContext(gl, undefined, LogGLCall);
+      gl = tdl.webgl.makeDebugContext(gl, undefined, LogglCall);
    }
    
    labSetMatrices();
@@ -292,13 +286,13 @@ function ValidateNoneOfTheArgsAreUndefined(functionName, args) {
 }
 
 function Log(msg) {
-   if (g_logGLCalls) {
+   if (g_logglCalls) {
       tdl.log(msg);
    }
 }
 
-function LogGLCall(functionName, args) {
-   if (g_logGLCalls) {
+function LogglCall(functionName, args) {
+   if (g_logglCalls) {
       ValidateNoneOfTheArgsAreUndefined(functionName, args)
       tdl.log("gl." + functionName + "(" +
       tdl.webgl.glFunctionArgsToString(functionName, args) + ")");
@@ -306,10 +300,10 @@ function LogGLCall(functionName, args) {
 }
 
 function labLog( labOut ){
-   var currentLog = g_logGLCalls;
-   g_logGLCalls = true;
+   var currentLog = g_logglCalls;
+   g_logglCalls = true;
    Log( labOut );
-   g_logGLCalls = currentLog;
+   g_logglCalls = currentLog;
 }
 
 /*******************
