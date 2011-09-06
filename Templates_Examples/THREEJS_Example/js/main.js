@@ -152,14 +152,8 @@ $(document).ready( function() {
                                    labDegToRad( cubes[i].position.z ));
          }
          
-<<<<<<< HEAD
          //move circle to cube[0]'s screen position
          circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
-=======
-         //move circle to mouse
-         circleMesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         circleMesh.rotation.set( labDegToRad( this.getElapsedTimeMillis() *.1), labDegToRad( this.getElapsedTimeMillis() *.01), 0);
->>>>>>> e677d05569db4dc4b29b9be47dcfd7ee872f1f4f
       }
 	
 	// ===========================================
@@ -168,16 +162,10 @@ $(document).ready( function() {
 
 		this.draw = function (){
          
-<<<<<<< HEAD
-         gl.clearColor(.2 + Math.cos( elapsedTime * .0001 ) * .075,
-                       .2 + Math.cos( elapsedTime * .00001 ) * .075,
-                       .2 + Math.cos( elapsedTime * .001 ) * .075 );
-=======
          gl.clearColor(.2 + Math.cos( this.getElapsedTimeMillis() * .0001 ) * .05,
                        .2 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .05,
                        .2 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .05,
  						1.);
->>>>>>> e677d05569db4dc4b29b9be47dcfd7ee872f1f4f
          gl.clear( gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT );
          gl.disable( gl.CULL_FACE );
 			
