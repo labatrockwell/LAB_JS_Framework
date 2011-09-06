@@ -1,7 +1,12 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
+// it might work now...
+
 LAB.require("js/lab/app/BaseApp.js");
 LAB.require("js/utils/utils.js");
+
+// INCLUDE THE WEBSOCKET STUFF
+LAB.require("js/lab/utils/WebSocket.js");
 
 var demoApp;
 
@@ -15,8 +20,39 @@ $(document).ready( function() {
 // ===== DEMO APP
 // ===========================================
 
-	DemoApp = function(){
+	DemoApp = function() {
 		LAB.app.BaseApp.call( this );		
+		
+		/**/
+		/* START EXAMPLE */
+		/**/
+		this.s = new LAB.utils.WebSocket( "ws://localhost:8888", {hello: 'sup'} );
+
+		this.s.onMessageReceived = myReceiveFunction;
+		this.s.onConnectionOpened = myOpenFunction;
+		this.s.onConnectionClosed = myCloseFunction;
+
+		function myOpenFunction() {
+			//you've now connected to the websocket! yay.
+			console.log("awesome..");
+			LAB.self.s.sendData("helo");
+		}
+		
+		function myCloseFunction() {
+			//you've now disconnected from the websocket! boooo.
+			console.log("awe...");
+		}
+		
+		function myReceiveFunction(data) {
+			//you've received some data from the websocket! yay.
+			console.log( data );
+		}
+		
+		//try and connect
+		this.s.connect();
+		/**/
+		/* END */
+		/**/
 		
 		var amazingDiv = document.getElementById("amazingDiv");
 		
