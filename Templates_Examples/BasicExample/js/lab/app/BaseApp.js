@@ -161,6 +161,15 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	LAB.app.BaseApp.prototype.onMousePressed	= function (x,y){};
 	
 	/**
+		override in your main app to catch mouse pressed events
+		@function
+		@public
+		@param {number} x Mouse x position
+		@param {number} y Mouse y position
+	*/
+	LAB.app.BaseApp.prototype.onMouseDragged	= function (x,y){};
+	
+	/**
 		override in your main app to catch mouse released events
 		@function
 		@public
@@ -181,7 +190,7 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	{	 
 		// if the mouse is down, call dragged instead of moved
 		if (LAB.self.mouse.bDown){
-			LAB.self.onMouseDragged(event);
+			LAB.self._onMouseDragged(event);
 			return;
 		}
 		LAB.self.mouse.x = event.clientX; 
