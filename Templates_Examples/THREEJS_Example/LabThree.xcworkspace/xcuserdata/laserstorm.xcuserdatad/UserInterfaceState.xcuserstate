@@ -955,7 +955,7 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>337035085.88842398</real>
+		<real>337035640.06293899</real>
 		<string>{0, 3072}</string>
 		<string>{2602, 22}</string>
 		<string>LabThreeCamera.prototype.setToWindowPerspective</string>
@@ -3124,9 +3124,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337035085.88767099</real>
-		<string>{4264, 1750}</string>
-		<string>{5784, 0}</string>
+		<real>337035640.06234199</real>
+		<string>{1853, 1779}</string>
+		<string>{2308, 0}</string>
 		<string>main.js</string>
 		<dict>
 			<key>$class</key>
@@ -4626,9 +4626,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337035085.88575101</real>
-		<string>{4264, 1750}</string>
-		<string>{5784, 0}</string>
+		<real>337035640.06114399</real>
+		<string>{1853, 1779}</string>
+		<string>{2308, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4960,7 +4960,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>337035085.885364</real>
+		<real>337035640.06098902</real>
 		<string>{0, 3072}</string>
 		<string>{2602, 22}</string>
 		<dict>

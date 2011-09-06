@@ -50,7 +50,6 @@ $(document).ready( function() {
 		
 		this.setup = function (){
          gl = this.renderer.getContext();
-         
 
 			// catch mouse events!
 			this.registerMouseEvents();
@@ -78,8 +77,8 @@ $(document).ready( function() {
          
          particles = new LabThreeGeometry();
          particles.vel = [];
-         for(var i=0; i<1000; i++){
-            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight), 0);
+         for(var i=0; i<10000; i++){
+            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
@@ -89,11 +88,14 @@ $(document).ready( function() {
          
          circle = new LabThreeGeometry();
          for(var i=0; i<30; i++){
+            //add vertices to geometry
             circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
          }
          for(var i=0; i<circle.vertices.length-1;i++){
+            //create faces from vertex indices
             circle.addFace( 0, i, i+1);
          }
+         //calculate normals amd add to scene
          circle.calcuateNormalsSmooth();
          circleMesh = new THREE.Mesh( circle, materials[3] );
          this.scene.addObject( circleMesh );
@@ -133,14 +135,15 @@ $(document).ready( function() {
          var pPos;
          var force = new THREE.Vector3();
          var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         var accel = .1;
+         var accel = .3;
+         var attenuation = .9975;
          for(var i=0; i<particles.vertices.length; i++){
             pPos = particles.vertices[i].position;
             force.set(attractor.x - pPos.x,
                       attractor.y - pPos.y,
                       attractor.z - pPos.z);
             force.normalize();
-            particles.vel[i].multiplyScalar( .999 );
+            particles.vel[i].multiplyScalar( attenuation );
             particles.vel[i].addSelf( force.multiplyScalar( accel ) );
             
             particles.vertices[i].position.addSelf( particles.vel[i] );
@@ -157,9 +160,7 @@ $(document).ready( function() {
          
          //move circle to mouse
          circleMesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         circleMesh.rotation.set(labDegToRad( elapsedTime *.1),
-                                 labDegToRad( elapsedTime *.01),
-                                 0);
+         circleMesh.rotation.set( labDegToRad( elapsedTime *.1), labDegToRad( elapsedTime *.01), 0);
       }
 	
 	// ===========================================
