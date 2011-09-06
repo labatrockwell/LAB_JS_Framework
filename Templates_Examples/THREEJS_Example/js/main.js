@@ -82,7 +82,7 @@ $(document).ready( function() {
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
-         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xffff33, size: 2.5, sizeAttenuation: false } );
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
          labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
@@ -97,7 +97,7 @@ $(document).ready( function() {
          }
          //calculate normals amd add to scene
          circle.calcuateNormalsSmooth();
-         circleMesh = new THREE.Mesh( circle, materials[3] );
+         circleMesh = new THREE.Mesh( circle, materials[1] );
          this.scene.addObject( circleMesh );
 		}
       
@@ -158,9 +158,8 @@ $(document).ready( function() {
                                    labDegToRad( cubes[i].position.z ));
          }
          
-         //move circle to mouse
-         circleMesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         circleMesh.rotation.set( labDegToRad( elapsedTime *.1), labDegToRad( elapsedTime *.01), 0);
+         //move circle to cube[0]'s screen position
+         circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
       }
 	
 	// ===========================================
@@ -169,9 +168,9 @@ $(document).ready( function() {
 
 		this.draw = function (){
          
-         gl.clearColor(.2 + Math.cos( elapsedTime * .0001 ) * .05,
-                       .2 + Math.cos( elapsedTime * .00001 ) * .05,
-                       .2 + Math.cos( elapsedTime * .001 ) * .05 );
+         gl.clearColor(.2 + Math.cos( elapsedTime * .0001 ) * .075,
+                       .2 + Math.cos( elapsedTime * .00001 ) * .075,
+                       .2 + Math.cos( elapsedTime * .001 ) * .075 );
          gl.clear( gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT );
          gl.disable( gl.CULL_FACE );
 			
