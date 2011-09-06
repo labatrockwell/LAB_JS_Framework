@@ -35,6 +35,9 @@ $(document).ready( function() {
 		var lastMouse = {x:0, y:0};
       
       //var gl;
+      var startTime = new Date().getTime();
+      var elapsedTime;
+      
 		var labCam;	
       var materials = [];
       var particles;
@@ -115,6 +118,8 @@ $(document).ready( function() {
 
 		this.update = function (){
          
+         elapsedTime = new Date().getTime() - startTime;
+         
          //update particles
          var pPos;
          var force = new THREE.Vector3();
@@ -146,15 +151,11 @@ $(document).ready( function() {
 	// ===========================================
 
 		this.draw = function (){
-			// rotate + render
-
-			radius = 2;
-			thetaZ += 0.2;
-			this.camera.position.x = radius * ( thetaX * Math.PI / 360 );
-			this.camera.position.y = radius * ( thetaY * Math.PI / 360 );
-			this.camera.position.z = radius * ( thetaZ * Math.PI / 360 );
-
-			this.camera.update();
+         
+         gl.clearColor(.2 + Math.cos( elapsedTime * .0001 ) * .05,
+                       .2 + Math.cos( elapsedTime * .00001 ) * .05,
+                       .2 + Math.cos( elapsedTime * .001 ) * .05 );
+         gl.clear( gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT );
 			
 			// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 			this.renderer.render( this.scene, labCam );
