@@ -1,16 +1,12 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/ThreeApp.js");
+LAB.require("js/lab/app/ThreeApp.js");
 LAB.require("js/utils/utils.js");
-LAB.require("js/lab/labThree/LabThreeCamera.js");
-LAB.require("js/lab/labThree/LabThreeGeometry.js");
-LAB.require("js/lab/labThree/LabThreeObject.js");
-LAB.require("js/lab/labThree/LabThreeUtils.js");
 
 var demoApp;
 
 $(document).ready( function() {
-	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
 	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
 	demoApp.begin();
@@ -21,7 +17,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.ThreeApp.call( this );		
+		LAB.app.ThreeApp.call( this );		
 		
 		var _self = this;
 	
@@ -33,27 +29,23 @@ $(document).ready( function() {
 		var thetaZ	= 0;
 		
 		var lastMouse = {x:0, y:0};
-      
-      //var gl;
+            
 		var labCam;	
-      var materials = [];
-      var particles;
-      var cubes = [];
+      	var materials = [];
+      	var particles;
+      	var cubes = [];
+      	var circle, circleMesh;
       
 	// ===========================================
 	// ===== SETUP
 	// ===========================================
 		
 		this.setup = function (){
-         gl = this.renderer.getContext();
-         
-			generateSquares();
-
 			// catch mouse events!
 			this.registerMouseEvents();
          
          //cameras
-         labCam = new LabThreeCamera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
+         labCam = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
          labCam.setToWindowPerspective();
          
          //materials
@@ -64,30 +56,42 @@ $(document).ready( function() {
          
          //lights
          ambientLight = new THREE.AmbientLight( 0x888888 );
+         this.scene.addLight( ambientLight );
+         
          pointLight = new THREE.PointLight( 0xeeeeff );
          pointLight.position.set( 0, -1000, 100 );
+         this.scene.addLight( pointLight );
          
          //geometry
-         particles = new LabThreeGeometry();
+			generateCubes();
+         
+         particles = new LAB.three.Geometry();
          particles.vel = [];
-         for(var i=0; i<1000; i++){
-            particles.addVertex(labRandom(0, window.innerWidth),
-                                labRandom(0, window.innerHeight),
-                                0);
+         for(var i=0; i<20000; i++){
+            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
-         var particleMaterial = new THREE.ParticleBasicMaterial({ 
-                                                                color: 0xffff33,
-                                                                size: 2.5,
-                                                                sizeAttenuation: false
-                                                                } );
-         labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
+         labParticleObj = new LAB.three.Object( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
+         circle = new LAB.three.Geometry();
+         for(var i=0; i<30; i++){
+            //add vertices to geometry
+            circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
+         }
+         for(var i=0; i<circle.vertices.length-1;i++){
+            //create faces from vertex indices
+            circle.addFace( 0, i, i+1);
+         }
+         //calculate normals amd add to scene
+         circle.calcuateNormalsSmooth();
+         circleMesh = new THREE.Mesh( circle, materials[1] );
+         this.scene.addObject( circleMesh );
 		}
       
-		function generateSquares(){
+		function generateCubes(){
 			// add some random squares
 
 			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
@@ -114,31 +118,36 @@ $(document).ready( function() {
 	// ===========================================
 
 		this.update = function (){
-         
+                  
          //update particles
          var pPos;
          var force = new THREE.Vector3();
          var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         var accel = .1;
+         var accel = .3;
+         var attenuation = .9975;
          for(var i=0; i<particles.vertices.length; i++){
             pPos = particles.vertices[i].position;
             force.set(attractor.x - pPos.x,
                       attractor.y - pPos.y,
                       attractor.z - pPos.z);
             force.normalize();
-            particles.vel[i].multiplyScalar( .999 );
+            particles.vel[i].multiplyScalar( attenuation );
             particles.vel[i].addSelf( force.multiplyScalar( accel ) );
             
             particles.vertices[i].position.addSelf( particles.vel[i] );
          }
          particles.update();
          
+         //move and rotate cubes to particles
          for(var i=0; i<cubes.length; i++){
             cubes[i].position.copy( particles.vertices[i].position );
             cubes[i].rotation.set(labDegToRad( cubes[i].position.x ),
                                    labDegToRad( cubes[i].position.y ),
                                    labDegToRad( cubes[i].position.z ));
          }
+         
+         //move circle to cube[0]'s screen position
+         circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
       }
 	
 	// ===========================================
@@ -146,15 +155,13 @@ $(document).ready( function() {
 	// ===========================================
 
 		this.draw = function (){
-			// rotate + render
-
-			radius = 2;
-			thetaZ += 0.2;
-			this.camera.position.x = radius * ( thetaX * Math.PI / 360 );
-			this.camera.position.y = radius * ( thetaY * Math.PI / 360 );
-			this.camera.position.z = radius * ( thetaZ * Math.PI / 360 );
-
-			this.camera.update();
+         
+         gl.clearColor(.2 + Math.cos( this.getElapsedTimeMillis() * .0001 ) * .05,
+                       .2 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .05,
+                       .2 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .05,
+ 						1.);
+         gl.clear( gl.COLOR_BUFFER_BIT || gl.DEPTH_BUFFER_BIT );
+         gl.disable( gl.CULL_FACE );
 			
 			// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 			this.renderer.render( this.scene, labCam );
@@ -168,13 +175,13 @@ $(document).ready( function() {
 	// ===== MOUSE
 	// ===========================================
 
-		this.onMouseMoved		= function( event )
+		this.onMouseMoved		= function( x, y )
 		{
-			thetaX += (lastMouse.x - event.clientX)/4;
-			thetaY += (lastMouse.y - event.clientY)/4;
+			thetaX += (lastMouse.x - x)/4;
+			thetaY += (lastMouse.y - y)/4;
 
-			lastMouse.x = event.clientX;
-			lastMouse.y = event.clientY;
+			lastMouse.x = x;
+			lastMouse.y = y;
 		}		
 	}
 	

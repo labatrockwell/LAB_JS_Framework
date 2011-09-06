@@ -2,9 +2,11 @@
 // ===== ECS
 // ===========================================
 
+/** @namespace LAB.app */
 	LAB.require("js/ecs/ApplicationMessageHandler.js");
 
-	LAB.ECSApp = function()
+/** @constructor */
+	LAB.app.ECSApp = function()
 	{
 		this._api				= null;
 		this.uuid				= 0; // dummy val
@@ -12,9 +14,13 @@
 		this.bPerformanceStarted	= false;
 	}
 
-// setup: call this from your main app
+/** 
+	setup: call this from your main app
+	@function 
+	@public
+*/
 
-	LAB.ECSApp.prototype.setupECS 		= 	function(uuid, inport, outport)
+	LAB.app.ECSApp.prototype.setupECS 		= 	function(uuid, inport, outport)
 	{	
 		this.uuid			= uuid;
 		this.ecs_in_port 	= inport;
@@ -35,21 +41,39 @@
 	METHODS: OVERRIDE THESE TO CATCH IN YOUR CLASS
 ******************************************************/
 
-	// start performace: assumes all is good, starts updating / drawing
-
-	LAB.ECSApp.prototype.handleStartPerformance		= function()
+	/** 
+		start performace: assumes all is good, starts updating / drawing.
+		@function 
+		@public
+	*/
+	
+	LAB.app.ECSApp.prototype.handleStartPerformance		= function()
 	{
 		console.log("ECS::performance started");
 		this.bPerformanceStarted = true;
 	}
 
-	LAB.ECSApp.prototype.handleStopPerformance		= function()
+	/** 
+		stop performace: teardown is happening, time to start shutting down
+		@function 
+		@public
+	*/
+	
+	LAB.app.ECSApp.prototype.handleStopPerformance		= function()
 	{
 		console.log("ECS::performance stopped");
-		bPerformanceStarted = false;
+		this.bPerformanceStarted = false;
 	}
 
-	LAB.ECSApp.prototype.handleConfig				= function(data)
+	/** 
+		handle configs sent from your role or from other apps
+		override this in your main app to make custom handlers
+		@function 
+		@public
+		@param {Object} data contains data.a_key, data.a_value
+	*/
+
+	LAB.app.ECSApp.prototype.handleConfig				= function(data)
 	{
 		//unpack object for legibility
 		var a_key 	= data.a_key;
@@ -63,7 +87,14 @@
 		}
 	}
 
-	LAB.ECSApp.prototype.handlePerformanceConfig	= function(data)
+	/** 
+		catches performance configs (sent to all members of a performance)
+		override this in your main app to make custom handler
+		@function 
+		@public
+	*/
+
+	LAB.app.ECSApp.prototype.handlePerformanceConfig	= function(data)
 	{
 		console.log("handle performance config "+data.a_key+":"+data.a_value);	
 	}
