@@ -24,6 +24,18 @@ LabThreeCamera.prototype.updateMatrix = function () {
 //   
 //};
 
+LabThreeCamera.prototype.projectToScreen = function( worldPos ){
+   //adaptded from https://github.com/mrdoob/three.js/issues/78
+   var pos = worldPos.clone();
+   projScreenMat = new THREE.Matrix4();
+   projScreenMat.multiply( this.projectionMatrix, this.matrixWorldInverse );
+   projScreenMat.multiplyVector3( pos );
+   
+   return { x: ( pos.x + 1 ) * window.innerWidth / 2 ,
+            y: window.innerHeight - ( - pos.y + 1) * window.innerHeight / 2,
+            z: 0 };
+};
+
 LabThreeCamera.prototype.pushMatrix = function(){
    this.mvMatrixStack.push( new THREE.Matrix4().copy( this.matrix ));
 };

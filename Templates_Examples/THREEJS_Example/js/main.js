@@ -74,7 +74,7 @@ $(document).ready( function() {
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
-         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xffff33, size: 2.5, sizeAttenuation: false } );
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
          labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
@@ -89,7 +89,7 @@ $(document).ready( function() {
          }
          //calculate normals amd add to scene
          circle.calcuateNormalsSmooth();
-         circleMesh = new THREE.Mesh( circle, materials[3] );
+         circleMesh = new THREE.Mesh( circle, materials[1] );
          this.scene.addObject( circleMesh );
 		}
       
@@ -148,9 +148,8 @@ $(document).ready( function() {
                                    labDegToRad( cubes[i].position.z ));
          }
          
-         //move circle to mouse
-         circleMesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0 );
-         circleMesh.rotation.set( labDegToRad( this.getElapsedTimeMillis() *.1), labDegToRad( this.getElapsedTimeMillis() *.01), 0);
+         //move circle to cube[0]'s screen position
+         circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
       }
 	
 	// ===========================================
