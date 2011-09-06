@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.agents.Agent</title>
+		<title>JsDoc Reference - LAB.three.Object</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -238,7 +238,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.agents.Agent
+				Class LAB.three.Object
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -249,13 +249,13 @@ ul.inheritsList
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_agents_Agent.js.html">Agent.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_three_Object.js.html">Object.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.agents.Agent.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Object.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -268,7 +268,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.agents.Agent.html#constructor">LAB.agents.Agent</a></b>()
+								<b><a href="../symbols/LAB.three.Object.html#constructor">LAB.three.Object</a></b>(_renderer, _scene)
 							</div>
 							<div class="description"></div>
 						</td>
@@ -284,7 +284,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.agents.Agent.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Object.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -297,7 +297,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#addBehavior">addBehavior</a></b>(Behavior)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addChild">addChild</a></b>(_child)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -306,7 +306,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#applyBehaviors">applyBehaviors</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addGeometry">addGeometry</a></b>(_geometry, _material)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -315,7 +315,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#checkIt">checkIt</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addLight">addLight</a></b>(_light)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -324,7 +324,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#removeBehavior">removeBehavior</a></b>(Behavior)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addObject">addObject</a></b>(_object)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -333,7 +333,79 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Agent.html#setup">setup</a></b>(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#draw">draw</a></b>(_camera, _material, _renderTarget)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#multMatrix">multMatrix</a></b>(m)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#popMatrix">popMatrix</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#pushMatrix">pushMatrix</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#scale">scale</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setRotation">setRotation</a></b>(angle, x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setScale">setScale</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setTranslation">setTranslation</a></b>(x, y, z)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#translate">translate</a></b>(x, y, z)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -356,7 +428,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.agents.Agent</b>()
+						<b>LAB.three.Object</b>(_renderer, _scene)
 				</div>
 				
 				<div class="description">
@@ -367,6 +439,23 @@ ul.inheritsList
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>_renderer</b>
+								
+							</dt>
+								<dd></dd>
+						
+							<dt>
+								 <b>_scene</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -387,11 +476,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addBehavior"> </a>
+					<a name="addChild"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addBehavior</b>(Behavior)
+					<b>addChild</b>(_child)
 					
 					</div>
 					<div class="description">
@@ -407,7 +496,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>Behavior</b>
+									<b>_child</b>
 									
 								</dt>
 								<dd></dd>
@@ -423,61 +512,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="applyBehaviors"> </a>
+					<a name="addGeometry"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>applyBehaviors</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="checkIt"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>checkIt</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeBehavior"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeBehavior</b>(Behavior)
+					<b>addGeometry</b>(_geometry, _material)
 					
 					</div>
 					<div class="description">
@@ -493,7 +532,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>Behavior</b>
+									<b>_geometry</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>_material</b>
 									
 								</dt>
 								<dd></dd>
@@ -509,11 +554,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setup"> </a>
+					<a name="addLight"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setup</b>(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible)
+					<b>addLight</b>(_light)
 					
 					</div>
 					<div class="description">
@@ -529,49 +574,423 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_id</b>
+									<b>_light</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="addObject"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addObject</b>(_object)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>_object</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="draw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>draw</b>(_camera, _material, _renderTarget)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>_camera</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_x</b>
+									<b>_material</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_y</b>
+									<b>_renderTarget</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="multMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>multMatrix</b>(m)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>m</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="popMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>popMatrix</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="pushMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>pushMatrix</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scale"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>scale</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_z</b>
+									<b>y</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_rotation</b>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setRotation"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setRotation</b>(angle, x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>angle</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_sWidth</b>
+									<b>x</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_sHeight</b>
+									<b>y</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_isVisible</b>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setScale"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setScale</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setTranslation"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setTranslation</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="translate"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>translate</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
 									
 								</dt>
 								<dd></dd>
@@ -599,7 +1018,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:54 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Sep 06 2011 18:25:55 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>
