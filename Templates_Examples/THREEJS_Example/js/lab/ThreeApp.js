@@ -9,6 +9,7 @@ LAB.ThreeApp = function()
 	this.container;
 	this.camera, this.scene, this.projector, this.renderer;
 
+   
 	this.mouse = { x: 0, y: 0 };
 }
 
@@ -30,9 +31,10 @@ LAB.ThreeApp.prototype.supr = LAB.BaseApp.prototype;
 		this.scene = new THREE.Scene();
 		this.projector = new THREE.Projector();
 
-		this.renderer = new THREE.WebGLRenderer();
+		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
+      this.renderer.autoClear = false;
 
 		// do we have a container?
 	
