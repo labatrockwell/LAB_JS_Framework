@@ -45,7 +45,7 @@ $(document).ready( function() {
 			this.registerMouseEvents();
          
          //cameras
-         labCam = new LabThreeCamera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
+         labCam = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
          labCam.setToWindowPerspective();
          
          //materials
@@ -65,7 +65,7 @@ $(document).ready( function() {
          //geometry
 			generateCubes();
          
-         particles = new LabThreeGeometry();
+         particles = new LAB.three.Geometry();
          particles.vel = [];
          for(var i=0; i<20000; i++){
             particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
@@ -73,10 +73,10 @@ $(document).ready( function() {
          }
          
          var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
-         labParticleObj = new LabThreeObject( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
+         labParticleObj = new LAB.three.Object( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
-         circle = new LabThreeGeometry();
+         circle = new LAB.three.Geometry();
          for(var i=0; i<30; i++){
             //add vertices to geometry
             circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );

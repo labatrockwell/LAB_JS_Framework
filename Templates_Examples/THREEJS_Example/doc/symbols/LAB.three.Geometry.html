@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.agents.Group</title>
+		<title>JsDoc Reference - LAB.three.Geometry</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -236,24 +236,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.agents.Group
+				Class LAB.three.Geometry
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					THREE.Geometry.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_agents_Group.js.html">Group.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_three_Geometry.js.html">Geometry.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.agents.Group.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Geometry.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -266,7 +268,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.agents.Group.html#constructor">LAB.agents.Group</a></b>()
+								<b><a href="../symbols/LAB.three.Geometry.html#constructor">LAB.three.Geometry</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -282,7 +284,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.agents.Group.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Geometry.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -295,7 +297,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Group.html#addToGroup">addToGroup</a></b>(Agent)
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addFace">addFace</a></b>(i0, i1, i2)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -304,7 +306,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Group.html#draw">draw</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addVertex">addVertex</a></b>(x, y, z)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -313,7 +315,25 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.agents.Group.html#update">update</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#calcuateNormalsFaceted">calcuateNormalsFaceted</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#calcuateNormalsSmooth">calcuateNormalsSmooth</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#update">update</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -336,7 +356,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.agents.Group</b>()
+						<b>LAB.three.Geometry</b>()
 				</div>
 				
 				<div class="description">
@@ -367,11 +387,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addToGroup"> </a>
+					<a name="addFace"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addToGroup</b>(Agent)
+					<b>addFace</b>(i0, i1, i2)
 					
 					</div>
 					<div class="description">
@@ -387,7 +407,19 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>Agent</b>
+									<b>i0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>i1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>i2</b>
 									
 								</dt>
 								<dd></dd>
@@ -403,11 +435,84 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="draw"> </a>
+					<a name="addVertex"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>draw</b>()
+					<b>addVertex</b>(x, y, z)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>z</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="calcuateNormalsFaceted"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>calcuateNormalsFaceted</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="calcuateNormalsSmooth"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>calcuateNormalsSmooth</b>()
 					
 					</div>
 					<div class="description">

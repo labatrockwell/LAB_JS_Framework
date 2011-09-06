@@ -5,10 +5,16 @@ LAB.require("js/lab/app/BaseApp.js");
 
 // LAB Three includes
 
-LAB.require("js/lab/app/three/LabThreeCamera.js");
-LAB.require("js/lab/app/three/LabThreeGeometry.js");
-LAB.require("js/lab/app/three/LabThreeObject.js");
-LAB.require("js/lab/app/three/LabThreeUtils.js");
+LAB.require("js/lab/app/three/Camera.js");
+LAB.require("js/lab/app/three/Geometry.js");
+LAB.require("js/lab/app/three/Object.js");
+LAB.require("js/lab/app/three/Utils.js");
+
+/**
+* global gl reference to mirror normal openGL
+* @type WebGLContext
+*/
+var gl = gl || null;
 
 /** 
 	@constructor 
@@ -86,10 +92,6 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		
 		this.container.appendChild(this.renderer.domElement);	
 		
-		/**
-		* global gl reference to mirror normal openGL
-		* @type WebGLContext
-		*/
 		gl = gl || this.renderer.getContext();
 		
 		this.setup();

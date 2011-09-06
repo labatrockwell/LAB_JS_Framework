@@ -1,30 +1,43 @@
-LabThreeCamera = function ( fov, aspect, near, far ) {
-   THREE.Camera.call( this, fov, aspect, near, far );// I think this works, seems to work...
-   
-   this.matrix.identity();
-   this.mvMatrixStack = [];
+/** @namespace LAB.three */
+LAB.three = LAB.three || {};
+
+/** 
+	@constructor 
+	@extends THREE.Camera
+*/
+LAB.three.Camera = function ( fov, aspect, near, far ) {
+   	THREE.Camera.call( this, fov, aspect, near, far );// I think this works, seems to work...
+   	this.matrix.identity();
+   	this.mvMatrixStack = [];
    
 //   this.setToWindowPerspective();
-   this.useTarget = false;
-   this.useQuaternion = true;
-   
+   	this.useTarget = false;
+   	this.useQuaternion = true;
 };
 
-LabThreeCamera.prototype = new THREE.Camera();
-LabThreeCamera.prototype.constructor = LabThreeCamera;
-LabThreeCamera.prototype.supr = THREE.Camera.prototype;
+LAB.three.Camera.prototype = new THREE.Camera();
+LAB.three.Camera.prototype.constructor = LAB.three.Camera;
+LAB.three.Camera.prototype.supr = THREE.Camera.prototype;
 
-
-LabThreeCamera.prototype.updateMatrix = function () {
-   //this overwrites the THREE.Camera.updateMatrix() called by the renderer
-   //without this the camera would automaticllay update according to it's position scale and rotation ectors
+/**
+	this overwrites the THREE.Camera.updateMatrix() called by the renderer
+	without this the camera would automaticllay update according to it's position scale and rotation vectors
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.updateMatrix = function () {
 };
 
-//LabThreeCamera.prototype.update = function () {
+//LAB.three.Camera.prototype.update = function () {
 //   
 //};
 
-LabThreeCamera.prototype.projectToScreen = function( worldPos ){
+/**
+	project a THREE.Vector3 from world to screen coords
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    //adaptded from https://github.com/mrdoob/three.js/issues/78
    var pos = worldPos.clone();
    projScreenMat = new THREE.Matrix4();
@@ -36,25 +49,39 @@ LabThreeCamera.prototype.projectToScreen = function( worldPos ){
             z: 0 };
 };
 
-LabThreeCamera.prototype.pushMatrix = function(){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.pushMatrix = function(){
    this.mvMatrixStack.push( new THREE.Matrix4().copy( this.matrix ));
 };
 
-LabThreeCamera.prototype.popMatrix = function(){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.popMatrix = function(){
    if( this.mvMatrixStack.length > 0){
       this.matrix.copy( this.mvMatrixStack.pop() );
    }
 };
 
-LabThreeCamera.prototype.translateMatrix = function( x, y, z ){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
 //   this.matrix.n14 += x; //   this.matrix.n24 += y; //   this.matrix.n34 += z;
-
    this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
    //this.matrix.multiplySelf( new THREE.Matrix4().setTranslation(x,y,z));
 };
 
-
-LabThreeCamera.prototype.scaleMatrix = function( x, y, z ){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
    //this.matrix.scale( new THREE.Vector3(x,y,z) );
    
    this.matrix.n11 *= x; 
@@ -63,7 +90,11 @@ LabThreeCamera.prototype.scaleMatrix = function( x, y, z ){
 
 };
 
-LabThreeCamera.prototype.rotateMatrix = function( angle, x, y, z ){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
 
 //   var axis = new THREE.Vector3(x,y,z).normalize();
 //   var rotMat = new THREE.Matrix4().setRotationAxis( axis, angle * 0.0174532925 );
@@ -74,8 +105,11 @@ LabThreeCamera.prototype.rotateMatrix = function( angle, x, y, z ){
                         this.matrix );
 };
 
-
-LabThreeCamera.prototype.setToWindowOrtho = function( _nearClip, _farClip ){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.setToWindowOrtho = function( _nearClip, _farClip ){
    
    this.projectionMatrix = THREE.Matrix4.makeOrtho(window.innerWidth/-2, 
                                                    window.innerWidth/2,
@@ -87,8 +121,11 @@ LabThreeCamera.prototype.setToWindowOrtho = function( _nearClip, _farClip ){
    
 };
 
-
-LabThreeCamera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
+/**
+	@function
+	@public
+*/
+LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
 //   if(width == 0) width = ofGetWidth();
 //	if(height == 0) height = ofGetHeight();
 //   
