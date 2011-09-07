@@ -49,6 +49,11 @@ LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
             z: 0 };
 };
 
+/**
+ project a THREE.Vector3 from screen coords to world space
+ @function
+ @public
+ */
 LAB.three.Camera.prototype.projectToWorld = function( screenPos ){
    //this was helpful http://jsfiddle.net/gero3/PE4x7/25/
    var pos = screenPos.clone();
