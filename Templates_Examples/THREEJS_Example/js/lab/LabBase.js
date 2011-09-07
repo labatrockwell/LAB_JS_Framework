@@ -37,3 +37,4 @@ LAB.require = function(src) {
 // start including stuff
 LAB.require("js/lab/EventDispatcher.js");
 LAB.require("js/lab/app/BaseApp.js");
+LAB.require("js/lab/Utils.js");

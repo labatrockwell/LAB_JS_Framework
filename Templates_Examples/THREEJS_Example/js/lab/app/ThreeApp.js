@@ -5,10 +5,9 @@ LAB.require("js/lab/app/BaseApp.js");
 
 // LAB Three includes
 
-LAB.require("js/lab/app/three/Camera.js");
-LAB.require("js/lab/app/three/Geometry.js");
-LAB.require("js/lab/app/three/Object.js");
-LAB.require("js/lab/app/three/Utils.js");
+LAB.require("js/lab/three/Camera.js");
+LAB.require("js/lab/three/Geometry.js");
+LAB.require("js/lab/three/Object.js");
 
 /**
 * global gl reference to mirror normal openGL

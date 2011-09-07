@@ -221,6 +221,18 @@ ul.inheritsList
 	
 	<li><a href="../symbols/LAB.tdl.Shader.html">LAB.tdl.Shader</a></li>
 	
+	<li><a href="../symbols/LAB.three.html">LAB.three</a></li>
+	
+	<li><a href="../symbols/LAB.three.Camera.html">LAB.three.Camera</a></li>
+	
+	<li><a href="../symbols/LAB.three.Geometry.html">LAB.three.Geometry</a></li>
+	
+	<li><a href="../symbols/LAB.three.Object.html">LAB.three.Object</a></li>
+	
+	<li><a href="../symbols/LAB.utils.html">LAB.utils</a></li>
+	
+	<li><a href="../symbols/LAB.utils.WebSocket.html">LAB.utils.WebSocket</a></li>
+	
 </ul>
 <hr />
 			<!-- end publish.classesIndex -->
@@ -230,15 +242,17 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Function Namespace LAB.app.ThreeApp
+				Class LAB.app.ThreeApp
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>.<br />
 				
 			
-				LAB
+				
 				
 				
 					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_app_ThreeApp.js.html">ThreeApp.js</a>.
@@ -248,7 +262,7 @@ ul.inheritsList
 <!-- ============================== constructor summary ==================== -->			
 			
 			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.ThreeApp.">
-				<caption>Function Namespace Summary</caption>
+				<caption>Class Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -271,6 +285,58 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.app.ThreeApp.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#projector">projector</a></b>
+								</div>
+								<div class="description">default THREE projector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#renderer">renderer</a></b>
+								</div>
+								<div class="description">default THREE renderer with anti-aliasing, depth sorting off</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/LAB.app.ThreeApp.html#scene">scene</a></b>
+								</div>
+								<div class="description">default THREE scene</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
@@ -291,9 +357,8 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/LAB.app.ThreeApp.html#begin">begin</a></b>()
 								</div>
-								<div class="description">*********************************************************
-	SETUP
-**********************************************************</div>
+								<div class="description">Call to set up Webgl, initialize the canvas, provide default THREE vars
+		and start animate() loop</div>
 							</td>
 						</tr>
 					
@@ -301,6 +366,10 @@ ul.inheritsList
 				</table>
 				
 				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -310,7 +379,7 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Function Namespace Detail
+					Class Detail
 				</div>
 				
 				<div class="fixedFont">
@@ -338,6 +407,77 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="projector"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.Projector}</span>
+					<b>projector</b>
+					
+					</div>
+					<div class="description">
+						default THREE projector
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="renderer"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.WebGLRenderer}</span>
+					<b>renderer</b>
+					
+					</div>
+					<div class="description">
+						default THREE renderer with anti-aliasing, depth sorting off
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scene"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{THREE.Scene}</span>
+					<b>scene</b>
+					
+					</div>
+					<div class="description">
+						default THREE scene
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -353,9 +493,8 @@ ul.inheritsList
 					
 					</div>
 					<div class="description">
-						*********************************************************
-	SETUP
-**********************************************************
+						Call to set up Webgl, initialize the canvas, provide default THREE vars
+		and start animate() loop
 						
 						
 					</div>
@@ -384,7 +523,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Aug 30 2011 16:38:55 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Sep 07 2011 10:09:51 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

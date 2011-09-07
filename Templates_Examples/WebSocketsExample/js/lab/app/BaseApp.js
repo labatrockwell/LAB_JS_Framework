@@ -168,6 +168,8 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 		@param {number} y Mouse y position
 	*/
 	LAB.app.BaseApp.prototype.onMouseReleased	= function (x,y){};
+	
+	LAB.app.BaseApp.prototype.onMouseDragged = function(x,y){};
 
 	/**
 		called directly by Window. override in your app to directly
@@ -181,7 +183,7 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	{	 
 		// if the mouse is down, call dragged instead of moved
 		if (LAB.self.mouse.bDown){
-			LAB.self.onMouseDragged(event);
+			LAB.self._onMouseDragged(event);
 			return;
 		}
 		LAB.self.mouse.x = event.clientX; 
