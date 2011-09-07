@@ -36,7 +36,7 @@ LAB.three.Camera.prototype.updateMatrix = function () {
 	project a THREE.Vector3 from world to screen coords
 	@function
 	@public
-*/
+ */
 LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    //adaptded from https://github.com/mrdoob/three.js/issues/78
    var pos = worldPos.clone();
@@ -47,6 +47,22 @@ LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    return { x: ( pos.x + 1 ) * window.innerWidth / 2 ,
             y: window.innerHeight - ( - pos.y + 1) * window.innerHeight / 2,
             z: 0 };
+};
+
+/**
+ project a THREE.Vector3 from screen coords to world space
+ @function
+ @public
+ */
+LAB.three.Camera.prototype.projectToWorld = function( screenPos ){
+   //this was helpful http://jsfiddle.net/gero3/PE4x7/25/
+   var pos = screenPos.clone();
+   pos.x = ( pos.x / window.innerWidth ) * 2 - 1;
+   pos.y = ( -(window.innerHeight-pos.y) / window.innerHeight ) * 2 + 1;
+   
+   var projector = new THREE.Projector();
+   projector.unprojectVector( pos, this );
+   return pos;
 };
 
 /**
