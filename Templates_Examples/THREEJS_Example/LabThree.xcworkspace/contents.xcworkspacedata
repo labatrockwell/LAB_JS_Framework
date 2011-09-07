@@ -223,6 +223,10 @@
             </FileRef>
          </Group>
       </Group>
+   </Group>
+   <Group
+      location = "group:THREEsrc"
+      name = "THREEsrc">
       <Group
          location = "group:cameras"
          name = "cameras">
@@ -613,5 +617,8 @@
             location = "group:Texture.js">
          </FileRef>
       </Group>
+      <FileRef
+         location = "group:Three.js">
+      </FileRef>
    </Group>
 </Workspace>

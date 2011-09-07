@@ -66,7 +66,7 @@ DemoApp = function(){
             particles.vel.push( new THREE.Vector3(0,0,0) );
          }
          
-         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 2.5, sizeAttenuation: false } );
+         var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 1.5, sizeAttenuation: false } );
          labParticleObj = new LAB.three.Object( this.renderer, null );// (renderer, scene) if scene == null a new one is created for the object
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
@@ -105,6 +105,7 @@ DemoApp = function(){
             cubes.push( object );
 				LAB.self.scene.addObject( object );
 			}
+         cubes[1].scale.set( 2, .5, .25 );
 		}
 	// ===========================================
 	// ===== UPDATE
@@ -115,7 +116,7 @@ DemoApp = function(){
       //update particles
       var pPos;
       var force = new THREE.Vector3();
-      var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
+      var attractor = new THREE.Vector3(lastMouse.x, lastMouse.y, 0 );
       var accel = .3;
       var attenuation = .9975;
       for(var i=0; i<particles.vertices.length; i++){
@@ -141,6 +142,9 @@ DemoApp = function(){
       
       //move circle to cube[0]'s screen position
       circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
+      
+      var screenCoord = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
+      cubes[1].position.copy( labCam.projectToWorld( screenCoord ));
    }
 	
 	// ===========================================
