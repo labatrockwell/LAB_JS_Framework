@@ -164,7 +164,7 @@ LAB.tdl.getHeight	= function(){
 LAB.tdl.getElapsedTime	= function(){
    return elapsedTime;
 }
-LAB.tdl.LAB.tdl.getCanvasWidth	= function(){
+LAB.tdl.getCanvasWidth	= function(){
    return LAB.tdl.canvas.width;
 }
 LAB.tdl.getCanvasHeight	= function(){
