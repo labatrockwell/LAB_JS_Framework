@@ -8,7 +8,6 @@ LAB.require("js/lab/app/BaseApp.js");
 LAB.require("js/lab/app/three/Camera.js");
 LAB.require("js/lab/app/three/Geometry.js");
 LAB.require("js/lab/app/three/Object.js");
-LAB.require("js/lab/app/three/Utils.js");
 
 /**
 * global gl reference to mirror normal openGL
