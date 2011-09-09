@@ -3,6 +3,7 @@
 LAB.require("js/lab/app/ThreeApp.js");
 LAB.require("js/utils/utils.js");
 LAB.require("models/holyMesh.js");
+//LAB.require("shaders/basicShader.vert");
 
 var demoApp;
 
@@ -32,6 +33,8 @@ DemoApp = function(){
    var lines;
    var lineMesh;
    
+   var labShader;
+   
 	// ===========================================
 	// ===== SETUP
 	// ===========================================
@@ -56,22 +59,31 @@ DemoApp = function(){
          this.scene.addLight( ambientLight );
          
          pointLight = new THREE.PointLight( 0xeeeeff );
-         pointLight.position.set( window.innerWidth/2, window.innerHeight/2, 1000 );
+         pointLight.position.set( window.innerWidth/2, window.innerHeight/2, 300 );
          this.scene.addLight( pointLight );
+         
+         
+         //shaders
+         var shaderUniforms = {
+            col:   { type: "v3", value: new THREE.Vector3( .1, .2, .4) },
+            lightPos: { type: "v3", value: pointLight.position}
+         }
+         labShader = new LAB.three.Shader({ name: 'shaders/basicShader', uniforms: shaderUniforms } );
+         
          
          //geometry
          geom = new LAB.three.Geometry();
          geom.loadLabModel( holyMesh );
          geom.calculateNormals();
          
-         mesh = new THREE.Mesh( geom, materials[3] );
+         mesh = new THREE.Mesh( geom, labShader );//materials[3] );
          mesh.scale.set( 15, 15, 15 );
          this.scene.addObject( mesh );
          
          //lines
          lines = new LAB.three.Geometry();
          var fi, u, v;
-         for(var i=0; i<15000; i++){
+         for(var i=0; i<5000; i++){
             fi = labRandomInt(0, geom.faces.length);
             u = labRandom(0,1);
             v = labRandom(0,1);
@@ -85,7 +97,7 @@ DemoApp = function(){
                             fPos.z + fNorm.z*hairLength );
          }
          
-         var lineMat = new THREE.LineBasicMaterial( { color: 333355, linewidth: .5, depthTest: true  } );
+         var lineMat = new THREE.LineBasicMaterial( { color: 333355, linewidth: .1, depthTest: true  } );
          lineMesh = new THREE.Line( lines, lineMat, THREE.LinePieces );
          lineMesh.scale.copy( mesh.scale );
          this.scene.addObject( lineMesh );
@@ -101,6 +113,10 @@ DemoApp = function(){
                         labDegToRad( lastMouse.x * .1 ));
       lineMesh.position.copy( mesh.position );
       lineMesh.rotation.copy( mesh.rotation );
+      
+      labShader.uniforms.col.value.set(.5 + Math.cos( this.getElapsedTimeMillis() * .0001 ) * .5,
+                                       .5 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .5,
+                                       .5 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .5);
    }
 	
 	// ===========================================
@@ -128,6 +144,7 @@ DemoApp = function(){
    
    this.onMousePressed	= function (x,y)
    {
+      labLog( labShader );
    }
 }
 

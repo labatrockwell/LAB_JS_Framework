@@ -17,6 +17,9 @@
    <FileRef
       location = "group:models">
    </FileRef>
+   <FileRef
+      location = "group:shaders">
+   </FileRef>
    <Group
       location = "group:img"
       name = "img">
@@ -48,7 +51,8 @@
          </FileRef>
       </Group>
       <FileRef
-         location = "group:main.js">
+         location = "group:main.js"
+         assignedFileDataType = "com.netscape.javascript-source">
       </FileRef>
       <Group
          location = "group:lab"
@@ -258,13 +262,19 @@
             location = "group:three"
             name = "three">
             <FileRef
-               location = "group:Camera.js">
+               location = "group:Camera.js"
+               assignedFileDataType = "com.netscape.javascript-source">
             </FileRef>
             <FileRef
-               location = "group:Geometry.js">
+               location = "group:Geometry.js"
+               assignedFileDataType = "com.netscape.javascript-source">
             </FileRef>
             <FileRef
-               location = "group:Object.js">
+               location = "group:Object.js"
+               assignedFileDataType = "com.netscape.javascript-source">
+            </FileRef>
+            <FileRef
+               location = "group:Shader.js">
             </FileRef>
          </Group>
          <FileRef
@@ -373,401 +383,7 @@
          </FileRef>
       </Group>
    </Group>
-   <Group
-      location = "group:THREEsrc"
-      name = "THREEsrc">
-      <Group
-         location = "group:cameras"
-         name = "cameras">
-         <FileRef
-            location = "group:Camera.js">
-         </FileRef>
-         <FileRef
-            location = "group:OrthoCamera.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:core"
-         name = "core">
-         <FileRef
-            location = "group:Color.js">
-         </FileRef>
-         <FileRef
-            location = "group:Edge.js">
-         </FileRef>
-         <FileRef
-            location = "group:Face3.js">
-         </FileRef>
-         <FileRef
-            location = "group:Face4.js">
-         </FileRef>
-         <FileRef
-            location = "group:Geometry.js">
-         </FileRef>
-         <FileRef
-            location = "group:Matrix3.js">
-         </FileRef>
-         <FileRef
-            location = "group:Matrix4.js">
-         </FileRef>
-         <FileRef
-            location = "group:Object3D.js">
-         </FileRef>
-         <FileRef
-            location = "group:Projector.js">
-         </FileRef>
-         <FileRef
-            location = "group:Quaternion.js">
-         </FileRef>
-         <FileRef
-            location = "group:Ray.js">
-         </FileRef>
-         <FileRef
-            location = "group:Rectangle.js">
-         </FileRef>
-         <FileRef
-            location = "group:Spline.js">
-         </FileRef>
-         <FileRef
-            location = "group:UV.js">
-         </FileRef>
-         <FileRef
-            location = "group:Vector2.js">
-         </FileRef>
-         <FileRef
-            location = "group:Vector3.js">
-         </FileRef>
-         <FileRef
-            location = "group:Vector4.js">
-         </FileRef>
-         <FileRef
-            location = "group:Vertex.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:extras"
-         name = "extras">
-         <Group
-            location = "group:animation"
-            name = "animation">
-            <FileRef
-               location = "group:Animation.js">
-            </FileRef>
-            <FileRef
-               location = "group:AnimationHandler.js">
-            </FileRef>
-            <FileRef
-               location = "group:AnimationMorphTarget.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:cameras"
-            name = "cameras">
-            <FileRef
-               location = "group:FirstPersonCamera.js">
-            </FileRef>
-            <FileRef
-               location = "group:FlyCamera.js">
-            </FileRef>
-            <FileRef
-               location = "group:PathCamera.js">
-            </FileRef>
-            <FileRef
-               location = "group:QuakeCamera.js">
-            </FileRef>
-            <FileRef
-               location = "group:RollCamera.js">
-            </FileRef>
-            <FileRef
-               location = "group:TrackballCamera.js">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:ColorUtils.js">
-         </FileRef>
-         <Group
-            location = "group:core"
-            name = "core">
-            <FileRef
-               location = "group:Curve.js">
-            </FileRef>
-            <FileRef
-               location = "group:CurvePath.js">
-            </FileRef>
-            <FileRef
-               location = "group:Path.js">
-            </FileRef>
-            <FileRef
-               location = "group:Shape.js">
-            </FileRef>
-            <FileRef
-               location = "group:TextPath.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:geometries"
-            name = "geometries">
-            <FileRef
-               location = "group:CubeGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:CylinderGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:ExtrudeGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:IcosahedronGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:LatheGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:PlaneGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:SphereGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:TextGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:TorusGeometry.js">
-            </FileRef>
-            <FileRef
-               location = "group:TorusKnotGeometry.js">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:GeometryUtils.js">
-         </FileRef>
-         <FileRef
-            location = "group:ImageUtils.js">
-         </FileRef>
-         <Group
-            location = "group:loaders"
-            name = "loaders">
-            <FileRef
-               location = "group:BinaryLoader.js">
-            </FileRef>
-            <FileRef
-               location = "group:ColladaLoader.js">
-            </FileRef>
-            <FileRef
-               location = "group:JSONLoader.js">
-            </FileRef>
-            <FileRef
-               location = "group:Loader.js">
-            </FileRef>
-            <FileRef
-               location = "group:SceneLoader.js">
-            </FileRef>
-            <FileRef
-               location = "group:UTF8Loader.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:objects"
-            name = "objects">
-            <FileRef
-               location = "group:MarchingCubes.js">
-            </FileRef>
-            <FileRef
-               location = "group:Trident.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:physics"
-            name = "physics">
-            <FileRef
-               location = "group:Collisions.js">
-            </FileRef>
-            <FileRef
-               location = "group:CollisionUtils.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:renderers"
-            name = "renderers">
-            <FileRef
-               location = "group:AnaglyphWebGLRenderer.js">
-            </FileRef>
-            <FileRef
-               location = "group:CrosseyedWebGLRenderer.js">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:SceneUtils.js">
-         </FileRef>
-         <FileRef
-            location = "group:ShaderUtils.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:lights"
-         name = "lights">
-         <FileRef
-            location = "group:AmbientLight.js">
-         </FileRef>
-         <FileRef
-            location = "group:DirectionalLight.js">
-         </FileRef>
-         <FileRef
-            location = "group:Light.js">
-         </FileRef>
-         <FileRef
-            location = "group:PointLight.js">
-         </FileRef>
-         <FileRef
-            location = "group:SpotLight.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:materials"
-         name = "materials">
-         <FileRef
-            location = "group:LineBasicMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:Material.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshBasicMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshDepthMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshFaceMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshLambertMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshNormalMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshPhongMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:MeshShaderMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:ParticleBasicMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:ParticleCanvasMaterial.js">
-         </FileRef>
-         <FileRef
-            location = "group:ParticleDOMMaterial.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:objects"
-         name = "objects">
-         <FileRef
-            location = "group:Bone.js">
-         </FileRef>
-         <FileRef
-            location = "group:Line.js">
-         </FileRef>
-         <FileRef
-            location = "group:LOD.js">
-         </FileRef>
-         <FileRef
-            location = "group:Mesh.js">
-         </FileRef>
-         <FileRef
-            location = "group:Particle.js">
-         </FileRef>
-         <FileRef
-            location = "group:ParticleSystem.js">
-         </FileRef>
-         <FileRef
-            location = "group:Ribbon.js">
-         </FileRef>
-         <FileRef
-            location = "group:SkinnedMesh.js">
-         </FileRef>
-         <FileRef
-            location = "group:Sprite.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:renderers"
-         name = "renderers">
-         <FileRef
-            location = "group:CanvasRenderer.js">
-         </FileRef>
-         <FileRef
-            location = "group:DOMRenderer.js">
-         </FileRef>
-         <FileRef
-            location = "group:Projector.js">
-         </FileRef>
-         <Group
-            location = "group:renderables"
-            name = "renderables">
-            <FileRef
-               location = "group:RenderableFace3.js">
-            </FileRef>
-            <FileRef
-               location = "group:RenderableFace4.js">
-            </FileRef>
-            <FileRef
-               location = "group:RenderableLine.js">
-            </FileRef>
-            <FileRef
-               location = "group:RenderableObject.js">
-            </FileRef>
-            <FileRef
-               location = "group:RenderableParticle.js">
-            </FileRef>
-            <FileRef
-               location = "group:RenderableVertex.js">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:SVGRenderer.js">
-         </FileRef>
-         <FileRef
-            location = "group:WebGLRenderer.js">
-         </FileRef>
-         <FileRef
-            location = "group:WebGLRenderTarget.js">
-         </FileRef>
-         <FileRef
-            location = "group:WebGLRenderTargetCube.js">
-         </FileRef>
-         <FileRef
-            location = "group:WebGLShaders.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:scenes"
-         name = "scenes">
-         <FileRef
-            location = "group:Fog.js">
-         </FileRef>
-         <FileRef
-            location = "group:FogExp2.js">
-         </FileRef>
-         <FileRef
-            location = "group:Scene.js">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:textures"
-         name = "textures">
-         <FileRef
-            location = "group:DataTexture.js">
-         </FileRef>
-         <FileRef
-            location = "group:Texture.js">
-         </FileRef>
-      </Group>
-      <FileRef
-         location = "group:Three.js">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:../../Templates_Examples/THREEJS_Example/THREEsrc">
+   </FileRef>
 </Workspace>
