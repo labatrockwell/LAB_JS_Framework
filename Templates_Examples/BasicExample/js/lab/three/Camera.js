@@ -176,49 +176,6 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
 //			glScalef(1, -1, 1);
 //			glTranslatef(0, -height, 0);
 //		}
-//	}else{
-//		if( orientation == OF_ORIENTATION_UNKNOWN ) orientation = ofGetOrientation();
-//		switch(orientation) {
-//			case OF_ORIENTATION_180:
-//				glRotatef(-180, 0, 0, 1);
-//				if(vFlip){
-//					glScalef(1, -1, 1);
-//					glTranslatef(-width, 0, 0);
-//				}else{
-//					glTranslatef(-width, -height, 0);
-//				}
-//            
-//				break;
-//            
-//			case OF_ORIENTATION_90_RIGHT:
-//				glRotatef(-90, 0, 0, 1);
-//				if(vFlip){
-//					glScalef(-1, 1, 1);
-//				}else{
-//					glScalef(-1, -1, 1);
-//					glTranslatef(0, -height, 0);
-//				}
-//				break;
-//            
-//			case OF_ORIENTATION_90_LEFT:
-//				glRotatef(90, 0, 0, 1);
-//				if(vFlip){
-//					glScalef(-1, 1, 1);
-//					glTranslatef(-width, -height, 0);
-//				}else{
-//					glScalef(-1, -1, 1);
-//					glTranslatef(-width, 0, 0);
-//				}
-//				break;
-//            
-//			case OF_ORIENTATION_DEFAULT:
-//			default:
-//				if(vFlip){
-//					glScalef(1, -1, 1);
-//					glTranslatef(0, -height, 0);
-//				}
-//				break;
-//		}
 //	}
 };
 
