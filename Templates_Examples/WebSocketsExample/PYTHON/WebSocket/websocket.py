@@ -8,6 +8,7 @@ import signal
 import time
 import struct
 import json
+import msgpack
 
 receive_address = 'localhost', 54544
 
@@ -88,7 +89,18 @@ class WebSocket(object):
 		return True
 
 	def onmessage(self, data):
-		print data
+		print "received: ", data
+		
+		#dicto = {'hello':4}
+		dicto = "5,4"
+		#serialized = msgpack.packb( dicto )
+		
+		#print serialized
+		#print msgpack.unpackb( serialized )
+
+		#self.client.send("\x00%s\xff" % "asdfasdfasdf")
+		self.send(json.dumps(dicto))
+		#self.send(serialized)
 
 	def send(self, data):
 		self.client.send("\x00%s\xff" % data)

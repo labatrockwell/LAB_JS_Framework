@@ -26,7 +26,7 @@ $(document).ready( function() {
 		/**/
 		/* START EXAMPLE */
 		/**/
-		this.s = new LAB.utils.WebSocket( "ws://localhost:8888", {hello: 'sup'} );
+		this.s = new LAB.utils.WebSocket( "ws://localhost:8888", {} );
 
 		this.s.onMessageReceived = myReceiveFunction;
 		this.s.onConnectionOpened = myOpenFunction;
@@ -34,7 +34,7 @@ $(document).ready( function() {
 
 		function myOpenFunction() {
 			//you've now connected to the websocket! yay.
-			console.log("awesome..");
+			console.log("awesome...");
 			LAB.self.s.sendData("helo");
 		}
 		
@@ -43,24 +43,25 @@ $(document).ready( function() {
 			console.log("awe...");
 		}
 		
-		function myReceiveFunction(data) {
+		function myReceiveFunction( data ) {
 			//you've received some data from the websocket! yay.
-			console.log( data );
+
+			console.log( "received: " + data );
 		}
-		
+
 		//try and connect
 		this.s.connect();
+
 		/**/
 		/* END */
 		/**/
-		
+
 		var amazingDiv = document.getElementById("amazingDiv");
-		
+
 		var divX	= 0;
 		var divY	= 0;
-			
+
 		//setup
-			
 		this.setup = function (){
 			// catch mouse events!
 			this.registerMouseEvents();
@@ -80,12 +81,6 @@ $(document).ready( function() {
 			amazingDiv.style.left = divX-amazingDiv.clientWidth/2+"px";
 			amazingDiv.style.top = divY-amazingDiv.clientHeight/2+"px";
 		}
-		
-		this.onMessageReceived = function( data ) {
-			
-		}
- 		this.onConnectionColsed = function( event ) { }
-		this.onConnectionOpened = function() { }
 	}
 	
 	
