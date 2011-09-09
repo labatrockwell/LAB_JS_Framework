@@ -24,3 +24,14 @@ function labDegToRad( deg ){
 function labRadToDeg( rad ){
    return rad * 57.2957795;
 }
+
+/***********
+*** MISC ***
+************/
+function labLog( text ) {
+   if (window.console && window.console.log) {
+      window.console.log( text );
+   } else if (window.dump) {
+      window.dump( text );
+   }
+}

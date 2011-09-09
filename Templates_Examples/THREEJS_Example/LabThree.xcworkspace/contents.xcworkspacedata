@@ -44,6 +44,9 @@
             location = "group:jquery-ui-1.8.2.custom.min.js">
          </FileRef>
       </Group>
+      <FileRef
+         location = "group:main.js">
+      </FileRef>
       <Group
          location = "group:lab"
          name = "lab">
@@ -265,9 +268,6 @@
             location = "group:Utils.js">
          </FileRef>
       </Group>
-      <FileRef
-         location = "group:main.js">
-      </FileRef>
       <Group
          location = "group:three"
          name = "three">

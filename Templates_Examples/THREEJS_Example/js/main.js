@@ -63,7 +63,7 @@ DemoApp = function(){
          particles.vel = [];
          for(var i=0; i<20000; i++){
             particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
-            particles.vel.push( new THREE.Vector3(0,0,0) );
+            particles.vel[i] = new THREE.Vector3(0,0,0);
          }
          
          var particleMaterial = new THREE.ParticleBasicMaterial({ color: 0xefefff, size: 1.5, sizeAttenuation: false } );
@@ -71,27 +71,35 @@ DemoApp = function(){
          labParticleObj.addObject( new THREE.ParticleSystem( particles, particleMaterial ) ); 
          
          circle = new LAB.three.Geometry();
-         for(var i=0; i<30; i++){
+         for(var i=0; i<10; i++){
             //add vertices to geometry
-            circle.addVertex( Math.sin( Math.PI * 2 * i/30 )*50, Math.cos( Math.PI * 2 * i/30)*50, 0 );
+            circle.addVertex( Math.sin( Math.PI * 2 * i/10 )*50, Math.cos( Math.PI * 2 * i/10)*50, 0 );
          }
-         for(var i=0; i<circle.vertices.length-1;i++){
+         for(var i=1; i<circle.vertices.length-1;i++){
             //create faces from vertex indices
-            circle.addFace( 0, i, i+1);
+            circle.addFace( 0, i+1, i);
          }
+         
+         circle.findVertexEdges();
+         circle.findFaceEdges();
+         circle.findVertexFaces();
+         circle.computeFaceNormals();
+         circle.computeVertexNormals();
+         
+         
          //calculate normals amd add to scene
-         circle.calcuateNormalsSmooth();
-         circleMesh = new THREE.Mesh( circle, materials[1] );
+         //circle.calcuateNormals();
+         circleMesh = new THREE.Mesh( circle, materials[0] );
          this.scene.addObject( circleMesh );
+         
 		}
       
 		function generateCubes(){
-			// add some random squares
-
+			// add some random cubes
 			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
 
-			for ( var i = 0; i < 100; i ++ ) {
-
+			for ( var i = 0; i < 300; i ++ ) 
+         {
 				var object = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial());
 				object.position.set(labRandom(0, window.innerWidth),
                                 labRandom(0, window.innerHeight),
@@ -116,7 +124,7 @@ DemoApp = function(){
       //update particles
       var pPos;
       var force = new THREE.Vector3();
-      var attractor = new THREE.Vector3(lastMouse.x, lastMouse.y, 0 );
+      var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
       var accel = .3;
       var attenuation = .9975;
       for(var i=0; i<particles.vertices.length; i++){
@@ -143,8 +151,9 @@ DemoApp = function(){
       //move circle to cube[0]'s screen position
       circleMesh.position.copy( labCam.projectToScreen( cubes[0].position ) );
       
-      var screenCoord = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0 );
+      var screenCoord = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, 0.5);
       cubes[1].position.copy( labCam.projectToWorld( screenCoord ));
+
    }
 	
 	// ===========================================
@@ -156,16 +165,16 @@ DemoApp = function(){
       gl.clearColor(.2 + Math.cos( this.getElapsedTimeMillis() * .0001 ) * .05,
                     .2 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .05,
                     .2 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .05,
-                    1.);
+                    1);
       gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
-      gl.disable( gl.CULL_FACE );
+      //gl.disable( gl.CULL_FACE );
+      
+      //draw particles
+      labParticleObj.draw( labCam );
       
       // should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
       this.renderer.render( this.scene, labCam );
       
-      //draw particles
-      //gl.disable( gl.DEPTH_TEST );
-      labParticleObj.draw( labCam );
    }
    
 	// ===========================================
@@ -177,6 +186,11 @@ DemoApp = function(){
       lastMouse.x = x;
       lastMouse.y = y;
    }		
+   
+   this.onMousePressed	= function (x,y)
+   {
+      labLog( circle );
+   }
 }
 
 /*DemoApp.prototype 				= new LAB.ThreeApp();
