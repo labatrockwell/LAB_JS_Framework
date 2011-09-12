@@ -6,21 +6,6 @@
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
          
-         <script type="x-shader/x-vertex" id="basic_vert">
-            
-            void main() {
-               
-               gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-               
-            }
-            
-            </script>
-         <script type="x-shader/x-fragment" id="basic_frag">
-
-            void main() {
-               gl_FragColor = vec4( 1., 1., .25, 1. );
-            }
-            </script>
          
          <script src="./shaders/basicShader.vert" type="x-shader/x-vertex" id="basic_vert2"></script>
 		<!-- basic libraries -->

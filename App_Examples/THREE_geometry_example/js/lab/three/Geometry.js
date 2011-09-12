@@ -390,3 +390,4 @@ LAB.three.Geometry.prototype.calculateVertexNormals = function(){
 LAB.three.Geometry.prototype.getVertexLocalPosition = function( vertexIndex ){
    return this.vertices[vertexIndex].position;
 };
+

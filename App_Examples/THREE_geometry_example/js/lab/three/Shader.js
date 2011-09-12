@@ -27,6 +27,3 @@ LAB.three.Shader.prototype.supr = THREE.MeshShaderMaterial.prototype;
  @function
  @public
  */
-LAB.three.Shader.prototype.setUniform1f = function( uniformName, value) {
-   
-};

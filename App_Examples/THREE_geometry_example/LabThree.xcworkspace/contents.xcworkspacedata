@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <FileRef
-      location = "group:config.xml">
-   </FileRef>
    <Group
       location = "group:css"
       name = "css">
@@ -26,9 +23,6 @@
    </Group>
    <FileRef
       location = "group:index.html">
-   </FileRef>
-   <FileRef
-      location = "group:README.txt">
    </FileRef>
    <Group
       location = "group:js"
@@ -274,7 +268,8 @@
                assignedFileDataType = "com.netscape.javascript-source">
             </FileRef>
             <FileRef
-               location = "group:Shader.js">
+               location = "group:Shader.js"
+               assignedFileDataType = "com.netscape.javascript-source">
             </FileRef>
          </Group>
          <FileRef
