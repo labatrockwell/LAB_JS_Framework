@@ -3,7 +3,8 @@ LAB.three = LAB.three || {};
 
 /** 
  @constructor 
- @extends THREE.MeshShaderMaterial
+ @extends THREE.MeshShaderMaterial	
+ @param {Object} parameters pass in an object with a vertexShader and fragmentShader property
  */
 
 LAB.three.Shader = function ( parameters ) {
