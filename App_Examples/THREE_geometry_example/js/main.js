@@ -94,7 +94,7 @@ DemoApp = function(){
          lines = new LAB.three.Geometry();
          var fi, u, v;
          colors = [];
-         for(var i=0; i<7000; i++){
+         for(var i=0; i<5000; i++){
             fi = labRandomInt(0, geom.faces.length);
             u = labRandom(0,1);
             v = labRandom(0,1);
