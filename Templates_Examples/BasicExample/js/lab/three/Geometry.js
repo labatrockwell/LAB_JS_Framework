@@ -25,9 +25,8 @@ LAB.three.Geometry.prototype.supr = THREE.Geometry.prototype;
  @public
  */
 LAB.three.Geometry.prototype.loadLabModel = function( model ){
-   
+   //vertex positions
    if( model.positions.length > 0 ){
-      labLog( model.positions.length );
       this.vertices = [];
       for(var i=0; i<model.positions.length; i++){
          this.vertices[i] = new THREE.Vertex( new THREE.Vector3(model.positions[i][0],
@@ -36,6 +35,7 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
       }
    }
    
+   //vertex normals. these aren't loading to the three mesh yet. need to look into how three gets normals to the shader. I think its face->Vertex->Normals meaning seperate normals for each face vertex. not shared between faces
    if( model.normals.length ){// we should switch the exporter to write vertexNormals & faceNormals
       for(var i=0; i<model.normals.length; i++){
          this.vertexNormals[i] = new THREE.Vector3(model.normals[i][0],
@@ -44,30 +44,29 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
       }
    }
    
+   
    for(var i=0; i<model.indices.length; i++ ){
       var fi = model.indices[i];
       if(fi.length == 3 ){
          this.faces.push( new THREE.Face3(fi[0],fi[1],fi[2] ) );
          
-//         if(model.texCoords){
-//            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1])];
-//         }
+         if( model.texCoords.length ){
+            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1])];
+         }
       }
-//      else if( fi.length == 4){
-//         this.faces.push( new THREE.Face4(fi[0],fi[1],fi[2],fi[3] ) );
-//         
-//         if(model.texCoords){
-//            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[3] ][0], model.texCoords[ fi[3] ][1])];
-//         }
-//      }
-      
+      else if( fi.length == 4){
+         this.faces.push( new THREE.Face4(fi[0],fi[1],fi[2],fi[3] ) );
+         
+         if( model.texCoords.length ){
+            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[3] ][0], model.texCoords[ fi[3] ][1])];
+         }
+      }
    }
-      
 };
 
 /**
@@ -100,9 +99,9 @@ LAB.three.Geometry.prototype.update = function(){
 	@public
 */
 LAB.three.Geometry.prototype.calculateNormals = function( _smooth ){
-   
    this.computeFaceNormals();
-   this.computeVertexNormals();
+   var smooth = _smooth || true; // not reallly working yet. it seems that smoothing is handeled by the shader mesh setup
+   if( smooth )   this.computeVertexNormals();
 };
 
 
@@ -391,3 +390,4 @@ LAB.three.Geometry.prototype.calculateVertexNormals = function(){
 LAB.three.Geometry.prototype.getVertexLocalPosition = function( vertexIndex ){
    return this.vertices[vertexIndex].position;
 };
+
