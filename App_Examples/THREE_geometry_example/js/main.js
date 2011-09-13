@@ -92,7 +92,7 @@ DemoApp = function(){
          
          //lines
          lines = new LAB.three.Geometry();
-         var fi, u, v;
+         var fi, u, v, cg, cb;
          colors = [];
          for(var i=0; i<5000; i++){
             fi = labRandomInt(0, geom.faces.length);
@@ -107,8 +107,10 @@ DemoApp = function(){
             lines.addVertex(fPos.x + fNorm.x*hairLength,
                             fPos.y + fNorm.y*hairLength,
                             fPos.z + fNorm.z*hairLength );
-            lines.colors.push( new THREE.Color().setRGB( 0, 0, 0) );
-            lines.colors.push( new THREE.Color().setRGB( 1, 0, 0) );
+            cg = labRandom(.3, 1.3);
+            cb = labRandom(.3, 1.3);
+            lines.colors.push( new THREE.Color().setRGB( 0, cg, cb) );
+            lines.colors.push( new THREE.Color().setRGB( 1, cg, cb) );
          }
          
          mvMat2 = new THREE.Matrix4();//this is used as smoothed modelview matrix for the ends of the hairs
@@ -167,20 +169,20 @@ DemoApp = function(){
          w = step * i;
          mw = 1 - w;
          blankObjects[i].position.set(mesh.position.x*mw + blankObjects[i].position.x*w,
-                                     (mesh.position.y - 40 )*mw + blankObjects[i].position.y*w,
+                                      (mesh.position.y - 40 )*mw + blankObjects[i].position.y*w,
                                       mesh.position.z*mw + blankObjects[i].position.z*w );
          blankObjects[i].rotation.set(mesh.rotation.x*mw + blankObjects[i].rotation.x*w,
-                                     mesh.rotation.y*mw + blankObjects[i].rotation.y*w,
+                                      mesh.rotation.y*mw + blankObjects[i].rotation.y*w,
                                       mesh.rotation.z*mw + blankObjects[i].rotation.z*w );
-
+         
       }
       mvMat2.copy( blankObjects[1]._modelViewMatrix );
       
       meshShader.uniforms.col.value.set(.5 + Math.cos( this.getElapsedTimeMillis() * .0001 ) * .5,
-                                       .5 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .5,
-                                       .5 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .5);
+                                        .5 + Math.cos( this.getElapsedTimeMillis() * .00001 ) * .5,
+                                        .5 + Math.cos( this.getElapsedTimeMillis() * .001 ) * .5);
       lineShader.uniforms.col.value.copy( meshShader.uniforms.col.value );
-            
+      
    }
    
 	// ===========================================
