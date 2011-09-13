@@ -161,6 +161,35 @@
 <span class='line'>154</span> </span><span class="WHIT">   </span><span class="NAME">this.labObj.scale.copy</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this.sclStack.pop</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>155</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>156</span> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>157</span> </span><span class="WHIT">      
-<span class='line'>158</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>159</span> </span></pre></body></html>
+<span class='line'>157</span> </span><span class="WHIT">   
+<span class='line'>158</span> </span><span class="COMM">///**</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="COMM">// @function</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="COMM">// @public</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="COMM">// */ </span><span class="WHIT">
+<span class='line'>162</span> </span><span class="COMM">//updateModelViewMatrices: function(){</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="COMM">//      //   smoothMat.__webglInit = false;//true</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="COMM">//      //   smoothMat._modelViewMatrix = new THREE.Matrix4();</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="COMM">//      //   smoothMat._normalMatrixArray = new Float32Array( 9 );</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="COMM">//      //   smoothMat._modelViewMatrixArray = new Float32Array( 16 );</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="COMM">//      //   smoothMat._objectMatrixArray = new Float32Array( 16 );</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="COMM">//      //   smoothMat.matrixWorld.flattenToArray( smoothMat._objectMatrixArray );</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="COMM">//   },</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="COMM">///**</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="COMM">// @function</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="COMM">// @public</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="COMM">// */</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="COMM">//setupMatrices: function( object, camera, computeNormalMatrix ) {</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="COMM">//      </span><span class="WHIT">
+<span class='line'>177</span> </span><span class="COMM">//      this._modelViewMatrix.multiplyT�oArray( camera.matrixWorldInverse, this.matrixWorld, this._modelViewMatrixArray );</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="COMM">//      </span><span class="WHIT">
+<span class='line'>179</span> </span><span class="COMM">//      if ( computeNormalMatrix ) {</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="COMM">//         </span><span class="WHIT">
+<span class='line'>181</span> </span><span class="COMM">//         THREE.Matrix4.makeInvert3x3( this._modelViewMatrix ).transposeIntoArray( this._normalMatrixArray );</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="COMM">//         </span><span class="WHIT">
+<span class='line'>183</span> </span><span class="COMM">//      }</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="COMM">//      </span><span class="WHIT">
+<span class='line'>185</span> </span><span class="COMM">//   },</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">      
+<span class='line'>187</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> </span></pre></body></html>

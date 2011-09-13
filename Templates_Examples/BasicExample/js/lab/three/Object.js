@@ -154,5 +154,34 @@ popMatrix: function(){
    this.labObj.scale.copy( this.sclStack.pop() );
    }
 },
+   
+///**
+// @function
+// @public
+// */ 
+//updateModelViewMatrices: function(){
+//      //   smoothMat.__webglInit = false;//true
+//      //   smoothMat._modelViewMatrix = new THREE.Matrix4();
+//      //   smoothMat._normalMatrixArray = new Float32Array( 9 );
+//      //   smoothMat._modelViewMatrixArray = new Float32Array( 16 );
+//      //   smoothMat._objectMatrixArray = new Float32Array( 16 );
+//      //   smoothMat.matrixWorld.flattenToArray( smoothMat._objectMatrixArray );
+//   },
+//
+///**
+// @function
+// @public
+// */
+//setupMatrices: function( object, camera, computeNormalMatrix ) {
+//      
+//      this._modelViewMatrix.multiplyT§oArray( camera.matrixWorldInverse, this.matrixWorld, this._modelViewMatrixArray );
+//      
+//      if ( computeNormalMatrix ) {
+//         
+//         THREE.Matrix4.makeInvert3x3( this._modelViewMatrix ).transposeIntoArray( this._normalMatrixArray );
+//         
+//      }
+//      
+//   },
       
 };
