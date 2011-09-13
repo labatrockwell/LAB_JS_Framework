@@ -37,6 +37,49 @@ LAB.three.Camera.prototype.updateMatrix = function () {
 	@function
 	@public
  */
+
+/**
+ @function
+ @public
+ */
+LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
+   //   if(width == 0) width = ofGetWidth();
+   //	if(height == 0) height = ofGetHeight();
+   //   
+   
+   var fov = _fov || 60;
+   
+	var viewW = window.innerWidth;
+	var viewH = window.innerHeight;
+   
+	var eyeX = viewW / 2;
+	var eyeY = viewH / 2;
+	var halfFov = Math.PI * fov / 360;
+	var theTan = Math.tan(halfFov);
+	var dist = eyeY / theTan;
+	var aspect = viewW / viewH;
+   
+   var near = _nearClip || dist / 10;
+   var far = _farClip || dist * 10;
+   this.projectionMatrix = THREE.Matrix4.makePerspective( fov, aspect, near, far );
+   
+   this.position.set( eyeX, eyeY, dist );
+   this.target.position.set( eyeX, eyeY, 0 );
+   this.up.set( 0, 1, 0 );
+   
+   this.matrix.lookAt( this.position, this.target.position, this.up );
+   this.matrix.setPosition( this.position );
+   
+   
+   //	//note - theo checked this on iPhone and Desktop for both vFlip = false and true
+   //	if(ofDoesHWOrientation()){
+   //		if(vFlip){
+   //			glScalef(1, -1, 1);
+   //			glTranslatef(0, -height, 0);
+   //		}
+   //	}
+};
+
 LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    //adaptded from https://github.com/mrdoob/three.js/issues/78
    var pos = worldPos.clone();
@@ -84,13 +127,21 @@ LAB.three.Camera.prototype.popMatrix = function(){
 };
 
 /**
-	@function
-	@public
-*/
+ @function
+ @public
+ */
 LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
-//   this.matrix.n14 += x; //   this.matrix.n24 += y; //   this.matrix.n34 += z;
+   //   this.matrix.n14 += x; //   this.matrix.n24 += y; //   this.matrix.n34 += z;
    this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
    //this.matrix.multiplySelf( new THREE.Matrix4().setTranslation(x,y,z));
+};
+
+/**
+ @function
+ @public
+ */
+LAB.three.Camera.prototype.move = function( x, y, z ){
+   this.matrix.setTranslation(x,y,z);
 };
 
 /**
@@ -135,48 +186,6 @@ LAB.three.Camera.prototype.setToWindowOrtho = function( _nearClip, _farClip ){
                                                    _farClip || 1000 );
 
    
-};
-
-/**
-	@function
-	@public
-*/
-LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
-//   if(width == 0) width = ofGetWidth();
-//	if(height == 0) height = ofGetHeight();
-//   
-   
-   var fov = _fov || 60;
-   
-	var viewW = window.innerWidth;
-	var viewH = window.innerHeight;
-   
-	var eyeX = viewW / 2;
-	var eyeY = viewH / 2;
-	var halfFov = Math.PI * fov / 360;
-	var theTan = Math.tan(halfFov);
-	var dist = eyeY / theTan;
-	var aspect = viewW / viewH;
-   
-   var near = _nearClip || dist / 10;
-   var far = _farClip || dist * 10;
-   this.projectionMatrix = THREE.Matrix4.makePerspective( fov, aspect, near, far );
-   
-   this.position.set( eyeX, eyeY, dist );
-   this.target.position.set( eyeX, eyeY, 0 );
-   this.up.set( 0, 1, 0 );
-   
-   this.matrix.lookAt( this.position, this.target.position, this.up );
-   this.matrix.setPosition( this.position );
-   
-   
-//	//note - theo checked this on iPhone and Desktop for both vFlip = false and true
-//	if(ofDoesHWOrientation()){
-//		if(vFlip){
-//			glScalef(1, -1, 1);
-//			glTranslatef(0, -height, 0);
-//		}
-//	}
 };
 
 

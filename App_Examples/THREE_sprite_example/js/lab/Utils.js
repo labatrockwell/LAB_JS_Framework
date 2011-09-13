@@ -17,6 +17,10 @@ function labMap(value, _oldMin, _oldMax, _min, _max){
    return _min + ((value-_oldMin)/(_oldMax-_oldMin)) * (_max-_min);
 }
 
+function labClamp( value, _min, _max ){
+   return Math.min( Math.max( value, _min), _max );
+}
+
 function labDegToRad( deg ){
    return deg * 0.0174532925;
 }
