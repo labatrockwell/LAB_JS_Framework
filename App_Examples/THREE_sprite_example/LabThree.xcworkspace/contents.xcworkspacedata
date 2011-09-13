@@ -27,6 +27,10 @@
    <Group
       location = "group:js"
       name = "js">
+      <FileRef
+         location = "group:main.js"
+         assignedFileDataType = "com.netscape.javascript-source">
+      </FileRef>
       <Group
          location = "group:ecs"
          name = "ecs">
@@ -44,10 +48,6 @@
             location = "group:jquery-ui-1.8.2.custom.min.js">
          </FileRef>
       </Group>
-      <FileRef
-         location = "group:main.js"
-         assignedFileDataType = "com.netscape.javascript-source">
-      </FileRef>
       <Group
          location = "group:lab"
          name = "lab">
