@@ -50,7 +50,7 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
       if(fi.length == 3 ){
          this.faces.push( new THREE.Face3(fi[0],fi[1],fi[2] ) );
          
-         if( model.texCoords.length ){
+         if( model.texCoords ){
             this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
                                         new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
                                         new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1])];
@@ -59,7 +59,7 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
       else if( fi.length == 4){
          this.faces.push( new THREE.Face4(fi[0],fi[1],fi[2],fi[3] ) );
          
-         if( model.texCoords.length ){
+         if( model.texCoords ){
             this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
                                         new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
                                         new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1]),
@@ -360,7 +360,7 @@ LAB.three.Geometry.prototype.getVertexNormal = function( vertexIndex ){
 
 LAB.three.Geometry.prototype.calcVertexNormal = function( vertexIndex ){
    //not as easy as it sounds in three o_O
-   //for now we'll just calculate it using vertexFaces and store them in this.vertexNormals...
+   //for now we'll calculate it using vertexFaces and store them in this.vertexNormals...
    if( !this.vertexNormals[vertexIndex] ){
       this.vertexNormals[vertexIndex] = new THREE.Vector3();
    }

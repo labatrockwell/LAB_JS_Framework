@@ -37,10 +37,13 @@ LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){
  @public
  */
 LAB.three.Camera.prototype.updateMatrix = function () {
+   
+   //this bypasses the THREE.Camera.updateMatrix() called by the renderer
+   //without this the camera would automaticllay update according to it's position scale and rotation vectors
+   
+   
+   //if we're not using push&pop then we need to update the matrix 
    if( this.bUsePushPop == false ){
-      //this over-rides the THREE.Camera.updateMatrix() called by the renderer
-      //without this the camera would automaticllay update according to it's position scale and rotation vectors
-      
       //the following is copied from the THREE.Object3D method updateMatrix()
 		this.matrix.setPosition( this.position );
       
@@ -72,10 +75,7 @@ LAB.three.Camera.prototype.updateMatrix = function () {
  @public
  */
 LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
-   //   if(width == 0) width = ofGetWidth();
-   //	if(height == 0) height = ofGetHeight();
-   //   
-   
+
    var fov = _fov || 60;
    
 	var viewW = window.innerWidth;
@@ -100,7 +100,6 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
    this.matrix.setPosition( this.position );
    
    
-   //	//note - theo checked this on iPhone and Desktop for both vFlip = false and true
    //	if(ofDoesHWOrientation()){
    //		if(vFlip){
    //			glScalef(1, -1, 1);
@@ -164,28 +163,25 @@ LAB.three.Camera.prototype.popMatrix = function(){
  @function
  @public
  */
-LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
-   this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
+LAB.three.Camera.prototype.lookAt = function( x, y, z ){
+   if( this.bUsePushPop ){
+      this.matrix.lookAt(this.matrix.getPosition(),//eye
+                         new THREE.Vector3(x,y,z), //target
+                         this.up );
+   }else{
+      this.useTarget = true;
+      this.target.position.set( x,y,z );
+   }
 };
 
 /**
  @function
  @public
  */
-LAB.three.Camera.prototype.lookAt = function( x, y, z ){
-   this.matrix.lookAt(this.matrix.getPosition(),//eye
-                                 new THREE.Vector3(x,y,z), //target
-                                 this.up );
+LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
+   this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
 };
 
-
-///**
-// @function
-// @public
-// */
-//LAB.three.Camera.prototype.move = function( x, y, z ){
-//   this.matrix.setTranslation(x,y,z);
-//};
 
 /**
  @function
@@ -216,8 +212,6 @@ LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
  */
 LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
    //adapted from tdl.fast.matrix4.axisRotate 
-   
-   ///normalize axis
    var n = Math.sqrt(x * x + y * y + z * z);
    x /= n;
    y /= n;
@@ -268,14 +262,15 @@ LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
    this.matrix.n32 = r20 * m01 + r21 * m11 + r22 * m21;
    this.matrix.n33 = r20 * m02 + r21 * m12 + r22 * m22;
    this.matrix.n34 = r20 * m03 + r21 * m13 + r22 * m23;
-   
-//   //   var axis = new THREE.Vector3(x,y,z).normalize();
-//   //   var rotMat = new THREE.Matrix4().setRotationAxis( axis, angle * 0.0174532925 );
-//   //   this.matrix.multiply( rotMat, this.matrix );
-//   
-//   this.quaternion.setFromAxisAngle( new THREE.Vector3(x,y,z).normalize(), angle * 0.0174532925 );
-//   this.matrix.multiply(new THREE.Matrix4().setRotationFromQuaternion( this.quaternion ),
-//                        this.matrix );
+};
+
+/**
+ @function
+ @public
+ */
+
+LAB.three.Camera.prototype.multMatrix = function( m ){
+   this.matrix.multiply( m, this.matrix );
 };
 
 /**
@@ -290,8 +285,6 @@ LAB.three.Camera.prototype.setToWindowOrtho = function( _nearClip, _farClip ){
                                                    window.innerHeight/-2,
                                                    _nearClip || -1000,
                                                    _farClip || 1000 );
-   
-   
 };
 
 
