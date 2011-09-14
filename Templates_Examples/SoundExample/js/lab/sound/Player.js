@@ -74,6 +74,10 @@ LAB.sound.Player.prototype.seekTo	= function(time){
 
 // EVENTS
 
+/**
+@function
+@private
+*/
 LAB.sound.Player.prototype.registerEvents = function(){
 	if (this.eventsRegistered) return;
 	
@@ -84,14 +88,26 @@ LAB.sound.Player.prototype.registerEvents = function(){
 	this.eventsRegistered = true;
 }
 
+/**
+@function
+@private
+*/
 LAB.sound.Player.prototype.onLoad	= function(event){
 	this.dispatchEvent("onLoad", event);
 }
 
+/**
+@function
+@private
+*/
 LAB.sound.Player.prototype.onEnded	= function(event){
 	this.dispatchEvent("onEnded", event);	
 }
 
+/**
+@function
+@private
+*/
 LAB.sound.Player.prototype.onError	= function(event){
 	console.log(event);
 	this.dispatchEvent("onError", event);	
@@ -107,6 +123,7 @@ LAB.sound.Player.prototype.getElement = function()
 }
 /**
 @function
+@param {boolean} bLoop
 */
 LAB.sound.Player.prototype.isLooping = function( bLoop )
 {
@@ -114,6 +131,7 @@ LAB.sound.Player.prototype.isLooping = function( bLoop )
 }
 /**
 @function
+@param {boolean} bAutoplay
 */
 LAB.sound.Player.prototype.isAutoplay = function( bAutoplay )
 {
@@ -122,6 +140,7 @@ LAB.sound.Player.prototype.isAutoplay = function( bAutoplay )
 
 /**
 @function
+@param {boolean} bControls
 */
 LAB.sound.Player.prototype.hasControls = function( bControls )
 {
