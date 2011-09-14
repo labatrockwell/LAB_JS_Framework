@@ -3,6 +3,7 @@
 LAB.require("js/lab/app/BaseApp.js");
 LAB.require("js/utils/utils.js");
 LAB.require("js/lab/sound/WAPlayer.js");
+LAB.require("js/lab/geom/Point.js");
 
 var demoApp;
 
@@ -20,6 +21,7 @@ $(document).ready( function() {
 		LAB.app.BaseApp.call( this );
 		
 		var wa_player;
+		var pan = new LAB.geom.Point();
 			
 		//setup
 			
@@ -29,12 +31,13 @@ $(document).ready( function() {
 			
 			// Web Audio API element
 			wa_player = new LAB.sound.WAPlayer();	
-			wa_player.loadFile("sounds/tone.mp3");			
+			wa_player.loadFile("sounds/tone.mp3");
 		}
 		
 		//update
 
 		this.update = function (){
+			wa_player.setPitch( this.mouse.y - window.innerHeight/2);
 		}
 	
 		//draw
@@ -47,8 +50,9 @@ $(document).ready( function() {
 		}
 		
 		this.onMouseDragged = function(x,y){
-			wa_player.setPitch( y - window.innerHeight/2);
-			wa_player.setPan( (x - window.innerWidth/2)/window.innerWidth/2);
+			pan.x = (x - window.innerWidth/2)/window.innerWidth/2;
+			pan.y  = (y - window.innerHeight/2)/window.innerHeight/2;
+			wa_player.setPan( pan.x, pan.y, pan.z );
 			wa_player.play();
 		}
 	}

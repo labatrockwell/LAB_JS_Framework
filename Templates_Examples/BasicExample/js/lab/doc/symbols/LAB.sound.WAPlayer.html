@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.three.Camera</title>
+		<title>JsDoc Reference - LAB.sound.WAPlayer</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -254,26 +254,24 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.three.Camera
+				Class LAB.sound.WAPlayer
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					THREE.Camera.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_three_Camera.js.html">Camera.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/js_lab_sound_WAPlayer.js.html">WAPlayer.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Camera.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.sound.WAPlayer.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -286,9 +284,10 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.three.Camera.html#constructor">LAB.three.Camera</a></b>(fov, aspect, near, far)
+								<b><a href="../symbols/LAB.sound.WAPlayer.html#constructor">LAB.sound.WAPlayer</a></b>()
 							</div>
-							<div class="description"></div>
+							<div class="description">Web Audio Player
+ Web Audio must be enabled in Chrome via about:flags!</div>
 						</td>
 					</tr>
 				</tbody>
@@ -302,7 +301,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Camera.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.sound.WAPlayer.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -315,7 +314,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#popMatrix">popMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#loadFile">loadFile</a></b>(url)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -324,25 +323,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#projectToScreen">projectToScreen</a></b>(worldPos)
-								</div>
-								<div class="description">project a THREE.Vector3 from world to screen coords</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#projectToWorld">projectToWorld</a></b>(screenPos)
-								</div>
-								<div class="description">project a THREE.Vector3 from screen coords to world space</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#pushMatrix">pushMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#play">play</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -351,7 +332,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#rotateMatrix">rotateMatrix</a></b>(angle, x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#setFilter">setFilter</a></b>(filter)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -360,7 +341,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#scaleMatrix">scaleMatrix</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#setGain">setGain</a></b>(gain)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -369,7 +350,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowOrtho">setToWindowOrtho</a></b>(_nearClip, _farClip)
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#setPan">setPan</a></b>(x, y, z)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -378,28 +359,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#setToWindowPerspective">setToWindowPerspective</a></b>(_fov, _nearClip, _farClip)
+								<div class="fixedFont"><b><a href="../symbols/LAB.sound.WAPlayer.html#setPitch">setPitch</a></b>(pitch)
 								</div>
 								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#translateMatrix">translateMatrix</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Camera.html#updateMatrix">updateMatrix</a></b>()
-								</div>
-								<div class="description">this overwrites the THREE.Camera.updateMatrix() called by the renderer
-	without this the camera would automaticllay update according to it's position scale and rotation vectors</div>
 							</td>
 						</tr>
 					
@@ -420,46 +382,18 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.three.Camera</b>(fov, aspect, near, far)
+						<b>LAB.sound.WAPlayer</b>()
 				</div>
 				
 				<div class="description">
-					
+					Web Audio Player
+ Web Audio must be enabled in Chrome via about:flags!
 					
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>fov</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>aspect</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>near</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>far</b>
-								
-							</dt>
-								<dd></dd>
-						
-						</dl>
 					
 					
 					
@@ -480,133 +414,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="popMatrix"> </a>
+					<a name="loadFile"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>popMatrix</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="projectToScreen"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>projectToScreen</b>(worldPos)
-					
-					</div>
-					<div class="description">
-						project a THREE.Vector3 from world to screen coords
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>worldPos</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="projectToWorld"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>projectToWorld</b>(screenPos)
-					
-					</div>
-					<div class="description">
-						project a THREE.Vector3 from screen coords to world space
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>screenPos</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="pushMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>pushMatrix</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="rotateMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>rotateMatrix</b>(angle, x, y, z)
+					<b>loadFile</b>(url)
 					
 					</div>
 					<div class="description">
@@ -622,25 +434,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>angle</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>url</b>
 									
 								</dt>
 								<dd></dd>
@@ -656,11 +450,108 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="scaleMatrix"> </a>
+					<a name="play"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>scaleMatrix</b>(x, y, z)
+					<b>play</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setFilter"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setFilter</b>(filter)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>filter</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setGain"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setGain</b>(gain)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>gain</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setPan"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setPan</b>(x, y, z)
 					
 					</div>
 					<div class="description">
@@ -704,11 +595,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setToWindowOrtho"> </a>
+					<a name="setPitch"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setToWindowOrtho</b>(_nearClip, _farClip)
+					<b>setPitch</b>(pitch)
 					
 					</div>
 					<div class="description">
@@ -724,140 +615,12 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_nearClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_farClip</b>
+									<b>pitch</b>
 									
 								</dt>
 								<dd></dd>
 							
 							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="setToWindowPerspective"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>setToWindowPerspective</b>(_fov, _nearClip, _farClip)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>_fov</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_nearClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_farClip</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="translateMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>translateMatrix</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="updateMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>updateMatrix</b>()
-					
-					</div>
-					<div class="description">
-						this overwrites the THREE.Camera.updateMatrix() called by the renderer
-	without this the camera would automaticllay update according to it's position scale and rotation vectors
-						
-						
-					</div>
-					
-					
-					
 						
 						
 						
