@@ -51,6 +51,13 @@ DemoApp = function() {
 		// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 		this.renderer.render( this.scene, labCam );
 	}
+	
+	// ===========================================
+	// ===== RESIZE
+	// ===========================================
+	this.onWindowResized = function( width, height ) {
+
+	}
    
 	// ===========================================
 	// ===== MOUSE

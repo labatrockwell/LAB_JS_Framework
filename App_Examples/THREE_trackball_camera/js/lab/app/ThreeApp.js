@@ -74,7 +74,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
-      this.renderer.autoClear = false;
+      	this.renderer.autoClear = false;
 
 		// do we have a container?
 	
@@ -95,6 +95,20 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		
 		this.setup();
 		this.animate();
+	}
+
+	LAB.app.ThreeApp.prototype._onWindowResized = function( event ) {
+		width = window.innerWidth;
+		height = window.innerHeight;
+
+		LAB.self.renderer.setSize( width, height );
+
+		LAB.self.camera.aspect = width / height;
+		LAB.self.camera.updateProjectionMatrix();
+
+		LAB.self.camera.radius = ( width + height ) / 4;
+		
+		LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
 	}
 
 /************************************************************

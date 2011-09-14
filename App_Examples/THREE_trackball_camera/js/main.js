@@ -43,6 +43,7 @@ DemoApp = function() {
 	this.setup = function() {
 		// catch mouse events!
 		this.registerMouseEvents();
+		this.registerWindowResize();
 
 		//cameras
 		labCam = new THREE.TrackballCamera({
@@ -68,7 +69,7 @@ DemoApp = function() {
 
 			domElement: this.renderer.domElement,
 		});
-		
+				
 		labCam.position.z = radius * 7;
 
 		//lights
@@ -192,7 +193,20 @@ DemoApp = function() {
 		// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 		this.renderer.render( this.scene, labCam );
 	}
-   
+	
+	// ===========================================
+	// ===== RESIZE
+	// ===========================================
+	this.onWindowResized = function( width, height ) {
+		labCam.aspect = width / height;
+		labCam.updateProjectionMatrix();
+		
+		labCam.screen.width = width;
+		labCam.screen.height = height;
+
+		labCam.radius = ( width + height ) / 4;
+	}
+	
 	// ===========================================
 	// ===== MOUSE
 	// ===========================================
@@ -206,8 +220,8 @@ DemoApp = function() {
 	}
 }
 
-	/*
-	DemoApp.prototype 				= new LAB.ThreeApp();
-	DemoApp.prototype.constructor 	= DemoApp;
-	DemoApp.prototype.supr 			= LAB.ThreeApp.prototype;	
-	*/
+/*
+DemoApp.prototype 				= new LAB.ThreeApp();
+DemoApp.prototype.constructor 	= DemoApp;
+DemoApp.prototype.supr 			= LAB.ThreeApp.prototype;	
+*/
