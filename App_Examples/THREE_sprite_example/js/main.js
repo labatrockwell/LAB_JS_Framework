@@ -52,7 +52,7 @@ DemoApp = function(){
             attScale: { type: "f", value: window.innerHeight/2  },
             radius: { type: "f", value: 15 },
             particleTexture:   { type: "t", value: 0, texture: THREE.ImageUtils.loadTexture( "textures/sphere.png" )}
-         }
+         };
          particleShader = new LAB.three.Shader({name: "shaders/particleShader", uniforms: shaderUniforms } );
          
          //geometry
@@ -93,10 +93,10 @@ DemoApp = function(){
       //update particle positions
       var pPos, tPos;
       var force = new THREE.Vector3();
-      var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .7 );
-      //var attractor = labCam.projectToWorld( new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .7 ) );
+      //var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .7 );
+      var attractor = this.projectToWorld( new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .95 ) );
       var accel = .3;
-      var attenuation = labMap( mb, 0, 1, .95, .995);
+      var attenuation = labMap( mb, 0, 1, .95, .99);
       for(var i=0; i<particles.vertices.length; i++){
          pPos = particles.vertices[i].position;
          tPos = particles.targetPos[i];
@@ -112,6 +112,17 @@ DemoApp = function(){
       particles.update();
       
    }
+   
+   this.projectToWorld = function( screenPos ){
+      //this was helpful http://jsfiddle.net/gero3/PE4x7/25/
+      var pos = screenPos.clone();
+      pos.x = ( pos.x / window.innerWidth ) * 2 - 1;
+      pos.y = ( -(window.innerHeight-pos.y) / window.innerHeight ) * 2 + 1;
+      
+      var projector = new THREE.Projector();
+      projector.unprojectVector( pos, camera );
+      return pos;
+   };
    
 	// ===========================================
 	// ===== DRAW
@@ -139,8 +150,7 @@ DemoApp = function(){
       lastMouse.y = y;
    }		
    
-   this.onMousePressed	= function (x,y)
-   {
+   this.onMousePressed	= function (x,y){
    }
 }
 
