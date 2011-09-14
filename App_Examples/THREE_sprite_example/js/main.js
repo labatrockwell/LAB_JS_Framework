@@ -3,7 +3,6 @@
 LAB.require("js/lab/app/ThreeApp.js");
 LAB.require("js/utils/utils.js");
 LAB.require("models/walt_reduced.js");
-//LAB.require("shaders/basicShader.vert");
 
 var demoApp;
 
@@ -42,10 +41,8 @@ DemoApp = function(){
 			this.registerMouseEvents();
          
          //cameras
-         camera = new THREE.Camera(60, window.innerWidth/window.innerHeight,
-                                   10, 10000 );
-         camera.target.position.set( window.innerWidth/2, window.innerHeight/2, 0);
-
+         camera = new LAB.three.Camera();
+         camera.usePushPop( true );
          
          //shaders
          var shaderUniforms = {
@@ -57,12 +54,12 @@ DemoApp = function(){
          
          //geometry
          var targetMesh = new LAB.three.Geometry();
-         targetMesh.loadLabModel( walt_reduced );
+         targetMesh.loadLabModel( walt_reduced ); // maybe we should set up loader similar to LAB.Shader? rather then including the file
          
          particles = new LAB.three.Geometry();
          particles.vel = [];
          particles.targetPos = []
-         for(var i=0; i<6000; i++){
+         for(var i=0; i<10000; i++){
             particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
             particles.vel[i] = new THREE.Vector3(0,0,0);
             
@@ -82,21 +79,15 @@ DemoApp = function(){
 	// ===========================================
    
    this.update = function (){
-      camera.position.set(Math.sin(labDegToRad(lastMouse.x)) * window.innerWidth/2 + window.innerWidth/2,
-                          Math.sin(labDegToRad(lastMouse.y)) * window.innerWidth/2 + window.innerHeight/2, 
-                          Math.cos(labDegToRad(lastMouse.x)) * window.innerWidth/2);
-      
-      
       //update particle positions and velocities
       targetBlend = labClamp( labMap( Math.sin( LAB.self.getElapsedTimeSeconds()*.2), -1, 1, -1, 2 ),0, 1) ;
       var mb = 1 - targetBlend;
       //update particle positions
       var pPos, tPos;
       var force = new THREE.Vector3();
-      //var attractor = new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .7 );
-      var attractor = this.projectToWorld( new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .95 ) );
+      var attractor = camera.projectToWorld( new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .95 ) );
       var accel = .3;
-      var attenuation = labMap( mb, 0, 1, .95, .99);
+      var attenuation = labMap( mb, 0, 1, .95, .995 );
       for(var i=0; i<particles.vertices.length; i++){
          pPos = particles.vertices[i].position;
          tPos = particles.targetPos[i];
@@ -113,17 +104,6 @@ DemoApp = function(){
       
    }
    
-   this.projectToWorld = function( screenPos ){
-      //this was helpful http://jsfiddle.net/gero3/PE4x7/25/
-      var pos = screenPos.clone();
-      pos.x = ( pos.x / window.innerWidth ) * 2 - 1;
-      pos.y = ( -(window.innerHeight-pos.y) / window.innerHeight ) * 2 + 1;
-      
-      var projector = new THREE.Projector();
-      projector.unprojectVector( pos, camera );
-      return pos;
-   };
-   
 	// ===========================================
 	// ===== DRAW
 	// ===========================================
@@ -136,7 +116,17 @@ DemoApp = function(){
       gl.disable( gl.DEPTH_TEST );
       gl.enable( gl.BLEND);
       gl.blendFunc( gl.SRC_ALPHA, gl.ONE );
+      
+      
+      camera.pushMatrix();
+      camera.translateMatrix(2*lastMouse.x - window.innerWidth, 
+                             2*lastMouse.y - window.innerHeight,
+                             0);
+      camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );
+      
       this.renderer.render( this.scene, camera );
+      
+      camera.popMatrix();
             
    }
    
