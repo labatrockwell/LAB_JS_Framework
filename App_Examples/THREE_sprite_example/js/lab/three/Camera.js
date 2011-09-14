@@ -192,11 +192,21 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
  @public
  */
 LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
-   //this.matrix.scale( new THREE.Vector3(x,y,z) );
    
-   this.matrix.n11 *= x; 
+   this.matrix.n11 *= x;
+   this.matrix.n12 *= x;
+   this.matrix.n13 *= x;
+   this.matrix.n14 *= x;
+   
+   this.matrix.n21 *= y;
    this.matrix.n22 *= y;
+   this.matrix.n23 *= y;
+   this.matrix.n24 *= y;
+   
+   this.matrix.n31 *= z;
+   this.matrix.n32 *= z;
    this.matrix.n33 *= z;
+   this.matrix.n34 *= z;
    
 };
 
@@ -205,14 +215,67 @@ LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
  @public
  */
 LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
+   //adapted from tdl.fast.matrix4.axisRotate 
    
-   //   var axis = new THREE.Vector3(x,y,z).normalize();
-   //   var rotMat = new THREE.Matrix4().setRotationAxis( axis, angle * 0.0174532925 );
-   //   this.matrix.multiply( rotMat, this.matrix );
+   ///normalize axis
+   var n = Math.sqrt(x * x + y * y + z * z);
+   x /= n;
+   y /= n;
+   z /= n;
+   var xx = x * x;
+   var yy = y * y;
+   var zz = z * z;
+   var c = Math.cos(angle);
+   var s = Math.sin(angle);
+   var oneMinusCosine = 1 - c;
    
-   this.quaternion.setFromAxisAngle( new THREE.Vector3(x,y,z).normalize(), angle * 0.0174532925 );
-   this.matrix.multiply(new THREE.Matrix4().setRotationFromQuaternion( this.quaternion ),
-                        this.matrix );
+   var r00 = xx + (1 - xx) * c;
+   var r01 = x * y * oneMinusCosine + z * s;
+   var r02 = x * z * oneMinusCosine - y * s;
+   var r10 = x * y * oneMinusCosine - z * s;
+   var r11 = yy + (1 - yy) * c;
+   var r12 = y * z * oneMinusCosine + x * s;
+   var r20 = x * z * oneMinusCosine + y * s;
+   var r21 = y * z * oneMinusCosine - x * s;
+   var r22 = zz + (1 - zz) * c;
+   
+   var m00 = this.matrix.n11;
+   var m01 = this.matrix.n12;
+   var m02 = this.matrix.n13;
+   var m03 = this.matrix.n14;
+   var m10 = this.matrix.n21;
+   var m11 = this.matrix.n22;
+   var m12 = this.matrix.n23;
+   var m13 = this.matrix.n24;
+   var m20 = this.matrix.n31;
+   var m21 = this.matrix.n32;
+   var m22 = this.matrix.n33;
+   var m23 = this.matrix.n34;
+   var m30 = this.matrix.n41;
+   var m31 = this.matrix.n42;
+   var m32 = this.matrix.n43;
+   var m33 = this.matrix.n44;
+   
+   this.matrix.n11 = r00 * m00 + r01 * m10 + r02 * m20;
+   this.matrix.n12 = r00 * m01 + r01 * m11 + r02 * m21;
+   this.matrix.n13 = r00 * m02 + r01 * m12 + r02 * m22;
+   this.matrix.n14 = r00 * m03 + r01 * m13 + r02 * m23;
+   this.matrix.n21 = r10 * m00 + r11 * m10 + r12 * m20;
+   this.matrix.n22 = r10 * m01 + r11 * m11 + r12 * m21;
+   this.matrix.n23 = r10 * m02 + r11 * m12 + r12 * m22;
+   this.matrix.n24 = r10 * m03 + r11 * m13 + r12 * m23;
+   this.matrix.n31 = r20 * m00 + r21 * m10 + r22 * m20;
+   this.matrix.n32 = r20 * m01 + r21 * m11 + r22 * m21;
+   this.matrix.n33 = r20 * m02 + r21 * m12 + r22 * m22;
+   this.matrix.n34 = r20 * m03 + r21 * m13 + r22 * m23;
+   
+//   //   var axis = new THREE.Vector3(x,y,z).normalize();
+//   //   var rotMat = new THREE.Matrix4().setRotationAxis( axis, angle * 0.0174532925 );
+//   //   this.matrix.multiply( rotMat, this.matrix );
+//   
+//   this.quaternion.setFromAxisAngle( new THREE.Vector3(x,y,z).normalize(), angle * 0.0174532925 );
+//   this.matrix.multiply(new THREE.Matrix4().setRotationFromQuaternion( this.quaternion ),
+//                        this.matrix );
 };
 
 /**

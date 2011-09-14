@@ -123,6 +123,9 @@ DemoApp = function(){
                              2*lastMouse.y - window.innerHeight,
                              0);
       camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );
+//      camera.translateMatrix( -window.innerWidth/2, -window.innerHeight/2, 0);   
+//      camera.rotateMatrix(  LAB.self.getElapsedTimeSeconds(), 0, 1, 0);
+//      camera.translateMatrix( window.innerWidth/2, window.innerHeight/2, 0);
       
       this.renderer.render( this.scene, camera );
       
