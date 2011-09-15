@@ -61,9 +61,7 @@ DemoApp = function(){
                circle.addVertex(Math.sin( step*i ), Math.cos( step*i ), 0);
          }
          
-         var randPoint = new THREE.Vector3(Math.random() * 2 - 1,
-                                           Math.random() * 2 - 1,
-                                           Math.random() * 2 - 1);
+         var randPoint = new THREE.Vector3( labRandom(-1,1), labRandom(-1,1), labRandom(-1,1) );
          randPoint.divideScalar( randPoint.length() );
          randPoint.multiplyScalar( radius );
          randPoint.addSelf( center );   
@@ -80,6 +78,7 @@ DemoApp = function(){
          var sphere = new THREE.Mesh( sphereGeom, new THREE.MeshNormalMaterial() );
          sphere.position.set( window.innerWidth/2, window.innerHeight/2, 0 );
          this.scene.addObject( sphere );
+         
       }
 
    
@@ -93,8 +92,8 @@ DemoApp = function(){
          circles[i].scale.y += .5;
          circles[i].scale.z += .5;
          
-         if(circles[i].scale.x > radius*2){
-            circles[i].scale.set(0,0,0);
+         if(circles[i].scale.x > radius*4){
+            circles[i].scale.set(0.001,0.001,0.001); //length can't be zero. zero length means it can't be inverted
          }
       }
    }
@@ -130,9 +129,7 @@ DemoApp = function(){
    
    this.onMousePressed	= function (x,y){
       
-      var randPoint = new THREE.Vector3(Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1);
+      var randPoint = new THREE.Vector3( labRandom(-1,1), labRandom(-1,1), labRandom(-1,1) );
       randPoint.divideScalar( randPoint.length() );
       randPoint.multiplyScalar( radius );
       randPoint.addSelf( center );
