@@ -134,7 +134,6 @@ DemoApp = function(){
          
 			var cubeGeo = new THREE.CubeGeometry( 1,1,1 );
          for(var i=0; i<2; i++){
-            
             blankObjects.push( new THREE.Mesh( cubeGeo, blankShader) );
             this.scene.addObject( blankObjects[i] );
             blankObjects[i].position.set( window.innerWidth/2, window.innerHeight/2, 0)
