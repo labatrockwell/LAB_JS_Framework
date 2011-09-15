@@ -8,6 +8,14 @@ $(document).ready( function() {
 	DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
 	demoApp = new DemoApp();
 	demoApp.begin();
+	
+	var s = new WebSocket("ws://localhost:9999/");
+	s.onopen = function() { console.log("open"); }
+	s.onclose = function(e) { console.log("closed"); }
+	s.onmessage = function(e) {
+		var data = e.data.split(",");
+		demoApp.addPoint( data[1], data[0] );
+	}
 });
 
 // ===========================================
@@ -20,6 +28,11 @@ DemoApp = function() {
    
 	var lastMouse = {x:0, y:0};
 	var labCam;
+	
+	var SCREEN_WIDTH = window.innerWidth,
+		SCREEN_HEIGHT = window.innerHeight,
+		SCREEN_WIDTH_HALF = window.innerWidth / 2,
+		SCREEN_HEIGHT_HALF = window.innerHeight / 2;
 	
 	//other
 	var radius 			= 6371,
@@ -69,8 +82,18 @@ DemoApp = function() {
 
 			domElement: this.renderer.domElement,
 		});
-				
 		labCam.position.z = radius * 7;
+		
+		//points
+		var points = [];
+		points.push([51.507222, -0.1275]); // London
+		points.push([-37.813611, 144.963056]); // Melbourne
+		points.push([40.716667, -74]); // NYC
+		points.push([35.700556, 139.715]); // Tokyo
+		
+		for (i = 0; i < points.length; i++) {
+			this.addPoint( points[i][0], points[i][1]);
+		};
 
 		//lights
 		dirLight = new THREE.DirectionalLight( 0xFFFFFF );
@@ -172,6 +195,36 @@ DemoApp = function() {
 		}
 	}
 	
+	this.addPoint = function( _lat, _long ) {
+		/*
+		var r = 200,
+			latDeg, lngDeg, latitude, longitude, x, y, z, vector, vector2, line;
+			
+		latDeg = _lat;
+		lngDeg = _long;
+		latitude = Math.PI/180*(90-latDeg);
+		longitude = Math.PI/180*(180-lngDeg);
+
+		x = r * Math.sin(latitude) * Math.cos(longitude);
+		y = r * Math.cos(latitude);
+		z = r * Math.sin(latitude) * Math.sin(longitude);;
+
+		geometry = new THREE.Geometry();
+
+		vector = new THREE.Vector3( x, y, z);
+
+		geometry.vertices.push( new THREE.Vertex( vector ) );
+
+		vector2 = vector.clone();
+		vector2.multiplyScalar( 1.1 );
+
+		geometry.vertices.push( new THREE.Vertex( vector2 ) );
+
+		line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5, opacity: 1 } ) );
+		this.scene.addObject(line);
+		*/
+	}
+	
 	// ===========================================
 	// ===== UPDATE
 	// ===========================================
@@ -188,9 +241,8 @@ DemoApp = function() {
 	// ===== DRAW
 	// ===========================================
 	this.draw = function() {
-		this.update();
+		//this.update();
 		this.renderer.clear();
-		// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
 		this.renderer.render( this.scene, labCam );
 	}
 	
