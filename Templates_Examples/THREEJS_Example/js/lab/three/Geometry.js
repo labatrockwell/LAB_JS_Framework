@@ -25,17 +25,17 @@ LAB.three.Geometry.prototype.supr = THREE.Geometry.prototype;
  @public
  */
 LAB.three.Geometry.prototype.loadLabModel = function( model ){
-   
+   //vertex positions
    if( model.positions.length > 0 ){
-      labLog( model.positions.length );
       this.vertices = [];
       for(var i=0; i<model.positions.length; i++){
          this.vertices[i] = new THREE.Vertex( new THREE.Vector3(model.positions[i][0],
-                                                             model.positions[i][1],
-                                                             model.positions[i][2]));
+                                                                model.positions[i][1],
+                                                                model.positions[i][2]));
       }
    }
    
+   //vertex normals. these aren't loading to the three mesh yet. need to look into how three gets normals to the shader. I think its face->Vertex->Normals meaning seperate normals for each face vertex. not shared between faces
    if( model.normals.length ){// we should switch the exporter to write vertexNormals & faceNormals
       for(var i=0; i<model.normals.length; i++){
          this.vertexNormals[i] = new THREE.Vector3(model.normals[i][0],
@@ -44,30 +44,29 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
       }
    }
    
+   
    for(var i=0; i<model.indices.length; i++ ){
       var fi = model.indices[i];
       if(fi.length == 3 ){
          this.faces.push( new THREE.Face3(fi[0],fi[1],fi[2] ) );
          
-//         if(model.texCoords){
-//            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1])];
-//         }
+         if( model.texCoords ){
+            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1])];
+         }
       }
-//      else if( fi.length == 4){
-//         this.faces.push( new THREE.Face4(fi[0],fi[1],fi[2],fi[3] ) );
-//         
-//         if(model.texCoords){
-//            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1]),
-//                                        new THREE.UV( model.texCoords[ fi[3] ][0], model.texCoords[ fi[3] ][1])];
-//         }
-//      }
-      
+      else if( fi.length == 4){
+         this.faces.push( new THREE.Face4(fi[0],fi[1],fi[2],fi[3] ) );
+         
+         if( model.texCoords ){
+            this.faceVertexUvs[0][i] = [new THREE.UV( model.texCoords[ fi[0] ][0], model.texCoords[ fi[0] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[1] ][0], model.texCoords[ fi[1] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[2] ][0], model.texCoords[ fi[2] ][1]),
+                                        new THREE.UV( model.texCoords[ fi[3] ][0], model.texCoords[ fi[3] ][1])];
+         }
+      }
    }
-      
 };
 
 /**
@@ -100,9 +99,9 @@ LAB.three.Geometry.prototype.update = function(){
 	@public
 */
 LAB.three.Geometry.prototype.calculateNormals = function( _smooth ){
-   
    this.computeFaceNormals();
-   this.computeVertexNormals();
+   var smooth = _smooth || true; // not reallly working yet. it seems that smoothing is handeled by the shader mesh setup
+   if( smooth )   this.computeVertexNormals();
 };
 
 
@@ -165,8 +164,8 @@ LAB.three.Geometry.prototype.getSmoothedNormalOnFace = function( faceIndex, u, v
       var b = this.getVertexNormal( f.b );
       var c = this.getVertexNormal( f.c );
       fNorm.set(a.x*u + b.x*v + c.x * w,
-               a.y*u + b.y*v + c.y * w,
-               a.z*u + b.z*v + c.z * w );
+                a.y*u + b.y*v + c.y * w,
+                a.z*u + b.z*v + c.z * w );
       
    }
    else if(f instanceof THREE.Face4){
@@ -178,8 +177,8 @@ LAB.three.Geometry.prototype.getSmoothedNormalOnFace = function( faceIndex, u, v
       var c = this.getVertexNormal( f.c );
       var d = this.getVertexNormal( f.d );
       fNorm.set((a.x*mu + b.x*u)*mv + (d.x*mu + c.x*u)*v,
-               (a.y*mu + b.y*u)*mv + (d.y*mu + c.y*u)*v,
-               (a.z*mu + b.z*u)*mv + (d.z*mu + c.z*u)*v);
+                (a.y*mu + b.y*u)*mv + (d.y*mu + c.y*u)*v,
+                (a.z*mu + b.z*u)*mv + (d.z*mu + c.z*u)*v);
    }
    
    return fNorm;
@@ -275,8 +274,6 @@ LAB.three.Geometry.prototype.findEdges = function(){
 };
 
 LAB.three.Geometry.prototype.findVertexEdges = function(){
-   
-   //this is structured so that we can traverse to a vertex's edges using the same index as our vertex
    if(this.edges.length == 0){
       this.findEdges();
    }
@@ -325,8 +322,6 @@ LAB.three.Geometry.prototype.findVertexFaces = function(){
 
 
 LAB.three.Geometry.prototype.findFaceEdges = function(){
-   
-   //this is structured so that we can traverse to a vertex's edges using the same index as our vertex
    if(this.edges.length == 0){
       this.findEdges();
    }
@@ -365,7 +360,7 @@ LAB.three.Geometry.prototype.getVertexNormal = function( vertexIndex ){
 
 LAB.three.Geometry.prototype.calcVertexNormal = function( vertexIndex ){
    //not as easy as it sounds in three o_O
-   //for now we'll just calculate it using vertexFaces and store them in this.vertexNormals...
+   //for now we'll calculate it using vertexFaces and store them in this.vertexNormals...
    if( !this.vertexNormals[vertexIndex] ){
       this.vertexNormals[vertexIndex] = new THREE.Vector3();
    }
@@ -391,3 +386,4 @@ LAB.three.Geometry.prototype.calculateVertexNormals = function(){
 LAB.three.Geometry.prototype.getVertexLocalPosition = function( vertexIndex ){
    return this.vertices[vertexIndex].position;
 };
+

@@ -360,7 +360,7 @@ LAB.three.Geometry.prototype.getVertexNormal = function( vertexIndex ){
 
 LAB.three.Geometry.prototype.calcVertexNormal = function( vertexIndex ){
    //not as easy as it sounds in three o_O
-   //for now we'll just calculate it using vertexFaces and store them in this.vertexNormals...
+   //for now we'll calculate it using vertexFaces and store them in this.vertexNormals...
    if( !this.vertexNormals[vertexIndex] ){
       this.vertexNormals[vertexIndex] = new THREE.Vector3();
    }
