@@ -58,7 +58,7 @@ DemoApp = function(){
             inTex: { type: "t", value: 0, texture: fboTexture },
             texDim: { type: "v2", value: new THREE.Vector2( fboTexture.width, fboTexture.height )},
          };
-         simpTexShader = new LAB.three.Shader({ name: 'shaders/simpleTexture', uniforms: uniforms });
+         simpTexShader = new LAB.three.Shader({ name: 'shaders/boxFilter', uniforms: uniforms });
          
          //post processing( drawing the fbo to the screen ) setup
          screenQuad = new THREE.Mesh( new THREE.PlaneGeometry( window.innerWidth, window.innerHeight ), simpTexShader );
@@ -104,7 +104,7 @@ DemoApp = function(){
                              2*lastMouse.y - window.innerHeight,
                              0);
       camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );
-      this.renderer.render( this.scene, camera, fboTexture, true );
+      this.renderer.render( this.scene, camera, fboTexture, true );//render the scene to the fboTexture and clear = true
       camera.popMatrix();
       
       gl.disable( gl.DEPTH_TEST );
