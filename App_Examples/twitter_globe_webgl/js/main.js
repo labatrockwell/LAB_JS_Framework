@@ -56,7 +56,6 @@ $(document).ready( function() {
 			this.scene.addObject( primitive );
 
 			var points = [];
-			points.push([50.826264, -0.138225]); // Brighton
 			points.push([51.507222, -0.1275]); // London
 			points.push([-37.813611, 144.963056]); // Melbourne
 			points.push([40.716667, -74]); // NYC

@@ -1,9 +1,9 @@
 /**********
  *  MATH  *
  **********/
-function labRandom( _min, _max){
-   return Math.random() * ( _max - _min ) + _min ;
-}
+//function labRandom( _min, _max){
+//   return Math.random() * ( _max || 1 - _min || 0 ) + _min || 0;
+//}
 
 function labRandomInt( _min, _max) {
    return Math.floor( labRandom( _min, _max ));

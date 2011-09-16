@@ -71,7 +71,6 @@ DemoApp = function(){
          particleSystem = new THREE.ParticleSystem( particles, particleShader ); 
          
          this.scene.addObject( particleSystem );
-
       }
 
    

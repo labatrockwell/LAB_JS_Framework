@@ -96,6 +96,20 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.setup();
 		this.animate();
 	}
+	
+	LAB.app.ThreeApp.prototype._onWindowResized = function( event ) {
+		width = window.innerWidth;
+		height = window.innerHeight;
+
+		LAB.self.renderer.setSize( width, height );
+
+		LAB.self.camera.aspect = width / height;
+		LAB.self.camera.updateProjectionMatrix();
+
+		LAB.self.camera.radius = ( width + height ) / 4;
+		
+		LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
+	}
 
 /************************************************************
 	DRAW: override the draw function in your app!

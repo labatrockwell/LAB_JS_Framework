@@ -25,7 +25,7 @@ DemoApp = function(){
    
    var camera;	
    var circles = [];
-   var radius = 200;
+   var radius = 600;
    var center;
    
    var targetBlend = 0;
@@ -54,19 +54,21 @@ DemoApp = function(){
          lineShader.linewidth = 2.5;
          
          //geometry
-         var subdiv = 90;
+         var subdiv = 45;
          var step = Math.PI * 2 * 1/(subdiv - 1);
          var circle  = new LAB.three.Geometry();
          for(var i=0; i<subdiv; i++){
                circle.addVertex(Math.sin( step*i ), Math.cos( step*i ), 0);
          }
          
-         var randPoint = new THREE.Vector3( labRandom(-1,1), labRandom(-1,1), labRandom(-1,1) );
+         var randPoint = new THREE.Vector3(Math.random() * 2 - 1,
+                                           Math.random() * 2 - 1,
+                                           Math.random() * 2 - 1);
          randPoint.divideScalar( randPoint.length() );
          randPoint.multiplyScalar( radius );
          randPoint.addSelf( center );   
 
-         for(var i=0 ;i<40; i++){
+         for(var i=0 ;i<5; i++){
             circles[i] = new THREE.Line( circle, lineShader );
             circles[i].position.copy( randPoint );
             circles[i].lookAt( center );
@@ -74,11 +76,10 @@ DemoApp = function(){
             this.scene.addObject( circles[i] );
          }
          
-         var sphereGeom = new THREE.SphereGeometry( radius*.975, 40, 40 );
+         var sphereGeom = new THREE.SphereGeometry( radius*.989, 40, 40 );
          var sphere = new THREE.Mesh( sphereGeom, new THREE.MeshNormalMaterial() );
          sphere.position.set( window.innerWidth/2, window.innerHeight/2, 0 );
          this.scene.addObject( sphere );
-         
       }
 
    
@@ -88,12 +89,12 @@ DemoApp = function(){
    
    this.update = function (){
       for( var i=0; i<circles.length; i++){
-         circles[i].scale.x += .5;
-         circles[i].scale.y += .5;
-         circles[i].scale.z += .5;
+         circles[i].scale.x += 1;
+         circles[i].scale.y += 1;
+         circles[i].scale.z += 1;
          
-         if(circles[i].scale.x > radius*4){
-            circles[i].scale.set(0.001,0.001,0.001); //length can't be zero. zero length means it can't be inverted
+         if(circles[i].scale.x > radius/4){
+         	circles[i].scale.set(0,0,0);
          }
       }
    }
@@ -129,7 +130,9 @@ DemoApp = function(){
    
    this.onMousePressed	= function (x,y){
       
-      var randPoint = new THREE.Vector3( labRandom(-1,1), labRandom(-1,1), labRandom(-1,1) );
+      var randPoint = new THREE.Vector3(Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1);
       randPoint.divideScalar( randPoint.length() );
       randPoint.multiplyScalar( radius );
       randPoint.addSelf( center );

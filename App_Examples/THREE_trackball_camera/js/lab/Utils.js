@@ -2,7 +2,7 @@
  *  MATH  *
  **********/
 function labRandom( _min, _max){
-   return Math.random() * ( _max - _min ) + _min ;
+   return Math.random() * ( _max - _min ) + _min;
 }
 
 function labRandomInt( _min, _max) {
@@ -15,10 +15,6 @@ function labRandomObject( _array ){
 
 function labMap(value, _oldMin, _oldMax, _min, _max){    
    return _min + ((value-_oldMin)/(_oldMax-_oldMin)) * (_max-_min);
-}
-
-function labClamp( value, _min, _max ){
-   return Math.min( Math.max( value, _min), _max );
 }
 
 function labDegToRad( deg ){

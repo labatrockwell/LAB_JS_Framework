@@ -13,8 +13,7 @@ LAB.app = LAB.app || {};
 	@augments LAB.EventDispatcher
 */
 
-LAB.app.BaseApp = function()
-{
+LAB.app.BaseApp = function() {
 	/**
 		Globally-accessible app scope
 		@type LAB.app.BaseApp
@@ -99,7 +98,7 @@ LAB.app.BaseApp.prototype.postdraw 	= function(){}; // e.g. teardown screen
 	@function
 	@private
 */
-LAB.app.BaseApp.prototype.animate	= function(time){
+LAB.app.BaseApp.prototype.animate	= function(time) {
 	// update time
 	if (time === undefined){
 	} else {
@@ -116,161 +115,172 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 }
 
 // ===========================================
+// ===== WINDOW
+// ===========================================
+LAB.app.BaseApp.prototype.registerWindowResize = function() {
+	window.onresize = LAB.self._onWindowResized;
+}
+
+LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
+	LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
+}
+
+LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
+
+// ===========================================
 // ===== MOUSE
 // ===========================================
 
-	/**
-		start listening to mouse events
-		@function
-		@public
-	*/
-	LAB.app.BaseApp.prototype.registerMouseEvents = function(){
-		window.addEventListener("mousemove", LAB.self._onMouseMoved);
-		window.addEventListener("mousedown", LAB.self._onMousePressed);
-		window.addEventListener("mouseup", LAB.self._onMouseReleased);
+/**
+	start listening to mouse events
+	@function
+	@public
+*/
+LAB.app.BaseApp.prototype.registerMouseEvents = function(){
+	window.addEventListener("mousemove", LAB.self._onMouseMoved);
+	window.addEventListener("mousedown", LAB.self._onMousePressed);
+	window.addEventListener("mouseup", LAB.self._onMouseReleased);
+}
+/**
+	stop listening to mouse events
+	@function
+	@public
+*/
+LAB.app.BaseApp.prototype.unregisterMouseEvents = function()
+{
+	window.removeEventListener("mousemove", LAB.self._onMouseMoved);
+	window.removeEventListener("mousedown", LAB.self._onMousePressed);
+	window.removeEventListener("mouseup", LAB.self._onMouseReleased);
+}
+
+/**
+	override in your main app to catch mouse moved events
+	@function
+	@public
+	@param {number} x Mouse x position
+	@param {number} y Mouse y position
+*/
+
+LAB.app.BaseApp.prototype.onMouseMoved		= function (x,y){};
+
+/**
+	override in your main app to catch mouse pressed events
+	@function
+	@public
+	@param {number} x Mouse x position
+	@param {number} y Mouse y position
+*/
+LAB.app.BaseApp.prototype.onMousePressed	= function (x,y){};
+
+/**
+	override in your main app to catch mouse pressed events
+	@function
+	@public
+	@param {number} x Mouse x position
+	@param {number} y Mouse y position
+*/
+LAB.app.BaseApp.prototype.onMouseDragged	= function (x,y){};
+
+/**
+	override in your main app to catch mouse released events
+	@function
+	@public
+	@param {number} x Mouse x position
+	@param {number} y Mouse y position
+*/
+LAB.app.BaseApp.prototype.onMouseReleased	= function (x,y){};
+
+/**
+	called directly by Window. override in your app to directly
+	catch the "mousemove" event from Window.
+	@function
+	@private
+	@param {Event} event DOM mouse event
+*/
+
+LAB.app.BaseApp.prototype._onMouseMoved		= function( event )
+{	 
+	// if the mouse is down, call dragged instead of moved
+	if (LAB.self.mouse.bDown){
+		LAB.self._onMouseDragged(event);
+		return;
 	}
-	/**
-		stop listening to mouse events
-		@function
-		@public
-	*/
-	LAB.app.BaseApp.prototype.unregisterMouseEvents = function()
-	{
-		window.removeEventListener("mousemove", LAB.self._onMouseMoved);
-		window.removeEventListener("mousedown", LAB.self._onMousePressed);
-		window.removeEventListener("mouseup", LAB.self._onMouseReleased);
-	}
-	
-	/**
-		override in your main app to catch mouse moved events
-		@function
-		@public
-		@param {number} x Mouse x position
-		@param {number} y Mouse y position
-	*/
-	
-	LAB.app.BaseApp.prototype.onMouseMoved		= function (x,y){};
-	
-	/**
-		override in your main app to catch mouse pressed events
-		@function
-		@public
-		@param {number} x Mouse x position
-		@param {number} y Mouse y position
-	*/
-	LAB.app.BaseApp.prototype.onMousePressed	= function (x,y){};
-	
-	/**
-		override in your main app to catch mouse pressed events
-		@function
-		@public
-		@param {number} x Mouse x position
-		@param {number} y Mouse y position
-	*/
-	LAB.app.BaseApp.prototype.onMouseDragged	= function (x,y){};
-	
-	/**
-		override in your main app to catch mouse released events
-		@function
-		@public
-		@param {number} x Mouse x position
-		@param {number} y Mouse y position
-	*/
-	LAB.app.BaseApp.prototype.onMouseReleased	= function (x,y){};
+	LAB.self.mouse.x = event.clientX; 
+	LAB.self.mouse.y = event.clientY;
+	LAB.self.dispatchEvent("onMouseMoved", LAB.self.mouse);
+	LAB.self.onMouseMoved(LAB.self.mouse.x, LAB.self.mouse.y);
+}
 
-	/**
-		called directly by Window. override in your app to directly
-		catch the "mousemove" event from Window.
-		@function
-		@private
-		@param {Event} event DOM mouse event
-	*/
+/**
+	called directly by Window. override in your app to directly
+	catch the "mousedown" event from Window.
+	@function
+	@private
+	@param {Event} event DOM mouse event
+*/
 
-	LAB.app.BaseApp.prototype._onMouseMoved		= function( event )
-	{	 
-		// if the mouse is down, call dragged instead of moved
-		if (LAB.self.mouse.bDown){
-			LAB.self._onMouseDragged(event);
-			return;
-		}
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseMoved", LAB.self.mouse);
-		LAB.self.onMouseMoved(LAB.self.mouse.x, LAB.self.mouse.y);
-	}
+LAB.app.BaseApp.prototype._onMousePressed	= function( event )
+{
+	LAB.self.mouse.x = event.clientX; 
+	LAB.self.mouse.y = event.clientY;
+	LAB.self.mouse.bDown = true;
+	LAB.self.dispatchEvent("onMousePressed", LAB.self.mouse);
+	LAB.self.onMousePressed(LAB.self.mouse.x, LAB.self.mouse.y);
+}
 
-	/**
-		called directly by Window. override in your app to directly
-		catch the "mousedown" event from Window.
-		@function
-		@private
-		@param {Event} event DOM mouse event
-	*/
+/**
+	called directly by Window. override in your app to directly
+	catch the "mouseup" event from Window.
+	@function
+	@private
+	@param {Event} event DOM mouse event
+*/
 
-	LAB.app.BaseApp.prototype._onMousePressed	= function( event )
-	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = true;
-		LAB.self.dispatchEvent("onMousePressed", LAB.self.mouse);
-		LAB.self.onMousePressed(LAB.self.mouse.x, LAB.self.mouse.y);
-	}
+LAB.app.BaseApp.prototype._onMouseReleased	= function( event )
+{
+	LAB.self.mouse.x = event.clientX; 
+	LAB.self.mouse.y = event.clientY;
+	LAB.self.mouse.bDown = false;
+	LAB.self.dispatchEvent("onMouseReleased", LAB.self.mouse);
+	LAB.self.onMouseReleased(LAB.self.mouse.x, LAB.self.mouse.y);
+}
 
-	/**
-		called directly by Window. override in your app to directly
-		catch the "mouseup" event from Window.
-		@function
-		@private
-		@param {Event} event DOM mouse event
-	*/
+/**
+	helper function to call onMouseDragged instead of onMouseMoved.
+	overriding this won't help anybody.
+	@function
+	@private
+	@param {Event} event DOM mouse event
+*/
 
-	LAB.app.BaseApp.prototype._onMouseReleased	= function( event )
-	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = false;
-		LAB.self.dispatchEvent("onMouseReleased", LAB.self.mouse);
-		LAB.self.onMouseReleased(LAB.self.mouse.x, LAB.self.mouse.y);
-	}
-	
-	/**
-		helper function to call onMouseDragged instead of onMouseMoved.
-		overriding this won't help anybody.
-		@function
-		@private
-		@param {Event} event DOM mouse event
-	*/
-
-	LAB.app.BaseApp.prototype._onMouseDragged	= function( event )
-	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseDragged", LAB.self.mouse);
-		LAB.self.onMouseDragged(LAB.self.mouse.x, LAB.self.mouse.y);
-	}
+LAB.app.BaseApp.prototype._onMouseDragged	= function( event )
+{
+	LAB.self.mouse.x = event.clientX; 
+	LAB.self.mouse.y = event.clientY;
+	LAB.self.dispatchEvent("onMouseDragged", LAB.self.mouse);
+	LAB.self.onMouseDragged(LAB.self.mouse.x, LAB.self.mouse.y);
+}
 	
 // ===========================================
 // ===== TIME
 // ===========================================
 
-	/**
-		get ellapsed time in milliseconds
-		@function
-		@public
-	*/
-	
-	LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
-	{
-		return LAB.self.elapsedTime;
-	}
-	
-	/**
-		get ellapsed time in seconds
-		@function
-		@public
-	*/
-	
-	LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
-	{
-		return LAB.self.elapsedTime/1000;
-	}
+/**
+	get ellapsed time in milliseconds
+	@function
+	@public
+*/
+
+LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function() {
+	return LAB.self.elapsedTime;
+}
+
+/**
+	get ellapsed time in seconds
+	@function
+	@public
+*/
+
+LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function() {
+	return LAB.self.elapsedTime/1000;
+}

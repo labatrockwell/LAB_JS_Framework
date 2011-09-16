@@ -116,6 +116,19 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 }
 
 // ===========================================
+// ===== WINDOW
+// ===========================================
+LAB.app.BaseApp.prototype.registerWindowResize = function() {
+	window.onresize = LAB.self._onWindowResized;
+}
+
+LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
+	LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
+}
+
+LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
+
+// ===========================================
 // ===== MOUSE
 // ===========================================
 
