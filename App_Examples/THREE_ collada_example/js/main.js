@@ -4,7 +4,7 @@ LAB.require("js/lab/app/ThreeApp.js");
 LAB.require("js/utils/utils.js");
 
 var demoApp;
-var dae;
+var dae, voronoi;
 
 $(document).ready( function() {
                   DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
@@ -21,9 +21,17 @@ $(document).ready( function() {
                               dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
                               dae.rotation.x = -Math.PI/2;
                               dae.updateMatrix();                              
+                              } );
+                  
+                  loader.load( './models/voronoi.dae', function colladaReady( collada ) {
                               
-                              //labLog( dae );
-                              demoApp.begin();//is this right??
+                              voronoi = collada.scene;
+                              
+                              voronoi.scale.x = voronoi.scale.y = voronoi.scale.z = 0.001;
+                              voronoi.rotation.x = -Math.PI/2;
+                              voronoi.updateMatrix();                              
+                              
+                              demoApp.begin();//<-- I think this works, we just need to make sure the coloda scene is loaded before we begin
                               } );
                   });
 
@@ -82,6 +90,7 @@ DemoApp = function(){
          // Add the COLLADA
          
          scene.addObject( dae );
+         scene.addObject( voronoi );
          
          particleLight = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
          scene.addObject( particleLight );
@@ -139,7 +148,7 @@ DemoApp = function(){
          skin.morphTargetInfluences[ Math.floor( t ) ] = 1;
          
          t += 1;
-         
+      }
          //render
          var timer = new Date().getTime() * 0.0005;
          
@@ -156,7 +165,7 @@ DemoApp = function(){
          pointLight.position.z = particleLight.position.z;
          
          renderer.render( scene, camera );
-      }
+      
          
    }
    

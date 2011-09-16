@@ -12,9 +12,6 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:models">
-   </FileRef>
-   <FileRef
       location = "group:shaders">
    </FileRef>
    <Group

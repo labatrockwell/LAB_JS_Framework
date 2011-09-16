@@ -148,7 +148,7 @@ DemoApp = function(){
       
       //draw second buffer to screen with more blurrrring
       simpTexShader.uniforms.inTex.texture = fboTexture2;
-      simpTexShader.uniforms.radius.value = 4;
+      simpTexShader.uniforms.radius.value = 3;
       screen.draw( orthoCamera );
             
    }
