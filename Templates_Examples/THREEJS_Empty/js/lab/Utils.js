@@ -25,6 +25,20 @@ function labRadToDeg( rad ){
    return rad * 57.2957795;
 }
 
+/**
+ * @returns The sign of this number, 0 if the number is 0.
+ * example: aNumber.x.sign();
+ */
+Number.prototype.sign = function() {
+  if(this > 0) {
+    return 1;
+  } else if (this < 0) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
+
 /***********
 *** MISC ***
 ************/
