@@ -1,5 +1,6 @@
 import socket
 import hashlib
+import base64
 import sys, os
 from select import select
 import re
@@ -9,6 +10,7 @@ import time
 import struct
 import tweepy
 import json
+from ws4py.streaming import Stream
 
 receive_address = 'localhost', 54544
 
@@ -41,7 +43,6 @@ class StreamWatcherListener(tweepy.StreamListener):
 				coords = status.coordinates['coordinates']
 				msg.set( coords[0], coords[1] )
 				msg.new = True
-				#print coords
 		except:
 			# Catch any unicode errors while printing to console
 			# and just ignore them to avoid breaking application.
@@ -55,16 +56,7 @@ class StreamWatcherListener(tweepy.StreamListener):
 		print 'Snoozing Zzzzzz'
 
 class WebSocket(object):
-	handshake = (
-		"HTTP/1.1 101 Web Socket Protocol Handshake\r\n"
-		"Upgrade: WebSocket\r\n"
-		"Connection: Upgrade\r\n"
-		"WebSocket-Origin: %(origin)s\r\n"
-		"WebSocket-Location: ws://%(bind)s:%(port)s/\r\n"
-		"Sec-Websocket-Origin: %(origin)s\r\n"
-		"Sec-Websocket-Location: ws://%(bind)s:%(port)s/\r\n"
-		"\r\n"
-	)
+
 	def __init__(self, client, server):
 		self.client = client
 		self.server = server
@@ -78,65 +70,80 @@ class WebSocket(object):
 			if self.header.find('\r\n\r\n') != -1:
 				parts = self.header.split('\r\n\r\n', 1)
 				self.header = parts[0]
-				if self.dohandshake(self.header, parts[1]):
+				if self.dohandshake(self.header):
 					self.handshaken = True
 		else:
-			self.data += data
-			msgs = self.data.split('\xff')
-			self.data = msgs.pop()
-			for msg in msgs:
-				if msg[0] == '\x00':
-					self.onmessage(msg[1:])
+			# first = data[0]
+			# second = data[1]
+			# 
+			# if first != 0x81:
+			# 	print "error on first byte"
+			# if not ( second & 0x80 ):
+			# 	print "error on second byte"
+			# 	
+			# length = int(second) & 0x7f # 0111 = f, 1111 = f
+			# if length < 126:
+			# 	mask = data[2:6]
+			# 	text = data[6:]
+			# elif length == 126:
+			# 	mask = data[4:8]
+			# 	text = data[8:]
+			# 
+			# unMaskedText = len( text )
+			# for idx, val in enumerate( text ):
+			# 	unMaskedText[idx] = text[idx] ^ mask[i%4]
+			# 
+			# print unMaskedText
+			# 
+			# self.data += data
+			# msgs = self.data.split('\xff')
+			# self.data = msgs.pop()
+			# for msg in msgs:
+			# 	if msg[0] == '\x00':
+			# 		self.onmessage(msg[1:])
+			self.onmessage( data )
 
-	def dohandshake(self, header, key=None):
-		digitRe = re.compile(r'[^0-9]')
-		spacesRe = re.compile(r'\s')
-		part_1 = part_2 = origin = None
-		for line in header.split('\r\n')[1:]:
-			name, value = line.split(': ', 1)
-			if name.lower() == "sec-websocket-key1":
-				key_number_1 = int(digitRe.sub('', value))
-				spaces_1 = len(spacesRe.findall(value))
-				if spaces_1 == 0:
-					return False
-				if key_number_1 % spaces_1 != 0:
-					return False
-				part_1 = key_number_1 / spaces_1
-			elif name.lower() == "sec-websocket-key2":
-				key_number_2 = int(digitRe.sub('', value))
-				spaces_2 = len(spacesRe.findall(value))
-				if spaces_2 == 0:
-					return False
-				if key_number_2 % spaces_2 != 0:
-					return False
-				part_2 = key_number_2 / spaces_2
-			elif name.lower() == "origin":
-				origin = value
-		if part_1 and part_2:
-			challenge = struct.pack('!I', part_1) + struct.pack('!I', part_2) + key
-			response = hashlib.md5(challenge).digest()
-			handshake = WebSocket.handshake % {
-				'origin': origin,
-				'port': self.server.port,
-				'bind': self.server.bind
-			}
-			handshake += response
-		else:
-			handshake = WebSocket.handshake % {
-				'origin': origin,
-				'port': self.server.port,
-				'bind': self.server.bind
-			}
-		self.client.send(handshake)
+	def dohandshake(self, header):
+		key = ""
+		
+		for line in header.split('\r\n'):
+			values = line.split(": ")
+			if values[0].lower() == "sec-websocket-key":
+				key = values[1]
+				break
+		
+		shasum = hashlib.sha1()
+		shasum.update(key)
+		shasum.update("258EAFA5-E914-47DA-95CA-C5AB0DC85B11")
+		key = base64.b64encode(shasum.digest())
+		
+		print key
+		
+		handshake = (
+			"HTTP/1.1 101 Switching Protocols\r\n"
+			"Upgrade: websocket\r\n"
+			"Connection: Upgrade\r\n"
+			"Sec-WebSocket-Accept: " + key + "\r\n"
+			"\r\n"
+		)
+		
+		self.client.send( handshake )
+
 		return True
+
+	def write_to_connection(self, bytes):
+		return self.sock.sendall(bytes)
 
 	def onmessage(self, data):
 		print data
 
-	def send(self, data):
-		print "got it!"
-		print data
-		self.client.send("\x00%s\xff" % data)
+	def send(self, payload, binary=False):
+		#self.client.send("\x00%s\xff" % data)
+		if isinstance(payload, basestring) or isinstance(payload, bytearray):
+			if not binary:
+				self.write_to_connection(self.stream.text_message(payload).single())
+			else:
+				self.write_to_connection(self.stream.binary_message(payload).single())
 
 	def close(self):
 		self.client.close()
@@ -166,7 +173,8 @@ class WebSocketServer(object):
 				msg.new = False
 				client = self.connections[self.clientNo].client
 				fileno = client.fileno()	
-				self.connections[fileno].send(data)
+				#self.connections[fileno].send(data)
+				self.connections[fileno].send("hello")
 
 			rList, wList, xList = select(self.listeners, [], self.listeners, 1)
 			for ready in rList:

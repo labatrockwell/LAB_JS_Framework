@@ -12,9 +12,10 @@ $(document).ready( function() {
 	demoApp.begin();
 	
 	var s = new WebSocket("ws://localhost:9999/");
-	s.onopen = function() { console.log("open"); }
+	s.onopen = function() { console.log("open"); s.send("hello!"); console.log("sent: hello!");}
 	s.onclose = function(e) { console.log("closed"); }
 	s.onmessage = function(e) {
+		console.log(e);
 		var data = e.data.split(",");
 		//demoApp.addPoint( data[0], data[1] );
 		demoApp.addPoint( data[1], data[0] );
