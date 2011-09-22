@@ -21,7 +21,7 @@ LAB.randomInt  		= function( _min, _max) {
  @function
  */
 LAB.randomObject  	= function( _array ){
-   return _array[ Math.min(labRandomInt(0, _array.length ), _array.length-1)];
+   return _array[ Math.min(LAB.randomInt(0, _array.length ), _array.length-1)];
 }
 /**
  @function

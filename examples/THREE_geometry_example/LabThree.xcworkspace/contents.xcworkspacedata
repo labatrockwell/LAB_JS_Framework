@@ -378,7 +378,4 @@
          </FileRef>
       </Group>
    </Group>
-   <FileRef
-      location = "group:../../Templates_Examples/THREEJS_Example/THREEsrc">
-   </FileRef>
 </Workspace>
