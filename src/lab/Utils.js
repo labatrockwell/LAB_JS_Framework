@@ -5,31 +5,46 @@ LAB = LAB || {};
 	MATH
 ********************************************/
 
+/**
+ @function
+ */
 LAB.random 			= function( _min, _max){
    return Math.random() * ( _max - _min ) + _min;
 }
-
+/**
+ @function
+ */
 LAB.randomInt  		= function( _min, _max) {
    return Math.floor( LAB.random( _min, _max ));
 }
-
+/**
+ @function
+ */
 LAB.randomObject  	= function( _array ){
    return _array[ Math.min(labRandomInt(0, _array.length ), _array.length-1)];
 }
-
+/**
+ @function
+ */
 LAB.map				= function(value, _oldMin, _oldMax, _min, _max){    
    return _min + ((value-_oldMin)/(_oldMax-_oldMin)) * (_max-_min);
 }
-
+/**
+ @function
+ */
 LAB.clamp 			= function( value, _min, _max ){
    return Math.min( Math.max( value, _min), _max );
 }
 
-
+/**
+ @function
+ */
 LAB.degToRad		= function( deg ){
    return deg * 0.0174532925;
 }
-
+/**
+ @function
+ */
 LAB.radToDeg		= function( rad ){
    return rad * 57.2957795;
 }
@@ -51,7 +66,9 @@ Number.prototype.sign = function() {
 /********************************************
 	LOGGING
 ********************************************/
-
+/**
+ @function
+ */
 LAB.log				= function( text ) {
    if (window.console && window.console.log) {
       window.console.log( text );
@@ -93,7 +110,9 @@ LAB.log				= function( text ) {
 ********************************************/
 	
 	// get string from url. e.g. www.lab.com/index.html?sandwich=turkey returns 'turkey'
-
+	/**
+	 @function
+	 */
 	LAB.getQueryString = function (key)
 	{
 		key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
