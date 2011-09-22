@@ -27,4 +27,4 @@ LAB.agents.Group.prototype.draw = function() {
 	}
 }
 
-var thing = $.extend(true, Group.prototype, Agent.prototype); // How should we fix this?
+var thing = $.extend(true, LAB.agents.Group.prototype, LAB.agents.Agent.prototype); // How should we fix this?

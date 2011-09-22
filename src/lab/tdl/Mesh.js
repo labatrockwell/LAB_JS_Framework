@@ -158,12 +158,12 @@ LAB.tdl.Mesh.prototype = {
    
    draw : function (opt_start, opt_count){ 
       if( !this.boundBool ){
-         if(currentMesh){
-            currentMesh.boundBool = null;
+         if(LAB.tdl.currentMesh){
+            LAB.tdl.currentMesh.boundBool = null;
          } this.bind();
          
          //this.boundBool = true;
-         currentMesh = this;
+         LAB.tdl.currentMesh = this;
       }
 	//console.log(this.indexBuffer.numItems);
       //if(this.indexBuffer ){

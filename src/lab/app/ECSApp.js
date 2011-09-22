@@ -3,7 +3,7 @@
 // ===========================================
 
 /** @namespace LAB.app */
-	LAB.require("js/ecs/ApplicationMessageHandler.js");
+	LAB.require(LAB.src+"ApplicationMessageHandler.js");
 
 /** @constructor */
 	LAB.app.ECSApp = function()

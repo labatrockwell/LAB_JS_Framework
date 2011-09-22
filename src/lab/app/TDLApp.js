@@ -1,13 +1,12 @@
 // include LabBase files
-//LAB.require("js/tdl/base.js");
 /** @namespace LAB.app */
-LAB.require("js/lab/app/BaseApp.js");
+LAB.require(LAB.src+"app/BaseApp.js");
 
 // include TDL utils from Lars
-LAB.require('js/lab/app/tdl/Utils.js');
-LAB.require('js/lab/app/tdl/Mesh.js');
-LAB.require('js/lab/app/tdl/Object.js');
-LAB.require('js/lab/app/tdl/Shader.js');
+LAB.require(LAB.src+'tdl/Utils.js');
+LAB.require(LAB.src+'tdl/Mesh.js');
+LAB.require(LAB.src+'tdl/Object.js');
+LAB.require(LAB.src+'tdl/Shader.js');
 
 /** 
 	@constructor 
@@ -15,11 +14,11 @@ LAB.require('js/lab/app/tdl/Shader.js');
 */
 LAB.app.TDLApp = function()
 {
-	LAB.BaseApp.call( this );
+	LAB.app.BaseApp.call( this );
 	
 	// declare all the base vars
 
-	this.canvas;               // the canvas
+	LAB.tdl.canvas;               // the canvas
 	
 	this.lastTime = 0;
 	this.elapsedTime = 0;
@@ -42,9 +41,9 @@ LAB.app.TDLApp = function()
 	EXTEND
 ************************************************************/
 	
-	LAB.app.TDLApp.prototype = new LAB.BaseApp();
+	LAB.app.TDLApp.prototype = new LAB.app.BaseApp();
 	LAB.app.TDLApp.prototype.constructor = LAB.app.TDLApp;
-	LAB.app.TDLApp.prototype.supr = LAB.BaseApp.prototype;
+	LAB.app.TDLApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 /************************************************************
 	SETUP
@@ -67,33 +66,33 @@ LAB.app.TDLApp = function()
 		//setup canvas and context
 				
 		if (document.getElementById("canvas") != null){
-			this.canvas = document.getElementById("canvas");
+			LAB.tdl.canvas = document.getElementById("canvas");
 		} else {
 			console.log("no canvas in document, generating")
-			this.canvas = document.createElement( 'canvas' );
-			this.canvas.width 	= window.innerWidth;
-			this.canvas.height	= window.innerHeight;
+			LAB.tdl.canvas = document.createElement( 'canvas' );
+			LAB.tdl.canvas.width 	= window.innerWidth;
+			LAB.tdl.canvas.height	= window.innerHeight;
 			
 			if (document.body)
-				document.body.appendChild( this.canvas );
+				document.body.appendChild( LAB.tdl.canvas );
 			else
 				return;
 		}
 		
 		g_fpsTimer = new tdl.fps.FPSTimer();
 
-		gl = tdl.webGL.setupWebgl(this.canvas);
+		gl = tdl.webgl.setupWebGL(LAB.tdl.canvas);
 		if (!gl) {
 			console.log("ERROR SETTING UP gl");
 			return false;
 		}
-		if (g_debug) {
+		if (LAB.g_debug) {
 			gl = tdl.webgl.makeDebugContext(gl, undefined, LogglCall);
 		}
-
+		
 		// util function stored in LabUtils
 		// !!!! needs to be refactored
-		labSetMatrices();
+		LAB.tdl.setMatrices();
 		this.setup();
 		this.animate();
 	}
@@ -148,22 +147,22 @@ LAB.app.TDLApp = function()
 		gl.enable( gl.BLEND );
 		gl.blendFunc( gl.SRC_ALPHA , gl.ONE_MINUS_SRC_ALPHA);
 	
-		gl.viewport(0, 0, this.canvas.width, this.canvas.height);//fit viewport to screen
+		gl.viewport(0, 0, LAB.tdl.canvas.width, LAB.tdl.canvas.height);//fit viewport to screen
 		
-		labPushMatrix();
+		LAB.tdl.pushMatrix();
 		
 		// give you an option to push to orthographic (flat) projection
 		if (this.bOrthographic){			
-			labPushProjection();
+			LAB.tdl.pushProjection();
 			//remake perspective     
 			fast.identity4( projectionMatrix );                          
-			projectionMatrix = tdl.math.matrix4.orthographic(0, canvas.width, 0, canvas.height, nearClip, farClip);
+			projectionMatrix = tdl.math.matrix4.orthographic(0, LAB.tdl.canvas.width, 0, LAB.tdl.canvas.height, LAB.tdl.nearClip, LAB.tdl.farClip);
 			//remake modelview matrix
 			fast.identity4(modelviewMatrix);
 
 			//move to upper left corner and scale. mimics openframeworks setup
-			labScale(1,-1,1);
-			labTranslate(0, -canvas.height, 0);
+			LAB.tdl.scale(1,-1,1);
+			lLAB.tdl.translate(0, -LAB.tdl.canvas.height, 0);
 		}
 	};
 	
@@ -175,5 +174,5 @@ LAB.app.TDLApp = function()
 	
 	LAB.app.TDLApp.prototype.postdraw = function(){
 		if (this.bOrthographic) labPopProjection();
-		labPopMatrix();
+		LAB.tdl.popMatrix();
 	}

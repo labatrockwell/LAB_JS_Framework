@@ -103,7 +103,7 @@ LAB.tdl.Shader.prototype = {
          this.attributes.push( attrloc );
 
       }else{
-         labLog( "no attribute named " + attrname +" in this shader" );
+         LAB.log( "no attribute named " + attrname +" in this shader" );
       }
       return attrloc;      
    },
@@ -180,8 +180,8 @@ LAB.tdl.Shader.prototype = {
    },
    
    setMatrixUniforms : function () {
-      gl.uniformMatrix4fv( this.mvMatrixUniform, false, modelviewMatrix );
-      gl.uniformMatrix4fv( this.pMatrixUniform, false, projectionMatrix );
+      gl.uniformMatrix4fv( this.mvMatrixUniform, false, LAB.tdl.modelviewMatrix );
+      gl.uniformMatrix4fv( this.pMatrixUniform, false, LAB.tdl.projectionMatrix );
    },
    
 };

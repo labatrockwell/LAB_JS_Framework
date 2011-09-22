@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/ThreeApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/ThreeApp.js");
 LAB.require("models/walt_reduced.js");
 
 var demoApp;
@@ -60,11 +59,11 @@ DemoApp = function(){
          particles.vel = [];
          particles.targetPos = []
          for(var i=0; i<10000; i++){
-            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
+            particles.addVertex(LAB.random(0, window.innerWidth), LAB.random(0, window.innerHeight),LAB.random(-200, 200));
             particles.vel[i] = new THREE.Vector3(0,0,0);
             
-            particles.targetPos[i] = targetMesh.getPointOnFace(labRandomInt(0, targetMesh.faces.length ),
-                                                               labRandom(0, 1), labRandom(0,1));
+            particles.targetPos[i] = targetMesh.getPointOnFace(LAB.randomInt(0, targetMesh.faces.length ),
+                                                               LAB.random(0, 1), LAB.random(0,1));
             particles.targetPos[i].multiplyScalar( 12 );//scale it up
             particles.targetPos[i].addSelf( new THREE.Vector3( window.innerWidth/2, 0, 0) );//move it to bottom center
          }
@@ -80,14 +79,14 @@ DemoApp = function(){
    
    this.update = function (){
       //update particle positions and velocities
-      targetBlend = labClamp( labMap( Math.sin( LAB.self.getElapsedTimeSeconds()*.2), -1, 1, -1, 2 ),0, 1) ;
+      targetBlend = LAB.clamp( LAB.map( Math.sin( LAB.self.getElapsedTimeSeconds()*.2), -1, 1, -1, 2 ),0, 1) ;
       var mb = 1 - targetBlend;
       //update particle positions
       var pPos, tPos;
       var force = new THREE.Vector3();
       var attractor = camera.projectToWorld( new THREE.Vector3(lastMouse.x, window.innerHeight - lastMouse.y, .95 ) );
       var accel = .3;
-      var attenuation = labMap( mb, 0, 1, .95, .9985 );
+      var attenuation = LAB.map( mb, 0, 1, .95, .9985 );
       for(var i=0; i<particles.vertices.length; i++){
          pPos = particles.vertices[i].position;
          tPos = particles.targetPos[i];

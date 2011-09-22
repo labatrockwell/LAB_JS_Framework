@@ -25,4 +25,4 @@ Orbit.prototype.apply = function(Agent) {
     
 }
 
-var behave = $.extend(true, Orbit.prototype, Behavior.prototype);
+var behave = $.extend(true, Orbit.prototype, LAB.agents.Behavior.prototype);

@@ -1,14 +1,14 @@
 // include LabBase files
 /** @namespace LAB.app */
-LAB.require("js/three/Three.js");
-LAB.require("js/lab/app/BaseApp.js");
+LAB.require(LAB.src+"../../libs/three/Three.js");
+LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
 
-LAB.require("js/lab/three/Camera.js");
-LAB.require("js/lab/three/Geometry.js");
-LAB.require("js/lab/three/Object.js");
-LAB.require("js/lab/three/Shader.js");
+LAB.require(LAB.src+"three/Camera.js");
+LAB.require(LAB.src+"three/Geometry.js");
+LAB.require(LAB.src+"three/Object.js");
+LAB.require(LAB.src+"three/Shader.js");
 
 /**
 * global gl reference to mirror normal openGL

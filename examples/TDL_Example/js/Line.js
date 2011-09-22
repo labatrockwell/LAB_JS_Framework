@@ -14,8 +14,8 @@
 		
 		var index	= 1;
 				
-		lineMesh 		= new LabMesh();
-		lineMesh.setRenderType(GL.LINE_STRIP);
+		lineMesh 		= new LAB.tdl.Mesh();
+		lineMesh.setRenderType(gl.LINE_STRIP);
 		
 		var points = [window.innerWidth/2,window.innerHeight/2,0];
 		var colors = [1,1,1,1];

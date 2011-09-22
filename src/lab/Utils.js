@@ -10,7 +10,7 @@ LAB.random 			= function( _min, _max){
 }
 
 LAB.randomInt  		= function( _min, _max) {
-   return Math.floor( labRandom( _min, _max ));
+   return Math.floor( LAB.random( _min, _max ));
 }
 
 LAB.randomObject  	= function( _array ){
@@ -20,6 +20,11 @@ LAB.randomObject  	= function( _array ){
 LAB.map				= function(value, _oldMin, _oldMax, _min, _max){    
    return _min + ((value-_oldMin)/(_oldMax-_oldMin)) * (_max-_min);
 }
+
+LAB.clamp 			= function( value, _min, _max ){
+   return Math.min( Math.max( value, _min), _max );
+}
+
 
 LAB.degToRad		= function( deg ){
    return deg * 0.0174532925;

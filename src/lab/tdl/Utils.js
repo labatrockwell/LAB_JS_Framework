@@ -30,7 +30,8 @@ tdl.require('tdl.webgl');
 	
 	LAB.tdl.nearClip = 10;
 	LAB.tdl.farClip = 10000;
-	LAB.tdl.fov = 60, aspect;
+	LAB.tdl.fov = 60
+	LAB.tdl.aspect;
 	
 	LAB.tdl.currentShader = null;
 	LAB.tdl.currentMesh = null;
@@ -218,14 +219,14 @@ LAB.tdl.setMatrices	= function(){
    //taken from openframeworks
    LAB.tdl.eyePosition[0] = LAB.tdl.getCanvasWidth()/2;
    LAB.tdl.eyePosition[1] = LAB.tdl.getCanvasHeight()/2;
-   LAB.tdl.eyePosition[2] = eyePosition[1] / Math.tan( Math.PI * LAB.tdl.fov / 360 );
+   LAB.tdl.eyePosition[2] = LAB.tdl.eyePosition[1] / Math.tan( Math.PI * LAB.tdl.fov / 360 );
    LAB.tdl.aspect = LAB.tdl.getCanvasWidth() / LAB.tdl.getCanvasHeight();
-   target[0] = eyePosition[0];
-   target[1] = eyePosition[1];
-   target[2] = 0;
+   LAB.tdl.target[0] = LAB.tdl.eyePosition[0];
+   LAB.tdl.target[1] = LAB.tdl.eyePosition[1];
+   LAB.tdl.target[2] = 0;
    
-   LAB.tdl.nearClip = eyePosition[2] / 10;
-   LAB.tdl.farClip = eyePosition[2] * 10;
+   LAB.tdl.nearClip = LAB.tdl.eyePosition[2] / 10;
+   LAB.tdl.farClip = LAB.tdl.eyePosition[2] * 10;
    
    fast.identity4( LAB.tdl.projectionMatrix );
    fast.matrix4.perspective( LAB.tdl.projectionMatrix, math.degToRad(LAB.tdl.fov), LAB.tdl.aspect, LAB.tdl.nearClip, LAB.tdl.farClip);
@@ -235,8 +236,8 @@ LAB.tdl.setMatrices	= function(){
    
    
    //move to upper left corner and scale. mimics openframeworks setup
-   labScale(-1,1,1);
-   labTranslate(-LAB.tdl.getCanvasWidth(), 0, 0);
+   LAB.tdl.scale(-1,1,1);
+   LAB.tdl.translate(-LAB.tdl.getCanvasWidth(), 0, 0);
 }
 
 LAB.tdl.lookAt	= function(eyePos, targetPos, up){

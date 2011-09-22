@@ -1,9 +1,8 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/BaseApp.js");
-LAB.require("js/utils/utils.js");
-LAB.require("js/lab/sound/WAPlayer.js");
-LAB.require("js/lab/geom/Point.js");
+LAB.require(LAB.src+"app/BaseApp.js");
+LAB.require(LAB.src+"sound/WAPlayer.js");
+LAB.require(LAB.src+"geom/Point.js");
 
 var demoApp;
 

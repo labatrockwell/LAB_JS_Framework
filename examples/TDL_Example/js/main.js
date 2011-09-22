@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/TDLApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/TDLApp.js");
 
 // include custom class
 LAB.require("js/Rectangle.js");
@@ -10,7 +9,7 @@ LAB.require("js/Line.js");
 var demoApp;
 
 $(document).ready( function() {
-	DemoApp.prototype = $.extend(true, LAB.TDLApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.TDLApp.prototype, DemoApp.prototype);
 
 	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
@@ -22,7 +21,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.TDLApp.call( this );		
+		LAB.app.TDLApp.call( this );		
 		
 		var _self = this;
 	
@@ -35,7 +34,7 @@ $(document).ready( function() {
 	// SETUP
 		
 		this.setup = function (){
-			shapeShader = new LabShader();
+			shapeShader = new LAB.tdl.Shader();
 			shapeShader.setup( 'shapeShader-vs', 'shapeShader-fs');
 		
 			rectMesh 		= new Rectangle(shapeShader); // see below

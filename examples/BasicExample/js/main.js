@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/BaseApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/BaseApp.js");
 
 var demoApp;
 

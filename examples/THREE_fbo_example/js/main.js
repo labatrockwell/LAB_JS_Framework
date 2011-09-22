@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/ThreeApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/ThreeApp.js");
 
 var demoApp;
 
@@ -87,11 +86,11 @@ DemoApp = function(){
          var geom = new THREE.SphereGeometry( 10, 20, 20 );
          for(var i=0; i<100; i++){
             spheres[i] = new THREE.Mesh( geom, new THREE.MeshPhongMaterial());
-            spheres[i].position.set(labRandom( window.innerWidth/2 - 200,window.innerWidth/2 + 200),
-                                  labRandom( window.innerHeight/2 - 200,window.innerHeight/2 + 200),
-                                  labRandom( -200, 200));
-            spheres[i].scale.set( labRandom(1, 2.5 ), labRandom(1, 25), labRandom(1, 5) );
-            spheres[i].rotation.set(labRandom(0, 360), labRandom(0, 360), labRandom(0, 360) ); 
+            spheres[i].position.set(LAB.random( window.innerWidth/2 - 200,window.innerWidth/2 + 200),
+                                  LAB.random( window.innerHeight/2 - 200,window.innerHeight/2 + 200),
+                                  LAB.random( -200, 200));
+            spheres[i].scale.set( LAB.random(1, 2.5 ), LAB.random(1, 25), LAB.random(1, 5) );
+            spheres[i].rotation.set(LAB.random(0, 360), LAB.random(0, 360), LAB.random(0, 360) ); 
             LAB.self.scene.addObject( spheres[i] );
          }
          

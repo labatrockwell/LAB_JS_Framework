@@ -19,4 +19,4 @@ Cooldiv.prototype.draw = function() {
 	this.amazingDiv.style.height = this.currentHeight * this.yScale+"px";
 }
 
-Agent.prototype = $.extend(true, Cooldiv.prototype, Agent.prototype);
+Cooldiv.prototype = $.extend(true, Cooldiv.prototype, LAB.agents.Agent.prototype);

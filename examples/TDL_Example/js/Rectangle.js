@@ -14,7 +14,7 @@
 		
 		this.colors = [new Color(0,0,0,1), new Color(0,0,0,1),new Color(0,0,0,1), new Color(0,0,0,1) ];
 		
-		rectMesh 		= new LabMesh();
+		rectMesh 		= new LAB.tdl.Mesh();
 		rectMesh.colors	= [0,0,0,1, 0,0,0,1, 0,0,0,1, 1,0,0,1];		
 		rectMesh.pos 	= [this.x,this.y,0, this.x + this.width,this.y,0, this.x + this.width,this.y + this.height,0, this.x,this.y + this.height,0];
 		

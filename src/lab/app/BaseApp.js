@@ -1,6 +1,5 @@
 // LAB BASE
-LAB.require("js/utils/RequestAnimationFrame.js");
-LAB.require("js/lab/EventDispatcher.js");
+LAB.require(LAB.src+"EventDispatcher.js");
 
 /** @namespace LAB.app */
 
@@ -114,6 +113,20 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	LAB.self.draw();
 	LAB.self.postdraw();
 }
+
+
+// ===========================================
+// ===== WINDOW
+// ===========================================
+LAB.app.BaseApp.prototype.registerWindowResize = function() {
+	window.onresize = LAB.self._onWindowResized;
+}
+
+LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
+	LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
+}
+
+LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 
 // ===========================================
 // ===== MOUSE

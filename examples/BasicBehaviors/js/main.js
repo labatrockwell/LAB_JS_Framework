@@ -1,10 +1,9 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/BaseApp.js");
-LAB.require("js/utils/utils.js");
-LAB.require("js/lab/Agent.js");
-LAB.require("js/lab/Group.js");
-LAB.require("js/lab/Behavior.js");
+LAB.require(LAB.src + "app/BaseApp.js");
+LAB.require(LAB.src +"agents/Agent.js");
+LAB.require(LAB.src +"agents/Group.js");
+LAB.require(LAB.src +"agents/Behavior.js");
 
 LAB.require("js/app/cooldivs.js");
 LAB.require("js/app/orbit.js");
@@ -24,12 +23,12 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.BaseApp.call( this );		
+		LAB.app.BaseApp.call( this );		
 		
 		// Create a new cooldiv which inherits from an Agent class
 		// Add it to a group
 		// update and draw the elements in that group
-		var divGroup = new Group();
+		var divGroup = new LAB.agents.Group();
 		var a0 = new Cooldiv("amazingDiv0", 200, 300, 0, 0, 200, 20, true);
 		var a1 = new Cooldiv("amazingDiv1", 200, 300, 0, 0, 200, 20, true);
 		var a2 = new Cooldiv("amazingDiv2", 200, 300, 0, 0, 200, 20, true);
@@ -81,4 +80,4 @@ $(document).ready( function() {
 	// YourAppName.prototype = $.extend(true, whatYouWantToExtend.prototype, ..., YourApp.prototype)
 	// ... = extend as many classes as you want (within reason, dude)
 	
-	DemoApp.prototype = $.extend(true, LAB.BaseApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.BaseApp.prototype, DemoApp.prototype);

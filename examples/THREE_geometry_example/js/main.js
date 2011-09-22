@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/ThreeApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/ThreeApp.js");
 LAB.require("models/holyMesh.js");
 //LAB.require("shaders/basicShader.vert");
 
@@ -95,20 +94,20 @@ DemoApp = function(){
          var fi, u, v, cg, cb;
          colors = [];
          for(var i=0; i<5000; i++){
-            fi = labRandomInt(0, geom.faces.length);
-            u = labRandom(0,1);
-            v = labRandom(0,1);
+            fi = LAB.randomInt(0, geom.faces.length);
+            u = LAB.random(0,1);
+            v = LAB.random(0,1);
             
             var fPos = geom.getPointOnFace(fi, u, v );
             var fNorm = geom.getSmoothedNormalOnFace(fi, u, v );
             
-            var hairLength = labRandom( 2, 8 );
+            var hairLength = LAB.random( 2, 8 );
             lines.addVertex( fPos.x, fPos.y, fPos.z );
             lines.addVertex(fPos.x + fNorm.x*hairLength,
                             fPos.y + fNorm.y*hairLength,
                             fPos.z + fNorm.z*hairLength );
-            cg = labRandom(.3, 1.3);
-            cb = labRandom(.3, 1.3);
+            cg = LAB.random(.3, 1.3);
+            cb = LAB.random(.3, 1.3);
             lines.colors.push( new THREE.Color().setRGB( 0, cg, cb) );
             lines.colors.push( new THREE.Color().setRGB( 1, cg, cb) );
          }
@@ -143,8 +142,8 @@ DemoApp = function(){
          
          
          this.renderer.render( this.scene, labCam );//this sets up the matirices that we'll be copying
-         labLog( mesh._modelViewMatrix );
-         labLog( blankObjects[0]._modelViewMatrix );
+         LAB.log( mesh._modelViewMatrix );
+         LAB.log( blankObjects[0]._modelViewMatrix );
       }
 
    
@@ -154,9 +153,9 @@ DemoApp = function(){
    
    this.update = function (){
       mesh.position.set( lastMouse.x, window.innerHeight - lastMouse.y, 0);
-      mesh.rotation.set(labDegToRad( lastMouse.x * .3 ),
-                        labDegToRad( lastMouse.y * .3 ),
-                        labDegToRad( lastMouse.x * .1 ));
+      mesh.rotation.set(LAB.degToRad( lastMouse.x * .3 ),
+                        LAB.degToRad( lastMouse.y * .3 ),
+                        LAB.degToRad( lastMouse.x * .1 ));
       lineMesh.position.copy( mesh.position );
       lineMesh.rotation.copy( mesh.rotation );
       

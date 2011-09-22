@@ -1,12 +1,11 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/ThreeApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/ThreeApp.js");
 
 var demoApp;
 
 $(document).ready( function() {
-	DemoApp.prototype = $.extend(true, LAB.ThreeApp.prototype, DemoApp.prototype);
+	DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
 	demoApp 	= new DemoApp();
 	// is there a good way to call this automatically?
 	demoApp.begin();
@@ -27,7 +26,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.ThreeApp.call( this );		
+		LAB.app.ThreeApp.call( this );		
 		
 		var _self = this;
 	

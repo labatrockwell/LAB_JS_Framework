@@ -2,11 +2,10 @@
 // ...this doesn't really work yet
 // it might work now...
 
-LAB.require("js/lab/app/BaseApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/BaseApp.js");
 
 // INCLUDE THE WEBSOCKET STUFF
-LAB.require("js/lab/utils/WebSocket.js");
+LAB.require(LAB.src+"utils/WebSocket.js");
 
 var demoApp;
 

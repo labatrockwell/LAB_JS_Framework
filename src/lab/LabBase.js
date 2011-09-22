@@ -34,7 +34,29 @@ LAB.require = function(src) {
 	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
 }
 
+LAB.getScriptPath = function(filename)
+{
+	var scripts = document.getElementsByTagName('script');
+
+    for (var i = scripts.length - 1; i >= 0; --i) {
+		var src = scripts[i].src;
+		var l = src.length;
+		var length = filename.length;
+		if (src.substr(l - length) == filename) {
+        	// set a global propery here
+        	return src.substr(0, l - length);
+		}
+    }
+	return "";
+}
+
+LAB.toScriptPath	= function( className ){
+	return LAB.src+className+".js";
+}
+
+LAB.src= LAB.getScriptPath("LabBase.js");
+
 // start including stuff
-LAB.require("js/lab/EventDispatcher.js");
-LAB.require("js/lab/app/BaseApp.js");
-LAB.require("js/lab/Utils.js");
+LAB.require( LAB.src+"EventDispatcher.js" );
+LAB.require( LAB.src+"app/BaseApp.js" );
+LAB.require( LAB.src+"Utils.js" );

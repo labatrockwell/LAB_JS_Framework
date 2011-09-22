@@ -1,7 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require("js/lab/app/ThreeApp.js");
-LAB.require("js/utils/utils.js");
+LAB.require(LAB.src+"app/ThreeApp.js");
 
 var demoApp;
 
@@ -62,7 +61,7 @@ DemoApp = function(){
          particles = new LAB.three.Geometry();
          particles.vel = [];
          for(var i=0; i<20000; i++){
-            particles.addVertex(labRandom(0, window.innerWidth), labRandom(0, window.innerHeight),labRandom(-200, 200));
+            particles.addVertex(LAB.random(0, window.innerWidth), LAB.random(0, window.innerHeight),LAB.random(-200, 200));
             particles.vel[i] = new THREE.Vector3(0,0,0);
          }
          
@@ -101,15 +100,15 @@ DemoApp = function(){
 			for ( var i = 0; i < 300; i ++ ) 
          {
 				var object = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial());
-				object.position.set(labRandom(0, window.innerWidth),
-                                labRandom(0, window.innerHeight),
+				object.position.set(LAB.random(0, window.innerWidth),
+                                LAB.random(0, window.innerHeight),
                                 0);
-				object.rotation.set(labDegToRad( labRandom(0,360 )),
-                                labDegToRad( labRandom(0,360 )),
-                                labDegToRad( labRandom(0,360 )));
-				object.scale.set(labRandom( .25, 1.75),
-                             labRandom( .25, 1.75),
-                             labRandom( .25, 1.75));
+				object.rotation.set(LAB.degToRad( LAB.random(0,360 )),
+                                LAB.degToRad( LAB.random(0,360 )),
+                                LAB.degToRad( LAB.random(0,360 )));
+				object.scale.set(LAB.random( .25, 1.75),
+                             LAB.random( .25, 1.75),
+                             LAB.random( .25, 1.75));
             cubes.push( object );
 				LAB.self.scene.addObject( object );
 			}
@@ -143,9 +142,9 @@ DemoApp = function(){
       //move and rotate cubes to particles
       for(var i=0; i<cubes.length; i++){
          cubes[i].position.copy( particles.vertices[i].position );
-         cubes[i].rotation.set(labDegToRad( cubes[i].position.x ),
-                               labDegToRad( cubes[i].position.y ),
-                               labDegToRad( cubes[i].position.z ));
+         cubes[i].rotation.set(LAB.degToRad( cubes[i].position.x ),
+                               LAB.degToRad( cubes[i].position.y ),
+                               LAB.degToRad( cubes[i].position.z ));
       }
       
       //move circle to cube[0]'s screen position

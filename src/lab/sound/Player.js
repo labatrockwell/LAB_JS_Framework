@@ -1,7 +1,7 @@
 /** @namespace LAB.sound*/
 LAB.sound = LAB.sound || {};
 
-LAB.require("js/lab/EventDispatcher.js");
+LAB.require(LAB.src+"EventDispatcher.js");
 
 /** 
  @constructor 
