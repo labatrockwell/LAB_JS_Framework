@@ -267,12 +267,18 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 // ===== KEYBOARD
 // ===========================================
 
-LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event )
-{
-   LAB.self.dispatchEvent("onDocumentKeyDown", event);
-   LAB.self.onDocumentKeyDown( event );
-}
+	/*
+		override in your main app to catch keyboard events
+		@function
+		@public
+		@param {event}
+	*/
+	LAB.self.BaseApp.prototype.onDucmentKeyDown = function( event ) {}
 
+	LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event ) {
+	   LAB.self.dispatchEvent("onDocumentKeyDown", event);
+	   LAB.self.onDocumentKeyDown( event );
+	}
 
 // ===========================================
 // ===== TIME
