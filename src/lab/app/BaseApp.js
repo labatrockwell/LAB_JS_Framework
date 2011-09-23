@@ -261,7 +261,19 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		LAB.self.dispatchEvent("onMouseDragged", LAB.self.mouse);
 		LAB.self.onMouseDragged(LAB.self.mouse.x, LAB.self.mouse.y);
 	}
-	
+
+
+// ===========================================
+// ===== KEYBOARD
+// ===========================================
+
+LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event )
+{
+   LAB.self.dispatchEvent("onDocumentKeyDown", event);
+   LAB.self.onDocumentKeyDown( event );
+}
+
+
 // ===========================================
 // ===== TIME
 // ===========================================

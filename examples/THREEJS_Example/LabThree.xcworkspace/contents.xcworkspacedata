@@ -51,35 +51,6 @@
          location = "group:lab"
          name = "lab">
          <Group
-            location = "group:agents"
-            name = "agents">
-            <FileRef
-               location = "group:Agent.js">
-            </FileRef>
-            <FileRef
-               location = "group:Behavior.js">
-            </FileRef>
-            <FileRef
-               location = "group:Group.js">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:app"
-            name = "app">
-            <FileRef
-               location = "group:BaseApp.js">
-            </FileRef>
-            <FileRef
-               location = "group:ECSApp.js">
-            </FileRef>
-            <FileRef
-               location = "group:TDLApp.js">
-            </FileRef>
-            <FileRef
-               location = "group:ThreeApp.js">
-            </FileRef>
-         </Group>
-         <Group
             location = "group:doc"
             name = "doc">
             <FileRef
