@@ -273,7 +273,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@public
 		@param {event}
 	*/
-	LAB.self.BaseApp.prototype.onDocumentKeyDown = function( event ) {}
+	LAB.app.BaseApp.prototype.onDocumentKeyDown = function( event ) {}
 
 	LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event ) {
 	   LAB.self.dispatchEvent("onDocumentKeyDown", event);
