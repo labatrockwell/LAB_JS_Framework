@@ -24,6 +24,13 @@ LAB.three.Geometry.prototype.supr = THREE.Geometry.prototype;
  @function
  @public
  */
+
+LAB.three.Geometry.prototype.loadModel = function( modelLocation ){
+   loader = new THREE.JSONLoader( true );
+   callback = function( geometry ) {  };
+   loader.load( { model: modelLocation });
+}
+
 LAB.three.Geometry.prototype.loadLabModel = function( model ){
    //vertex positions
    if( model.positions.length > 0 ){

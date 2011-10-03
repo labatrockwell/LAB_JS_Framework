@@ -81,7 +81,7 @@ DemoApp = function(){
          
          //geometry
          geom = new LAB.three.Geometry();
-         geom.loadLabModel( holyMesh );
+         geom.loadLabModel( holyMesh );//'obj/lucy/Lucy100k_bin.js'
          geom.calculateNormals();
          
          mesh = new THREE.Mesh( geom, meshShader );//materials[3] );

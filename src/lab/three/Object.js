@@ -9,7 +9,7 @@ LAB.three.Object = function( _renderer, _scene ) {
    
    this.renderer = _renderer;
    this.scene = _scene || new THREE.Scene();;
-   this.autoClear = false;
+   this.autoClear = true;
    this.labObj = new THREE.Object3D();
    
    //this isn't great. temporary stop gap
@@ -66,7 +66,7 @@ draw: function( _camera, _material, _renderTarget )
    this.scene.overrideMaterial = _material || null;
    this.renderer.render(this.scene, 
                         _camera,
-                        _renderTarget,
+                        _renderTarget || null,
                         this.autoClear );
 },
 
