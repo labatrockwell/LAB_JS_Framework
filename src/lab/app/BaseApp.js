@@ -252,7 +252,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@function
 		@private
 		@param {Event} event DOM mouse event
-	*/
+	*/ 
 
 	LAB.app.BaseApp.prototype._onMouseDragged	= function( event )
 	{
