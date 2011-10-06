@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.app.ThreeApp</title>
+		<title>JsDoc Reference - LAB.Event</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -258,26 +258,24 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.app.ThreeApp
+				Class LAB.Event
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_app_ThreeApp.js.html">ThreeApp.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_EventDispatcher.js.html">EventDispatcher.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.ThreeApp.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.Event.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -290,9 +288,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#constructor">LAB.app.ThreeApp</a></b>()
+								<b><a href="../symbols/LAB.Event.html#constructor">LAB.Event</a></b>(type)
 							</div>
-							<div class="description"></div>
+							<div class="description">Event 'base class' (but it can also be instantiated directly)</div>
 						</td>
 					</tr>
 				</tbody>
@@ -303,7 +301,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.app.ThreeApp.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class LAB.Event.">
 					<caption>Field Summary</caption>
 					<thead>
 						<tr>
@@ -314,32 +312,32 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#projector">projector</a></b>
+								LAB.Event.<b><a href="../symbols/LAB.Event.html#.CHANGE">CHANGE</a></b>
 								</div>
-								<div class="description">default THREE projector</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#renderer">renderer</a></b>
+								LAB.Event.<b><a href="../symbols/LAB.Event.html#.COMPLETE">COMPLETE</a></b>
 								</div>
-								<div class="description">default THREE renderer with anti-aliasing, depth sorting off</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#scene">scene</a></b>
+								LAB.Event.<b><a href="../symbols/LAB.Event.html#.CONNECTED">CONNECTED</a></b>
 								</div>
-								<div class="description">default THREE scene</div>
+								<div class="description"></div>
 							</td>
 						</tr>
 					
@@ -347,46 +345,10 @@ ul.inheritsList
 				</table>
 				
 				
-				
-				<dl class="inheritsList">
-				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
-				</dl>
 				
 			
 
 <!-- ============================== methods summary ======================== -->
-			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.ThreeApp.">
-					<caption>Method Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Method Attributes</th>
-							<th scope="col">Method Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ThreeApp.html#begin">begin</a></b>()
-								</div>
-								<div class="description">Call to set up Webgl, initialize the canvas, provide default THREE vars
-		and start animate() loop</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
-				</dl>
-				
 			
 <!-- ============================== events summary ======================== -->
 			
@@ -399,17 +361,28 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.app.ThreeApp</b>()
+						<b>LAB.Event</b>(type)
 				</div>
 				
 				<div class="description">
-					
+					Event 'base class' (but it can also be instantiated directly)
 					
 				</div>
 				
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>type</b>
+								
+							</dt>
+								<dd>event type</dd>
+						
+						</dl>
 					
 					
 					
@@ -427,15 +400,15 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="projector"> </a>
-					<div class="fixedFont">
+					<a name=".CHANGE"> </a>
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
-					<span class="light">{THREE.Projector}</span>
-					<b>projector</b>
+					
+					<span class="light">LAB.Event.</span><b>CHANGE</b>
 					
 					</div>
 					<div class="description">
-						default THREE projector
+						
 						
 						
 					</div>
@@ -449,15 +422,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="renderer"> </a>
-					<div class="fixedFont">
+					<a name=".COMPLETE"> </a>
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
-					<span class="light">{THREE.WebGLRenderer}</span>
-					<b>renderer</b>
+					
+					<span class="light">LAB.Event.</span><b>COMPLETE</b>
 					
 					</div>
 					<div class="description">
-						default THREE renderer with anti-aliasing, depth sorting off
+						
 						
 						
 					</div>
@@ -471,15 +444,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="scene"> </a>
-					<div class="fixedFont">
+					<a name=".CONNECTED"> </a>
+					<div class="fixedFont">&lt;static&gt; &lt;constant&gt; 
 					
-					<span class="light">{THREE.Scene}</span>
-					<b>scene</b>
+					
+					<span class="light">LAB.Event.</span><b>CONNECTED</b>
 					
 					</div>
 					<div class="description">
-						default THREE scene
+						
 						
 						
 					</div>
@@ -496,37 +469,6 @@ ul.inheritsList
 			
 
 <!-- ============================== method details ========================= -->		
-			
-				<div class="sectionTitle">
-					Method Detail
-				</div>
-				
-					<a name="begin"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>begin</b>()
-					
-					</div>
-					<div class="description">
-						Call to set up Webgl, initialize the canvas, provide default THREE vars
-		and start animate() loop
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					
-				
 			
 			
 <!-- ============================== event details ========================= -->		

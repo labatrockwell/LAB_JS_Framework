@@ -211,6 +211,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/LAB.app.ThreeApp.html">LAB.app.ThreeApp</a></li>
 	
+	<li><a href="../symbols/LAB.Event.html">LAB.Event</a></li>
+	
 	<li><a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a></li>
 	
 	<li><a href="../symbols/LAB.geom.html">LAB.geom</a></li>
@@ -256,7 +258,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Function Namespace LAB.EventDispatcher
+				Namespace LAB.EventDispatcher
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -274,7 +276,7 @@ ul.inheritsList
 <!-- ============================== constructor summary ==================== -->			
 			
 			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.EventDispatcher.">
-				<caption>Function Namespace Summary</caption>
+				<caption>Namespace Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -286,7 +288,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.EventDispatcher.html#constructor">LAB.EventDispatcher</a></b>()
+								<b><a href="../symbols/LAB.EventDispatcher.html#constructor">LAB.EventDispatcher</a></b>
 							</div>
 							<div class="description"></div>
 						</td>
@@ -300,6 +302,60 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.EventDispatcher.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a></b>(event, callback)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a></b>(typeOrEvent, optionalParams)
+								</div>
+								<div class="description">There are 2 ways to use dispatchEvent.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a></b>(event)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></b>(event, callback)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -307,11 +363,11 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Function Namespace Detail
+					Namespace Detail
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.EventDispatcher</b>()
+						<b>LAB.EventDispatcher</b>
 				</div>
 				
 				<div class="description">
@@ -322,6 +378,17 @@ ul.inheritsList
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								 <b>target</b>
+								
+							</dt>
+								<dd></dd>
+						
+						</dl>
 					
 					
 					
@@ -338,6 +405,190 @@ ul.inheritsList
 
 <!-- ============================== method details ========================= -->		
 			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addEventListener</b>(event, callback)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>event</b>
+									
+								</dt>
+								<dd>The event type</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>The function to be called when the event is dispatched</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="dispatchEvent"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>dispatchEvent</b>(typeOrEvent, optionalParams)
+					
+					</div>
+					<div class="description">
+						There are 2 ways to use dispatchEvent. The first is to send an Event object (including
+objects that extend the Event class) and any optionl parameters. For example:
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">someObject.dispatchEvent(new LAB.Event(Event.CHANGE));</pre>
+					
+					<pre class="code">var params = {secret: "my secret", message: "hi"};
+someObject.dispatchEvent(new LAB.Event("customEventType"), params);
+<p>The second is to pass a string as the event type and any optional params</p></pre>
+					
+					<pre class="code">someObject.dispatchEvent("customEventType");</pre>
+					
+					<pre class="code">var params = {secret: "my secret", message: "hi"};
+someObject.dispatchEvent("customEventType", params);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string|Event}</span> <b>typeOrEvent</b>
+									
+								</dt>
+								<dd>The event type as a string or an Event object</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>optionalParams</b>
+									
+								</dt>
+								<dd>Optional parameters passed as an object.
+return {boolean} True if dispatch is successful, false if not.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="hasEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>hasEventListener</b>(event)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>event</b>
+									
+								</dt>
+								<dd>The event type
+return {boolean} True if listener exists for thie event type, false if not</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeEventListener</b>(event, callback)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>event</b>
+									
+								</dt>
+								<dd>The event type</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>The function to be called when the event is dispatched
+return {boolean} True if is successful, false if not.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
 			
 <!-- ============================== event details ========================= -->		
 			
@@ -349,7 +600,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Sep 22 2011 12:40:16 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 06 2011 18:27:08 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>
