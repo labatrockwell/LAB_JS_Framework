@@ -98,7 +98,7 @@ DemoApp = function(){
 			var geometry = new THREE.CubeGeometry( 20, 20, 20 );
 
 			for ( var i = 0; i < 300; i ++ ) 
-         {
+			{
 				var object = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial());
 				object.position.set(LAB.random(0, window.innerWidth),
                                 LAB.random(0, window.innerHeight),
@@ -110,10 +110,11 @@ DemoApp = function(){
                              LAB.random( .25, 1.75),
                              LAB.random( .25, 1.75));
             cubes.push( object );
-				LAB.self.scene.addObject( object );
-			}
-         cubes[1].scale.set( 2, .5, .25 );
+
+			_self.scene.addObject( object );
 		}
+         cubes[1].scale.set( 2, .5, .25 );
+	}
 	// ===========================================
 	// ===== UPDATE
 	// ===========================================
@@ -188,7 +189,7 @@ DemoApp = function(){
    
    this.onMousePressed	= function (x,y)
    {
-      labLog( circle );
+      LAB.log( circle );
    }
 }
 

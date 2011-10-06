@@ -19,7 +19,7 @@ LAB.app.BaseApp = function()
 		Globally-accessible app scope
 		@type LAB.app.BaseApp
 	*/	
-	LAB.self 	= this;
+	this 	= this;
 	LAB.EventDispatcher.call( this );
 	
 	/**
@@ -103,16 +103,16 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	// update time
 	if (time === undefined){
 	} else {
-		LAB.self.elapsedTime = time - LAB.self.startTime;
+		this.elapsedTime = time - this.startTime;
 	}
 	
-	requestAnimationFrame(LAB.self.animate, this);
+	requestAnimationFrame(this.animate, this);
 			
-	LAB.self.preupdate();
-   	LAB.self.update();
-	LAB.self.predraw();
-	LAB.self.draw();
-	LAB.self.postdraw();
+	this.preupdate();
+   	this.update();
+	this.predraw();
+	this.draw();
+	this.postdraw();
 }
 
 // ===========================================
@@ -125,9 +125,9 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 		@public
 	*/
 	LAB.app.BaseApp.prototype.registerMouseEvents = function(){
-		window.addEventListener("mousemove", LAB.self._onMouseMoved);
-		window.addEventListener("mousedown", LAB.self._onMousePressed);
-		window.addEventListener("mouseup", LAB.self._onMouseReleased);
+		window.addEventListener("mousemove", this._onMouseMoved);
+		window.addEventListener("mousedown", this._onMousePressed);
+		window.addEventListener("mouseup", this._onMouseReleased);
 	}
 	/**
 		stop listening to mouse events
@@ -136,9 +136,9 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	*/
 	LAB.app.BaseApp.prototype.unregisterMouseEvents = function()
 	{
-		window.removeEventListener("mousemove", LAB.self._onMouseMoved);
-		window.removeEventListener("mousedown", LAB.self._onMousePressed);
-		window.removeEventListener("mouseup", LAB.self._onMouseReleased);
+		window.removeEventListener("mousemove", this._onMouseMoved);
+		window.removeEventListener("mousedown", this._onMousePressed);
+		window.removeEventListener("mouseup", this._onMouseReleased);
 	}
 	
 	/**
@@ -182,14 +182,14 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	LAB.app.BaseApp.prototype._onMouseMoved		= function( event )
 	{	 
 		// if the mouse is down, call dragged instead of moved
-		if (LAB.self.mouse.bDown){
-			LAB.self._onMouseDragged(event);
+		if (this.mouse.bDown){
+			this._onMouseDragged(event);
 			return;
 		}
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseMoved", LAB.self.mouse);
-		LAB.self.onMouseMoved(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.dispatchEvent("onMouseMoved", this.mouse);
+		this.onMouseMoved(this.mouse.x, this.mouse.y);
 	}
 
 	/**
@@ -202,11 +202,11 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 
 	LAB.app.BaseApp.prototype._onMousePressed	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = true;
-		LAB.self.dispatchEvent("onMousePressed", LAB.self.mouse);
-		LAB.self.onMousePressed(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.mouse.bDown = true;
+		this.dispatchEvent("onMousePressed", this.mouse);
+		this.onMousePressed(this.mouse.x, this.mouse.y);
 	}
 
 	/**
@@ -219,11 +219,11 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 
 	LAB.app.BaseApp.prototype._onMouseReleased	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = false;
-		LAB.self.dispatchEvent("onMouseReleased", LAB.self.mouse);
-		LAB.self.onMouseReleased(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.mouse.bDown = false;
+		this.dispatchEvent("onMouseReleased", this.mouse);
+		this.onMouseReleased(this.mouse.x, this.mouse.y);
 	}
 	
 	/**
@@ -236,10 +236,10 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 
 	LAB.app.BaseApp.prototype._onMouseDragged	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseDragged", LAB.self.mouse);
-		LAB.self.onMouseDragged(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.dispatchEvent("onMouseDragged", this.mouse);
+		this.onMouseDragged(this.mouse.x, this.mouse.y);
 	}
 	
 // ===========================================
@@ -254,7 +254,7 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	
 	LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
 	{
-		return LAB.self.elapsedTime;
+		return this.elapsedTime;
 	}
 	
 	/**
@@ -265,5 +265,5 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	
 	LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
 	{
-		return LAB.self.elapsedTime/1000;
+		return this.elapsedTime/1000;
 	}

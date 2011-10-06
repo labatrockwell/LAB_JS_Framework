@@ -208,9 +208,9 @@ DemoApp = function(){
    
    this.onMousePressed	= function (x,y)
    {
-      labLog( mesh );
+      LAB.log( mesh );
       for(var i=0; i<blankObjects.length; i++){
-         labLog( blankObjects[i]._modelViewMatrix );
+         LAB.log( blankObjects[i]._modelViewMatrix );
       }
    }
 }

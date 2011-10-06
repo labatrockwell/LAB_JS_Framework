@@ -42,19 +42,19 @@ DemoApp = function() {
       camera.position.z = 600;
 
 		ambientLight = new THREE.AmbientLight( 0x222222 );
-      this.scene.addLight( ambientLight );
+      _self.scene.addLight( ambientLight );
       
       pointLight = new THREE.PointLight();// { color: 0xffffff} );
       pointLight.position.copy( camera.position );
-      this.scene.addLight( pointLight );
+      _self.scene.addLight( pointLight );
       
       var loader = new THREE.JSONLoader();
-      var scn = this.scene;
+      var scn = _self.scene;
       var onGeometry = function( geometry ) {
          var mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
          console.log( mesh.geometry );
          mesh.scale.set( 15, 15, 15 );
-         LAB.self.scene.addObject( mesh );
+         _self.scene.addObject( mesh );
       };
       
       loader.load( { model: "models/randomMesh.js", callback: onGeometry } );
@@ -66,7 +66,7 @@ DemoApp = function() {
 	// ===== UPDATE
 	// ===========================================
 	this.update = function() {
-      elapsedTime = LAB.self.getElapsedTimeSeconds();
+      elapsedTime = this.getElapsedTimeSeconds();
       camera.position.set( Math.sin( lastMouse.x * .01 ) * 600, lastMouse.y*2 - 600, Math.cos( lastMouse.x * .01 ) * 600);
 	}
 	
@@ -76,7 +76,7 @@ DemoApp = function() {
 	this.draw = function() {
       gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
       
-		this.renderer.render( this.scene, camera );
+		this.renderer.render( _self.scene, camera );
 	}
 	
 	// ===========================================

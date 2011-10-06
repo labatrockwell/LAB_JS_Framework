@@ -79,7 +79,7 @@ DemoApp = function(){
    
    this.update = function (){
       //update particle positions and velocities
-      targetBlend = LAB.clamp( LAB.map( Math.sin( LAB.self.getElapsedTimeSeconds()*.2), -1, 1, -1, 2 ),0, 1) ;
+      targetBlend = LAB.clamp( LAB.map( Math.sin( this.getElapsedTimeSeconds()*.2), -1, 1, -1, 2 ),0, 1) ;
       var mb = 1 - targetBlend;
       //update particle positions
       var pPos, tPos;
@@ -123,7 +123,7 @@ DemoApp = function(){
                              0);
       camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );
 //      camera.translateMatrix( -window.innerWidth/2, -window.innerHeight/2, 0);   
-//      camera.rotateMatrix(  LAB.self.getElapsedTimeSeconds(), 0, 1, 0);
+//      camera.rotateMatrix(  this.getElapsedTimeSeconds(), 0, 1, 0);
 //      camera.translateMatrix( window.innerWidth/2, window.innerHeight/2, 0);
       
       this.renderer.render( this.scene, camera );

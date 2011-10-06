@@ -121,31 +121,31 @@ DemoApp = function() {
       screenQuad.doubleSided = true;
       screenQuad.position.set( window.innerWidth/2, window.innerHeight/2, 0);
       screenQuad.scale.set(1, -1, 1 );//flip it, otherwise the fbo will be up-side down when we draw it to the screen
-      screen = new LAB.three.Object( LAB.self.renderer, null );
+      screen = new LAB.three.Object( this.renderer, null );
       screen.addObject( screenQuad );
       
       blurQuad = new THREE.Mesh( new THREE.PlaneGeometry( window.innerWidth, window.innerHeight ), blurShader );
       blurQuad.doubleSided = true;
       blurQuad.position.set( window.innerWidth/2, window.innerHeight/2, 0);
       blurQuad.scale.set(1, -1, 1 );//flip it, otherwise the fbo will be up-side down when we draw it to the screen
-      blur = new LAB.three.Object( LAB.self.renderer, null );
+      blur = new LAB.three.Object( this.renderer, null );
       blur.addObject( blurQuad );
 
       ambientLight = new THREE.AmbientLight( 0x222222 );
-      this.scene.addLight( ambientLight );
+      _self.scene.addLight( ambientLight );
       
       pointLight = new THREE.PointLight();// { color: 0xffffff} );
       pointLight.position.copy( camera.position );
-      this.scene.addLight( pointLight );
+      _self.scene.addLight( pointLight );
       
       var loader = new THREE.JSONLoader();
-      var scn = this.scene;
+      var scn = _self.scene;
       var onGeometry = function( geometry ) {
          mesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( {shading : THREE.SmoothShading } ) );
          //mesh = new THREE.Mesh( new THREE.TorusGeometry( 200, 80, 20, 20 ), new THREE.MeshNormalMaterial() );
          console.log( mesh );
          mesh.scale.set( 15, 15, 15 );
-         LAB.self.scene.addObject( mesh );
+         _self.scene.addObject( mesh );
       };
       loader.load( { model: "models/randomMesh.js", callback: onGeometry } );
       
@@ -192,7 +192,7 @@ DemoApp = function() {
 	// ===========================================
 	this.update = function() {
       stats.update();
-      elapsedTime = LAB.self.getElapsedTimeSeconds();
+      elapsedTime = this.getElapsedTimeSeconds();
       ssaoShader.uniforms.time.value = elapsedTime * .0001;
       camera.position.set( Math.sin( lastMouse.x * .01 ) * 600, lastMouse.y*2 - 600, Math.cos( lastMouse.x * .01 ) * 600);
 	}
@@ -205,12 +205,12 @@ DemoApp = function() {
       gl.disable( gl.BLEND );
       
       gl.clearColor( 0,0,0,1);//0,0,0,1 seems to work best
-      this.scene.overrideMaterial = depthShader;
-      this.renderer.render( this.scene, camera, depthTexture, true );
+      _self.scene.overrideMaterial = depthShader;
+      this.renderer.render( _self.scene, camera, depthTexture, true );
       
       gl.clearColor( .5,.5,.5,0);//this changes to 0,0,0 in the shader
-      this.scene.overrideMaterial = normalMat;
-      this.renderer.render( this.scene, camera, normalTexture, true );
+      _self.scene.overrideMaterial = normalMat;
+      this.renderer.render( _self.scene, camera, normalTexture, true );
       
       gl.enable( gl.DEPTH_TEST );
       gl.disable( gl.CULL_FACE );

@@ -83,14 +83,14 @@ $(document).ready( function() {
 			light.position.y = 1;
 			light.position.z = 1;
 			light.position.normalize();
-			LAB.self.scene.addLight( light );
+			_self.scene.addLight( light );
 
 			var light = new THREE.DirectionalLight( 0xffffff );
 			light.position.x = - 1;
 			light.position.y = - 1;
 			light.position.z = - 1;
 			light.position.normalize();
-			LAB.self.scene.addLight( light );
+			_self.scene.addLight( light );
 		}
 		
 	// ===========================================
@@ -157,7 +157,7 @@ $(document).ready( function() {
 		}
 		
 		this.onMousePressed = function( event ) {
-			LAB.self.addPoint( 37.775, -122.4183333 );  // san francisco, ca
+			this.addPoint( 37.775, -122.4183333 );  // san francisco, ca
 		}
 	}
 

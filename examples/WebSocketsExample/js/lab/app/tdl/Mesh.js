@@ -126,7 +126,7 @@ LAB.tdl.Mesh.prototype = {
          this.mBuffers.push( buffer );
          return buffer;
       }else{
-         labLog( "CHECK attribute named: " + attrName + "\n we couldn't find it in shader");
+         LAB.log( "CHECK attribute named: " + attrName + "\n we couldn't find it in shader");
          return null;
       }
    },

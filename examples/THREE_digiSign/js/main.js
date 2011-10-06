@@ -254,7 +254,7 @@ DemoApp = function() {
    this.update = function (){
       
       lastTime = elapsedTime;
-      elapsedTime = LAB.self.getElapsedTimeSeconds() * .1;
+      elapsedTime = this.getElapsedTimeSeconds() * .1;
       deltaTime = elapsedTime - lastTime;
       
       //update curves points
@@ -419,7 +419,7 @@ DemoApp = function() {
 	}
 	
 	this.onMousePressed	= function( x, y ) {
-		labLog( circle );
+		LAB.log( circle );
 	}
 }
 

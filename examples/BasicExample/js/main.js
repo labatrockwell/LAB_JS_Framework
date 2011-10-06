@@ -32,8 +32,8 @@ $(document).ready( function() {
 		//update
 
 		this.update = function (){
-			divX = divX + (LAB.self.mouse.x-divX)/10;
-			divY = divY + (LAB.self.mouse.y-divY)/10;
+			divX = divX + (this.mouse.x-divX)/10;
+			divY = divY + (this.mouse.y-divY)/10;
 		}
 	
 		//draw
