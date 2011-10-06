@@ -251,6 +251,12 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Number.html">Number</a></li>
 	
+	<li><a href="../symbols/TSPS.html">TSPS</a></li>
+	
+	<li><a href="../symbols/TSPS.Dispatcher.html">TSPS.Dispatcher</a></li>
+	
+	<li><a href="../symbols/TSPS.person.html">TSPS.person</a></li>
+	
 </ul>
 <hr />
 			<!-- end publish.classesIndex -->
@@ -309,6 +315,180 @@ ul.inheritsList
 
 <!-- ============================== methods summary ======================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class _global_.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>addEventListener</b>(event, callback)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>connect</b>(inport, outport)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>dispatchEvent</b>(event, data)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/_global_.html#handleConfig">handleConfig</a></b>(a_key, a_value, destObj)
+								</div>
+								<div class="description">******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>config_update</type>
+	 	<destination>
+	 		<type/>
+	 		<room/>
+	 		<controller/>
+	 		<application/>
+	 	</destination>
+	 	<configs>
+	             <config>
+	                 <key>SOME_KEY</key>
+	                 <value>SOME_VALUE</value>
+	             </config>
+	 	</configs>
+	    </message>
+*******************************************************</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/_global_.html#handleConnectionEstablished">handleConnectionEstablished</a></b>()
+								</div>
+								<div class="description">******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>connection_data</type>
+	 	<destination>
+	 		<type>direct</type>
+	 		<room/>
+	 		<controller>controller1.localhost</controller>
+	 		<application>43a47b6c-6ad9-449c-9ab8-90ca53aab263</application>
+	 	</destination>
+	     </message>
+*******************************************************</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/_global_.html#handlePerformanceConfig">handlePerformanceConfig</a></b>(a_key, a_value)
+								</div>
+								<div class="description">******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>performance_config_update</type>
+	 	<destination>
+	 		<type/>
+	 		<room/>
+	 		<controller/>
+	 		<application/>
+	 	</destination>
+	 	<configs>
+	 		<config>
+	 			<key>colorSet</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>density</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>duration</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>intensity</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>interactive</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>scale</key>
+	 			<value>0</value>
+	 		</config>
+	 	</configs>
+	    </message>
+*******************************************************</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/_global_.html#handleStartPerformance">handleStartPerformance</a></b>()
+								</div>
+								<div class="description">******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>start_performance</type>
+	    </message>
+*******************************************************</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/_global_.html#handleStopPerformance">handleStopPerformance</a></b>()
+								</div>
+								<div class="description">******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>stop_performance</type>
+	    </message>
+*******************************************************</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b>removeEventListener</b>(event, callback)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 <!-- ============================== events summary ======================== -->
 			
 
@@ -350,6 +530,446 @@ ul.inheritsList
 
 <!-- ============================== method details ========================= -->		
 			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addEventListener</b>(event, callback)
+					
+					</div>
+					<div class="description">
+						
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="connect"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>connect</b>(inport, outport)
+					
+					</div>
+					<div class="description">
+						
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>inport</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>outport</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="dispatchEvent"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>dispatchEvent</b>(event, data)
+					
+					</div>
+					<div class="description">
+						
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>data</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="handleConfig"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>handleConfig</b>(a_key, a_value, destObj)
+					
+					</div>
+					<div class="description">
+						******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>config_update</type>
+	 	<destination>
+	 		<type/>
+	 		<room/>
+	 		<controller/>
+	 		<application/>
+	 	</destination>
+	 	<configs>
+	             <config>
+	                 <key>SOME_KEY</key>
+	                 <value>SOME_VALUE</value>
+	             </config>
+	 	</configs>
+	    </message>
+*******************************************************
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>a_key</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>a_value</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>destObj</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="handleConnectionEstablished"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>handleConnectionEstablished</b>()
+					
+					</div>
+					<div class="description">
+						******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>connection_data</type>
+	 	<destination>
+	 		<type>direct</type>
+	 		<room/>
+	 		<controller>controller1.localhost</controller>
+	 		<application>43a47b6c-6ad9-449c-9ab8-90ca53aab263</application>
+	 	</destination>
+	     </message>
+*******************************************************
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="handlePerformanceConfig"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>handlePerformanceConfig</b>(a_key, a_value)
+					
+					</div>
+					<div class="description">
+						******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>performance_config_update</type>
+	 	<destination>
+	 		<type/>
+	 		<room/>
+	 		<controller/>
+	 		<application/>
+	 	</destination>
+	 	<configs>
+	 		<config>
+	 			<key>colorSet</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>density</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>duration</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>intensity</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>interactive</key>
+	 			<value>0</value>
+	 		</config>
+	 		<config>
+	 			<key>scale</key>
+	 			<value>0</value>
+	 		</config>
+	 	</configs>
+	    </message>
+*******************************************************
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>a_key</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>a_value</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="handleStartPerformance"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>handleStartPerformance</b>()
+					
+					</div>
+					<div class="description">
+						******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>start_performance</type>
+	    </message>
+*******************************************************
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="handleStopPerformance"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>handleStopPerformance</b>()
+					
+					</div>
+					<div class="description">
+						******************************************************
+	    XML message received by the controller which triggers this handle:
+	    <message>
+	 	<type>stop_performance</type>
+	    </message>
+*******************************************************
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeEventListener</b>(event, callback)
+					
+					</div>
+					<div class="description">
+						
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_ecs_ApplicationMessageHandler.js.html">ApplicationMessageHandler.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
 			
 <!-- ============================== event details ========================= -->		
 			
@@ -361,7 +981,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 06 2011 19:58:06 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 06 2011 19:59:34 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

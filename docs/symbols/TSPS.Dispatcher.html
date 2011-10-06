@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.three.Geometry</title>
+		<title>JsDoc Reference - TSPS.Dispatcher</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -266,26 +266,24 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.three.Geometry
+				Class TSPS.Dispatcher
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					THREE.Geometry.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_three_Geometry.js.html">Geometry.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_tsps_TSPS.js.html">TSPS.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Geometry.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class TSPS.Dispatcher.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -298,9 +296,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.three.Geometry.html#constructor">LAB.three.Geometry</a></b>()
+								<b><a href="../symbols/TSPS.Dispatcher.html#constructor">TSPS.Dispatcher</a></b>()
 							</div>
-							<div class="description"></div>
+							<div class="description">Creates a new TSPS parser + dispatcher</div>
 						</td>
 					</tr>
 				</tbody>
@@ -309,12 +307,50 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class TSPS.Dispatcher.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/TSPS.Dispatcher.html#latestPeople">latestPeople</a></b>
+								</div>
+								<div class="description">latestPeople</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/TSPS.Dispatcher.html#people">people</a></b>
+								</div>
+								<div class="description">people</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Geometry.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class TSPS.Dispatcher.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -325,9 +361,36 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addFace">addFace</a></b>(i0, i1, i2)
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#_onPersonEntered">_onPersonEntered</a></b>(tspsObj)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#_onPersonLeft">_onPersonLeft</a></b>(tspsObj)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#_onPersonMoved">_onPersonMoved</a></b>(tspsObj)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#_onPersonUpdated">_onPersonUpdated</a></b>(tspsObj)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -336,36 +399,45 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#addVertex">addVertex</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#onPersonEntered">onPersonEntered</a></b>(person)
 								</div>
-								<div class="description"></div>
+								<div class="description">override in your main app</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#calculateNormals">calculateNormals</a></b>(_smooth)
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#onPersonLeft">onPersonLeft</a></b>(person)
 								</div>
-								<div class="description"></div>
+								<div class="description">override in your main app</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#loadModel">loadModel</a></b>(modelLocation)
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#onPersonMoved">onPersonMoved</a></b>(person)
 								</div>
-								<div class="description"></div>
+								<div class="description">override in your main app</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Geometry.html#update">update</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#onPersonUpdated">onPersonUpdated</a></b>(person)
 								</div>
-								<div class="description"></div>
+								<div class="description">override in your main app</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TSPS.Dispatcher.html#parseMessage">parseMessage</a></b>(formatted)
+								</div>
+								<div class="description">pass in formatted string from TSPS WebSocket</div>
 							</td>
 						</tr>
 					
@@ -386,11 +458,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.three.Geometry</b>()
+						<b>TSPS.Dispatcher</b>()
 				</div>
 				
 				<div class="description">
-					
+					Creates a new TSPS parser + dispatcher
 					
 				</div>
 				
@@ -410,6 +482,57 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="latestPeople"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array
+		array of last set of people received}</span>
+					<b>latestPeople</b>
+					
+					</div>
+					<div class="description">
+						latestPeople
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="people"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Object
+		Object with all current people sorted by ID}</span>
+					<b>people</b>
+					
+					</div>
+					<div class="description">
+						people
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -417,59 +540,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addFace"> </a>
-					<div class="fixedFont">
+					<a name="_onPersonEntered"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>addFace</b>(i0, i1, i2)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>i0</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>i1</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>i2</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="addVertex"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>addVertex</b>(x, y, z)
+					<b>_onPersonEntered</b>(tspsObj)
 					
 					</div>
 					<div class="description">
@@ -485,19 +560,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>tspsObj</b>
 									
 								</dt>
 								<dd></dd>
@@ -513,11 +576,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="calculateNormals"> </a>
-					<div class="fixedFont">
+					<a name="_onPersonLeft"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>calculateNormals</b>(_smooth)
+					<b>_onPersonLeft</b>(tspsObj)
 					
 					</div>
 					<div class="description">
@@ -533,7 +596,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_smooth</b>
+									<b>tspsObj</b>
 									
 								</dt>
 								<dd></dd>
@@ -549,11 +612,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="loadModel"> </a>
-					<div class="fixedFont">
+					<a name="_onPersonMoved"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>loadModel</b>(modelLocation)
+					<b>_onPersonMoved</b>(tspsObj)
 					
 					</div>
 					<div class="description">
@@ -569,7 +632,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>modelLocation</b>
+									<b>tspsObj</b>
 									
 								</dt>
 								<dd></dd>
@@ -585,11 +648,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="update"> </a>
-					<div class="fixedFont">
+					<a name="_onPersonUpdated"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>update</b>()
+					<b>_onPersonUpdated</b>(tspsObj)
 					
 					</div>
 					<div class="description">
@@ -600,6 +663,205 @@ ul.inheritsList
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>tspsObj</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonEntered"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonEntered</b>(person)
+					
+					</div>
+					<div class="description">
+						override in your main app
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">var tsps = new TSPS.Dispatcher();
+tsps.onPersonEntered = this.onPersonEntered;
+tsps.onPersonUpdated = this.onPersonUpdated;
+tsps.onPersonMoved = this.onPersonMoved;
+tsps.onPersonLeft = this.onPersonLeft;</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonLeft"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonLeft</b>(person)
+					
+					</div>
+					<div class="description">
+						override in your main app
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonMoved"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonMoved</b>(person)
+					
+					</div>
+					<div class="description">
+						override in your main app
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonUpdated"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonUpdated</b>(person)
+					
+					</div>
+					<div class="description">
+						override in your main app
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="parseMessage"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>parseMessage</b>(formatted)
+					
+					</div>
+					<div class="description">
+						pass in formatted string from TSPS WebSocket
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>formatted</b>
+									
+								</dt>
+								<dd>string from WebSocket</dd>
+							
+							</dl>
 						
 						
 						
