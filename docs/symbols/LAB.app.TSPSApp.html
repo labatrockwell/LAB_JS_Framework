@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.utils.WebSocket</title>
+		<title>JsDoc Reference - LAB.app.TSPSApp</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -260,26 +260,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.utils.WebSocket
+				Class LAB.app.TSPSApp
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					<a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>.<br />
+					<a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>, TSPS.dispatcher.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_utils_WebSocket.js.html">WebSocket.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_app_TSPSApp.js.html">TSPSApp.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.utils.WebSocket.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.app.TSPSApp.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -292,9 +292,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.utils.WebSocket.html#constructor">LAB.utils.WebSocket</a></b>(_host, protocol)
+								<b><a href="../symbols/LAB.app.TSPSApp.html#constructor">LAB.app.TSPSApp</a></b>()
 							</div>
-							<div class="description">Creates a new Websocket with host (defaults to "ws://localhost:8888")</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -303,12 +303,21 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#mouse">mouse</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.utils.WebSocket.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.app.TSPSApp.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -319,9 +328,45 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#_onMessageReceived">_onMessageReceived</a></b>(evt)
+								</div>
+								<div class="description">Override default WS functionality</div>
+							</td>
+						</tr>
+					
+						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#connect">connect</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#connect">connect</a></b>(port, host)
+								</div>
+								<div class="description">Connect to TSPS WebSocket</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onConnectionClosed">onConnectionClosed</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onConnectionOpened">onConnectionOpened</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onMessageReceieved">onMessageReceieved</a></b>(data)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -330,36 +375,36 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionClosed">onConnectionClosed</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onPersonEntered">onPersonEntered</a></b>(person)
 								</div>
-								<div class="description">Override in your main app</div>
+								<div class="description">Override in your app that extends TSPSApp</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionOpened">onConnectionOpened</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onPersonLeft">onPersonLeft</a></b>(person)
 								</div>
-								<div class="description">Override in your main app, e.g.</div>
+								<div class="description">Override in your app that extends TSPSApp</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onMessageReceived">onMessageReceived</a></b>(data)
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onPersonMoved">onPersonMoved</a></b>(person)
 								</div>
-								<div class="description">Override in your main app</div>
+								<div class="description">Override in your app that extends TSPSApp</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#sendData">sendData</a></b>(data)
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.TSPSApp.html#onPersonUpdated">onPersonUpdated</a></b>(person)
 								</div>
-								<div class="description"></div>
+								<div class="description">Override in your app that extends TSPSApp</div>
 							</td>
 						</tr>
 					
@@ -369,7 +414,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#begin">begin</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
 				</dl>
 				
 			
@@ -384,34 +429,17 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.utils.WebSocket</b>(_host, protocol)
+						<b>LAB.app.TSPSApp</b>()
 				</div>
 				
 				<div class="description">
-					Creates a new Websocket with host (defaults to "ws://localhost:8888")
+					
 					
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>_host</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>protocol</b>
-								
-							</dt>
-								<dd></dd>
-						
-						</dl>
 					
 					
 					
@@ -432,21 +460,74 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
+					<a name="_onMessageReceived"> </a>
+					<div class="fixedFont">&lt;private&gt; 
+					
+					
+					<b>_onMessageReceived</b>(evt)
+					
+					</div>
+					<div class="description">
+						Override default WS functionality
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>evt</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="connect"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>connect</b>()
+					<b>connect</b>(port, host)
 					
 					</div>
 					<div class="description">
-						
+						Connect to TSPS WebSocket
 						
 						
 					</div>
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>port</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>host</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
 						
 						
 						
@@ -458,14 +539,14 @@ ul.inheritsList
 					<hr />
 				
 					<a name="onConnectionClosed"> </a>
-					<div class="fixedFont">
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
 					<b>onConnectionClosed</b>()
 					
 					</div>
 					<div class="description">
-						Override in your main app
+						
 						
 						
 					</div>
@@ -483,16 +564,14 @@ ul.inheritsList
 					<hr />
 				
 					<a name="onConnectionOpened"> </a>
-					<div class="fixedFont">
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
 					<b>onConnectionOpened</b>()
 					
 					</div>
 					<div class="description">
-						Override in your main app, e.g.:
-var socket = new LAB.utils.WebSocket;
-socket.onConnectionOpened = this.onConnect;
+						
 						
 						
 					</div>
@@ -509,15 +588,15 @@ socket.onConnectionOpened = this.onConnect;
 
 					<hr />
 				
-					<a name="onMessageReceived"> </a>
-					<div class="fixedFont">
+					<a name="onMessageReceieved"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
 					
-					<b>onMessageReceived</b>(data)
+					<b>onMessageReceieved</b>(data)
 					
 					</div>
 					<div class="description">
-						Override in your main app
+						
 						
 						
 					</div>
@@ -545,15 +624,15 @@ socket.onConnectionOpened = this.onConnect;
 
 					<hr />
 				
-					<a name="sendData"> </a>
+					<a name="onPersonEntered"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>sendData</b>(data)
+					<b>onPersonEntered</b>(person)
 					
 					</div>
 					<div class="description">
-						
+						Override in your app that extends TSPSApp
 						
 						
 					</div>
@@ -565,7 +644,115 @@ socket.onConnectionOpened = this.onConnect;
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>data</b>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonLeft"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonLeft</b>(person)
+					
+					</div>
+					<div class="description">
+						Override in your app that extends TSPSApp
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonMoved"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonMoved</b>(person)
+					
+					</div>
+					<div class="description">
+						Override in your app that extends TSPSApp
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="onPersonUpdated"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>onPersonUpdated</b>(person)
+					
+					</div>
+					<div class="description">
+						Override in your app that extends TSPSApp
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>person</b>
 									
 								</dt>
 								<dd></dd>
