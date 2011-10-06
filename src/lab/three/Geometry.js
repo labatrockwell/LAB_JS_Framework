@@ -276,8 +276,8 @@ LAB.three.Geometry.prototype.findEdges = function(){
          this.edges.splice( i, 1 );
       }
    }
-//   labLog( this.edges.length );
-//   labLog( this.edges );
+//   LAB.log( this.edges.length );
+//   LAB.log( this.edges );
 };
 
 LAB.three.Geometry.prototype.findVertexEdges = function(){
@@ -296,8 +296,8 @@ LAB.three.Geometry.prototype.findVertexEdges = function(){
       this.vertexEdges[ this.edges[i].vertexIndices[0] ].push( [ i, this.edges[i] ]);
       this.vertexEdges[ this.edges[i].vertexIndices[1] ].push( [ i, this.edges[i] ]);
    }
-   //   labLog( this.vertexEdges.length );
-   //   labLog( this.vertexEdges );
+   //   LAB.log( this.vertexEdges.length );
+   //   LAB.log( this.vertexEdges );
 };
 
 LAB.three.Geometry.prototype.findVertexFaces = function(){
@@ -323,8 +323,8 @@ LAB.three.Geometry.prototype.findVertexFaces = function(){
          this.vertexFaces[ f.d ].push( [ i, f ] );
       }
    }
-//   labLog( this.vertexFaces.length );
-//   labLog( this.vertexFaces );
+//   LAB.log( this.vertexFaces.length );
+//   LAB.log( this.vertexFaces );
 };
 
 
@@ -346,8 +346,8 @@ LAB.three.Geometry.prototype.findFaceEdges = function(){
          this.faceEdges[ this.edges[i].faceIndices[j] ].push( [ i, this.edges[i] ]);//[ edgeIndex, edgeReference ]
       }
    }
-//   labLog( this.faceEdges.length );
-//   labLog( this.faceEdges );
+//   LAB.log( this.faceEdges.length );
+//   LAB.log( this.faceEdges );
 };
 
 

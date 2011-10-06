@@ -12,7 +12,7 @@ LAB.require(LAB.src+"sound/AudioContext.js");
  @constructor 
  */
 LAB.sound.WAPlayer = function( ){//loop, autoplay, controls ){		
-	LAB.EventDispatcher.call( this );
+	LAB.EventDispatcher.call( this, this );
 	
 	this.buffer = null;
 	this.pan	= new LAB.geom.Point();

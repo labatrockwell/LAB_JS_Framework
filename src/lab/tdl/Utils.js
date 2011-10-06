@@ -302,7 +302,7 @@ LAB.tdl.LogglCall	= function(functionName, args) {
    }
 }
 
-LAB.tdl.labLog	= function( labOut ){
+LAB.tdl.LAB.log	= function( labOut ){
    var currentLog = LAB.tdl.g_logglCalls;
    LAB.tdl.g_logglCalls = true;
    Log( labOut );
