@@ -362,6 +362,9 @@ if(!window['ECS']){
 // ===== ECS SOCKET
 // ======================================================================================
 
+	/** 
+	@constructor
+	*/
 	ECS.Socket = function (){
 		// private vars
         var _self       		=   this;
