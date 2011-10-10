@@ -58,7 +58,12 @@ LAB.utils.WebSocket.prototype.onConnectionClosed = function() {};
 
 
 LAB.utils.WebSocket.prototype._onMessageReceived = function( evt ) {
-	var data =  jQuery.parseJSON( evt.data );
+	var data = evt.data;
+	try {
+		var data =  jQuery.parseJSON( evt.data );	
+	} catch(e) {
+		// not valid JSON? Other reasons for error?
+	}
 	this._parent.onMessageReceived( data );
 }
 
