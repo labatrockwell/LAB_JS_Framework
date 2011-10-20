@@ -52,9 +52,9 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		* @type THREE.Camera
 		*/
 		console.log("base app set up");
-		this.camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-		this.camera.position.y = 300;
-		this.camera.position.z = 500;
+		//this.camera = new THREE.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
+		this.camera = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
+        this.camera.setToWindowPerspective();
 		
 		/**
 		* default THREE scene
@@ -75,7 +75,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
-      this.renderer.autoClear = false;
+      	this.renderer.autoClear = false;
 
 		// do we have a container?
 	

@@ -65,7 +65,9 @@ LAB.three.Camera.prototype.updateMatrix = function () {
 		}
       
 		this.matrixWorldNeedsUpdate = true;
-   }
+   } else {
+		this.position.setPositionFromMatrix(this.matrix);
+	}
 };
 
 
