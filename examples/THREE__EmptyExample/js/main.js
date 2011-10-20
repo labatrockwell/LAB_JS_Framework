@@ -26,13 +26,6 @@ DemoApp = function() {
 	this.setup = function() {
 		// catch mouse events!
 		this.registerMouseEvents();
-
-		//cameras
-        labCam = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
-        labCam.setToWindowPerspective();
-
-		ambientLight = new THREE.AmbientLight( 0xFFFFFF );
-
 	}
 	
 	// ===========================================
@@ -47,8 +40,8 @@ DemoApp = function() {
 	// ===========================================
 	this.draw = function() {
 		this.renderer.clear();
-		// should this auto-render? <--- LB: I think this needs to stay here so that we can draw multiple objects with multiple scenes
-		this.renderer.render( this.scene, labCam );
+		
+		this.renderer.render( this.scene, this.camera );
 	}
 	
 	// ===========================================
