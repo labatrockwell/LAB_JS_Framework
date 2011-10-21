@@ -1,12 +1,24 @@
+/**
+ * A touch gesture handler that wraps mouse events. To use: create an instance of this
+ * class and register either window or a DOM object (or any custom object that implements
+ * EventDispatcher). Then listen for touch events (see TouchEvent) on the registerd object.
+ *
+ * @constructor
+ * @augments LAB.EventDispatcher
+ */
 function TouchGestureHandler() {
+	"use strict";
 
 	LAB.EventDispatcher.call(this, this);
 
 	// private constants
+	// tweak these to fine tune the gesture behavior
 	var FLICK_TIMEOUT = 250,
 		TAP_TIMEOUT = 80,
 		FLICK_MIN_MOVEMENT = 20,
 		DRAG_MIN_MOVEMENT = 5;
+		
+	// to do: add getters and setters for time and movement thresholds	
 		
 	// private variables
 	var _self = this,
@@ -23,14 +35,16 @@ function TouchGestureHandler() {
 		_startTime,
 		_endTime,
 		_lastTime = -1,
-		_averageVelocity,
+		_averageVelocity = [],
 		_velocity = [],
 		_dragDirection,
 		_dragDistance,
 		_touchX,
 		_touchY;
 	
-	// private methods
+	/**
+	 * @private
+	 */
 	function mouseDownHandler(event) {
 	
 		// events to listen to
@@ -43,6 +57,9 @@ function TouchGestureHandler() {
 		startMove(event);
 	}
 	
+	/**
+	 * @private
+	 */
 	function startMove(event) {
 		_touchX = event.clientX;
 		_touchY = event.clientY;
@@ -51,16 +68,13 @@ function TouchGestureHandler() {
 		
 		var date = new Date();
 		_startTime = date.getTime();
-		
-		// clear the array
-		_averageVelocity = [];
-				
+						
 		_pressPoint = new LAB.geom.Point(event.clientX, event.clientY);
-		
-		_isFlick = false;
-		_isDrag = false;
 	}
 	
+	/**
+	 * @private
+	 */
 	function mouseMoveHandler(event) {
 		
 		_touchX = event.clientX;
@@ -112,6 +126,7 @@ function TouchGestureHandler() {
 		
 		// to do: dispatch only on distance > 0?
 		if (_isDrag) {
+			// currently fired on each move event once the drag threshold has been met
 			dispatch(TouchEvent.DRAG);
 		}
 		
@@ -120,6 +135,12 @@ function TouchGestureHandler() {
 		_lastTime = currentTime;
 	}
 	
+	/**
+	 * This is important when using DOM objects so you know when you have
+	 * dragged outside the object that the mouse down event was fired over
+	 *
+	 * @private
+	 */
 	function mouseOutHandler(event) {		
 		// ignore if out is not this object
 		if (event.target != _target) {
@@ -131,7 +152,13 @@ function TouchGestureHandler() {
 		dispatch(TouchEvent.OUT);
 	}	
 	
+	/**
+	 * @private
+	 */
 	function mouseUpHandler(event) {
+	
+		_touchX = event.clientX;
+		_touchY = event.clientY;
 		
 		_target.addEventListener("mousedown", mouseDownHandler);
 		
@@ -143,7 +170,6 @@ function TouchGestureHandler() {
 		
 		var timeChange = _endTime - _startTime;
 		var flickTimeChange = _endTime - _flickStartTime;
-		console.log("time change = " + timeChange);
 		
 		if (timeChange <= TAP_TIMEOUT && !_isDrag && !_isFlick) {
 			dispatch(TouchEvent.TAP);
@@ -166,21 +192,29 @@ function TouchGestureHandler() {
 			dispatch(TouchEvent.FLICK);
 		}
 		
-		// only dispatch if not flick?
+		// always dispatch release whether or not release happened over target object
 		dispatch(TouchEvent.RELEASE);
-		
-		_touchX = event.clientX;
-		_touchY = event.clientY;
+		// or only fire release event if release occured over target?
+		// hit test for top most element		
+		//if (_target == window || _target === document.elementFromPoint(_touchX, _touchY)) {								
+			//dispatch(TouchEvent.RELEASE);
+		//}
 		
 		resetForNext();	
 	}
-		
+	
+	/**
+	 * @private
+	 */
 	function calcDistance(pointA, pointB) {
 		var dist = Math.sqrt(Math.pow((pointB.x - pointA.x), 2) + Math.pow((pointB.y - pointA.y), 2));
 		
 		return dist;
 	}
 	
+	/**
+	 * @private
+	 */
 	function calcVelocity(dist, timeChange) {
 		if (dist > 0 && timeChange > 0) {
 			return dist / timeChange
@@ -188,20 +222,34 @@ function TouchGestureHandler() {
 			return -1;
 		}
 	}
-		
+	
+	/**
+	 * @private
+	 */
 	function dispatch(type) {
-		//console.log("dispatch event: " + type);
 		_self.dispatchEvent(new TouchEvent(type));
 		
-		// any way or reason to get this to work?
+		// any way or reason to get something like this to work?
+		// seems tricky for window and DOM events, need to use
+		// customEvent or something like that, but it does not
+		// seem to support additional parameters
 		//_target.dispatchEvent(new TouchEvent(type, _self));
 	}
 	
+	/**
+	 * @private
+	 */
 	function resetForNext() {		
 		_isDrag = false;
 		_isFlick = false;
+		
+		// clear the array
+		_averageVelocity = [];		
 	}
 	
+	/**
+	 * @private
+	 */
 	function calcDegree(startPoint, endPoint) {
 		var diffX = startPoint.x - endPoint.x;
 		var diffY = endPoint.y - startPoint.y;
@@ -209,6 +257,9 @@ function TouchGestureHandler() {
 		return tangentAngle(diffX, diffY);
 	}
 	
+	/**
+	 * @private
+	 */
 	function tangentAngle(xVal, yVal) {
 		var radians = Math.atan2(yVal, xVal);
 		
@@ -220,12 +271,22 @@ function TouchGestureHandler() {
 	}
 	
 		
-	// public methods
+	/**
+	 * Register an object (DOM, window, or any object that implements EventDispatcher) with
+	 * the touch gesture handler.
+	 *
+	 * @param {Object} target The object to register with the gesture handler
+	 */
 	this.register = function(target) {
 		_target = target;
 		_target.addEventListener("mousedown", mouseDownHandler);
 	}
 	
+	/**
+	 * Unregister an object with the touch gesture handler
+	 *
+	 * @param {Object} target The object to unregister
+	 */
 	this.unregister = function(target) {
 		if (_target !== null) {
 			_target.removeEventListener("mousedown", mouseDownHandler);
@@ -235,34 +296,61 @@ function TouchGestureHandler() {
 		}
 	}
 	
+	/**
+	 * @return {Number} The direction (in degrees 0 - 360) between the start and stop point 
+	 * of the last drag event.
+	 */
 	this.getDragDirection = function() {
 		return _dragDirection;
 	}
 	
+	/**
+	 * @return {Number} The distance between the start and stop point of the last drag event.
+	 */
 	this.getDragDistance = function() {
 		return _dragDistance;
 	}
 	
+	/**
+	 * @return {Number} The direction (in degrees 0 - 360) between the start and stop point 
+	 * of the flick
+	 */
 	this.getFlickDirection = function() {
 		return _flickDirection;
 	}
 	
+	/**
+	 * @return {Number} The distance between the start and end point of the flick.
+	 */
 	this.getFlickDistance = function() {
 		return _flickDistance;
 	}	
 	
+	/**
+	 * @return {Number} The x coordinate of the touch event.
+	 */
 	this.getTouchX = function() {
 		return _touchX;
 	}
 	
+	/**
+	 * @return {Number} The y coordinate of the touch event.
+	 */
 	this.getTouchY = function() {
 		return _touchY;
 	}
 	
+	/**
+	 * @return {Number} The average velocity (in pixels/milliseconds) of the drag 
+	 * from press to release.
+	 */
 	this.getAverageVelocity = function() {
 		return _averageVelocity;
 	}
 	
+	/**
+	 * @return {Number} The velocity (in pixels/milliseconds) of the flick.
+	 */
 	this.getFlickVelocity = function() {
 		return _flickVelocity;
 	}	
@@ -273,17 +361,29 @@ TouchGestureHandler.prototype = new LAB.EventDispatcher;
 TouchGestureHandler.prototype.constructor = TouchGestureHandler;
 
 
-
-function TouchEvent(type) {	
+/**
+ * @constructor
+ * @augments LAB.Event
+ * @param {String} type The event type
+ */
+function TouchEvent(type) {
+	"use strict";
+	
 	LAB.Event.call(this, type);
 }
 
+// events
+/** @constant */
 TouchEvent.TAP = "touchtap";
+/** @constant */
 TouchEvent.FLICK = "touchflick";
+/** @constant */
 TouchEvent.DRAG = "touchdrag";
-TouchEvent.MOVE = "touchmove";
+/** @constant */
 TouchEvent.RELEASE = "touchrelease";
+/** @constant */
 TouchEvent.OUT = "touchout";
+/** @constant */
 TouchEvent.PRESS = "touchPress";
 
 TouchEvent.prototype = new LAB.Event;
