@@ -282,6 +282,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	LAB.app.BaseApp.prototype.registerKeyEvents = function(){
 		if (this.keyEventsRegistered) return;
 		window.addEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		window.addEventListener("keyup", this._onDocumentKeyUp.bind(this));
 		this.keyEventsRegistered = true;
 	}
 	/**
@@ -292,6 +293,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	LAB.app.BaseApp.prototype.unregisterKeyEvents = function(){
 		if (!this.keyEventsRegistered) return;
 		window.removeEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		window.removeEventListener("keyup", this._onDocumentKeyUp.bind(this));
 		this.keyEventsRegistered = false;
 	}
 
@@ -306,6 +308,19 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event ) {
 	   this.dispatchEvent("onDocumentKeyDown", event);
 	   this.onDocumentKeyDown( event.keyCode );
+	}
+
+	/*
+		override in your main app to catch keyboard events
+		@function
+		@public
+		@param {event}
+	*/
+	LAB.app.BaseApp.prototype.onDocumentKeyUp = function( key ) {}
+
+	LAB.app.BaseApp.prototype._onDocumentKeyUp	= function( event ) {
+	   this.dispatchEvent("onDocumentKeyUp", event);
+	   this.onDocumentKeyUp( event.keyCode );
 	}
 
 // ===========================================
