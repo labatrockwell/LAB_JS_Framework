@@ -63,6 +63,8 @@ LAB.app.TDLApp = function()
 		math = tdl.math;
 		fast = tdl.fast;
 
+		this.registerKeyEvents();
+		this.registerMouseEvents();
 		//setup canvas and context
 				
 		if (document.getElementById("canvas") != null){

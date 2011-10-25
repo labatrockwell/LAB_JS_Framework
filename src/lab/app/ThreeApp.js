@@ -47,6 +47,10 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 	LAB.app.ThreeApp.prototype.begin = function()
 	{
+		// listen to mouse + keys by default
+		this.registerKeyEvents();
+		this.registerMouseEvents();
+
 		/**
 		* default THREE camera
 		* @type THREE.Camera

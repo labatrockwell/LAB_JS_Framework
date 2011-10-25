@@ -21,6 +21,9 @@ LAB.app.BaseApp = function()
 		@type Object
 	*/
 	this.mouse	= {x:0, y:0, bDown:false};
+	this.mouseEventsRegistered 	= false;
+	this.keyEventsRegistered 	= false;
+	this.windowEventsRegistered = false;
 	
 	this.startTime 		= Date.now();
 	this.elapsedTime 	= 0;
@@ -37,6 +40,8 @@ Call setup and begin animating
 
 LAB.app.BaseApp.prototype.begin = function(){
 	console.log("base app set up");
+	this.registerKeyEvents();
+	this.registerMouseEvents();
 	this.setup();
 	this.animate();
 };
@@ -113,8 +118,11 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 // ===========================================
 // ===== WINDOW
 // ===========================================
-LAB.app.BaseApp.prototype.registerWindowResize = function() {
+
+LAB.app.BaseApp.prototype.registerWindowResize = function(){
+	if (this.windowEventsRegistered) return;
 	window.onresize = this._onWindowResized.bind(this);
+	this.windowEventsRegistered = true;
 }
 
 LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
@@ -133,9 +141,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@public
 	*/
 	LAB.app.BaseApp.prototype.registerMouseEvents = function(){
+		if (this.mouseEventsRegistered) return;
 		window.addEventListener("mousemove", this._onMouseMoved.bind(this));
 		window.addEventListener("mousedown", this._onMousePressed.bind(this));
 		window.addEventListener("mouseup", this._onMouseReleased.bind(this));
+		this.mouseEventsRegistered = true;
 	}
 	/**
 		stop listening to mouse events
@@ -144,9 +154,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	*/
 	LAB.app.BaseApp.prototype.unregisterMouseEvents = function()
 	{
+		if (!this.mouseEventsRegistered) return;
 		window.removeEventListener("mousemove", this._onMouseMoved.bind(this));
 		window.removeEventListener("mousedown", this._onMousePressed.bind(this));
 		window.removeEventListener("mouseup", this._onMouseReleased.bind(this));
+		this.mouseEventsRegistered = false;
 	}
 	
 	/**
@@ -262,6 +274,27 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 // ===== KEYBOARD
 // ===========================================
 
+	/**
+		start listening to key events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.registerKeyEvents = function(){
+		if (this.keyEventsRegistered) return;
+		window.addEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		this.keyEventsRegistered = true;
+	}
+	/**
+		stop listening to mouse events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.unregisterKeyEvents = function(){
+		if (!this.keyEventsRegistered) return;
+		window.removeEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		this.keyEventsRegistered = false;
+	}
+
 	/*
 		override in your main app to catch keyboard events
 		@function
@@ -272,7 +305,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 
 	LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event ) {
 	   this.dispatchEvent("onDocumentKeyDown", event);
-	   this.onDocumentKeyDown( event );
+	   this.onDocumentKeyDown( event.keyCode );
 	}
 
 // ===========================================
