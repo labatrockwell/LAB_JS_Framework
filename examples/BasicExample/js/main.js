@@ -25,8 +25,6 @@ $(document).ready( function() {
 		//setup
 			
 		this.setup = function (){
-			// catch mouse events!
-			this.registerMouseEvents();
 		}
 		
 		//update
