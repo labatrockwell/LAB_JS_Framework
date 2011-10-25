@@ -60,3 +60,9 @@ LAB.src= LAB.getScriptPath("LabBase.js");
 LAB.require( LAB.src+"EventDispatcher.js" );
 LAB.require( LAB.src+"app/BaseApp.js" );
 LAB.require( LAB.src+"Utils.js" );
+
+// key constants
+LAB.SHIFT 	= 16;
+LAB.CONTROL = 17;
+LAB.ALT		= 18;
+LAB.COMMAND = 91;
