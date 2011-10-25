@@ -11,7 +11,7 @@ LAB.utils = LAB.utils || {};
 
 LAB.utils.WebSocket = function( _host, protocol ) {
 	this.host 		= _host || "ws://localhost:8888";
-	this.protocol	= protocol || "";
+	if (protocol) this.protocol	= protocol;
 	this.socket;
 }
 
@@ -20,7 +20,8 @@ LAB.utils.WebSocket = function( _host, protocol ) {
 */
 LAB.utils.WebSocket.prototype.connect = function() {
 	try {
-		this.socket = new WebSocket( this.host, this.protocol );
+		if (this.protocol) this.socket = new WebSocket( this.host, this.protocol );
+		else this.socket = new WebSocket( this.host);
 		this.socket._parent = this;
 		this.socket.onmessage = this._onMessageReceived;
 		this.socket.onopen = this._onConnectionOpened;
