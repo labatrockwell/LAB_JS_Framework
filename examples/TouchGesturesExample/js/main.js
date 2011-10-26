@@ -1,6 +1,7 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
 LAB.require(LAB.src+"app/BaseApp.js");
+LAB.require(LAB.src+"TouchGestureHandler.js");
 
 var demoApp;
 
@@ -31,15 +32,18 @@ $(document).ready( function() {
 			
 			this.registerMouseEvents();
 					
-			gestureHandler = new TouchGestureHandler();
+			gestureHandler = new LAB.TouchGestureHandler();
 			// register window so we capture all mouse events for entire screen
 			gestureHandler.register(window);
 			
-			gestureHandler.addEventListener(TouchEvent.PRESS, onTouchPress);
-			gestureHandler.addEventListener(TouchEvent.RELEASE, onTouchRelease);
-			gestureHandler.addEventListener(TouchEvent.FLICK, onTouchFlick);
-			gestureHandler.addEventListener(TouchEvent.DRAG, onTouchDrag);
-			gestureHandler.addEventListener(TouchEvent.TAP, onTouchTap);
+			// can also register a single DOM object
+			//gestureHandler.register("amazingDiv");
+			
+			gestureHandler.addEventListener(LAB.TouchEvent.PRESS, onTouchPress);
+			gestureHandler.addEventListener(LAB.TouchEvent.RELEASE, onTouchRelease);
+			gestureHandler.addEventListener(LAB.TouchEvent.FLICK, onTouchFlick);
+			gestureHandler.addEventListener(LAB.TouchEvent.DRAG, onTouchDrag);
+			gestureHandler.addEventListener(LAB.TouchEvent.TAP, onTouchTap);
 		}
 		
 		function onTouchTap(event) {

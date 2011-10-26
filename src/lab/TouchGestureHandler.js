@@ -1,12 +1,15 @@
+LAB.require(LAB.src+"geom/Point.js");
+
 /**
  * A touch gesture handler that wraps mouse events. To use: create an instance of this
  * class and register either window or a DOM object (or any custom object that implements
  * EventDispatcher). Then listen for touch events (see TouchEvent) on the registerd object.
  *
+ * @namespace LAB
  * @constructor
  * @augments LAB.EventDispatcher
  */
-function TouchGestureHandler() {
+LAB.TouchGestureHandler = function() {
 	"use strict";
 
 	LAB.EventDispatcher.call(this, this);
@@ -64,7 +67,7 @@ function TouchGestureHandler() {
 		_touchX = event.clientX;
 		_touchY = event.clientY;
 
-		dispatch(TouchEvent.PRESS);
+		dispatch(LAB.TouchEvent.PRESS);
 		
 		var date = new Date();
 		_startTime = date.getTime();
@@ -127,7 +130,7 @@ function TouchGestureHandler() {
 		// to do: dispatch only on distance > 0?
 		if (_isDrag) {
 			// currently fired on each move event once the drag threshold has been met
-			dispatch(TouchEvent.DRAG);
+			dispatch(LAB.TouchEvent.DRAG);
 		}
 		
 		// update press point so we can have drag...drag...drag...flick
@@ -149,7 +152,7 @@ function TouchGestureHandler() {
 		
 		_target.removeEventListener("mouseout", mouseOutHandler);
 		
-		dispatch(TouchEvent.OUT);
+		dispatch(LAB.TouchEvent.OUT);
 	}	
 	
 	/**
@@ -172,7 +175,7 @@ function TouchGestureHandler() {
 		var flickTimeChange = _endTime - _flickStartTime;
 		
 		if (timeChange <= TAP_TIMEOUT && !_isDrag && !_isFlick) {
-			dispatch(TouchEvent.TAP);
+			dispatch(LAB.TouchEvent.TAP);
 		}
 		
 		var velocitySum = 0;
@@ -189,15 +192,15 @@ function TouchGestureHandler() {
 			_flickDistance = calcDistance(_flickEndPoint, _flickStartPoint);
 			_flickVelocity = calcVelocity(_flickDistance, timeChange);
 		
-			dispatch(TouchEvent.FLICK);
+			dispatch(LAB.TouchEvent.FLICK);
 		}
 		
 		// always dispatch release whether or not release happened over target object
-		dispatch(TouchEvent.RELEASE);
+		dispatch(LAB.TouchEvent.RELEASE);
 		// or only fire release event if release occured over target?
 		// hit test for top most element		
 		//if (_target == window || _target === document.elementFromPoint(_touchX, _touchY)) {								
-			//dispatch(TouchEvent.RELEASE);
+			//dispatch(LAB.TouchEvent.RELEASE);
 		//}
 		
 		resetForNext();	
@@ -227,13 +230,13 @@ function TouchGestureHandler() {
 	 * @private
 	 */
 	function dispatch(type) {
-		_self.dispatchEvent(new TouchEvent(type));
+		_self.dispatchEvent(new LAB.TouchEvent(type));
 		
 		// any way or reason to get something like this to work?
 		// seems tricky for window and DOM events, need to use
 		// customEvent or something like that, but it does not
 		// seem to support additional parameters
-		//_target.dispatchEvent(new TouchEvent(type, _self));
+		//_target.dispatchEvent(new LAB.TouchEvent(type, _self));
 	}
 	
 	/**
@@ -357,16 +360,17 @@ function TouchGestureHandler() {
 	
 }
 
-TouchGestureHandler.prototype = new LAB.EventDispatcher;
-TouchGestureHandler.prototype.constructor = TouchGestureHandler;
+LAB.TouchGestureHandler.prototype = new LAB.EventDispatcher;
+LAB.TouchGestureHandler.prototype.constructor = LAB.TouchGestureHandler;
 
 
 /**
+ * @namespace LAB
  * @constructor
  * @augments LAB.Event
  * @param {String} type The event type
  */
-function TouchEvent(type) {
+LAB.TouchEvent = function(type) {
 	"use strict";
 	
 	LAB.Event.call(this, type);
@@ -374,17 +378,17 @@ function TouchEvent(type) {
 
 // events
 /** @constant */
-TouchEvent.TAP = "touchtap";
+LAB.TouchEvent.TAP = "touchtap";
 /** @constant */
-TouchEvent.FLICK = "touchflick";
+LAB.TouchEvent.FLICK = "touchflick";
 /** @constant */
-TouchEvent.DRAG = "touchdrag";
+LAB.TouchEvent.DRAG = "touchdrag";
 /** @constant */
-TouchEvent.RELEASE = "touchrelease";
+LAB.TouchEvent.RELEASE = "touchrelease";
 /** @constant */
-TouchEvent.OUT = "touchout";
+LAB.TouchEvent.OUT = "touchout";
 /** @constant */
-TouchEvent.PRESS = "touchPress";
+LAB.TouchEvent.PRESS = "touchPress";
 
-TouchEvent.prototype = new LAB.Event;
-TouchEvent.prototype.constructor = TouchEvent;
+LAB.TouchEvent.prototype = new LAB.Event;
+LAB.TouchEvent.prototype.constructor = LAB.TouchEvent;
