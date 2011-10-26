@@ -15,6 +15,7 @@ LAB.app.TSPSApp = function()
 	LAB.app.BaseApp.call( this );
 	
 	this.socket 	= null;
+	console.log("hih")
 }
 
 LAB.app.TSPSApp.prototype = $.extend(true, LAB.app.BaseApp.prototype, TSPS.Dispatcher.prototype, LAB.app.TSPSApp.prototype);
