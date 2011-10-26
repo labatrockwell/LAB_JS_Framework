@@ -60,7 +60,8 @@ Override default WS functionality
 @private
 */
 	LAB.app.TSPSApp.prototype.onMessageReceieved = function( data ){
-		this.parseMessage(data);
+		var data =  jQuery.parseJSON( data );				
+		var TSPSPeople = this.newPerson(data);
 	}
 
 /**
