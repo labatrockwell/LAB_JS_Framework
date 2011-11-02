@@ -1,5 +1,7 @@
 LAB.require(LAB.src+"TouchGestureHandler.js");
 
+LAB.namespace("LAB.three.TouchHandler3D");
+
 /**
  * @namespace LAB.three
  * @constructor
@@ -258,8 +260,11 @@ LAB.three.TouchHandler3D = function(scene, camera) {
 	
 }
 
-LAB.three.TouchHandler3D.prototype = new LAB.EventDispatcher;
+LAB.three.TouchHandler3D.prototype = LAB.inherit(LAB.EventDispatcher.prototype);
 LAB.three.TouchHandler3D.prototype.constructor = LAB.three.TouchHandler3D;
+
+
+LAB.namespace("LAB.three.TouchEvent3D");
 
 /**
  * @namespace LAB.three
@@ -286,5 +291,5 @@ LAB.three.TouchEvent3D.FLICK = "touch3DFlick";
 /** @constant */
 LAB.three.TouchEvent3D.DRAG = "touch3DDrag";
 
-LAB.three.TouchEvent3D.prototype = new LAB.Event;
+LAB.three.TouchEvent3D.prototype = LAB.inherit(LAB.Event.prototype);
 LAB.three.TouchEvent3D.prototype.constructor = LAB.three.TouchEvent3D;

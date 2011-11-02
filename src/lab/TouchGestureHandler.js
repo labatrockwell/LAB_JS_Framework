@@ -1,5 +1,7 @@
 LAB.require(LAB.src+"geom/Point.js");
 
+// TO DO: refactor to add functions to prototype
+
 /**
  * A touch gesture handler that wraps mouse events. To use: create an instance of this
  * class and register either window or a DOM object (or any custom object that implements
@@ -360,7 +362,7 @@ LAB.TouchGestureHandler = function() {
 	
 }
 
-LAB.TouchGestureHandler.prototype = new LAB.EventDispatcher;
+LAB.TouchGestureHandler.prototype = LAB.inherit(LAB.EventDispatcher.prototype);
 LAB.TouchGestureHandler.prototype.constructor = LAB.TouchGestureHandler;
 
 
@@ -390,5 +392,5 @@ LAB.TouchEvent.OUT = "touchout";
 /** @constant */
 LAB.TouchEvent.PRESS = "touchPress";
 
-LAB.TouchEvent.prototype = new LAB.Event;
+LAB.TouchEvent.prototype = LAB.inherit(LAB.Event.parent);
 LAB.TouchEvent.prototype.constructor = LAB.TouchEvent;
