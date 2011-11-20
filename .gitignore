@@ -1,6 +1,7 @@
 */*/jsdoc
 *.pyc
 *.DS_Store
+*xcworkspace
 */*/*/*/.DS_Store
 */.DS_Store
 */*/xcuserdata
