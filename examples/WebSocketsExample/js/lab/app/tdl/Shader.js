@@ -103,7 +103,7 @@ LAB.tdl.Shader.prototype = {
          this.attributes.push( attrloc );
 
       }else{
-         labLog( "no attribute named " + attrname +" in this shader" );
+         LAB.log( "no attribute named " + attrname +" in this shader" );
       }
       return attrloc;      
    },
@@ -114,7 +114,7 @@ LAB.tdl.Shader.prototype = {
          this.attributes.push( attrloc );
 
       }else{
-         labLog( "no attribute named " + attrname +" in this shader" );
+         LAB.log( "no attribute named " + attrname +" in this shader" );
       }
       return attrloc;      
    },

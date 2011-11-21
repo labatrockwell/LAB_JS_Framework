@@ -16,7 +16,7 @@
 <span class='line'>  9</span> </span><span class="WHIT">   
 <span class='line'> 10</span>    </span><span class="NAME">this.renderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_renderer</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 11</span> </span><span class="WHIT">   </span><span class="NAME">this.scene</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_scene</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Scene</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 12</span> </span><span class="WHIT">   </span><span class="NAME">this.autoClear</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">   </span><span class="NAME">this.autoClear</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 13</span> </span><span class="WHIT">   </span><span class="NAME">this.labObj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Object3D</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 14</span> </span><span class="WHIT">   
 <span class='line'> 15</span>    </span><span class="COMM">//this isn't great. temporary stop gap</span><span class="WHIT">
@@ -73,7 +73,7 @@
 <span class='line'> 66</span>    </span><span class="NAME">this.scene.overrideMaterial</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">_material</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 67</span> </span><span class="WHIT">   </span><span class="NAME">this.renderer.render</span><span class="PUNC">(</span><span class="NAME">this.scene</span><span class="PUNC">,</span><span class="WHIT"> 
 <span class='line'> 68</span>                         </span><span class="NAME">_camera</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">                        </span><span class="NAME">_renderTarget</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">                        </span><span class="NAME">_renderTarget</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 70</span> </span><span class="WHIT">                        </span><span class="NAME">this.autoClear</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 71</span> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 72</span> 

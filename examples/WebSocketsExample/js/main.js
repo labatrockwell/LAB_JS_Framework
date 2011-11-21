@@ -25,16 +25,16 @@ $(document).ready( function() {
 		/**/
 		/* START EXAMPLE */
 		/**/
-		this.s = new LAB.utils.WebSocket( "ws://localhost:8888", {} );
+		this.s = new LAB.utils.WebSocket( "ws://localhost:7682", {} );
 
 		this.s.onMessageReceived = myReceiveFunction;
 		this.s.onConnectionOpened = myOpenFunction;
 		this.s.onConnectionClosed = myCloseFunction;
-
+				
 		function myOpenFunction() {
 			//you've now connected to the websocket! yay.
 			console.log("awesome...");
-			LAB.self.s.sendData("helo");
+			this.s.sendData("helo");
 		}
 		
 		function myCloseFunction() {
@@ -69,8 +69,8 @@ $(document).ready( function() {
 		//update
 
 		this.update = function (){
-			divX = divX + (LAB.self.mouse.x-divX)/10;
-			divY = divY + (LAB.self.mouse.y-divY)/10;
+			divX = divX + (this.mouse.x-divX)/10;
+			divY = divY + (this.mouse.y-divY)/10;
 		}
 	
 		//draw

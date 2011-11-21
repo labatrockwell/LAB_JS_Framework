@@ -7,8 +7,8 @@ function Cooldiv(_id, _x, _y, _z, _rotation, _sWidth, _sHeight, _isVisible) {
 }
 
 Cooldiv.prototype.update = function() {
-	this.divX = this.pos['x']; //this.offset + this.divX + (LAB.self.mouse.x-this.divX)/10;
-	this.divY = this.pos['y']; //this.offset + this.divY + (LAB.self.mouse.y-this.divY)/10;
+	this.divX = this.pos['x']; //this.offset + this.divX + (this.mouse.x-this.divX)/10;
+	this.divY = this.pos['y']; //this.offset + this.divY + (this.mouse.y-this.divY)/10;
 }
 
 Cooldiv.prototype.draw = function() {

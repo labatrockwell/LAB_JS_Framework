@@ -67,7 +67,7 @@ DemoApp = function() {
 	}
 	
 	this.onMousePressed	= function( x, y ) {
-		labLog( circle );
+		LAB.log( circle );
 	}
 }
 

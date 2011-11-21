@@ -14,18 +14,16 @@ LAB.app = LAB.app || {};
 
 LAB.app.BaseApp = function()
 {
-	/**
-		Globally-accessible app scope
-		@type LAB.app.BaseApp
-	*/	
-	LAB.self 	= this;
-	LAB.EventDispatcher.call( this );
+	LAB.EventDispatcher.call( this, this );
 	
 	/**
 		Mouse object: {x:Number, y:Number, bDown:Boolean}
 		@type Object
 	*/
 	this.mouse	= {x:0, y:0, bDown:false};
+	this.mouseEventsRegistered 	= false;
+	this.keyEventsRegistered 	= false;
+	this.windowEventsRegistered = false;
 	
 	this.startTime 		= Date.now();
 	this.elapsedTime 	= 0;
@@ -42,6 +40,8 @@ Call setup and begin animating
 
 LAB.app.BaseApp.prototype.begin = function(){
 	console.log("base app set up");
+	this.registerKeyEvents();
+	this.registerMouseEvents();
 	this.setup();
 	this.animate();
 };
@@ -102,28 +102,31 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	// update time
 	if (time === undefined){
 	} else {
-		LAB.self.elapsedTime = time - LAB.self.startTime;
+		this.elapsedTime = time - this.startTime;
 	}
 	
-	requestAnimationFrame(LAB.self.animate, this);
+	requestAnimationFrame(this.animate.bind(this), this);
 			
-	LAB.self.preupdate();
-   	LAB.self.update();
-	LAB.self.predraw();
-	LAB.self.draw();
-	LAB.self.postdraw();
+	this.preupdate();
+   	this.update();
+	this.predraw();
+	this.draw();
+	this.postdraw();
 }
 
 
 // ===========================================
 // ===== WINDOW
 // ===========================================
-LAB.app.BaseApp.prototype.registerWindowResize = function() {
-	window.onresize = LAB.self._onWindowResized;
+
+LAB.app.BaseApp.prototype.registerWindowResize = function(){
+	if (this.windowEventsRegistered) return;
+	window.onresize = this._onWindowResized.bind(this);
+	this.windowEventsRegistered = true;
 }
 
 LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
-	LAB.self.onWindowResized(window.innerWidth, window.innerHeight);
+	this.onWindowResized(window.innerWidth, window.innerHeight);
 }
 
 LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
@@ -138,9 +141,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@public
 	*/
 	LAB.app.BaseApp.prototype.registerMouseEvents = function(){
-		window.addEventListener("mousemove", LAB.self._onMouseMoved);
-		window.addEventListener("mousedown", LAB.self._onMousePressed);
-		window.addEventListener("mouseup", LAB.self._onMouseReleased);
+		if (this.mouseEventsRegistered) return;
+		window.addEventListener("mousemove", this._onMouseMoved.bind(this));
+		window.addEventListener("mousedown", this._onMousePressed.bind(this));
+		window.addEventListener("mouseup", this._onMouseReleased.bind(this));
+		this.mouseEventsRegistered = true;
 	}
 	/**
 		stop listening to mouse events
@@ -149,9 +154,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	*/
 	LAB.app.BaseApp.prototype.unregisterMouseEvents = function()
 	{
-		window.removeEventListener("mousemove", LAB.self._onMouseMoved);
-		window.removeEventListener("mousedown", LAB.self._onMousePressed);
-		window.removeEventListener("mouseup", LAB.self._onMouseReleased);
+		if (!this.mouseEventsRegistered) return;
+		window.removeEventListener("mousemove", this._onMouseMoved.bind(this));
+		window.removeEventListener("mousedown", this._onMousePressed.bind(this));
+		window.removeEventListener("mouseup", this._onMouseReleased.bind(this));
+		this.mouseEventsRegistered = false;
 	}
 	
 	/**
@@ -202,14 +209,14 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	LAB.app.BaseApp.prototype._onMouseMoved		= function( event )
 	{	 
 		// if the mouse is down, call dragged instead of moved
-		if (LAB.self.mouse.bDown){
-			LAB.self._onMouseDragged(event);
+		if (this.mouse.bDown){
+			this._onMouseDragged(event);
 			return;
 		}
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseMoved", LAB.self.mouse);
-		LAB.self.onMouseMoved(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.dispatchEvent("onMouseMoved", this.mouse);
+		this.onMouseMoved(this.mouse.x, this.mouse.y);
 	}
 
 	/**
@@ -222,11 +229,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 
 	LAB.app.BaseApp.prototype._onMousePressed	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = true;
-		LAB.self.dispatchEvent("onMousePressed", LAB.self.mouse);
-		LAB.self.onMousePressed(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.mouse.bDown = true;
+		this.dispatchEvent("onMousePressed", this.mouse);
+		this.onMousePressed(this.mouse.x, this.mouse.y);
 	}
 
 	/**
@@ -239,11 +246,11 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 
 	LAB.app.BaseApp.prototype._onMouseReleased	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.mouse.bDown = false;
-		LAB.self.dispatchEvent("onMouseReleased", LAB.self.mouse);
-		LAB.self.onMouseReleased(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.mouse.bDown = false;
+		this.dispatchEvent("onMouseReleased", this.mouse);
+		this.onMouseReleased(this.mouse.x, this.mouse.y);
 	}
 	
 	/**
@@ -256,10 +263,10 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 
 	LAB.app.BaseApp.prototype._onMouseDragged	= function( event )
 	{
-		LAB.self.mouse.x = event.clientX; 
-		LAB.self.mouse.y = event.clientY;
-		LAB.self.dispatchEvent("onMouseDragged", LAB.self.mouse);
-		LAB.self.onMouseDragged(LAB.self.mouse.x, LAB.self.mouse.y);
+		this.mouse.x = event.clientX; 
+		this.mouse.y = event.clientY;
+		this.dispatchEvent("onMouseDragged", this.mouse);
+		this.onMouseDragged(this.mouse.x, this.mouse.y);
 	}
 
 
@@ -267,17 +274,53 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 // ===== KEYBOARD
 // ===========================================
 
+	/**
+		start listening to key events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.registerKeyEvents = function(){
+		if (this.keyEventsRegistered) return;
+		window.addEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		window.addEventListener("keyup", this._onDocumentKeyUp.bind(this));
+		this.keyEventsRegistered = true;
+	}
+	/**
+		stop listening to mouse events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.unregisterKeyEvents = function(){
+		if (!this.keyEventsRegistered) return;
+		window.removeEventListener("keydown", this._onDocumentKeyDown.bind(this));
+		window.removeEventListener("keyup", this._onDocumentKeyUp.bind(this));
+		this.keyEventsRegistered = false;
+	}
+
 	/*
 		override in your main app to catch keyboard events
 		@function
 		@public
 		@param {event}
 	*/
-	LAB.app.BaseApp.prototype.onDocumentKeyDown = function( event ) {}
+	LAB.app.BaseApp.prototype.onDocumentKeyDown = function( key ) {}
 
 	LAB.app.BaseApp.prototype._onDocumentKeyDown	= function( event ) {
-	   LAB.self.dispatchEvent("onDocumentKeyDown", event);
-	   LAB.self.onDocumentKeyDown( event );
+	   this.dispatchEvent("onDocumentKeyDown", event);
+	   this.onDocumentKeyDown( event.keyCode );
+	}
+
+	/*
+		override in your main app to catch keyboard events
+		@function
+		@public
+		@param {event}
+	*/
+	LAB.app.BaseApp.prototype.onDocumentKeyUp = function( key ) {}
+
+	LAB.app.BaseApp.prototype._onDocumentKeyUp	= function( event ) {
+	   this.dispatchEvent("onDocumentKeyUp", event);
+	   this.onDocumentKeyUp( event.keyCode );
 	}
 
 // ===========================================
@@ -292,7 +335,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	
 	LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
 	{
-		return LAB.self.elapsedTime;
+		return this.elapsedTime;
 	}
 	
 	/**
@@ -303,5 +346,5 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	
 	LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
 	{
-		return LAB.self.elapsedTime/1000;
+		return this.elapsedTime/1000;
 	}

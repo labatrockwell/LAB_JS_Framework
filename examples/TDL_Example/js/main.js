@@ -46,14 +46,14 @@ $(document).ready( function() {
 	// UPDATE
 
 		this.update = function (){			
-			rectMesh.width = rectMesh.height = (Math.abs(LAB.self.mouse.x - lastMouse.x)/10.+1)*100;
-			rectMesh.x = LAB.self.mouse.x - rectMesh.width/2;
-			rectMesh.y = LAB.self.mouse.y - rectMesh.height/2;
+			rectMesh.width = rectMesh.height = (Math.abs(this.mouse.x - lastMouse.x)/10.+1)*100;
+			rectMesh.x = this.mouse.x - rectMesh.width/2;
+			rectMesh.y = this.mouse.y - rectMesh.height/2;
 			
-			line.addPoint( LAB.self.mouse.x, LAB.self.mouse.y );
+			line.addPoint( this.mouse.x, this.mouse.y );
 						
-			lastMouse.x = LAB.self.mouse.x;
-			lastMouse.y = LAB.self.mouse.y;
+			lastMouse.x = this.mouse.x;
+			lastMouse.y = this.mouse.y;
 			rectMesh.update();
 			line.update();
 		}

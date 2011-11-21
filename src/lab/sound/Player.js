@@ -12,7 +12,7 @@ LAB.require(LAB.src+"EventDispatcher.js");
  @param {Boolean} controls
  */
 LAB.sound.Player = function( parent, loop, autoplay, controls ){		
-	LAB.EventDispatcher.call( this );
+	LAB.EventDispatcher.call( this, this );
 	
 	this.loop 		= loop || false;
 	this.autoplay 	= autoplay || false;

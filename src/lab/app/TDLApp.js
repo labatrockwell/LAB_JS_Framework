@@ -63,6 +63,8 @@ LAB.app.TDLApp = function()
 		math = tdl.math;
 		fast = tdl.fast;
 
+		this.registerKeyEvents();
+		this.registerMouseEvents();
 		//setup canvas and context
 				
 		if (document.getElementById("canvas") != null){
@@ -162,7 +164,7 @@ LAB.app.TDLApp = function()
 
 			//move to upper left corner and scale. mimics openframeworks setup
 			LAB.tdl.scale(1,-1,1);
-			lLAB.tdl.translate(0, -LAB.tdl.canvas.height, 0);
+			LAB.tdl.translate(0, -LAB.tdl.canvas.height, 0);
 		}
 	};
 	

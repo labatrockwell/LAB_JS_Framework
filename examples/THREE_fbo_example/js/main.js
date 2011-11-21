@@ -79,7 +79,7 @@ DemoApp = function(){
          screenQuad = new THREE.Mesh( new THREE.PlaneGeometry( window.innerWidth, window.innerHeight ), simpTexShader );
          screenQuad.position.set( window.innerWidth/2, window.innerHeight/2, 0);
          screenQuad.scale.set(1, -1, 1 );//flip it, otherwise the fbo will be up-side down when we draw it to the screen
-         screen = new LAB.three.Object( LAB.self.renderer, null );
+         screen = new LAB.three.Object( this.renderer, null );
          screen.addObject( screenQuad );
          
          //geometry and scene
@@ -91,16 +91,16 @@ DemoApp = function(){
                                   LAB.random( -200, 200));
             spheres[i].scale.set( LAB.random(1, 2.5 ), LAB.random(1, 25), LAB.random(1, 5) );
             spheres[i].rotation.set(LAB.random(0, 360), LAB.random(0, 360), LAB.random(0, 360) ); 
-            LAB.self.scene.addObject( spheres[i] );
+            this.scene.addObject( spheres[i] );
          }
          
          //lights
          ambientLight = new THREE.AmbientLight( 0x888888 );
-         LAB.self.scene.addLight( ambientLight );
+         this.scene.addLight( ambientLight );
          
          pointLight = new THREE.PointLight( 0xeeeeff );
          pointLight.position.set( window.innerWidth/2, window.innerHeight/2, 300 );
-         LAB.self.scene.addLight( pointLight );
+         this.scene.addLight( pointLight );
          
          
       }
@@ -134,7 +134,7 @@ DemoApp = function(){
                              2*lastMouse.y - window.innerHeight,
                              0);
       camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );
-      LAB.self.renderer.render( this.scene, camera, fboTexture, true );//render the scene to the fboTexture and clear = true
+      this.renderer.render( this.scene, camera, fboTexture, true );//render the scene to the fboTexture and clear = true
       camera.popMatrix();
       
       

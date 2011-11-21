@@ -21,277 +21,290 @@
 <span class='line'> 14</span> 
 <span class='line'> 15</span> </span><span class="NAME">LAB.app.BaseApp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
 <span class='line'> 16</span> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 17</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'> 18</span> 		Globally-accessible app scope
-<span class='line'> 19</span> 		@type LAB.app.BaseApp
-<span class='line'> 20</span> 	*/</span><span class="WHIT">	
-<span class='line'> 21</span> 	</span><span class="NAME">LAB.self</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 22</span> </span><span class="WHIT">	</span><span class="NAME">LAB.EventDispatcher.call</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="WHIT">	
-<span class='line'> 24</span> 	</span><span class="COMM">/**
-<span class='line'> 25</span> 		Mouse object: {x:Number, y:Number, bDown:Boolean}
-<span class='line'> 26</span> 		@type Object
-<span class='line'> 27</span> 	*/</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="WHIT">	</span><span class="NAME">this.mouse</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">x</span><span class="PUNC">:</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">:</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bDown</span><span class="PUNC">:</span><span class="KEYW">false</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 29</span> </span><span class="WHIT">	
-<span class='line'> 30</span> 	</span><span class="NAME">this.startTime</span><span class="WHIT"> 		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Date.now</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 31</span> </span><span class="WHIT">	</span><span class="NAME">this.elapsedTime</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 32</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 33</span> 
-<span class='line'> 34</span> </span><span class="NAME">LAB.app.BaseApp.prototype</span><span class="WHIT">				</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">LAB.EventDispatcher</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="NAME">LAB.app.BaseApp.prototype.constructor</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 36</span> </span><span class="NAME">LAB.app.BaseApp.prototype.supr</span><span class="WHIT"> 			</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.EventDispatcher.prototype</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">	</span><span class="NAME">LAB.EventDispatcher.call</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">	
+<span class='line'> 19</span> 	</span><span class="COMM">/**
+<span class='line'> 20</span> 		Mouse object: {x:Number, y:Number, bDown:Boolean}
+<span class='line'> 21</span> 		@type Object
+<span class='line'> 22</span> 	*/</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">	</span><span class="NAME">this.mouse</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">x</span><span class="PUNC">:</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">:</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bDown</span><span class="PUNC">:</span><span class="KEYW">false</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">	
+<span class='line'> 25</span> 	</span><span class="NAME">this.startTime</span><span class="WHIT"> 		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Date.now</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">	</span><span class="NAME">this.elapsedTime</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="NAME">LAB.app.BaseApp.prototype</span><span class="WHIT">				</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">LAB.EventDispatcher</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="NAME">LAB.app.BaseApp.prototype.constructor</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="NAME">LAB.app.BaseApp.prototype.supr</span><span class="WHIT"> 			</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.EventDispatcher.prototype</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> 
+<span class='line'> 33</span> </span><span class="COMM">/**
+<span class='line'> 34</span> Call setup and begin animating
+<span class='line'> 35</span> @function
+<span class='line'> 36</span> */</span><span class="WHIT">
 <span class='line'> 37</span> 
-<span class='line'> 38</span> </span><span class="COMM">/**
-<span class='line'> 39</span> Call setup and begin animating
-<span class='line'> 40</span> @function
-<span class='line'> 41</span> */</span><span class="WHIT">
-<span class='line'> 42</span> 
-<span class='line'> 43</span> </span><span class="NAME">LAB.app.BaseApp.prototype.begin</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="WHIT">	</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"base app set up"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">	</span><span class="NAME">this.setup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">	</span><span class="NAME">this.animate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 48</span> 
-<span class='line'> 49</span> </span><span class="COMM">// suggestions for overriding: updating + rendering</span><span class="WHIT">
-<span class='line'> 50</span> 
-<span class='line'> 51</span> </span><span class="COMM">/**
-<span class='line'> 52</span> 	override in your main class. called once
-<span class='line'> 53</span> 	@function
-<span class='line'> 54</span> */</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="NAME">LAB.app.BaseApp.prototype.setup</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 56</span> 
-<span class='line'> 57</span> </span><span class="COMM">/**
-<span class='line'> 58</span> 	override when extending BaseApp; gets called automatically before update()
-<span class='line'> 59</span> 	@function
-<span class='line'> 60</span> 	@private
-<span class='line'> 61</span> */</span><span class="WHIT">
-<span class='line'> 62</span> 
-<span class='line'> 63</span> </span><span class="NAME">LAB.app.BaseApp.prototype.preupdate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="NAME">LAB.app.BaseApp.prototype.begin</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">	</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"base app set up"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">	</span><span class="NAME">this.setup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">	</span><span class="NAME">this.animate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="COMM">// suggestions for overriding: updating + rendering</span><span class="WHIT">
+<span class='line'> 45</span> 
+<span class='line'> 46</span> </span><span class="COMM">/**
+<span class='line'> 47</span> 	override in your main class. called once
+<span class='line'> 48</span> 	@function
+<span class='line'> 49</span> */</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="NAME">LAB.app.BaseApp.prototype.setup</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> 
+<span class='line'> 52</span> </span><span class="COMM">/**
+<span class='line'> 53</span> 	override when extending BaseApp; gets called automatically before update()
+<span class='line'> 54</span> 	@function
+<span class='line'> 55</span> 	@private
+<span class='line'> 56</span> */</span><span class="WHIT">
+<span class='line'> 57</span> 
+<span class='line'> 58</span> </span><span class="NAME">LAB.app.BaseApp.prototype.preupdate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="COMM">/**
+<span class='line'> 61</span> 	override in your main class. called once a frame before predraw(), draw(), and postdraw()
+<span class='line'> 62</span> 	@function
+<span class='line'> 63</span> */</span><span class="WHIT">
 <span class='line'> 64</span> 
-<span class='line'> 65</span> </span><span class="COMM">/**
-<span class='line'> 66</span> 	override in your main class. called once a frame before predraw(), draw(), and postdraw()
-<span class='line'> 67</span> 	@function
-<span class='line'> 68</span> */</span><span class="WHIT">
-<span class='line'> 69</span> 
-<span class='line'> 70</span> </span><span class="NAME">LAB.app.BaseApp.prototype.update</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 71</span> 
-<span class='line'> 72</span> </span><span class="COMM">/**
-<span class='line'> 73</span> 	override when extending BaseApp; gets called automatically before draw().
-<span class='line'> 74</span> 	useful when setting up an WebGL context, clearing a canvas, etc.
-<span class='line'> 75</span> 	@function
-<span class='line'> 76</span> 	@private
-<span class='line'> 77</span> */</span><span class="WHIT">
-<span class='line'> 78</span> 
-<span class='line'> 79</span> </span><span class="NAME">LAB.app.BaseApp.prototype.predraw</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">	</span><span class="COMM">// e.g. setup screen</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="NAME">LAB.app.BaseApp.prototype.update</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> 
+<span class='line'> 67</span> </span><span class="COMM">/**
+<span class='line'> 68</span> 	override when extending BaseApp; gets called automatically before draw().
+<span class='line'> 69</span> 	useful when setting up an WebGL context, clearing a canvas, etc.
+<span class='line'> 70</span> 	@function
+<span class='line'> 71</span> 	@private
+<span class='line'> 72</span> */</span><span class="WHIT">
+<span class='line'> 73</span> 
+<span class='line'> 74</span> </span><span class="NAME">LAB.app.BaseApp.prototype.predraw</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">	</span><span class="COMM">// e.g. setup screen</span><span class="WHIT">
+<span class='line'> 75</span> 
+<span class='line'> 76</span> </span><span class="COMM">/**
+<span class='line'> 77</span> 	override your main class. called once a frame after update();
+<span class='line'> 78</span> 	@function
+<span class='line'> 79</span> */</span><span class="WHIT">
 <span class='line'> 80</span> 
-<span class='line'> 81</span> </span><span class="COMM">/**
-<span class='line'> 82</span> 	override your main class. called once a frame after update();
-<span class='line'> 83</span> 	@function
-<span class='line'> 84</span> */</span><span class="WHIT">
-<span class='line'> 85</span> 
-<span class='line'> 86</span> </span><span class="NAME">LAB.app.BaseApp.prototype.draw</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">	</span><span class="COMM">// override this in your main app</span><span class="WHIT">
-<span class='line'> 87</span> 
-<span class='line'> 88</span> </span><span class="COMM">/**
-<span class='line'> 89</span> 	override when extending BaseApp; gets called automatically after draw().
-<span class='line'> 90</span> 	useful when tearing down WebGL context, resetting the camera/view, etc
-<span class='line'> 91</span> 	@function
-<span class='line'> 92</span> 	@private
-<span class='line'> 93</span> */</span><span class="WHIT">
-<span class='line'> 94</span> </span><span class="NAME">LAB.app.BaseApp.prototype.postdraw</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// e.g. teardown screen</span><span class="WHIT">
-<span class='line'> 95</span> 
-<span class='line'> 96</span> </span><span class="COMM">/**
-<span class='line'> 97</span> 	starts off animation + sets up preupdate-update-predraw-draw-postdraw chain
-<span class='line'> 98</span> 	@function
-<span class='line'> 99</span> 	@private
-<span class='line'>100</span> */</span><span class="WHIT">
-<span class='line'>101</span> </span><span class="NAME">LAB.app.BaseApp.prototype.animate</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">time</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>102</span> </span><span class="WHIT">	</span><span class="COMM">// update time</span><span class="WHIT">
-<span class='line'>103</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">time</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>104</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>105</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.elapsedTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">time</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">LAB.self.startTime</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>106</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>107</span> </span><span class="WHIT">	
-<span class='line'>108</span> 	</span><span class="NAME">requestAnimationFrame</span><span class="PUNC">(</span><span class="NAME">LAB.self.animate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>109</span> </span><span class="WHIT">			
-<span class='line'>110</span> 	</span><span class="NAME">LAB.self.preupdate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>111</span> </span><span class="WHIT">   	</span><span class="NAME">LAB.self.update</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>112</span> </span><span class="WHIT">	</span><span class="NAME">LAB.self.predraw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>113</span> </span><span class="WHIT">	</span><span class="NAME">LAB.self.draw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>114</span> </span><span class="WHIT">	</span><span class="NAME">LAB.self.postdraw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>115</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>116</span> 
-<span class='line'>117</span> 
-<span class='line'>118</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>119</span> </span><span class="COMM">// ===== WINDOW</span><span class="WHIT">
-<span class='line'>120</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>121</span> </span><span class="NAME">LAB.app.BaseApp.prototype.registerWindowResize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">	</span><span class="NAME">window.onresize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.self._onWindowResized</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>124</span> 
-<span class='line'>125</span> </span><span class="NAME">LAB.app.BaseApp.prototype._onWindowResized</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">	</span><span class="NAME">LAB.self.onWindowResized</span><span class="PUNC">(</span><span class="NAME">window.innerWidth</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">window.innerHeight</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>127</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>128</span> 
-<span class='line'>129</span> </span><span class="NAME">LAB.app.BaseApp.prototype.onWindowResized</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">width</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">height</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>130</span> 
-<span class='line'>131</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>132</span> </span><span class="COMM">// ===== MOUSE</span><span class="WHIT">
-<span class='line'>133</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>134</span> 
-<span class='line'>135</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>136</span> 		start listening to mouse events
-<span class='line'>137</span> 		@function
-<span class='line'>138</span> 		@public
-<span class='line'>139</span> 	*/</span><span class="WHIT">
-<span class='line'>140</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.registerMouseEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>141</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mousemove"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMouseMoved</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>142</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mousedown"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMousePressed</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>143</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mouseup"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMouseReleased</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>146</span> 		stop listening to mouse events
-<span class='line'>147</span> 		@function
-<span class='line'>148</span> 		@public
-<span class='line'>149</span> 	*/</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.unregisterMouseEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>151</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>152</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mousemove"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMouseMoved</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>153</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mousedown"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMousePressed</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>154</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mouseup"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self._onMouseReleased</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>155</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>156</span> </span><span class="WHIT">	
-<span class='line'>157</span> 	</span><span class="COMM">/**
-<span class='line'>158</span> 		override in your main app to catch mouse moved events
-<span class='line'>159</span> 		@function
-<span class='line'>160</span> 		@public
-<span class='line'>161</span> 		@param {number} x Mouse x position
-<span class='line'>162</span> 		@param {number} y Mouse y position
-<span class='line'>163</span> 	*/</span><span class="WHIT">
-<span class='line'>164</span> </span><span class="WHIT">	
-<span class='line'>165</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseMoved</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>166</span> </span><span class="WHIT">	
-<span class='line'>167</span> 	</span><span class="COMM">/**
-<span class='line'>168</span> 		override in your main app to catch mouse pressed events
-<span class='line'>169</span> 		@function
-<span class='line'>170</span> 		@public
-<span class='line'>171</span> 		@param {number} x Mouse x position
-<span class='line'>172</span> 		@param {number} y Mouse y position
-<span class='line'>173</span> 	*/</span><span class="WHIT">
-<span class='line'>174</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMousePressed</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>175</span> </span><span class="WHIT">	
-<span class='line'>176</span> 	</span><span class="COMM">/**
-<span class='line'>177</span> 		override in your main app to catch mouse pressed events
-<span class='line'>178</span> 		@function
-<span class='line'>179</span> 		@public
-<span class='line'>180</span> 		@param {number} x Mouse x position
-<span class='line'>181</span> 		@param {number} y Mouse y position
-<span class='line'>182</span> 	*/</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseDragged</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">	
-<span class='line'>185</span> 	</span><span class="COMM">/**
-<span class='line'>186</span> 		override in your main app to catch mouse released events
-<span class='line'>187</span> 		@function
-<span class='line'>188</span> 		@public
-<span class='line'>189</span> 		@param {number} x Mouse x position
-<span class='line'>190</span> 		@param {number} y Mouse y position
-<span class='line'>191</span> 	*/</span><span class="WHIT">
-<span class='line'>192</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseReleased</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>193</span> 
-<span class='line'>194</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>195</span> 		called directly by Window. override in your app to directly
-<span class='line'>196</span> 		catch the "mousemove" event from Window.
-<span class='line'>197</span> 		@function
-<span class='line'>198</span> 		@private
-<span class='line'>199</span> 		@param {Event} event DOM mouse event
-<span class='line'>200</span> 	*/</span><span class="WHIT">
-<span class='line'>201</span> 
-<span class='line'>202</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseMoved</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>203</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">	 
-<span class='line'>204</span> 		</span><span class="COMM">// if the mouse is down, call dragged instead of moved</span><span class="WHIT">
-<span class='line'>205</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">LAB.self.mouse.bDown</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>206</span> </span><span class="WHIT">			</span><span class="NAME">LAB.self._onMouseDragged</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>207</span> </span><span class="WHIT">			</span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>208</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>209</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
-<span class='line'>210</span> 		</span><span class="NAME">LAB.self.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>211</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseMoved"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>212</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.onMouseMoved</span><span class="PUNC">(</span><span class="NAME">LAB.self.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>213</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>214</span> 
-<span class='line'>215</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>216</span> 		called directly by Window. override in your app to directly
-<span class='line'>217</span> 		catch the "mousedown" event from Window.
-<span class='line'>218</span> 		@function
-<span class='line'>219</span> 		@private
-<span class='line'>220</span> 		@param {Event} event DOM mouse event
-<span class='line'>221</span> 	*/</span><span class="WHIT">
-<span class='line'>222</span> 
-<span class='line'>223</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMousePressed</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>224</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>225</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
-<span class='line'>226</span> 		</span><span class="NAME">LAB.self.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>227</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.bDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>228</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMousePressed"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>229</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.onMousePressed</span><span class="PUNC">(</span><span class="NAME">LAB.self.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>230</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>231</span> 
-<span class='line'>232</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>233</span> 		called directly by Window. override in your app to directly
-<span class='line'>234</span> 		catch the "mouseup" event from Window.
-<span class='line'>235</span> 		@function
-<span class='line'>236</span> 		@private
-<span class='line'>237</span> 		@param {Event} event DOM mouse event
-<span class='line'>238</span> 	*/</span><span class="WHIT">
-<span class='line'>239</span> 
-<span class='line'>240</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseReleased</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>241</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>242</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
-<span class='line'>243</span> 		</span><span class="NAME">LAB.self.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>244</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.bDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>245</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseReleased"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>246</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.onMouseReleased</span><span class="PUNC">(</span><span class="NAME">LAB.self.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>247</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>248</span> </span><span class="WHIT">	
-<span class='line'>249</span> 	</span><span class="COMM">/**
-<span class='line'>250</span> 		helper function to call onMouseDragged instead of onMouseMoved.
-<span class='line'>251</span> 		overriding this won't help anybody.
-<span class='line'>252</span> 		@function
-<span class='line'>253</span> 		@private
-<span class='line'>254</span> 		@param {Event} event DOM mouse event
-<span class='line'>255</span> 	*/</span><span class="WHIT">
-<span class='line'>256</span> 
-<span class='line'>257</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseDragged</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>258</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>259</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
-<span class='line'>260</span> 		</span><span class="NAME">LAB.self.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>261</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseDragged"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>262</span> </span><span class="WHIT">		</span><span class="NAME">LAB.self.onMouseDragged</span><span class="PUNC">(</span><span class="NAME">LAB.self.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LAB.self.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>263</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>264</span> </span><span class="WHIT">	
-<span class='line'>265</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>266</span> </span><span class="COMM">// ===== TIME</span><span class="WHIT">
-<span class='line'>267</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
-<span class='line'>268</span> 
-<span class='line'>269</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'>270</span> 		get ellapsed time in milliseconds
-<span class='line'>271</span> 		@function
-<span class='line'>272</span> 		@public
-<span class='line'>273</span> 	*/</span><span class="WHIT">
-<span class='line'>274</span> </span><span class="WHIT">	
-<span class='line'>275</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.getElapsedTimeMillis</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>276</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>277</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">LAB.self.elapsedTime</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>278</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>279</span> </span><span class="WHIT">	
-<span class='line'>280</span> 	</span><span class="COMM">/**
-<span class='line'>281</span> 		get ellapsed time in seconds
-<span class='line'>282</span> 		@function
-<span class='line'>283</span> 		@public
-<span class='line'>284</span> 	*/</span><span class="WHIT">
-<span class='line'>285</span> </span><span class="WHIT">	
-<span class='line'>286</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.getElapsedTimeSeconds</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'>287</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>288</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">LAB.self.elapsedTime</span><span class="PUNC">/</span><span class="NUMB">1000</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>289</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>290</span> </span></pre></body></html>
+<span class='line'> 81</span> </span><span class="NAME">LAB.app.BaseApp.prototype.draw</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">	</span><span class="COMM">// override this in your main app</span><span class="WHIT">
+<span class='line'> 82</span> 
+<span class='line'> 83</span> </span><span class="COMM">/**
+<span class='line'> 84</span> 	override when extending BaseApp; gets called automatically after draw().
+<span class='line'> 85</span> 	useful when tearing down WebGL context, resetting the camera/view, etc
+<span class='line'> 86</span> 	@function
+<span class='line'> 87</span> 	@private
+<span class='line'> 88</span> */</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="NAME">LAB.app.BaseApp.prototype.postdraw</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// e.g. teardown screen</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="COMM">/**
+<span class='line'> 92</span> 	starts off animation + sets up preupdate-update-predraw-draw-postdraw chain
+<span class='line'> 93</span> 	@function
+<span class='line'> 94</span> 	@private
+<span class='line'> 95</span> */</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="NAME">LAB.app.BaseApp.prototype.animate</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">time</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">	</span><span class="COMM">// update time</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">time</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">		</span><span class="NAME">this.elapsedTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">time</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this.startTime</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">	
+<span class='line'>103</span> 	</span><span class="NAME">requestAnimationFrame</span><span class="PUNC">(</span><span class="NAME">this.animate.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">			
+<span class='line'>105</span> 	</span><span class="NAME">this.preupdate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">   	</span><span class="NAME">this.update</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">	</span><span class="NAME">this.predraw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">	</span><span class="NAME">this.draw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">	</span><span class="NAME">this.postdraw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>111</span> 
+<span class='line'>112</span> 
+<span class='line'>113</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="COMM">// ===== WINDOW</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="NAME">LAB.app.BaseApp.prototype.registerWindowResize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">	</span><span class="NAME">window.onresize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._onWindowResized.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>119</span> 
+<span class='line'>120</span> </span><span class="NAME">LAB.app.BaseApp.prototype._onWindowResized</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">	</span><span class="NAME">this.onWindowResized</span><span class="PUNC">(</span><span class="NAME">window.innerWidth</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">window.innerHeight</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>123</span> 
+<span class='line'>124</span> </span><span class="NAME">LAB.app.BaseApp.prototype.onWindowResized</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">width</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">height</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>125</span> 
+<span class='line'>126</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="COMM">// ===== MOUSE</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>129</span> 
+<span class='line'>130</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>131</span> 		start listening to mouse events
+<span class='line'>132</span> 		@function
+<span class='line'>133</span> 		@public
+<span class='line'>134</span> 	*/</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.registerMouseEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mousemove"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMouseMoved.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mousedown"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMousePressed.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">		</span><span class="NAME">window.addEventListener</span><span class="PUNC">(</span><span class="STRN">"mouseup"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMouseReleased.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>141</span> 		stop listening to mouse events
+<span class='line'>142</span> 		@function
+<span class='line'>143</span> 		@public
+<span class='line'>144</span> 	*/</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.unregisterMouseEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mousemove"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMouseMoved.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mousedown"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMousePressed.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">		</span><span class="NAME">window.removeEventListener</span><span class="PUNC">(</span><span class="STRN">"mouseup"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._onMouseReleased.bind</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">	
+<span class='line'>152</span> 	</span><span class="COMM">/**
+<span class='line'>153</span> 		override in your main app to catch mouse moved events
+<span class='line'>154</span> 		@function
+<span class='line'>155</span> 		@public
+<span class='line'>156</span> 		@param {number} x Mouse x position
+<span class='line'>157</span> 		@param {number} y Mouse y position
+<span class='line'>158</span> 	*/</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">	
+<span class='line'>160</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseMoved</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">	
+<span class='line'>162</span> 	</span><span class="COMM">/**
+<span class='line'>163</span> 		override in your main app to catch mouse pressed events
+<span class='line'>164</span> 		@function
+<span class='line'>165</span> 		@public
+<span class='line'>166</span> 		@param {number} x Mouse x position
+<span class='line'>167</span> 		@param {number} y Mouse y position
+<span class='line'>168</span> 	*/</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMousePressed</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">	
+<span class='line'>171</span> 	</span><span class="COMM">/**
+<span class='line'>172</span> 		override in your main app to catch mouse pressed events
+<span class='line'>173</span> 		@function
+<span class='line'>174</span> 		@public
+<span class='line'>175</span> 		@param {number} x Mouse x position
+<span class='line'>176</span> 		@param {number} y Mouse y position
+<span class='line'>177</span> 	*/</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseDragged</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">	
+<span class='line'>180</span> 	</span><span class="COMM">/**
+<span class='line'>181</span> 		override in your main app to catch mouse released events
+<span class='line'>182</span> 		@function
+<span class='line'>183</span> 		@public
+<span class='line'>184</span> 		@param {number} x Mouse x position
+<span class='line'>185</span> 		@param {number} y Mouse y position
+<span class='line'>186</span> 	*/</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onMouseReleased</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">,</span><span class="NAME">y</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> 
+<span class='line'>189</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>190</span> 		called directly by Window. override in your app to directly
+<span class='line'>191</span> 		catch the "mousemove" event from Window.
+<span class='line'>192</span> 		@function
+<span class='line'>193</span> 		@private
+<span class='line'>194</span> 		@param {Event} event DOM mouse event
+<span class='line'>195</span> 	*/</span><span class="WHIT">
+<span class='line'>196</span> 
+<span class='line'>197</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseMoved</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">	 
+<span class='line'>199</span> 		</span><span class="COMM">// if the mouse is down, call dragged instead of moved</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.mouse.bDown</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">			</span><span class="NAME">this._onMouseDragged</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">			</span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>205</span> 		</span><span class="NAME">this.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">		</span><span class="NAME">this.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseMoved"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">		</span><span class="NAME">this.onMouseMoved</span><span class="PUNC">(</span><span class="NAME">this.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>209</span> 
+<span class='line'>210</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>211</span> 		called directly by Window. override in your app to directly
+<span class='line'>212</span> 		catch the "mousedown" event from Window.
+<span class='line'>213</span> 		@function
+<span class='line'>214</span> 		@private
+<span class='line'>215</span> 		@param {Event} event DOM mouse event
+<span class='line'>216</span> 	*/</span><span class="WHIT">
+<span class='line'>217</span> 
+<span class='line'>218</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMousePressed</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>221</span> 		</span><span class="NAME">this.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.bDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">		</span><span class="NAME">this.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMousePressed"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">		</span><span class="NAME">this.onMousePressed</span><span class="PUNC">(</span><span class="NAME">this.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>226</span> 
+<span class='line'>227</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>228</span> 		called directly by Window. override in your app to directly
+<span class='line'>229</span> 		catch the "mouseup" event from Window.
+<span class='line'>230</span> 		@function
+<span class='line'>231</span> 		@private
+<span class='line'>232</span> 		@param {Event} event DOM mouse event
+<span class='line'>233</span> 	*/</span><span class="WHIT">
+<span class='line'>234</span> 
+<span class='line'>235</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseReleased</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>238</span> 		</span><span class="NAME">this.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>239</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.bDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">		</span><span class="NAME">this.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseReleased"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">		</span><span class="NAME">this.onMouseReleased</span><span class="PUNC">(</span><span class="NAME">this.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">	
+<span class='line'>244</span> 	</span><span class="COMM">/**
+<span class='line'>245</span> 		helper function to call onMouseDragged instead of onMouseMoved.
+<span class='line'>246</span> 		overriding this won't help anybody.
+<span class='line'>247</span> 		@function
+<span class='line'>248</span> 		@private
+<span class='line'>249</span> 		@param {Event} event DOM mouse event
+<span class='line'>250</span> 	*/</span><span class="WHIT"> 
+<span class='line'>251</span> 
+<span class='line'>252</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype._onMouseDragged</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="WHIT">		</span><span class="NAME">this.mouse.x</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientX</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>255</span> 		</span><span class="NAME">this.mouse.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">event.clientY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">		</span><span class="NAME">this.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onMouseDragged"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">		</span><span class="NAME">this.onMouseDragged</span><span class="PUNC">(</span><span class="NAME">this.mouse.x</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.mouse.y</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>259</span> 
+<span class='line'>260</span> 
+<span class='line'>261</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="COMM">// ===== KEYBOARD</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>264</span> 
+<span class='line'>265</span> </span><span class="WHIT">	</span><span class="COMM">/*
+<span class='line'>266</span> 		override in your main app to catch keyboard events
+<span class='line'>267</span> 		@function
+<span class='line'>268</span> 		@public
+<span class='line'>269</span> 		@param {event}
+<span class='line'>270</span> 	*/</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype.onDocumentKeyDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>272</span> 
+<span class='line'>273</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.prototype._onDocumentKeyDown</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">	   </span><span class="NAME">this.dispatchEvent</span><span class="PUNC">(</span><span class="STRN">"onDocumentKeyDown"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">event</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">	   </span><span class="NAME">this.onDocumentKeyDown</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">event</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>277</span> 
+<span class='line'>278</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="COMM">// ===== TIME</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="COMM">// ===========================================</span><span class="WHIT">
+<span class='line'>281</span> 
+<span class='line'>282</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'>283</span> 		get ellapsed time in milliseconds
+<span class='line'>284</span> 		@function
+<span class='line'>285</span> 		@public
+<span class='line'>286</span> 	*/</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">	
+<span class='line'>288</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.getElapsedTimeMillis</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.elapsedTime</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>292</span> </span><span class="WHIT">	
+<span class='line'>293</span> 	</span><span class="COMM">/**
+<span class='line'>294</span> 		get ellapsed time in seconds
+<span class='line'>295</span> 		@function
+<span class='line'>296</span> 		@public
+<span class='line'>297</span> 	*/</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">	
+<span class='line'>299</span> 	</span><span class="NAME">LAB.app.BaseApp.prototype.getElapsedTimeSeconds</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>300</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.elapsedTime</span><span class="PUNC">/</span><span class="NUMB">1000</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>303</span> </span></pre></body></html>
