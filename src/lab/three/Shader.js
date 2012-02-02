@@ -3,7 +3,7 @@ LAB.three = LAB.three || {};
 
 /** 
  @constructor 
- @extends THREE.MeshShaderMaterial
+ @extends THREE.ShaderMaterial
  */
 
 LAB.three.Shader = function ( parameters ) {
@@ -14,13 +14,13 @@ LAB.three.Shader = function ( parameters ) {
    $.ajax({ async: false, type: 'GET', url: parameters.name.concat( ".frag"),
           success: function(data) { parameters.fragmentShader = data.slice( 0, data.length ); }});
    
-   THREE.MeshShaderMaterial.call( this, parameters );
+   THREE.ShaderMaterial.call( this, parameters );
    
 };
 
-LAB.three.Shader.prototype = new THREE.MeshShaderMaterial();
+LAB.three.Shader.prototype = new THREE.ShaderMaterial();
 LAB.three.Shader.prototype.constructor = LAB.three.Shader;
-LAB.three.Shader.prototype.supr = THREE.MeshShaderMaterial.prototype;
+LAB.three.Shader.prototype.supr = THREE.ShaderMaterial.prototype;
 
 
 /**

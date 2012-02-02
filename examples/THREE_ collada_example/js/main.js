@@ -11,7 +11,7 @@ $(document).ready( function() {
                   // is there a good way to call this automatically?
                   //demoApp.begin();//need to load the collada first
                   
-                  var loader = new ColladaLoader();
+                  var loader = new THREE.ColladaLoader();
                   loader.load( './models/monster.dae', function colladaReady( collada ) {
                               
                               dae = collada.scene;
@@ -84,30 +84,30 @@ DemoApp = function(){
          }
          
          var line = new THREE.Line( geometry, line_material, THREE.LinePieces );
-         scene.addObject( line );
+         scene.add( line );
          
          // Add the COLLADA
          
-         scene.addObject( dae );
-         scene.addObject( voronoi );
+         scene.add( dae );
+         scene.add( voronoi );
          
          particleLight = new THREE.Mesh( new THREE.SphereGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
-         scene.addObject( particleLight );
+         scene.add( particleLight );
          
          // Lights
          
-         scene.addLight( new THREE.AmbientLight( 0xcccccc ) );
+         scene.add( new THREE.AmbientLight( 0xcccccc ) );
          
          var directionalLight = new THREE.DirectionalLight(/*Math.random() * 0xffffff*/0xeeeeee );
          directionalLight.position.x = Math.random() - 0.5;
          directionalLight.position.y = Math.random() - 0.5;
          directionalLight.position.z = Math.random() - 0.5;
          directionalLight.position.normalize();
-         scene.addLight( directionalLight );
+         scene.add( directionalLight );
          
          pointLight = new THREE.PointLight( 0xffffff, 4 );
          pointLight.position.x = 10000;
-         scene.addLight( pointLight );
+         scene.add( pointLight );
          
          renderer = _self.renderer;//new THREE.WebGLRenderer();
          renderer.setSize( window.innerWidth, window.innerHeight );
@@ -176,6 +176,8 @@ DemoApp = function(){
    {
       lastMouse.x = x;
       lastMouse.y = y;
+
+	console.log(x+":"+y)
    }		
    
    this.onMousePressed	= function (x,y){

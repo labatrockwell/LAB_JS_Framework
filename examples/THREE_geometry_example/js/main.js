@@ -63,11 +63,11 @@ DemoApp = function(){
          
          //lights
          ambientLight = new THREE.AmbientLight( 0x888888 );
-         this.scene.addLight( ambientLight );
+         this.scene.add( ambientLight );
          
          pointLight = new THREE.PointLight( 0xeeeeff );
          pointLight.position.set( window.innerWidth/2, window.innerHeight/2, 300 );
-         this.scene.addLight( pointLight );
+         this.scene.add( pointLight );
          
          
          
@@ -86,7 +86,7 @@ DemoApp = function(){
          
          mesh = new THREE.Mesh( geom, meshShader );//materials[3] );
          mesh.scale.set( 15, 15, 15 );
-         this.scene.addObject( mesh );
+         this.scene.add( mesh );
          
          
          //lines
@@ -126,7 +126,7 @@ DemoApp = function(){
          
          lineMesh = new THREE.Line( lines, lineShader, THREE.LinePieces );
          lineMesh.scale.copy( mesh.scale );
-         this.scene.addObject( lineMesh );
+         this.scene.add( lineMesh );
          
          //make some objects that don't render, we just need their _modelViewMatrix
          var blankShader = new LAB.three.Shader({name: 'shaders/blank'});
@@ -134,7 +134,7 @@ DemoApp = function(){
 			var cubeGeo = new THREE.CubeGeometry( 1,1,1 );
          for(var i=0; i<2; i++){
             blankObjects.push( new THREE.Mesh( cubeGeo, blankShader) );
-            this.scene.addObject( blankObjects[i] );
+            this.scene.add( blankObjects[i] );
             blankObjects[i].position.set( window.innerWidth/2, window.innerHeight/2, 0)
             blankObjects[i].scale.copy( mesh.scale );
          }

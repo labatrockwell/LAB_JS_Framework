@@ -18,14 +18,11 @@ DemoApp = function() {
 	var _self = this;
    
 	var lastMouse = {x:0, y:0};
-	var labCam;
 
 	// ===========================================
 	// ===== SETUP
 	// ===========================================	
 	this.setup = function() {
-		// catch mouse events!
-		this.registerMouseEvents();
 	}
 	
 	// ===========================================
@@ -40,7 +37,7 @@ DemoApp = function() {
 	// ===========================================
 	this.draw = function() {
 		this.renderer.clear();
-		
+		// do some stuff		
 		this.renderer.render( this.scene, this.camera );
 	}
 	
@@ -60,7 +57,6 @@ DemoApp = function() {
 	}
 	
 	this.onMousePressed	= function( x, y ) {
-		LAB.log( circle );
 	}
 }
 

@@ -3,24 +3,24 @@ LAB.three = LAB.three || {};
 
 /** 
  @constructor 
- @extends THREE.Camera
+ @extends THREE.PerspectiveCamera
  */
 LAB.three.Camera = function ( fov, aspect, near, far ) {
-   THREE.Camera.call( this, fov, aspect, near, far );// I think this works, seems to work...
+   THREE.PerspectiveCamera.call( this, fov, aspect, near, far );// I think this works, seems to work...
    this.matrix.identity();
    this.mvMatrixStack = [];
+   this.useTarget = true;
    
    //   this.setToWindowPerspective();
-   this.useTarget = true;
    this.useQuaternion = true;
    this.bUsePushPop = false;
    
    this.setToWindowPerspective();
 };
 
-LAB.three.Camera.prototype = new THREE.Camera();
+LAB.three.Camera.prototype = new THREE.PerspectiveCamera();
 LAB.three.Camera.prototype.constructor = LAB.three.Camera;
-LAB.three.Camera.prototype.supr = THREE.Camera.prototype;
+LAB.three.Camera.prototype.supr = THREE.PerspectiveCamera.prototype;
 
 /**
  @function
@@ -32,6 +32,9 @@ LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){
    this.useTarget = false;
 };
 
+LAB.three.Camera.prototype.updateProjectionMatrix = function(){
+};
+
 /**
  @function
  @public
@@ -40,34 +43,35 @@ LAB.three.Camera.prototype.updateMatrix = function () {
    
    //this bypasses the THREE.Camera.updateMatrix() called by the renderer
    //without this the camera would automaticllay update according to it's position scale and rotation vectors
-   
-   
+      
    //if we're not using push&pop then we need to update the matrix 
    if( this.bUsePushPop == false ){
       //the following is copied from the THREE.Object3D method updateMatrix()
-		this.matrix.setPosition( this.position );
+      this.matrix.setPosition( this.position );
       
-		if ( this.useQuaternion )  {
+      if ( this.useQuaternion )  {
          
-			this.matrix.setRotationFromQuaternion( this.quaternion );
+         this.matrix.setRotationFromQuaternion( this.quaternion );
          
-		} else {
+      } else {
          
-			this.matrix.setRotationFromEuler( this.rotation, this.eulerOrder );
+         this.matrix.setRotationFromEuler( this.rotation, this.eulerOrder );
          
-		}
+      }
       
-		if ( this.scale.x !== 1 || this.scale.y !== 1 || this.scale.z !== 1 ) {
+      if ( this.scale.x !== 1 || this.scale.y !== 1 || this.scale.z !== 1 ) {
          
-			this.matrix.scale( this.scale );
-			this.boundRadiusScale = Math.max( this.scale.x, Math.max( this.scale.y, this.scale.z ) );
+         this.matrix.scale( this.scale );
+         this.boundRadiusScale = Math.max( this.scale.x, Math.max( this.scale.y, this.scale.z ) );
          
-		}
+      }
       
-		this.matrixWorldNeedsUpdate = true;
+      this.matrixWorldNeedsUpdate = true;
    } else {
-		this.position.setPositionFromMatrix(this.matrix);
-	}
+
+      //this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
+      this.position.setPositionFromMatrix(this.matrix);
+   }
 };
 
 
@@ -78,36 +82,36 @@ LAB.three.Camera.prototype.updateMatrix = function () {
  */
 LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
 
-   var fov = _fov || 60;
+   this.fov = _fov || 60;
    
-	var viewW = window.innerWidth;
-	var viewH = window.innerHeight;
+   var viewW = window.innerWidth;
+   var viewH = window.innerHeight;
    
-	var eyeX = viewW / 2;
-	var eyeY = viewH / 2;
-	var halfFov = Math.PI * fov / 360;
-	var theTan = Math.tan(halfFov);
-	var dist = eyeY / theTan;
-	var aspect = viewW / viewH;
+   var eyeX = viewW / 2;
+   var eyeY = viewH / 2;
+   var halfFov = Math.PI * this.fov / 360;
+   var theTan = Math.tan(halfFov);
+   var dist = eyeY / theTan;
+   this.aspect = viewW / viewH;
    
-   var near = _nearClip || dist / 10;
-   var far = _farClip || dist * 10;
-   this.projectionMatrix = THREE.Matrix4.makePerspective( fov, aspect, near, far );
+   this.near = _nearClip || dist / 10;
+   this.far = _farClip || dist * 10;
+   this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
    
    this.position.set( eyeX, eyeY, dist );
-   this.target.position.set( eyeX, eyeY, 0 );
+   //this.target.position.set( eyeX, eyeY, 0 );
    this.up.set( 0, 1, 0 );
    
-   this.matrix.lookAt( this.position, this.target.position, this.up );
+   this.matrix.lookAt( this.position, new THREE.Vector3(eyeX, eyeY, 0), this.up );
    this.matrix.setPosition( this.position );
    
    
-   //	if(ofDoesHWOrientation()){
-   //		if(vFlip){
-   //			glScalef(1, -1, 1);
-   //			glTranslatef(0, -height, 0);
-   //		}
-   //	}
+   // if(ofDoesHWOrientation()){
+   //    if(vFlip){
+   //       glScalef(1, -1, 1);
+   //       glTranslatef(0, -height, 0);
+   //    }
+   // }
 };
 
 /**
@@ -148,6 +152,7 @@ LAB.three.Camera.prototype.projectToWorld = function( screenPos ){
  @public
  */
 LAB.three.Camera.prototype.pushMatrix = function(){
+   if (this.bUsePushPop == false) this.usePushPop();
    this.mvMatrixStack.push( new THREE.Matrix4().copy( this.matrix ));
 };
 
@@ -156,6 +161,7 @@ LAB.three.Camera.prototype.pushMatrix = function(){
  @public
  */
 LAB.three.Camera.prototype.popMatrix = function(){
+   if (this.bUsePushPop == false) this.usePushPop();
    if( this.mvMatrixStack.length > 0){
       this.matrix.copy( this.mvMatrixStack.pop() );
    }
@@ -172,7 +178,7 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
                          this.up );
    }else{
       this.useTarget = true;
-      this.target.position.set( x,y,z );
+      //this.target.position.set( x,y,z );
    }
 };
 

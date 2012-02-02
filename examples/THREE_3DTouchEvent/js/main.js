@@ -39,15 +39,15 @@ DemoApp = function() {
         this.camera.usePushPop( true );
 
 		ambientLight = new THREE.AmbientLight( 0x666666 );
-        this.scene.addLight( ambientLight );
+        this.scene.addObject( ambientLight );
 
 		var light = new THREE.DirectionalLight( 0x666666, 2 );
 		light.position.set( 1, 1, 1 ).normalize();
-		this.scene.addLight( light );
+		this.scene.addObject( light );
 		
 		var light = new THREE.DirectionalLight( 0xffffff );
 		light.position.set( -1, -1, -1 ).normalize();
-		this.scene.addLight( light );
+		this.scene.addObject( light );
 		
 		// register touch handler for a specific scene and camera		
 		touchHandler3D = new LAB.three.TouchHandler3D(this.scene, this.camera, true);		
@@ -56,7 +56,7 @@ DemoApp = function() {
 		for (var i=0; i<100; i++){
 			spheres[spheres.length] = new Sphere();
 			var obj = spheres[spheres.length-1].create(20);
-			this.scene.addObject(obj);
+			this.scene.add(obj);
 			
 			// need to pass the THREE.Mesh object, can't pass the sphere because
 			// ray.intersectScene( scene ) returns an array of THREE.Mesh objects

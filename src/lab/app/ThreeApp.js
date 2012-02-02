@@ -94,9 +94,11 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 				return;
 		}
 		
-		this.container.appendChild(this.renderer.domElement);	
+		this.container.appendChild(this.renderer.domElement);
 		
 		gl = gl || this.renderer.getContext();
+		
+		this.scene.add(this.camera);
 		
 		this.setup();
 		this.animate();

@@ -33,21 +33,18 @@ DemoApp = function() {
 	// ===== SETUP
 	// ===========================================	
 	this.setup = function() {
-		// catch mouse events!
-		this.registerMouseEvents();
-
         this.camera.usePushPop( true );
 
 		ambientLight = new THREE.AmbientLight( 0x666666 );
-        this.scene.addLight( ambientLight );
+        this.scene.addObject( ambientLight );
 
 		var light = new THREE.DirectionalLight( 0x666666, 2 );
 		light.position.set( 1, 1, 1 ).normalize();
-		this.scene.addLight( light );
+		this.scene.addObject( light );
 		
 		var light = new THREE.DirectionalLight( 0xffffff );
 		light.position.set( -1, -1, -1 ).normalize();
-		this.scene.addLight( light );
+		this.scene.addObject( light );
 		
 		// register handler for a specific scene and camera
 		mouseHandler3D = new LAB.three.MouseHandler3D(this.scene, this.camera);
@@ -60,7 +57,7 @@ DemoApp = function() {
 		for (var i=0; i<100; i++){
 			spheres[spheres.length] = new Sphere();
 			var obj = spheres[spheres.length-1].create(20);
-			this.scene.addObject(obj);
+			this.scene.add(obj);
 			
 			// need to pass the THREE.Mesh object, can't pass the sphere because
 			// ray.intersectScene( scene ) returns an array of THREE.Mesh objects
@@ -156,7 +153,7 @@ DemoApp = function() {
 		this.camera.translateMatrix( -window.innerWidth/2, -window.innerHeight/2, 0 );
 		this.camera.rotateMatrix( translatePoint.x * Math.PI/180, 0,1,0 );
 		this.camera.rotateMatrix( translatePoint.y * Math.PI/180, 1,0,0 );
-		
+
 		// translate to the target
 		if (target != null){			
 			easedTarget.x -= (easedTarget.x - target.x)/10;
@@ -166,9 +163,9 @@ DemoApp = function() {
 		}
 		
 		this.camera.updateMatrix();
+		this.camera.popMatrix();
 			
 		this.renderer.render( this.scene, this.camera );
-		this.camera.popMatrix();
 	}
 	
 	// ===========================================

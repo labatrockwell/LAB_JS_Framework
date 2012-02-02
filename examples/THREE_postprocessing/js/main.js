@@ -58,7 +58,7 @@ DemoApp = function() {
 		this.registerMouseEvents();
 
 		//cameras
-      camera = new THREE.Camera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+      camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
       camera.position.z = 600;
       
       orthoCamera = new LAB.three.Camera();
@@ -132,11 +132,11 @@ DemoApp = function() {
       blur.addObject( blurQuad );
 
       ambientLight = new THREE.AmbientLight( 0x222222 );
-      _self.scene.addLight( ambientLight );
+      _self.scene.add( ambientLight );
       
       pointLight = new THREE.PointLight();// { color: 0xffffff} );
       pointLight.position.copy( camera.position );
-      _self.scene.addLight( pointLight );
+      _self.scene.add( pointLight );
       
       var loader = new THREE.JSONLoader();
       var scn = _self.scene;
@@ -145,9 +145,9 @@ DemoApp = function() {
          //mesh = new THREE.Mesh( new THREE.TorusGeometry( 200, 80, 20, 20 ), new THREE.MeshNormalMaterial() );
          console.log( mesh );
          mesh.scale.set( 15, 15, 15 );
-         _self.scene.addObject( mesh );
+         _self.scene.add( mesh );
       };
-      loader.load( { model: "models/randomMesh.js", callback: onGeometry } );
+      loader.load( "models/randomMesh.js", onGeometry );
       
       
       //depth fbo with 32 bit texture hack

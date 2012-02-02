@@ -17,7 +17,7 @@ LAB.three.Object = function( _renderer, _scene ) {
    this.rotStack = [];
    this.sclStack = [];
    
-   this.scene.addObject( this.labObj );
+   this.scene.add( this.labObj );
 };
 
 
@@ -38,7 +38,7 @@ addGeometry: function( _geometry, _material){
 	@public
 */
 addObject: function( _object ){
-   this.labObj.addChild( _object );
+   this.labObj.add( _object );
 },
 
 /**
@@ -46,7 +46,7 @@ addObject: function( _object ){
 	@public
 */
 addChild: function( _child ){
-   this.labObj.addChild( _child );
+   this.labObj.add( _child );
 },
 
 /**
@@ -54,7 +54,7 @@ addChild: function( _child ){
 	@public
 */
 addLight: function( _light ){
-   this.scene.addLight( _light );
+   this.scene.add( _light );
 },
 
 /**
