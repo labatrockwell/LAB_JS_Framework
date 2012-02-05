@@ -26,13 +26,10 @@ LAB.three.Camera.prototype.supr = THREE.PerspectiveCamera.prototype;
  @function
  @public
  */
-LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){
-   
-   this.bUsePushPop = _bUsePushPop || true;
-   this.useTarget = false;
-};
-
-LAB.three.Camera.prototype.updateProjectionMatrix = function(){
+LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){   
+	this.bUsePushPop = _bUsePushPop || true;
+  	this.useTarget = false;
+	this.matrixAutoUpdate = !this.bUsePushPop;
 };
 
 /**
@@ -43,35 +40,37 @@ LAB.three.Camera.prototype.updateMatrix = function () {
    
    //this bypasses the THREE.Camera.updateMatrix() called by the renderer
    //without this the camera would automaticllay update according to it's position scale and rotation vectors
-      
+   
    //if we're not using push&pop then we need to update the matrix 
    if( this.bUsePushPop == false ){
       //the following is copied from the THREE.Object3D method updateMatrix()
-      this.matrix.setPosition( this.position );
-      
-      if ( this.useQuaternion )  {
-         
-         this.matrix.setRotationFromQuaternion( this.quaternion );
-         
-      } else {
-         
-         this.matrix.setRotationFromEuler( this.rotation, this.eulerOrder );
-         
-      }
-      
-      if ( this.scale.x !== 1 || this.scale.y !== 1 || this.scale.z !== 1 ) {
-         
-         this.matrix.scale( this.scale );
-         this.boundRadiusScale = Math.max( this.scale.x, Math.max( this.scale.y, this.scale.z ) );
-         
-      }
-      
-      this.matrixWorldNeedsUpdate = true;
+		this.matrix.setPosition( this.position );
+
+		if ( this.useQuaternion )  {
+
+			this.matrix.setRotationFromQuaternion( this.quaternion );
+
+		} else {
+
+			this.matrix.setRotationFromEuler( this.rotation, this.eulerOrder );
+
+		}
+
+		if ( this.scale.x !== 1 || this.scale.y !== 1 || this.scale.z !== 1 ) {
+
+			this.matrix.scale( this.scale );
+			this.boundRadiusScale = Math.max( this.scale.x, Math.max( this.scale.y, this.scale.z ) );
+
+		}
+
+		this.matrixWorldNeedsUpdate = true;
    } else {
 
       //this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
-      this.position.setPositionFromMatrix(this.matrix);
-   }
+		this.position.setPositionFromMatrix(this.matrix);
+		this.position.setRotationFromMatrix(this.matrix);
+		this.matrixWorldNeedsUpdate = true;
+	}
 };
 
 
@@ -82,21 +81,21 @@ LAB.three.Camera.prototype.updateMatrix = function () {
  */
 LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _farClip ){
 
-   this.fov = _fov || 60;
+   var fov = _fov || 60;
    
-   var viewW = window.innerWidth;
-   var viewH = window.innerHeight;
+	var viewW = window.innerWidth;
+	var viewH = window.innerHeight;
    
-   var eyeX = viewW / 2;
-   var eyeY = viewH / 2;
-   var halfFov = Math.PI * this.fov / 360;
-   var theTan = Math.tan(halfFov);
-   var dist = eyeY / theTan;
-   this.aspect = viewW / viewH;
+	var eyeX = viewW / 2;
+	var eyeY = viewH / 2;
+	var halfFov = Math.PI * fov / 360;
+	var theTan = Math.tan(halfFov);
+	var dist = eyeY / theTan;
+	var aspect = viewW / viewH;
    
-   this.near = _nearClip || dist / 10;
-   this.far = _farClip || dist * 10;
-   this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
+   var near = _nearClip || dist / 10;
+   var far = _farClip || dist * 10;
+   this.projectionMatrix = THREE.Matrix4.makePerspective( fov, aspect, near, far );
    
    this.position.set( eyeX, eyeY, dist );
    //this.target.position.set( eyeX, eyeY, 0 );
@@ -106,12 +105,12 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
    this.matrix.setPosition( this.position );
    
    
-   // if(ofDoesHWOrientation()){
-   //    if(vFlip){
-   //       glScalef(1, -1, 1);
-   //       glTranslatef(0, -height, 0);
-   //    }
-   // }
+   //	if(ofDoesHWOrientation()){
+   //		if(vFlip){
+   //			glScalef(1, -1, 1);
+   //			glTranslatef(0, -height, 0);
+   //		}
+   //	}
 };
 
 /**
@@ -152,7 +151,6 @@ LAB.three.Camera.prototype.projectToWorld = function( screenPos ){
  @public
  */
 LAB.three.Camera.prototype.pushMatrix = function(){
-   if (this.bUsePushPop == false) this.usePushPop();
    this.mvMatrixStack.push( new THREE.Matrix4().copy( this.matrix ));
 };
 
@@ -161,10 +159,10 @@ LAB.three.Camera.prototype.pushMatrix = function(){
  @public
  */
 LAB.three.Camera.prototype.popMatrix = function(){
-   if (this.bUsePushPop == false) this.usePushPop();
    if( this.mvMatrixStack.length > 0){
       this.matrix.copy( this.mvMatrixStack.pop() );
    }
+	this.updateMatrix();
 };
 
 /**
@@ -180,6 +178,7 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
       this.useTarget = true;
       //this.target.position.set( x,y,z );
    }
+	this.updateMatrix();
 };
 
 /**
@@ -188,6 +187,7 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
  */
 LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
    this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
+	this.updateMatrix();
 };
 
 
@@ -212,6 +212,7 @@ LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
    this.matrix.n33 *= z;
    this.matrix.n34 *= z;
    
+	this.updateMatrix();
 };
 
 /**
@@ -270,6 +271,7 @@ LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
    this.matrix.n32 = r20 * m01 + r21 * m11 + r22 * m21;
    this.matrix.n33 = r20 * m02 + r21 * m12 + r22 * m22;
    this.matrix.n34 = r20 * m03 + r21 * m13 + r22 * m23;
+	this.updateMatrix();
 };
 
 /**
