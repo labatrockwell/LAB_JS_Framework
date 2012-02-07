@@ -2,6 +2,7 @@
 LAB.require(LAB.src+"app/ThreeApp.js");
 LAB.require(LAB.src+"three/Mesh.js");
 LAB.require(LAB.src+"three/Shader.js");
+LAB.require(LAB.src+"three/ParticleEmitter.js");
 
 var demoApp;
 
@@ -17,41 +18,6 @@ $(document).ready( function() {
  
  */
 
-var stairText = function( parameters ){
-   parameters = parameters || {};
-   
-   this.txt = parameters.txt || "Hellow World, now let's walk up and down these monday through friday stairs "; 
-   this.pos = parameters.pos || new THREE.Vector2( 0, 0 );
-   this.ctx = parameters.ctx || canvas.getContext("2d");
-   
-   this.width = this.ctx.measureText(this.txt).width;
-   this.wrapPad = parameters.wrapPad || 60;
-   
-   this.dir = parameters.dir || new THREE.Vector2( -1, 0 );
-   this.col = parameters.col || {r: 255, g: 255, b: 255};
-
-   this.changeText = function(newTxt){
-      this.txt = newTxt;
-      this.width = this.ctx.measureText(this.txt).width;
-   }
-   
-   this.draw = function( directionOverride ){
-      
-      this.pos.addSelf( directionOverride || this.dir );
-      if(this.pos.x <= -this.width - this.wrapPad){
-         this.pos.x = 0;
-      }
-      else if( this.pos.x >= this.wrapPad ){
-         this.pos.x -= this.width + this.wrapPad;
-      }
-      this.ctx.fillStyle = 'rgba('+this.col.r+','+this.col.g+','+this.col.b+',255)';//'+this.color.r+','+this.color.g+','+','+this.color.b+', 255)';
-      this.ctx.fillText( this.txt, this.pos.x, this.pos.y );
-      this.ctx.fillText(this.txt,
-                        this.pos.x + this.width + this.wrapPad,
-                        this.pos.y );
-   }
-};
-
 // ===========================================
 // ===== DEMO APP
 // ===========================================
@@ -61,7 +27,8 @@ DemoApp = function() {
    
    var bStats =  true;
    var camera;
-   var cube;
+   var geo;
+   var emitter;
    
    
    // ===========================================
@@ -81,13 +48,17 @@ DemoApp = function() {
       
       //camera
       camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight);
-      camera.position.set( 0, 150, 200 );
-      camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+      camera.position.set( 0, 10, 30 );
+      camera.lookAt( new THREE.Vector3(0, 0, 0) );
       this.scene.add( camera );
       
-      //make some geometry
-      cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshNormalMaterial() );
-      this.scene.add( cube );
+      //load some geometry
+      geo = new LAB.three.Mesh();
+      geo.load( "models/emitterGeometry.js", new THREE.MeshNormalMaterial() );
+      console.log( geo );
+      
+      //particle emitter
+      emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 6000 });
       
 	}
    
@@ -97,9 +68,40 @@ DemoApp = function() {
 	this.update = function() {
       if(bStats) stats.update();
       
-      cube.rotation.x += .01;
-      cube.rotation.y += .005;
-
+      geo.rotation.x += .005;
+      geo.rotation.y += .0005;
+      
+      //update particles
+      var currentTime = this.getElapsedTimeSeconds();
+      for(var i=emitter.geometry.__webglParticleCount-1; i>=0; i--){
+         p = emitter.particles[i];
+         
+         p.pos.addSelf( emitter.particles[i].vel );
+         p.vel.multiplyScalar( .975 );//attenuation 
+         p.vel.y += .001;
+         
+         if(currentTime > p.birth + p.lifespan){
+            emitter.removeParticle( i );
+         }
+      }
+      
+      //emit some particles from the geometry onceit's loaded
+      if(geo.isLoaded){
+         for(var i=0; i<100; i++){
+            var face = geo.geometry.faces[ LAB.randomInt( 0, geo.geometry.faces.length-1) ];//get random face
+            var pos = geo.randomPointOnMesh( face );
+            var vel = new THREE.Vector4(face.normal.x, face.normal.y, face.normal.z, 0 );
+            vel.multiplyScalar( .125 );//use it's normal as our new particle's velocity
+            geo.matrix.multiplyVector4( vel );//rotate the vel with the mesh's matrix
+            
+            emitter.addParticle(pos,
+                                vel,
+                                {x: LAB.random( .1, 1), y:LAB.random( .1, 1), z:LAB.random( .1, 1)},//color
+                                LAB.random( 2, 4),//size
+                                currentTime,//time
+                                LAB.random( .5, 2 ));//lifespan
+         }
+      }
 	}
    
    
@@ -108,7 +110,7 @@ DemoApp = function() {
 	// ===== DRAW
 	// ===========================================
 	this.draw = function() {
-//      gl.clearColor( .3, .3, .33, 1 );
+      gl.clearColor( 1, 1, 1, 1 );
       this.renderer.render( this.scene, camera, null, true );
 	}
    
