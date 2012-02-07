@@ -120,6 +120,8 @@ LAB.three.ParticleEmitter.prototype.makeDefaultShader = function( tex ){
    };
    
    defaultMat.loadFromString( vString, fString, { uniforms: shaderUniforms });
+   defaultMat.blending = THREE.NormalBlending;//THREE.AdditiveBlending;//THREE.MultiplyBlending;//THREE.SubtractiveBlending;//
+   defaultMat.depthTest = true;
    
    return defaultMat;
 }

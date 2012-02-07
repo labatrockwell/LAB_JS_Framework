@@ -52,14 +52,17 @@ DemoApp = function() {
       camera.lookAt( new THREE.Vector3(0, 0, 0) );
       this.scene.add( camera );
       
+      //lights
+      var pointLight = new THREE.PointLight( );
+      pointLight.position = camera.position;
+      this.scene.add( pointLight );
+      
       //load some geometry
       geo = new LAB.three.Mesh();
-      geo.load( "models/emitterGeometry.js", new THREE.MeshNormalMaterial() );
-      console.log( geo );
+      geo.load( "models/emitterGeometry.js", new THREE.MeshPhongMaterial() );
       
       //particle emitter
-      emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 6000 });
-      
+      emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 10000 });
 	}
    
 	// ===========================================
