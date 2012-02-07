@@ -3,33 +3,33 @@ LAB.three = LAB.three || {};
 
 /** 
  @constructor 
- @extends THREE.Camera
+ @extends THREE.PerspectiveCamera
  */
 LAB.three.Camera = function ( fov, aspect, near, far ) {
-   THREE.Camera.call( this, fov, aspect, near, far );// I think this works, seems to work...
+   THREE.PerspectiveCamera.call( this, fov, aspect, near, far );// I think this works, seems to work...
    this.matrix.identity();
    this.mvMatrixStack = [];
+   this.useTarget = true;
    
    //   this.setToWindowPerspective();
-   this.useTarget = true;
    this.useQuaternion = true;
    this.bUsePushPop = false;
    
    this.setToWindowPerspective();
 };
 
-LAB.three.Camera.prototype = new THREE.Camera();
+LAB.three.Camera.prototype = new THREE.PerspectiveCamera();
 LAB.three.Camera.prototype.constructor = LAB.three.Camera;
-LAB.three.Camera.prototype.supr = THREE.Camera.prototype;
+LAB.three.Camera.prototype.supr = THREE.PerspectiveCamera.prototype;
 
 /**
  @function
  @public
  */
-LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){
-   
-   this.bUsePushPop = _bUsePushPop || true;
-   this.useTarget = false;
+LAB.three.Camera.prototype.usePushPop = function( _bUsePushPop ){   
+	this.bUsePushPop = _bUsePushPop || true;
+  	this.useTarget = false;
+	this.matrixAutoUpdate = !this.bUsePushPop;
 };
 
 /**
@@ -41,32 +41,35 @@ LAB.three.Camera.prototype.updateMatrix = function () {
    //this bypasses the THREE.Camera.updateMatrix() called by the renderer
    //without this the camera would automaticllay update according to it's position scale and rotation vectors
    
-   
    //if we're not using push&pop then we need to update the matrix 
    if( this.bUsePushPop == false ){
       //the following is copied from the THREE.Object3D method updateMatrix()
 		this.matrix.setPosition( this.position );
-      
+
 		if ( this.useQuaternion )  {
-         
+
 			this.matrix.setRotationFromQuaternion( this.quaternion );
-         
+
 		} else {
-         
+
 			this.matrix.setRotationFromEuler( this.rotation, this.eulerOrder );
-         
+
 		}
-      
+
 		if ( this.scale.x !== 1 || this.scale.y !== 1 || this.scale.z !== 1 ) {
-         
+
 			this.matrix.scale( this.scale );
 			this.boundRadiusScale = Math.max( this.scale.x, Math.max( this.scale.y, this.scale.z ) );
-         
+
 		}
-      
+
 		this.matrixWorldNeedsUpdate = true;
    } else {
+
+      //this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
 		this.position.setPositionFromMatrix(this.matrix);
+		this.position.setRotationFromMatrix(this.matrix);
+		this.matrixWorldNeedsUpdate = true;
 	}
 };
 
@@ -95,10 +98,10 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
    this.projectionMatrix = THREE.Matrix4.makePerspective( fov, aspect, near, far );
    
    this.position.set( eyeX, eyeY, dist );
-   this.target.position.set( eyeX, eyeY, 0 );
+   //this.target.position.set( eyeX, eyeY, 0 );
    this.up.set( 0, 1, 0 );
    
-   this.matrix.lookAt( this.position, this.target.position, this.up );
+   this.matrix.lookAt( this.position, new THREE.Vector3(eyeX, eyeY, 0), this.up );
    this.matrix.setPosition( this.position );
    
    
@@ -159,6 +162,7 @@ LAB.three.Camera.prototype.popMatrix = function(){
    if( this.mvMatrixStack.length > 0){
       this.matrix.copy( this.mvMatrixStack.pop() );
    }
+	this.updateMatrix();
 };
 
 /**
@@ -172,8 +176,9 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
                          this.up );
    }else{
       this.useTarget = true;
-      this.target.position.set( x,y,z );
+      //this.target.position.set( x,y,z );
    }
+	this.updateMatrix();
 };
 
 /**
@@ -182,6 +187,7 @@ LAB.three.Camera.prototype.lookAt = function( x, y, z ){
  */
 LAB.three.Camera.prototype.translateMatrix = function( x, y, z ){
    this.matrix.multiply( new THREE.Matrix4().setTranslation(x,y,z), this.matrix );
+	this.updateMatrix();
 };
 
 
@@ -206,6 +212,7 @@ LAB.three.Camera.prototype.scaleMatrix = function( x, y, z ){
    this.matrix.n33 *= z;
    this.matrix.n34 *= z;
    
+	this.updateMatrix();
 };
 
 /**
@@ -264,6 +271,7 @@ LAB.three.Camera.prototype.rotateMatrix = function( angle, x, y, z ){
    this.matrix.n32 = r20 * m01 + r21 * m11 + r22 * m21;
    this.matrix.n33 = r20 * m02 + r21 * m12 + r22 * m22;
    this.matrix.n34 = r20 * m03 + r21 * m13 + r22 * m23;
+	this.updateMatrix();
 };
 
 /**

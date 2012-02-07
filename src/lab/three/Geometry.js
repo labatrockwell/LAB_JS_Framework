@@ -25,11 +25,11 @@ LAB.three.Geometry.prototype.supr = THREE.Geometry.prototype;
  @public
  */
 
-LAB.three.Geometry.prototype.loadModel = function( modelLocation ){
+LAB.three.Geometry.prototype.loadModel = function( modelLocation, callback ){
    loader = new THREE.JSONLoader( true );
-   callback = function( geometry ) {  };
-   loader.load( { model: modelLocation });
-}
+   callback = callback || function( geometry ) { return geometry };
+   loader.load( { model: modelLocation, callback: callback });
+};
 
 LAB.three.Geometry.prototype.loadLabModel = function( model ){
    //vertex positions
@@ -276,8 +276,8 @@ LAB.three.Geometry.prototype.findEdges = function(){
          this.edges.splice( i, 1 );
       }
    }
-//   LAB.log( this.edges.length );
-//   LAB.log( this.edges );
+//   labLog( this.edges.length );
+//   labLog( this.edges );
 };
 
 LAB.three.Geometry.prototype.findVertexEdges = function(){
@@ -296,8 +296,8 @@ LAB.three.Geometry.prototype.findVertexEdges = function(){
       this.vertexEdges[ this.edges[i].vertexIndices[0] ].push( [ i, this.edges[i] ]);
       this.vertexEdges[ this.edges[i].vertexIndices[1] ].push( [ i, this.edges[i] ]);
    }
-   //   LAB.log( this.vertexEdges.length );
-   //   LAB.log( this.vertexEdges );
+   //   labLog( this.vertexEdges.length );
+   //   labLog( this.vertexEdges );
 };
 
 LAB.three.Geometry.prototype.findVertexFaces = function(){
@@ -323,8 +323,8 @@ LAB.three.Geometry.prototype.findVertexFaces = function(){
          this.vertexFaces[ f.d ].push( [ i, f ] );
       }
    }
-//   LAB.log( this.vertexFaces.length );
-//   LAB.log( this.vertexFaces );
+//   labLog( this.vertexFaces.length );
+//   labLog( this.vertexFaces );
 };
 
 
@@ -346,8 +346,8 @@ LAB.three.Geometry.prototype.findFaceEdges = function(){
          this.faceEdges[ this.edges[i].faceIndices[j] ].push( [ i, this.edges[i] ]);//[ edgeIndex, edgeReference ]
       }
    }
-//   LAB.log( this.faceEdges.length );
-//   LAB.log( this.faceEdges );
+//   labLog( this.faceEdges.length );
+//   labLog( this.faceEdges );
 };
 
 
