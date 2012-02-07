@@ -43,7 +43,7 @@ LAB.tdl.LabVbo = function () {
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array( attr.data ), attr.drawType );
       
       this.attributes.push( attr );
-      console.log( "adding an attribute named " + attr.name );
+//      console.log( "adding an attribute named " + attr.name );
    }
    
    this.setAttribute = function( name, data, start ){
@@ -71,7 +71,7 @@ LAB.tdl.LabVbo = function () {
             gl.vertexAttribPointer( a[i].loc, a[i].size, a[i].type, false, 0, 0);// void vertexAttribPointer(GLuint indx, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLintptr offset);
          }
          else{
-            console.log( "no attribute named ", a[i].name, " in shader. ")
+//            console.log( "no attribute named ", a[i].name, " in shader. ")
          }
       }
       

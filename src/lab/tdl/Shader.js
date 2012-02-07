@@ -184,4 +184,8 @@ LAB.tdl.Shader.prototype = {
       gl.uniformMatrix4fv( this.pMatrixUniform, false, LAB.tdl.projectionMatrix );
    },
    
+   setAttribute3f : function( name, f1, f2, f3 ){
+      gl.vertexAttrib3f( gl.getAttribLocation( this.program, name ), f1, f2, f3 );// !!! it would be faster to have this cached
+   }
+   
 };

@@ -4,10 +4,6 @@ LAB.require(LAB.src+"../../libs/three/Three.js");
 LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
-
-LAB.require(LAB.src+"three/Camera.js");
-LAB.require(LAB.src+"three/Geometry.js");
-LAB.require(LAB.src+"three/Object.js");
 LAB.require(LAB.src+"three/Shader.js");
 
 /**
@@ -47,24 +43,29 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 	LAB.app.ThreeApp.prototype.begin = function()
 	{
+      LAB.self = this;
+      
+      
 		// listen to mouse + keys by default
 		this.registerKeyEvents();
 		this.registerMouseEvents();
 
 		/**
-		* default THREE camera
-		* @type THREE.Camera
-		*/
-		console.log("base app set up");
-		//this.camera = new THREE.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
-		this.camera = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 1000 );
-        this.camera.setToWindowPerspective();
-		
-		/**
 		* default THREE scene
 		* @type THREE.Scene
 		*/
 		this.scene = new THREE.Scene();
+      
+		/**
+		* default THREE camera
+		* @type THREE.Camera
+		*/
+		console.log("base app set up");
+      this.camera = new THREE.OrthographicCamera(-window.innerWidth/2, window.innerWidth/2,
+                                                 -window.height/2, window.innerHeight/2,
+                                                 -10, 10000 );
+      this.scene.add( this.camera );
+		
 		
 		/**
 		* default THREE projector
