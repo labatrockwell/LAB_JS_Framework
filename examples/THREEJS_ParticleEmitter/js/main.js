@@ -114,6 +114,7 @@ DemoApp = function() {
 	// ===========================================
 	this.draw = function() {
       gl.clearColor( 1, 1, 1, 1 );
+      
       this.renderer.render( this.scene, camera, null, true );
 	}
    
