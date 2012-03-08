@@ -4,6 +4,12 @@ LAB.require(LAB.src+"../../libs/three/Three.js");
 LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
+
+LAB.require(LAB.src+"three/Camera.js");
+LAB.require(LAB.src+"three/Geometry.js");
+LAB.require(LAB.src+"three/Mesh.js");
+LAB.require(LAB.src+"three/Object.js");
+LAB.require(LAB.src+"three/ParticleEmitter.js");
 LAB.require(LAB.src+"three/Shader.js");
 
 /**
@@ -43,29 +49,28 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 	LAB.app.ThreeApp.prototype.begin = function()
 	{
-      LAB.self = this;
-      
-      
-		// listen to mouse + keys by default
-		this.registerKeyEvents();
-		this.registerMouseEvents();
-
-		/**
-		* default THREE scene
-		* @type THREE.Scene
-		*/
-		this.scene = new THREE.Scene();
-      
 		/**
 		* default THREE camera
 		* @type THREE.Camera
 		*/
 		console.log("base app set up");
-      this.camera = new THREE.OrthographicCamera(-window.innerWidth/2, window.innerWidth/2,
-                                                 -window.height/2, window.innerHeight/2,
-                                                 -10, 10000 );
-      this.scene.add( this.camera );
 		
+		// listen to mouse + keys by default
+		this.registerKeyEvents();
+		this.registerMouseEvents();
+		
+		this.camera = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 2000 );
+        this.camera.setToWindowPerspective();
+        this.camera.usePushPop( true );
+		//this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+		
+		/**
+		* default THREE scene
+		* @type THREE.Scene
+		*/
+		this.scene = new THREE.Scene();
+		this.scene.add(this.camera);
+      
 		
 		/**
 		* default THREE projector
@@ -80,7 +85,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
-      	this.renderer.autoClear = false;
+      	//this.renderer.autoClear = false;
 
 		// do we have a container?
 	
@@ -95,11 +100,9 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 				return;
 		}
 		
-		this.container.appendChild(this.renderer.domElement);
+		this.container.appendChild(this.renderer.domElement);	
 		
 		gl = gl || this.renderer.getContext();
-		
-		this.scene.add(this.camera);
 		
 		this.setup();
 		this.animate();
