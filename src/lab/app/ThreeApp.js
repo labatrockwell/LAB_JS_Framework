@@ -45,9 +45,11 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		and start animate() loop
 		@function 
 		@public
+		@param width (optional) width of renderer
+		@param height (optional) height of renderer
 	*/
 
-	LAB.app.ThreeApp.prototype.begin = function()
+	LAB.app.ThreeApp.prototype.begin = function(width, height)
 	{
 		/**
 		* default THREE camera
@@ -82,9 +84,12 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		* default THREE renderer with anti-aliasing, depth sorting off
 		* @type THREE.WebGLRenderer
 		*/
+		var w = width || window.innerWidth;
+		var h = height || window.innerHeight;
+
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.sortObjects = false;
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
+		this.renderer.setSize( w, h );
       	//this.renderer.autoClear = false;
 
 		// do we have a container?
