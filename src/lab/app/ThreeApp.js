@@ -28,8 +28,11 @@ LAB.app.ThreeApp = function()
 	
 	this.container;
 	this.camera, this.scene, this.projector, this.renderer;
+	this._canvas = null;
 
 	this.mouse = { x: 0, y: 0 };
+	this._width = 0;
+	this._height = 0;
 }
 
 LAB.app.ThreeApp.prototype = new LAB.app.BaseApp();
@@ -49,8 +52,9 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		@param height (optional) height of renderer
 	*/
 
-	LAB.app.ThreeApp.prototype.begin = function(width, height)
+	LAB.app.ThreeApp.prototype.begin = function(parameters)
 	{
+		parameters = parameters || {};
 		/**
 		* default THREE camera
 		* @type THREE.Camera
@@ -72,8 +76,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		*/
 		this.scene = new THREE.Scene();
 		this.scene.add(this.camera);
-      
-		
+      			
 		/**
 		* default THREE projector
 		* @type THREE.Projector
@@ -84,12 +87,16 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		* default THREE renderer with anti-aliasing, depth sorting off
 		* @type THREE.WebGLRenderer
 		*/
-		var w = width || window.innerWidth;
-		var h = height || window.innerHeight;
+		this._width = parameters.width || window.innerWidth;
+		this._height = parameters.height || window.innerHeight;
 
-		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+		// create canvas so we can customize it a bit
+		this._canvas = parameters.canvas !== undefined ? parameters.canvas : document.createElement( 'canvas' );
+		this._canvas.id = "labCanvas";
+
+		this.renderer = new THREE.WebGLRenderer( { antialias: parameters.antialias !== undefined ? parameters.antialias : true, canvas:this._canvas } );
 		this.renderer.sortObjects = false;
-		this.renderer.setSize( w, h );
+		this.renderer.setSize( this._width, this._height );
       	//this.renderer.autoClear = false;
 
 		// do we have a container?
@@ -116,3 +123,25 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 /************************************************************
 	DRAW: override the draw function in your app!
 ************************************************************/
+
+
+/************************************************************
+	THREE APP SETTERS
+************************************************************/
+
+	LAB.app.ThreeApp.prototype.__defineSetter__("canvasWidth", function(val){
+		console.log("error: please don't set this variable");
+	})
+
+	LAB.app.ThreeApp.prototype.__defineSetter__("canvasHeight", function(val){
+		console.log("error: please don't set this variable");
+	})
+
+	LAB.app.ThreeApp.prototype.__defineGetter__("canvasWidth", function(){
+		return this._width;
+	})
+
+	LAB.app.ThreeApp.prototype.__defineGetter__("canvasHeight", function(){
+		return this._height;
+	})
+
