@@ -64,25 +64,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		// listen to mouse + keys by default
 		this.registerKeyEvents();
 		this.registerMouseEvents();
-		
-		this.camera = new LAB.three.Camera( 35, window.innerWidth / window.innerHeight, .1, 2000 );
-        this.camera.setToWindowPerspective();
-        this.camera.usePushPop( true );
-		//this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-		
-		/**
-		* default THREE scene
-		* @type THREE.Scene
-		*/
-		this.scene = new THREE.Scene();
-		this.scene.add(this.camera);
-      			
-		/**
-		* default THREE projector
-		* @type THREE.Projector
-		*/
-		this.projector = new THREE.Projector();
-		
+			
 		/**
 		* default THREE renderer with anti-aliasing, depth sorting off
 		* @type THREE.WebGLRenderer
@@ -99,6 +81,24 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer.setSize( this._width, this._height );
       	//this.renderer.autoClear = false;
 
+		this.camera = new LAB.three.Camera( 35, this._width / this._height, .1, 2000 );
+        this.camera.setToWindowPerspective();
+        this.camera.usePushPop( true );
+		//this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+		
+		/**
+		* default THREE scene
+		* @type THREE.Scene
+		*/
+		this.scene = new THREE.Scene();
+		this.scene.add(this.camera);
+      			
+		/**
+		* default THREE projector
+		* @type THREE.Projector
+		*/
+		this.projector = new THREE.Projector();
+      	
 		// do we have a container?
 	
 		if (document.getElementById("labContainer") != null){
