@@ -92,7 +92,7 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 		// create canvas so we can customize it a bit
 		this._canvas = parameters.canvas !== undefined ? parameters.canvas : document.createElement( 'canvas' );
-		this._canvas.id = "labCanvas";
+		this._canvas.id = parameters.canvasId !== undefined ? parameters.canvasId : "labCanvas";
 
 		this.renderer = new THREE.WebGLRenderer( { antialias: parameters.antialias !== undefined ? parameters.antialias : true, canvas:this._canvas } );
 		this.renderer.sortObjects = false;
