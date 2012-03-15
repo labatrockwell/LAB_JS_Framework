@@ -81,8 +81,8 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer.setSize( this._width, this._height );
       	//this.renderer.autoClear = false;
 
-		this.camera = new LAB.three.Camera( 35, this._width / this._height, .1, 2000 );
-        this.camera.setToWindowPerspective();
+		this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );
+        this.camera.setPerspective( 60, this._width, this._height );
         this.camera.usePushPop( true );
 		//this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 		
