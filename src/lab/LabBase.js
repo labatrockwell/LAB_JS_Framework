@@ -5,6 +5,9 @@ var LAB = LAB || {};
 // reference to global context, in most cases 'window'.
 LAB.global = this;
 
+// version
+LAB.version = "r1";
+
 // require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js
 
 /*
