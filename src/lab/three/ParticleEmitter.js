@@ -143,7 +143,7 @@ LAB.three.ParticleEmitter.prototype.addParticle = function( pos, vel, col, radiu
       this.particles[i].col.copy( col || {x:1, y:1, z:1} );
       
       this.particles[i].radius = this.attributes.radius.value[i] = radius || 10;
-      this.particles[i].birth = this.attributes.birth.value[i] = currentTime || LAB.self.getElapsedTimeSeconds();
+      this.particles[i].birth = this.attributes.birth.value[i] = currentTime || LAB.getElapsedTimeSeconds();
       this.particles[i].lifespan = this.attributes.lifespan.value[i] = lifespan || 10;
 
       

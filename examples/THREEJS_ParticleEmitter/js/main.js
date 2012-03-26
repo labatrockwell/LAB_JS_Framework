@@ -7,11 +7,11 @@ LAB.require(LAB.src+"three/ParticleEmitter.js");
 var demoApp;
 
 $(document).ready( function() {
-                  DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
-                  demoApp = new DemoApp();
-                  
-                  demoApp.begin();
-                  });
+   DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
+   demoApp = new DemoApp();
+
+   demoApp.begin();
+});
 
 //TODO: 
 /*
@@ -59,7 +59,7 @@ DemoApp = function() {
       
       //load some geometry
       geo = new LAB.three.Mesh();
-      geo.load( "models/emitterGeometry.js", new THREE.MeshPhongMaterial() );
+      geo.load( "models/emitterGeometry.js", new THREE.MeshPhongMaterial(), this.scene );
       
       //particle emitter
       emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 10000 });
