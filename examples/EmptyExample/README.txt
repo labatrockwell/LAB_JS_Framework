@@ -7,7 +7,6 @@ INCLUDED LIBRARIES
 	
 // WHAT THIS APP SHOULD DO
 
-Move an amazing div across the screen. The div is placed in
-html + styled 
+NOTHING! It's an empty example.
 
 // KNOWN ISSUES

@@ -1,6 +1,4 @@
-// load graphics base, because this is a graphics app
-LAB.require(LAB.src+"app/ThreeApp.js");
-LAB.require(LAB.src+"three/TouchHandler3D.js");
+// load custom class(es) here
 LAB.require("js/Sphere.js");
 
 var demoApp;
@@ -39,15 +37,15 @@ DemoApp = function() {
         this.camera.usePushPop( true );
 
 		ambientLight = new THREE.AmbientLight( 0x666666 );
-        this.scene.addObject( ambientLight );
+        this.scene.add( ambientLight );
 
 		var light = new THREE.DirectionalLight( 0x666666, 2 );
 		light.position.set( 1, 1, 1 ).normalize();
-		this.scene.addObject( light );
+		this.scene.add( light );
 		
 		var light = new THREE.DirectionalLight( 0xffffff );
 		light.position.set( -1, -1, -1 ).normalize();
-		this.scene.addObject( light );
+		this.scene.add( light );
 		
 		// register touch handler for a specific scene and camera		
 		touchHandler3D = new LAB.three.TouchHandler3D(this.scene, this.camera, true);		

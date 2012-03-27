@@ -1,7 +1,3 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-LAB.require(LAB.src+"app/ThreeApp.js");
-
 var demoApp;
 
 $(document).ready( function() {

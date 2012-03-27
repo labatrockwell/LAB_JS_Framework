@@ -79,7 +79,7 @@ LAB.three.ParticleEmitter = function ( parameters ) {
    
    
    this.scene.add( this.particleSystem );
-   this.renderer.render( this.scene, camera );//this is kinda sloppy, but it's any easy way to create the webgl buffers
+   this.renderer.render( this.scene, this.camera );//this is kinda sloppy, but it's any easy way to create the webgl buffers
    this.particleSystem.geometry.__webglParticleCount = 0;// set the particle count to 0
    
 };

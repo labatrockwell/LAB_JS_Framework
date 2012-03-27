@@ -1,16 +1,16 @@
 // include LabBase files
 /** @namespace LAB.app */
 LAB.require(LAB.src+"../../libs/three/Three.js");
-LAB.require(LAB.src+"app/BaseApp.js");
+//LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
 
-LAB.require(LAB.src+"three/Camera.js");
-LAB.require(LAB.src+"three/Geometry.js");
-LAB.require(LAB.src+"three/Mesh.js");
-LAB.require(LAB.src+"three/Object.js");
-LAB.require(LAB.src+"three/ParticleEmitter.js");
-LAB.require(LAB.src+"three/Shader.js");
+//LAB.require(LAB.src+"three/Camera.js");
+//LAB.require(LAB.src+"three/Geometry.js");
+//LAB.require(LAB.src+"three/Mesh.js");
+//LAB.require(LAB.src+"three/Object.js");
+//LAB.require(LAB.src+"three/ParticleEmitter.js");
+//LAB.require(LAB.src+"three/Shader.js");
 
 /**
 * global gl reference to mirror normal openGL
@@ -26,8 +26,11 @@ LAB.app.ThreeApp = function()
 {
 	LAB.app.BaseApp.call( this );
 	
-	this.container;
-	this.camera, this.scene, this.projector, this.renderer;
+	this.container = null;
+	this.camera = null;
+	this.scene = null;
+	this.projector = null;
+	this.renderer = null;
 	this._canvas = null;
 
 	this.mouse = { x: 0, y: 0 };
@@ -76,21 +79,20 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this._canvas = parameters.canvas !== undefined ? parameters.canvas : document.createElement( 'canvas' );
 		this._canvas.id = parameters.canvasId !== undefined ? parameters.canvasId : "labCanvas";
 
-		this.renderer = new THREE.WebGLRenderer( { antialias: parameters.antialias !== undefined ? parameters.antialias : true, canvas:this._canvas } );
+		this.renderer = new THREE.WebGLRenderer( { antialias: (parameters.antialias !== undefined ? parameters.antialias : true), canvas:this._canvas } );
 		this.renderer.sortObjects = false;
 		this.renderer.setSize( this._width, this._height );
       	//this.renderer.autoClear = false;
 
 		this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );
         this.camera.setPerspective( 60, this._width, this._height );
-        this.camera.usePushPop( true );
-		//this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+        //this.camera.usePushPop( true );
 		
 		/**
 		* default THREE scene
 		* @type THREE.Scene
 		*/
-		this.scene = new THREE.Scene();
+		this.scene = parameters.scene || new THREE.Scene();
 		this.scene.add(this.camera);
       			
 		/**
@@ -106,10 +108,11 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		} else {
 			console.log("no labContainer in document, generating container div")
 			this.container = document.createElement( 'div' );
-			if (document.body)
+			if (document.body){
 				document.body.appendChild( this.container );
-			else
-				return;
+			} else {
+ 				return;
+			}
 		}
 		
 		this.container.appendChild(this.renderer.domElement);	

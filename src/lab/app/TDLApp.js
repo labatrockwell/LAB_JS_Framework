@@ -1,12 +1,12 @@
 // include LabBase files
 /** @namespace LAB.app */
-LAB.require(LAB.src+"app/BaseApp.js");
+//LAB.require(LAB.src+"app/BaseApp.js");
 
 // include TDL utils from Lars
-LAB.require(LAB.src+'tdl/Utils.js');
-LAB.require(LAB.src+'tdl/Mesh.js');
-LAB.require(LAB.src+'tdl/Object.js');
-LAB.require(LAB.src+'tdl/Shader.js');
+//LAB.require(LAB.src+'tdl/Utils.js');
+//LAB.require(LAB.src+'tdl/Mesh.js');
+//LAB.require(LAB.src+'tdl/Object.js');
+//LAB.require(LAB.src+'tdl/Shader.js');
 
 /** 
 	@constructor 

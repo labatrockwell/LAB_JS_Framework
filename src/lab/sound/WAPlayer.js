@@ -1,10 +1,10 @@
 /** @namespace LAB.sound*/
 LAB.sound = LAB.sound || {};
 
-LAB.require(LAB.src+"geom/Point.js");
+//LAB.require(LAB.src+"geom/Point.js");
 
 // creates global audio context if there isn't one yet
-LAB.require(LAB.src+"sound/AudioContext.js");
+//LAB.require(LAB.src+"sound/AudioContext.js");
 
 /** 
  Web Audio Player

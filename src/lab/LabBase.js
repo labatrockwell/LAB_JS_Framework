@@ -30,7 +30,7 @@ var included = {};
  * @return {Object} A copy of the prototype of the Parent object.
  */
 LAB.inherit = function(p) {
-	if (p == null) throw TypeError(); // p must be a non-null object
+	if (p == null) return; // p must be a non-null object
 	if (Object.create) { // If Object.create() is defined...
 		return Object.create(p); // then just use it
 	}
@@ -132,9 +132,9 @@ LAB.toScriptPath = function( className ){
 LAB.src= LAB.getScriptPath("LabBase.js");
 
 // start including stuff
-LAB.require( LAB.src+"EventDispatcher.js" );
-LAB.require( LAB.src+"app/BaseApp.js" );
-LAB.require( LAB.src+"Utils.js" );
+//LAB.require( LAB.src+"EventDispatcher.js" );
+//LAB.require( LAB.src+"app/BaseApp.js" );
+//LAB.require( LAB.src+"Utils.js" );
 
 // key constants
 LAB.SHIFT 	= 16;

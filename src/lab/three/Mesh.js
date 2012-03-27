@@ -31,10 +31,11 @@ LAB.three.Mesh.prototype.loadGeometry = function( location, onload ){
   this.loader.load( location, function( geometry ){self.geometry = geometry;} );
 }
 
-LAB.three.Mesh.prototype.load = function( location, shader, scene){
+LAB.three.Mesh.prototype.load = function( location, shader, scene ){
    this.scene = scene || console.warn("please pass in a THREE.Scene object");
    if (!scene){
-      this.scene = new THREE.Scene();
+      return;
+      //this.scene = new THREE.Scene();
    }
    this.material = shader || new THREE.NormalMaterial();
    var self = this;

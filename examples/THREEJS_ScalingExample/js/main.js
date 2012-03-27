@@ -1,8 +1,3 @@
-// load graphics base, because this is a graphics app
-LAB.require(LAB.src+"app/ThreeApp.js");
-LAB.require(LAB.src+"three/Mesh.js");
-LAB.require(LAB.src+"three/Shader.js");
-
 var demoApp;
 
 $(document).ready( function() {

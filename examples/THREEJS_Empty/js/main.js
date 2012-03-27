@@ -1,14 +1,11 @@
-// load graphics base, because this is a graphics app
-LAB.require(LAB.src+"app/ThreeApp.js");
-
 var demoApp;
 
 $(document).ready( function() {
-                  DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
-                  demoApp = new DemoApp();
+      DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
+      demoApp = new DemoApp();
                   
-                  demoApp.begin();
-                  });
+      demoApp.begin();
+});
 
 // ===========================================
 // ===== DEMO APP

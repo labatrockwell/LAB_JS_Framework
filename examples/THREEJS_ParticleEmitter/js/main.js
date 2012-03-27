@@ -1,9 +1,3 @@
-// load graphics base, because this is a graphics app
-LAB.require(LAB.src+"app/ThreeApp.js");
-LAB.require(LAB.src+"three/Mesh.js");
-LAB.require(LAB.src+"three/Shader.js");
-LAB.require(LAB.src+"three/ParticleEmitter.js");
-
 var demoApp;
 
 $(document).ready( function() {
@@ -12,11 +6,6 @@ $(document).ready( function() {
 
    demoApp.begin();
 });
-
-//TODO: 
-/*
- 
- */
 
 // ===========================================
 // ===== DEMO APP
@@ -57,6 +46,8 @@ DemoApp = function() {
       pointLight.position = camera.position;
       this.scene.add( pointLight );
       
+      console.log
+
       //load some geometry
       geo = new LAB.three.Mesh();
       geo.load( "models/emitterGeometry.js", new THREE.MeshPhongMaterial(), this.scene );
@@ -114,7 +105,6 @@ DemoApp = function() {
 	// ===========================================
 	this.draw = function() {
       gl.clearColor( 1, 1, 1, 1 );
-      
       this.renderer.render( this.scene, camera, null, true );
 	}
    

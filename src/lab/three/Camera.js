@@ -131,7 +131,7 @@ LAB.three.Camera.prototype.setPerspective = function( _fov, _width, _height, _ne
 LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    //adaptded from https://github.com/mrdoob/three.js/issues/78
    var pos = worldPos.clone();
-   projScreenMat = new THREE.Matrix4();
+   var projScreenMat = new THREE.Matrix4();
    projScreenMat.multiply( this.projectionMatrix, this.matrixWorldInverse );
    projScreenMat.multiplyVector3( pos );
    

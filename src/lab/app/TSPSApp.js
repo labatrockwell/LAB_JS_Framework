@@ -1,8 +1,8 @@
 // include LabBase files
 /** @namespace LAB.app */
-LAB.require(LAB.src+"../tsps/TSPS.js");
-LAB.require(LAB.src+"app/BaseApp.js");
-LAB.require(LAB.src+"utils/WebSocket.js");
+//LAB.require(LAB.src+"tsps/TSPS.js");
+//LAB.require(LAB.src+"app/BaseApp.js");
+//LAB.require(LAB.src+"utils/WebSocket.js");
 
 /** 
 	@constructor 

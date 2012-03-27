@@ -1,9 +1,3 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-LAB.require(LAB.src+"app/BaseApp.js");
-LAB.require(LAB.src+"sound/WAPlayer.js");
-LAB.require(LAB.src+"geom/Point.js");
-
 var demoApp;
 
 $(document).ready( function() {

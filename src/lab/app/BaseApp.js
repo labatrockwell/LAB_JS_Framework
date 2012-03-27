@@ -1,5 +1,5 @@
 // LAB BASE
-LAB.require(LAB.src+"EventDispatcher.js");
+//LAB.require(LAB.src+"EventDispatcher.js");
 
 /** @namespace LAB.app */
 

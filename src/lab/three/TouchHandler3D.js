@@ -1,4 +1,4 @@
-LAB.require(LAB.src+"TouchGestureHandler.js");
+//LAB.require(LAB.src+"TouchGestureHandler.js");
 
 LAB.namespace("LAB.three.TouchHandler3D");
 

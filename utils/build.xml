@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="LAB JS FRAMEWORK" basedir="." default="build">
+	<property name="build_dir" value="./" description="LAB JS build directory" />
+	<property name="build_py" value="${build_dir}/build.py" description="LAB JS 'build.py' file" />
+	<property name="python_dir" value="" description="Python directory, leave empty if in classpath or don't forget ending slash" />
+
+    <target name="build" description="Build all LAB JS">
+    	<exec executable="${python_dir}python">
+    	    <arg value="${build_py}"/>
+    	    <arg value="--all"/>
+    	  </exec>
+    </target>
+</project>

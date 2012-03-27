@@ -26,7 +26,7 @@ LAB.three.Geometry.prototype.supr = THREE.Geometry.prototype;
  */
 
 LAB.three.Geometry.prototype.loadModel = function( modelLocation, callback ){
-   loader = new THREE.JSONLoader( true );
+   var loader = new THREE.JSONLoader( true );
    callback = callback || function( geometry ) { return geometry };
    loader.load( { model: modelLocation, callback: callback });
 };
@@ -201,7 +201,7 @@ LAB.three.Geometry.prototype.findEdges = function(){
    
    //create edges 
    for(var i=0; i<this.faces.length; i++){
-      f = this.faces[i];
+      var f = this.faces[i];
       if ( f instanceof THREE.Face3 ){
          var e = new THREE.Edge(this.vertices[f.a], this.vertices[f.b], f.a, f.b); 
          e.faces.push( f );
