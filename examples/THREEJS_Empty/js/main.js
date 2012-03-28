@@ -23,50 +23,39 @@ DemoApp = function() {
 	// ===== SETUP
 	// ===========================================	
 	this.setup = function() {
-      //stats
-      stats = new Stats();
-      stats.domElement.style.position = 'absolute';
-      stats.domElement.style.top = '10px';
-      stats.domElement.style.left = '10px';
-      this.container.appendChild( stats.domElement );
-      stats.domElement.hidden = !bStats;
-      
-		// catch mouse events!
-		this.registerMouseEvents();
-      
-      //camera
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight);
-      camera.position.set( 0, 150, 200 );
-      camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
-      this.scene.add( camera );
-      
-      //make some geometry
-      cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshNormalMaterial() );
-      this.scene.add( cube );
-      
+            //stats
+            stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.top = '10px';
+            stats.domElement.style.left = '10px';
+            this.container.appendChild( stats.domElement );
+            stats.domElement.hidden = !bStats;
+            this.registerMouseEvents()
+            
+            this.camera.position.z = 200;
+
+            //make some geometry
+            cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshNormalMaterial() );
+            this.scene.add( cube );      
 	}
    
 	// ===========================================
 	// ===== UPDATE
 	// ===========================================
 	this.update = function() {
-      if(bStats) stats.update();
-      
-      cube.rotation.x += .01;
-      cube.rotation.y += .005;
-
-	}
-   
+            if(bStats) stats.update();
+            
+            cube.rotation.x += .01;
+            cube.rotation.y += .005;
+	}  
    
 	
 	// ===========================================
 	// ===== DRAW
 	// ===========================================
 	this.draw = function() {
-      gl.clearColor( .3, .3, .33, 0 );
-      this.renderer.render( this.scene, camera, null, true );
-	}
-   
+            this.renderer.render( this.scene, this.camera, null, true );
+	}   
    
 	// ===========================================
 	// ===== KEYS
