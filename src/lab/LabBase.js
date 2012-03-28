@@ -61,33 +61,7 @@ LAB.inherit = function(p) {
 //	C.prototype.constructor = C;
 //}
 
-/**
- * Use this function to safely create a new namespace
- * if a namespace already exists, it won't be recreated.
- *
- * @function
- * @param {String} nsString The namespace as a string.
- * @return {Object} The namespace object.
- */
-LAB.namespace = function (nsString) {
-	var parts = nsString.split('.'),
-		parent = LAB,
-		i;
-		
-	// strip redundant leading global
-	if (parts[0] === "LAB") {
-		parts = parts.slice(1);
-	}
-	
-	for (i=0; i<parts.length; i +=1) {
-		// create a property if it doesn't exist
-		if (typeof parent[parts[i]] === "undefined") {
-			parent[parts[i]] = {};
-		}
-		parent = parent[parts[i]];
-	}
-	return parent;
-};
+
 
 /**
 @function
