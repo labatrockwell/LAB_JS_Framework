@@ -1,6 +1,3 @@
-// LAB BASE
-//LAB.require(LAB.src+"EventDispatcher.js");
-
 /** @namespace LAB.app */
 
 LAB.app = LAB.app || {};
@@ -39,7 +36,7 @@ Call setup and begin animating
 */
 
 LAB.app.BaseApp.prototype.begin = function(){
-	console.log("base app set up");
+	this.registerWindowEvents();
 	this.registerKeyEvents();
 	this.registerMouseEvents();
 	this.setup();
@@ -118,18 +115,49 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 // ===========================================
 // ===== WINDOW
 // ===========================================
+	/**
+		start listening to window events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.registerWindowEvents = function(){
+		if (this.windowEventsRegistered) return;
+		window.addEventListener("onfocus", this._onWindowFocus.bind(this));
+		window.addEventListener("onblur", this._onWindowBlur.bind(this));
+		window.addEventListener("onresize", this._onWindowResized.bind(this));
+		this.windowEventsRegistered = true;
+	}
 
-LAB.app.BaseApp.prototype.registerWindowResize = function(){
-	if (this.windowEventsRegistered) return;
-	window.onresize = this._onWindowResized.bind(this);
-	this.windowEventsRegistered = true;
-}
+	/**
+		stop listening to window events
+		@function
+		@public
+	*/
+	LAB.app.BaseApp.prototype.unregisterWindowEvents = function(){
+		if (!this.windowEventsRegistered) return;
+		window.removeEventListener("onfocus", this._onWindowFocus.bind(this));
+		window.removeEventListener("onblur", this._onWindowBlur.bind(this));
+		window.removeEventListener("onresize", this._onWindowResized.bind(this));
+		this.windowEventsRegistered = false;
+	}
 
-LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
-	this.onWindowResized(window.innerWidth, window.innerHeight);
-}
+	LAB.app.BaseApp.prototype._onWindowResized	= function(event) {
+		this.onWindowResized(window.innerWidth, window.innerHeight);
+	}
 
-LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
+	LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
+
+	LAB.app.BaseApp.prototype._onWindowFocus	= function(event) {
+		this.onWindowFocus();
+	}
+
+	LAB.app.BaseApp.prototype.onWindowFocus	= function() {}
+
+	LAB.app.BaseApp.prototype._onWindowBlur	= function(event) {
+		this.onWindowBlur();
+	}
+
+	LAB.app.BaseApp.prototype.onWindowBlur	= function() {}
 
 // ===========================================
 // ===== MOUSE
@@ -323,6 +351,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 	   this.onDocumentKeyUp( event.keyCode );
 	}
 
+
 // ===========================================
 // ===== TIME
 // ===========================================
@@ -333,7 +362,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@public
 	*/
 	
-	LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
+	LAB.getElapsedTimeMillis = LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
 	{
 		return this.elapsedTime;
 	}
@@ -344,7 +373,7 @@ LAB.app.BaseApp.prototype.onWindowResized	= function(width, height) {}
 		@public
 	*/
 	
-	LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
+	LAB.getElapsedTimeSeconds = LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
 	{
 		return this.elapsedTime/1000;
 	}

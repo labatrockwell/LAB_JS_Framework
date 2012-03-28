@@ -64,7 +64,8 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		*/
 		console.log("base app set up");
 		
-		// listen to mouse + keys by default
+		// listen to mouse + keys + window by default
+		this.registerWindowEvents();
 		this.registerKeyEvents();
 		this.registerMouseEvents();
 			
