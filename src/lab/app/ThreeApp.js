@@ -1,6 +1,6 @@
 // include LabBase files
 /** @namespace LAB.app */
-LAB.require(LAB.src+"../../libs/three/Three.js");
+//LAB.require(LAB.src+"../../libs/three/Three.js");
 //LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
@@ -84,8 +84,12 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		this.renderer.setSize( this._width, this._height );
       	//this.renderer.autoClear = false;
 
-		this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );
-        this.camera.setPerspective( 60, this._width, this._height );
+		this.camera = new THREE.PerspectiveCamera(60, this._width / this._height, .1, 2000);
+	    this.camera.position.set( 0, 0, 50 );
+	    this.camera.lookAt( new THREE.Vector3(0, 0, 0) );
+
+		//this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );
+        //this.camera.setPerspective( 60, this._width, this._height );
         //this.camera.usePushPop( true );
 		
 		/**
