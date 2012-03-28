@@ -7,7 +7,7 @@ LAB.three = LAB.three || {};
  */
 
 LAB.three.Shader = function ( parameters ) {
-//   THREE.ShaderMaterial.call( this );
+  THREE.ShaderMaterial.call( this );
    
    parameters = parameters || {};
    if(parameters.name){

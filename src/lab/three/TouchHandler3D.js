@@ -25,8 +25,7 @@ LAB.three.TouchHandler3D = function(scene, camera) {
 	projector = new THREE.Projector();
 	
 	gestureHandler = new LAB.TouchGestureHandler();
-	gestureHandler.register(window);
-	
+	gestureHandler.register(window);	
 	
 	/**
 	 * @private
@@ -83,7 +82,7 @@ LAB.three.TouchHandler3D = function(scene, camera) {
 		
 		ray = new THREE.Ray( camera.position, vec.subSelf( camera.position ).normalize() );
 		
-		intersects = ray.intersectScene( scene );
+		intersects = ray.intersectObjects( scene.children );
 				
 		return intersects;	
 	}

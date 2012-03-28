@@ -78,7 +78,7 @@ LAB.three.MouseHandler3D = function(scene, camera) {
 		
 		ray = new THREE.Ray( camera.position, vec.subSelf( camera.position ).normalize() );
 		
-		intersects = ray.intersectScene( scene );
+		intersects = ray.intersectObjects( scene.children );
 				
 		return intersects;	
 	}

@@ -392,5 +392,5 @@ LAB.TouchEvent.OUT = "touchout";
 /** @constant */
 LAB.TouchEvent.PRESS = "touchPress";
 
-LAB.TouchEvent.prototype = LAB.inherit(LAB.Event.parent);
+LAB.TouchEvent.prototype = LAB.inherit(LAB.Event.prototype);
 LAB.TouchEvent.prototype.constructor = LAB.TouchEvent;

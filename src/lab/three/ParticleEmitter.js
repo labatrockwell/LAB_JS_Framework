@@ -4,7 +4,6 @@ LAB.three = LAB.three || {};
 /** 
 
 */
-
 var labParticle = function(){
    this.pos = new THREE.Vector3();
    this.vel = new THREE.Vector3();
@@ -33,6 +32,7 @@ LAB.three.ParticleEmitter = function ( parameters ) {
    this.particles = [];
    this.scene = parameters.scene || new THREE.Scene();
    this.renderer = parameters.renderer || new THREE.WebGLRenderer();
+   this.camera = parameters.camera || new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight);
    this.currentTime = 0;
    
    for(var i=0; i<this.maxParticleCount; i++){
@@ -76,8 +76,7 @@ LAB.three.ParticleEmitter = function ( parameters ) {
                                       });
    
    this.particleSystem = new THREE.ParticleSystem( this.geometry, this.shader );
-   
-   
+      
    this.scene.add( this.particleSystem );
    this.renderer.render( this.scene, this.camera );//this is kinda sloppy, but it's any easy way to create the webgl buffers
    this.particleSystem.geometry.__webglParticleCount = 0;// set the particle count to 0

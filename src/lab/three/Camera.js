@@ -67,8 +67,8 @@ LAB.three.Camera.prototype.updateMatrix = function () {
    } else {
 
       //this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
-		this.position.setPositionFromMatrix(this.matrix);
-		this.position.setRotationFromMatrix(this.matrix);
+		this.position.getPositionFromMatrix(this.matrix);
+		this.position.getRotationFromMatrix(this.matrix);
 		this.matrixWorldNeedsUpdate = true;
 	}
 };
