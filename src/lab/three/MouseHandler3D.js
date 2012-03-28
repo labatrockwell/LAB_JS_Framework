@@ -1,4 +1,4 @@
-LAB.namespace("LAB.three.MouseHandler3D");
+namespace("LAB.three.MouseHandler3D");
 
 /**
  * @namespace LAB.three

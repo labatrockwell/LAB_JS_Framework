@@ -13,9 +13,9 @@ import sys
 
 COMMON_FILES = [
 'LabBase.js',
+'Utils.js',
 'EventDispatcher.js',
 'TouchGestureHandler.js',
-'Utils.js',
 'agents/Agent.js',
 'agents/Behavior.js',
 'agents/Group.js',
