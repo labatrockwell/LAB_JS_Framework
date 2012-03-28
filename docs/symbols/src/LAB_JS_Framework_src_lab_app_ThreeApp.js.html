@@ -7,105 +7,156 @@
 	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
 	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// include LabBase files</span><span class="WHIT">
 <span class='line'>  2</span> </span><span class="COMM">/** @namespace LAB.app */</span><span class="WHIT">
-<span class='line'>  3</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"../../libs/three/Three.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>  4</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"app/BaseApp.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">//LAB.require(LAB.src+"../../libs/three/Three.js");</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//LAB.require(LAB.src+"app/BaseApp.js");</span><span class="WHIT">
 <span class='line'>  5</span> 
 <span class='line'>  6</span> </span><span class="COMM">// LAB Three includes</span><span class="WHIT">
 <span class='line'>  7</span> 
-<span class='line'>  8</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"three/Camera.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>  9</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"three/Geometry.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 10</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"three/Object.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 11</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"three/Shader.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 12</span> 
-<span class='line'> 13</span> </span><span class="COMM">/**
-<span class='line'> 14</span> * global gl reference to mirror normal openGL
-<span class='line'> 15</span> * @type WebGLContext
-<span class='line'> 16</span> */</span><span class="WHIT">
-<span class='line'> 17</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 18</span> 
-<span class='line'> 19</span> </span><span class="COMM">/** 
-<span class='line'> 20</span> 	@constructor 
-<span class='line'> 21</span> 	@extends LAB.app.BaseApp
-<span class='line'> 22</span> */</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="NAME">LAB.app.ThreeApp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 24</span> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 25</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.call</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 26</span> </span><span class="WHIT">	
-<span class='line'> 27</span> 	</span><span class="NAME">this.container</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="WHIT">	</span><span class="NAME">this.camera</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.scene</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.projector</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.renderer</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 29</span> 
-<span class='line'> 30</span> </span><span class="WHIT">	</span><span class="NAME">this.mouse</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">x</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 31</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 32</span> 
-<span class='line'> 33</span> </span><span class="NAME">LAB.app.ThreeApp.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="NAME">LAB.app.ThreeApp.prototype.constructor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.ThreeApp</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="NAME">LAB.app.ThreeApp.prototype.supr</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp.prototype</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 36</span> 
-<span class='line'> 37</span> </span><span class="COMM">/************************************************************
-<span class='line'> 38</span> 	SETUP
-<span class='line'> 39</span> ************************************************************/</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="COMM">//LAB.require(LAB.src+"three/Camera.js");</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="COMM">//LAB.require(LAB.src+"three/Geometry.js");</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="COMM">//LAB.require(LAB.src+"three/Mesh.js");</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="COMM">//LAB.require(LAB.src+"three/Object.js");</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="COMM">//LAB.require(LAB.src+"three/ParticleEmitter.js");</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="COMM">//LAB.require(LAB.src+"three/Shader.js");</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span> * global gl reference to mirror normal openGL
+<span class='line'> 17</span> * @type WebGLContext
+<span class='line'> 18</span> */</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="COMM">/** 
+<span class='line'> 22</span> 	@constructor 
+<span class='line'> 23</span> 	@extends LAB.app.BaseApp
+<span class='line'> 24</span> */</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="NAME">LAB.app.ThreeApp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.BaseApp.call</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">	
+<span class='line'> 29</span> 	</span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">	</span><span class="NAME">this.camera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">	</span><span class="NAME">this.scene</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">	</span><span class="NAME">this.projector</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">	</span><span class="NAME">this.renderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">	</span><span class="NAME">this._canvas</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="WHIT">	</span><span class="NAME">this.mouse</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">x</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">y</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">	</span><span class="NAME">this._width</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">	</span><span class="NAME">this._height</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'> 40</span> 
-<span class='line'> 41</span> </span><span class="WHIT">	</span><span class="COMM">/** 
-<span class='line'> 42</span> 		Call to set up Webgl, initialize the canvas, provide default THREE vars
-<span class='line'> 43</span> 		and start animate() loop
-<span class='line'> 44</span> 		@function 
-<span class='line'> 45</span> 		@public
-<span class='line'> 46</span> 	*/</span><span class="WHIT">
-<span class='line'> 47</span> 
-<span class='line'> 48</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.begin</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 49</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 50</span> </span><span class="WHIT">		</span><span class="COMM">/**
-<span class='line'> 51</span> 		* default THREE camera
-<span class='line'> 52</span> 		* @type THREE.Camera
-<span class='line'> 53</span> 		*/</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="WHIT">		</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"base app set up"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="WHIT">		</span><span class="NAME">this.camera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Camera</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NUMB">70</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">window.innerWidth</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">window.innerHeight</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">10000</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="WHIT">		</span><span class="NAME">this.camera.position.y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">300</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">		</span><span class="NAME">this.camera.position.z</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">500</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 58</span> </span><span class="WHIT">		
-<span class='line'> 59</span> 		</span><span class="COMM">/**
-<span class='line'> 60</span> 		* default THREE scene
-<span class='line'> 61</span> 		* @type THREE.Scene
-<span class='line'> 62</span> 		*/</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">		</span><span class="NAME">this.scene</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Scene</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">		
-<span class='line'> 65</span> 		</span><span class="COMM">/**
-<span class='line'> 66</span> 		* default THREE projector
-<span class='line'> 67</span> 		* @type THREE.Projector
-<span class='line'> 68</span> 		*/</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">		</span><span class="NAME">this.projector</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Projector</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 70</span> </span><span class="WHIT">		
+<span class='line'> 41</span> </span><span class="NAME">LAB.app.ThreeApp.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="NAME">LAB.app.ThreeApp.prototype.constructor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.ThreeApp</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="NAME">LAB.app.ThreeApp.prototype.supr</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.app.BaseApp.prototype</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> 
+<span class='line'> 45</span> </span><span class="COMM">/************************************************************
+<span class='line'> 46</span> 	SETUP
+<span class='line'> 47</span> ************************************************************/</span><span class="WHIT">
+<span class='line'> 48</span> 
+<span class='line'> 49</span> </span><span class="WHIT">	</span><span class="COMM">/** 
+<span class='line'> 50</span> 		Call to set up Webgl, initialize the canvas, provide default THREE vars
+<span class='line'> 51</span> 		and start animate() loop
+<span class='line'> 52</span> 		@function 
+<span class='line'> 53</span> 		@public
+<span class='line'> 54</span> 		@param width (optional) width of renderer
+<span class='line'> 55</span> 		@param height (optional) height of renderer
+<span class='line'> 56</span> 	*/</span><span class="WHIT">
+<span class='line'> 57</span> 
+<span class='line'> 58</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.begin</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">parameters</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">	</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">		</span><span class="NAME">parameters</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">		</span><span class="COMM">/**
+<span class='line'> 62</span> 		* default THREE camera
+<span class='line'> 63</span> 		* @type THREE.Camera
+<span class='line'> 64</span> 		*/</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">		</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"base app set up"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">		
+<span class='line'> 67</span> 		</span><span class="COMM">// listen to mouse + keys by default</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">		</span><span class="NAME">this.registerKeyEvents</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">		</span><span class="NAME">this.registerMouseEvents</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">			
 <span class='line'> 71</span> 		</span><span class="COMM">/**
 <span class='line'> 72</span> 		* default THREE renderer with anti-aliasing, depth sorting off
 <span class='line'> 73</span> 		* @type THREE.WebGLRenderer
 <span class='line'> 74</span> 		*/</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.WebGLRenderer</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">antialias</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 76</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer.sortObjects</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 77</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer.setSize</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">window.innerWidth</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">window.innerHeight</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">      </span><span class="NAME">this.renderer.autoClear</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 79</span> 
-<span class='line'> 80</span> </span><span class="WHIT">		</span><span class="COMM">// do we have a container?</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">	
-<span class='line'> 82</span> 		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">document.getElementById</span><span class="PUNC">(</span><span class="STRN">"labContainer"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">			</span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.getElementById</span><span class="PUNC">(</span><span class="STRN">"labContainer"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">			</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"no labContainer in document, generating container div"</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">			</span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'div'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 88</span> </span><span class="WHIT">				</span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 89</span> </span><span class="WHIT">			</span><span class="KEYW">else</span><span class="WHIT">
-<span class='line'> 90</span> </span><span class="WHIT">				</span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 91</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 92</span> </span><span class="WHIT">		
-<span class='line'> 93</span> 		</span><span class="NAME">this.container.appendChild</span><span class="PUNC">(</span><span class="NAME">this.renderer.domElement</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">	
-<span class='line'> 94</span> 		
-<span class='line'> 95</span> 		</span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">this.renderer.getContext</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 96</span> </span><span class="WHIT">		
-<span class='line'> 97</span> 		</span><span class="NAME">this.setup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 98</span> </span><span class="WHIT">		</span><span class="NAME">this.animate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>100</span> 
-<span class='line'>101</span> </span><span class="COMM">/************************************************************
-<span class='line'>102</span> 	DRAW: override the draw function in your app!
-<span class='line'>103</span> ************************************************************/</span><span class="WHIT">
-<span class='line'>104</span> </span></pre></body></html>
+<span class='line'> 75</span> </span><span class="WHIT">		</span><span class="NAME">this._width</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters.width</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">window.innerWidth</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">		</span><span class="NAME">this._height</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters.height</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">window.innerHeight</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">		</span><span class="COMM">// create canvas so we can customize it a bit</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">		</span><span class="NAME">this._canvas</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters.canvas</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">parameters.canvas</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'canvas'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">		</span><span class="NAME">this._canvas.id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters.canvasId</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">parameters.canvasId</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"labCanvas"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.WebGLRenderer</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">antialias</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">parameters.antialias</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">parameters.antialias</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">canvas</span><span class="PUNC">:</span><span class="NAME">this._canvas</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer.sortObjects</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">		</span><span class="NAME">this.renderer.setSize</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this._width</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._height</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">      	</span><span class="COMM">//this.renderer.autoClear = false;</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">		</span><span class="NAME">this.camera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.PerspectiveCamera</span><span class="PUNC">(</span><span class="NUMB">60</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._width</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">this._height</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">.</span><span class="NUMB">1</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">2000</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">	    </span><span class="NAME">this.camera.position.set</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">50</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">	    </span><span class="NAME">this.camera.lookAt</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Vector3</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="WHIT">		</span><span class="COMM">//this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">        </span><span class="COMM">//this.camera.setPerspective( 60, this._width, this._height );</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">        </span><span class="COMM">//this.camera.usePushPop( true );</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">		
+<span class='line'> 95</span> 		</span><span class="COMM">/**
+<span class='line'> 96</span> 		* default THREE scene
+<span class='line'> 97</span> 		* @type THREE.Scene
+<span class='line'> 98</span> 		*/</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">		</span><span class="NAME">this.scene</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parameters.scene</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Scene</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">		</span><span class="NAME">this.scene.add</span><span class="PUNC">(</span><span class="NAME">this.camera</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">      			
+<span class='line'>102</span> 		</span><span class="COMM">/**
+<span class='line'>103</span> 		* default THREE projector
+<span class='line'>104</span> 		* @type THREE.Projector
+<span class='line'>105</span> 		*/</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">		</span><span class="NAME">this.projector</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">THREE.Projector</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">      	
+<span class='line'>108</span> 		</span><span class="COMM">// do we have a container?</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">	
+<span class='line'>110</span> 		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">document.getElementById</span><span class="PUNC">(</span><span class="STRN">"labContainer"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">			</span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.getElementById</span><span class="PUNC">(</span><span class="STRN">"labContainer"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">			</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"no labContainer in document, generating container div"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">			</span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">'div'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">			</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">				</span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this.container</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT"> 				</span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">		
+<span class='line'>122</span> 		</span><span class="NAME">this.container.appendChild</span><span class="PUNC">(</span><span class="NAME">this.renderer.domElement</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">	
+<span class='line'>123</span> 		
+<span class='line'>124</span> 		</span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gl</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">this.renderer.getContext</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">		
+<span class='line'>126</span> 		</span><span class="NAME">this.setup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">		</span><span class="NAME">this.animate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>129</span> 
+<span class='line'>130</span> </span><span class="COMM">/************************************************************
+<span class='line'>131</span> 	DRAW: override the draw function in your app!
+<span class='line'>132</span> ************************************************************/</span><span class="WHIT">
+<span class='line'>133</span> 
+<span class='line'>134</span> 
+<span class='line'>135</span> </span><span class="COMM">/************************************************************
+<span class='line'>136</span> 	THREE APP SETTERS
+<span class='line'>137</span> ************************************************************/</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.__defineSetter__</span><span class="PUNC">(</span><span class="STRN">"canvasWidth"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">		</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"error: please don't set this variable"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>142</span> 
+<span class='line'>143</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.__defineSetter__</span><span class="PUNC">(</span><span class="STRN">"canvasHeight"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">		</span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"error: please don't set this variable"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>146</span> 
+<span class='line'>147</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.__defineGetter__</span><span class="PUNC">(</span><span class="STRN">"canvasWidth"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._width</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>150</span> 
+<span class='line'>151</span> </span><span class="WHIT">	</span><span class="NAME">LAB.app.ThreeApp.prototype.__defineGetter__</span><span class="PUNC">(</span><span class="STRN">"canvasHeight"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._height</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>154</span> 
+<span class='line'>155</span> </span></pre></body></html>

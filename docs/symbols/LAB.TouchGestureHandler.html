@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.three.Object</title>
+		<title>JsDoc Reference - LAB.TouchGestureHandler</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -266,25 +266,27 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.three.Object
+				Namespace LAB.TouchGestureHandler
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
+				<br />Extends
+					<a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>.<br />
 				
 			
+				LAB
 				
 				
-				
-					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_three_Object.js.html">Object.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_TouchGestureHandler.js.html">TouchGestureHandler.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.three.Object.">
-				<caption>Class Summary</caption>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.TouchGestureHandler.">
+				<caption>Namespace Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -296,9 +298,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.three.Object.html#constructor">LAB.three.Object</a></b>(_renderer, _scene)
+								<b><a href="../symbols/LAB.TouchGestureHandler.html#constructor">LAB.TouchGestureHandler</a></b>
 							</div>
-							<div class="description"></div>
+							<div class="description">A touch gesture handler that wraps mouse events.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -312,7 +314,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.three.Object.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.TouchGestureHandler.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -323,9 +325,36 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addChild">addChild</a></b>(_child)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-calcDegree">calcDegree</a></b>(startPoint, endPoint)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-calcDistance">calcDistance</a></b>(pointA, pointB)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-calcVelocity">calcVelocity</a></b>(dist, timeChange)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-dispatch">dispatch</a></b>(type)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -334,7 +363,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addGeometry">addGeometry</a></b>(_geometry, _material)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getAverageVelocity">getAverageVelocity</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -343,7 +372,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addLight">addLight</a></b>(_light)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getDragDirection">getDragDirection</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -352,7 +381,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#addObject">addObject</a></b>(_object)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getDragDistance">getDragDistance</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -361,7 +390,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#draw">draw</a></b>(_camera, _material, _renderTarget)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getFlickDirection">getFlickDirection</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -370,7 +399,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#multMatrix">multMatrix</a></b>(m)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getFlickDistance">getFlickDistance</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -379,7 +408,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#popMatrix">popMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getFlickVelocity">getFlickVelocity</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -388,7 +417,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#pushMatrix">pushMatrix</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getTouchX">getTouchX</a></b>()
 								</div>
 								<div class="description"></div>
 							</td>
@@ -397,7 +426,44 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#scale">scale</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#getTouchY">getTouchY</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-mouseDownHandler">mouseDownHandler</a></b>(event)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-mouseMoveHandler">mouseMoveHandler</a></b>(event)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-mouseOutHandler">mouseOutHandler</a></b>(event)
+								</div>
+								<div class="description">This is important when using DOM objects so you know when you have
+dragged outside the object that the mouse down event was fired over</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-mouseUpHandler">mouseUpHandler</a></b>(event)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -406,7 +472,35 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setRotation">setRotation</a></b>(angle, x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#register">register</a></b>(target)
+								</div>
+								<div class="description">Register an object (DOM, window, or any object that implements EventDispatcher) with
+the touch gesture handler.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-resetForNext">resetForNext</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-startMove">startMove</a></b>(event)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;private&gt; &lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#-tangentAngle">tangentAngle</a></b>(xVal, yVal)
 								</div>
 								<div class="description"></div>
 							</td>
@@ -415,27 +509,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setScale">setScale</a></b>(x, y, z)
+								<div class="fixedFont"><b><a href="../symbols/LAB.TouchGestureHandler.html#unregister">unregister</a></b>(target)
 								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#setTranslation">setTranslation</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.three.Object.html#translate">translate</a></b>(x, y, z)
-								</div>
-								<div class="description"></div>
+								<div class="description">Unregister an object with the touch gesture handler</div>
 							</td>
 						</tr>
 					
@@ -443,6 +519,10 @@ ul.inheritsList
 				</table>
 				
 				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				</dl>
 				
 			
 <!-- ============================== events summary ======================== -->
@@ -452,38 +532,23 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Class Detail
+					Namespace Detail
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.three.Object</b>(_renderer, _scene)
+						<b>LAB.TouchGestureHandler</b>
 				</div>
 				
 				<div class="description">
-					
+					A touch gesture handler that wraps mouse events. To use: create an instance of this
+class and register either window or a DOM object (or any custom object that implements
+EventDispatcher). Then listen for touch events (see TouchEvent) on the registerd object.
 					
 				</div>
 				
 				
 				
 				
-					
-						<dl class="detailList">
-						<dt class="heading">Parameters:</dt>
-						
-							<dt>
-								 <b>_renderer</b>
-								
-							</dt>
-								<dd></dd>
-						
-							<dt>
-								 <b>_scene</b>
-								
-							</dt>
-								<dd></dd>
-						
-						</dl>
 					
 					
 					
@@ -504,11 +569,11 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addChild"> </a>
-					<div class="fixedFont">
+					<a name="-calcDegree"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>addChild</b>(_child)
+					<b>calcDegree</b>(startPoint, endPoint)
 					
 					</div>
 					<div class="description">
@@ -524,7 +589,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_child</b>
+									<b>startPoint</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>endPoint</b>
 									
 								</dt>
 								<dd></dd>
@@ -540,11 +611,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="addGeometry"> </a>
-					<div class="fixedFont">
+					<a name="-calcDistance"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>addGeometry</b>(_geometry, _material)
+					<b>calcDistance</b>(pointA, pointB)
 					
 					</div>
 					<div class="description">
@@ -560,13 +631,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_geometry</b>
+									<b>pointA</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>_material</b>
+									<b>pointB</b>
 									
 								</dt>
 								<dd></dd>
@@ -582,11 +653,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="addLight"> </a>
-					<div class="fixedFont">
+					<a name="-calcVelocity"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>addLight</b>(_light)
+					<b>calcVelocity</b>(dist, timeChange)
 					
 					</div>
 					<div class="description">
@@ -602,7 +673,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_light</b>
+									<b>dist</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>timeChange</b>
 									
 								</dt>
 								<dd></dd>
@@ -618,11 +695,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="addObject"> </a>
-					<div class="fixedFont">
+					<a name="-dispatch"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>addObject</b>(_object)
+					<b>dispatch</b>(type)
 					
 					</div>
 					<div class="description">
@@ -638,7 +715,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_object</b>
+									<b>type</b>
 									
 								</dt>
 								<dd></dd>
@@ -654,11 +731,270 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="draw"> </a>
+					<a name="getAverageVelocity"> </a>
 					<div class="fixedFont">
 					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getAverageVelocity</b>()
 					
-					<b>draw</b>(_camera, _material, _renderTarget)
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The average velocity (in pixels/milliseconds) of the drag 
+from press to release.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getDragDirection"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getDragDirection</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The direction (in degrees 0 - 360) between the start and stop point 
+of the last drag event.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getDragDistance"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getDragDistance</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The distance between the start and stop point of the last drag event.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getFlickDirection"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getFlickDirection</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The direction (in degrees 0 - 360) between the start and stop point 
+of the flick</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getFlickDistance"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getFlickDistance</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The distance between the start and end point of the flick.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getFlickVelocity"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getFlickVelocity</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The velocity (in pixels/milliseconds) of the flick.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getTouchX"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getTouchX</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The x coordinate of the touch event.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getTouchY"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/Number.html">Number</a>}</span>
+					<b>getTouchY</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Number.html">Number</a>}</span> The y coordinate of the touch event.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="-mouseDownHandler"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					
+					<b>mouseDownHandler</b>(event)
 					
 					</div>
 					<div class="description">
@@ -674,19 +1010,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>_camera</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_material</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>_renderTarget</b>
+									<b>event</b>
 									
 								</dt>
 								<dd></dd>
@@ -702,11 +1026,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="multMatrix"> </a>
-					<div class="fixedFont">
+					<a name="-mouseMoveHandler"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>multMatrix</b>(m)
+					<b>mouseMoveHandler</b>(event)
 					
 					</div>
 					<div class="description">
@@ -722,7 +1046,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>m</b>
+									<b>event</b>
 									
 								</dt>
 								<dd></dd>
@@ -738,65 +1062,16 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="popMatrix"> </a>
-					<div class="fixedFont">
+					<a name="-mouseOutHandler"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>popMatrix</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="pushMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>pushMatrix</b>()
+					<b>mouseOutHandler</b>(event)
 					
 					</div>
 					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="scale"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>scale</b>(x, y, z)
-					
-					</div>
-					<div class="description">
-						
+						This is important when using DOM objects so you know when you have
+dragged outside the object that the mouse down event was fired over
 						
 						
 					</div>
@@ -808,19 +1083,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>event</b>
 									
 								</dt>
 								<dd></dd>
@@ -836,11 +1099,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setRotation"> </a>
-					<div class="fixedFont">
+					<a name="-mouseUpHandler"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>setRotation</b>(angle, x, y, z)
+					<b>mouseUpHandler</b>(event)
 					
 					</div>
 					<div class="description">
@@ -856,25 +1119,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>angle</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>event</b>
 									
 								</dt>
 								<dd></dd>
@@ -890,11 +1135,73 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setScale"> </a>
+					<a name="register"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setScale</b>(x, y, z)
+					<b>register</b>(target)
+					
+					</div>
+					<div class="description">
+						Register an object (DOM, window, or any object that implements EventDispatcher) with
+the touch gesture handler.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>target</b>
+									
+								</dt>
+								<dd>The object to register with the gesture handler</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-resetForNext"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					
+					<b>resetForNext</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="-startMove"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
+					
+					
+					<b>startMove</b>(event)
 					
 					</div>
 					<div class="description">
@@ -910,19 +1217,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>event</b>
 									
 								</dt>
 								<dd></dd>
@@ -938,11 +1233,11 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setTranslation"> </a>
-					<div class="fixedFont">
+					<a name="-tangentAngle"> </a>
+					<div class="fixedFont">&lt;private&gt; &lt;inner&gt; 
 					
 					
-					<b>setTranslation</b>(x, y, z)
+					<b>tangentAngle</b>(xVal, yVal)
 					
 					</div>
 					<div class="description">
@@ -958,19 +1253,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<b>xVal</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
+									<b>yVal</b>
 									
 								</dt>
 								<dd></dd>
@@ -986,15 +1275,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="translate"> </a>
+					<a name="unregister"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>translate</b>(x, y, z)
+					<b>unregister</b>(target)
 					
 					</div>
 					<div class="description">
-						
+						Unregister an object with the touch gesture handler
 						
 						
 					</div>
@@ -1006,22 +1295,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Object}</span> <b>target</b>
 									
 								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>y</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>z</b>
-									
-								</dt>
-								<dd></dd>
+								<dd>The object to unregister</dd>
 							
 							</dl>
 						

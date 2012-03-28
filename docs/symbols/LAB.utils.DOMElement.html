@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - LAB.utils.WebSocket</title>
+		<title>JsDoc Reference - LAB.utils.DOMElement</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -266,26 +266,24 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class LAB.utils.WebSocket
+				Class LAB.utils.DOMElement
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					<a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>.<br />
 				
 			
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_utils_WebSocket.js.html">WebSocket.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/LAB_JS_Framework_src_lab_utils_DOMElement.js.html">DOMElement.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.utils.WebSocket.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class LAB.utils.DOMElement.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -298,9 +296,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/LAB.utils.WebSocket.html#constructor">LAB.utils.WebSocket</a></b>(_host, protocol)
+								<b><a href="../symbols/LAB.utils.DOMElement.html#constructor">LAB.utils.DOMElement</a></b>(id, parent)
 							</div>
-							<div class="description">Creates a new Websocket with host (defaults to "ws://localhost:8888")</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -311,73 +309,6 @@ ul.inheritsList
 			
 
 <!-- ============================== methods summary ======================== -->
-			
-				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class LAB.utils.WebSocket.">
-					<caption>Method Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Method Attributes</th>
-							<th scope="col">Method Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#connect">connect</a></b>()
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionClosed">onConnectionClosed</a></b>()
-								</div>
-								<div class="description">Override in your main app</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onConnectionOpened">onConnectionOpened</a></b>()
-								</div>
-								<div class="description">Override in your main app, e.g.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#onMessageReceived">onMessageReceived</a></b>(data)
-								</div>
-								<div class="description">Override in your main app</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.utils.WebSocket.html#sendData">sendData</a></b>(data)
-								</div>
-								<div class="description"></div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
-				
-				
-				
-				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
-				</dl>
-				
 			
 <!-- ============================== events summary ======================== -->
 			
@@ -390,11 +321,11 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>LAB.utils.WebSocket</b>(_host, protocol)
+						<b>LAB.utils.DOMElement</b>(id, parent)
 				</div>
 				
 				<div class="description">
-					Creates a new Websocket with host (defaults to "ws://localhost:8888")
+					
 					
 				</div>
 				
@@ -406,16 +337,16 @@ ul.inheritsList
 						<dt class="heading">Parameters:</dt>
 						
 							<dt>
-								 <b>_host</b>
+								 <b>id</b>
 								
 							</dt>
-								<dd></dd>
+								<dd>without parent: unique ID of html element. with parent: id of child of parent div</dd>
 						
 							<dt>
-								 <b>protocol</b>
+								 <b>parent</b>
 								
 							</dt>
-								<dd></dd>
+								<dd>(optional) either LAB.utils.DOMElement or string</dd>
 						
 						</dl>
 					
@@ -433,160 +364,6 @@ ul.inheritsList
 			
 
 <!-- ============================== method details ========================= -->		
-			
-				<div class="sectionTitle">
-					Method Detail
-				</div>
-				
-					<a name="connect"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>connect</b>()
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="onConnectionClosed"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>onConnectionClosed</b>()
-					
-					</div>
-					<div class="description">
-						Override in your main app
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="onConnectionOpened"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>onConnectionOpened</b>()
-					
-					</div>
-					<div class="description">
-						Override in your main app, e.g.:
-var socket = new LAB.utils.WebSocket;
-socket.onConnectionOpened = this.onConnect;
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="onMessageReceived"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>onMessageReceived</b>(data)
-					
-					</div>
-					<div class="description">
-						Override in your main app
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>data</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="sendData"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>sendData</b>(data)
-					
-					</div>
-					<div class="description">
-						
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>data</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					
-				
 			
 			
 <!-- ============================== event details ========================= -->		

@@ -12,58 +12,139 @@
 <span class='line'>  5</span> </span><span class="COMM">// reference to global context, in most cases 'window'.</span><span class="WHIT">
 <span class='line'>  6</span> </span><span class="NAME">LAB.global</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>  7</span> 
-<span class='line'>  8</span> </span><span class="COMM">// require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js</span><span class="WHIT">
-<span class='line'>  9</span> 
-<span class='line'> 10</span> </span><span class="COMM">/*
-<span class='line'> 11</span>  * helper (for javascript importing within javascript).
-<span class='line'> 12</span>  */</span><span class="WHIT">
-<span class='line'> 13</span> 
-<span class='line'> 14</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">included</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 15</span> 
-<span class='line'> 16</span> </span><span class="COMM">/**
-<span class='line'> 17</span> @function
-<span class='line'> 18</span> @private
-<span class='line'> 19</span> */</span><span class="WHIT">
-<span class='line'> 20</span> </span><span class="NAME">LAB.writeScriptTag_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 21</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">doc</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.global.document</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 22</span> </span><span class="WHIT">	</span><span class="NAME">doc.write</span><span class="PUNC">(</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="WHIT">		</span><span class="STRN">'&lt;script type="text/javascript" src="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">src</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'">&lt;/'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'script>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 24</span> </span><span class="WHIT">	</span><span class="NAME">included</span><span class="PUNC">[</span><span class="NAME">src</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 25</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 26</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 27</span> 
-<span class='line'> 28</span> </span><span class="COMM">/**
-<span class='line'> 29</span> 	Use this to load script files! (only script files right now)
-<span class='line'> 30</span> 	@function
-<span class='line'> 31</span> 	@public
-<span class='line'> 32</span> */</span><span class="WHIT">
-<span class='line'> 33</span> </span><span class="NAME">LAB.require</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="WHIT">	</span><span class="NAME">src</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">included</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"already included"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">LAB.writeScriptTag_</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 36</span> 
-<span class='line'> 37</span> </span><span class="NAME">LAB.getScriptPath</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">filename</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 38</span> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 39</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">scripts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.getElementsByTagName</span><span class="PUNC">(</span><span class="STRN">'script'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 40</span> 
-<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">scripts.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">--</span><span class="NAME">i</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 42</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">src</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">scripts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">src</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 43</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">src.length</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">length</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">filename.length</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">src.substr</span><span class="PUNC">(</span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">filename</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">        	</span><span class="COMM">// set a global propery here</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="WHIT">        	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">src.substr</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 48</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 49</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 50</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 51</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 52</span> 
-<span class='line'> 53</span> </span><span class="NAME">LAB.toScriptPath</span><span class="WHIT">	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">className</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="NAME">className</span><span class="PUNC">+</span><span class="STRN">".js"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 56</span> 
-<span class='line'> 57</span> </span><span class="NAME">LAB.src</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.getScriptPath</span><span class="PUNC">(</span><span class="STRN">"LabBase.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 58</span> 
-<span class='line'> 59</span> </span><span class="COMM">// start including stuff</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"EventDispatcher.js"</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"app/BaseApp.js"</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="NAME">LAB.require</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="STRN">"Utils.js"</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'>  8</span> </span><span class="COMM">// version</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="NAME">LAB.version</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"r2"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">// require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="COMM">/*
+<span class='line'> 14</span>  * helper (for javascript importing within javascript).
+<span class='line'> 15</span>  */</span><span class="WHIT">
+<span class='line'> 16</span> 
+<span class='line'> 17</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">included</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 18</span> 
+<span class='line'> 19</span> </span><span class="COMM">/**
+<span class='line'> 20</span>  * Copied from Flanagan, David. Javascript: The Definitive Guide.
+<span class='line'> 21</span>  * Use this function to inherit objects.
+<span class='line'> 22</span>  *
+<span class='line'> 23</span>  * @function
+<span class='line'> 24</span>  * @example
+<span class='line'> 25</span>  * Child.prototype = LAB.inherit(Parent.prototype);
+<span class='line'> 26</span>  * Child.prototype.constructor = Child;
+<span class='line'> 27</span>  *
+<span class='line'> 28</span>  * @param {Object} p The Parent object to inherit. The object can either be the prototype of the Parent
+<span class='line'> 29</span>  * object (Parent.prototype) or a new instance of the parent (new Parent())
+<span class='line'> 30</span>  * @return {Object} A copy of the prototype of the Parent object.
+<span class='line'> 31</span>  */</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="NAME">LAB.inherit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">p</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">p</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// p must be a non-null object</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">Object.create</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">// If Object.create() is defined...</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Object.create</span><span class="PUNC">(</span><span class="NAME">p</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// then just use it</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">t</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">p</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// otherwise do some more type checking</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">t</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"object"</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">t</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"function"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="NAME">TypeError</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">	</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">f</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// define a dummy constructor function</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">	</span><span class="NAME">f.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">p</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// Set its prototype property to p</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">f</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// use f() to create an 'heir' of p.</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="COMM">// alternate version of inherit:</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="COMM">///**</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="COMM">// * Copied from Stefanov, Stoyan. JavaScript Patterns.</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="COMM">// * Use this function to inherit objects</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="COMM">// *</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="COMM">// * @function</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="COMM">// * @example</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="COMM">// * LAB.inherit(Child, Parent);</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="COMM">// *</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="COMM">// * @param {Object} C The Child object.</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="COMM">// * @param {Object} P The Parent object.</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="COMM">// */</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="COMM">//LAB.utils.inherit = function(C, P) {</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="COMM">//	var F = function() {};</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="COMM">//	F.prototype = P.prototype;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="COMM">//	C.prototype = new F();</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="COMM">//	C.uber = P.prototype;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="COMM">//	C.prototype.constructor = C;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="COMM">//}</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="COMM">/**
+<span class='line'> 65</span>  * Use this function to safely create a new namespace
+<span class='line'> 66</span>  * if a namespace already exists, it won't be recreated.
+<span class='line'> 67</span>  *
+<span class='line'> 68</span>  * @function
+<span class='line'> 69</span>  * @param {String} nsString The namespace as a string.
+<span class='line'> 70</span>  * @return {Object} The namespace object.
+<span class='line'> 71</span>  */</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="NAME">LAB.namespace</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">nsString</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">parts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">nsString.split</span><span class="PUNC">(</span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">		</span><span class="NAME">parent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">		</span><span class="NAME">i</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">		
+<span class='line'> 77</span> 	</span><span class="COMM">// strip redundant leading global</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">parts</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">"LAB"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">		</span><span class="NAME">parts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parts.slice</span><span class="PUNC">(</span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">	
+<span class='line'> 82</span> 	</span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">&lt;</span><span class="NAME">parts.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">		</span><span class="COMM">// create a property if it doesn't exist</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">parent</span><span class="PUNC">[</span><span class="NAME">parts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">			</span><span class="NAME">parent</span><span class="PUNC">[</span><span class="NAME">parts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">		</span><span class="NAME">parent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parent</span><span class="PUNC">[</span><span class="NAME">parts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">parent</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 91</span> 
+<span class='line'> 92</span> </span><span class="COMM">/**
+<span class='line'> 93</span> @function
+<span class='line'> 94</span> @private
+<span class='line'> 95</span> */</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="NAME">LAB.writeScriptTag_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">doc</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.global.document</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">	</span><span class="NAME">doc.write</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">		</span><span class="STRN">'&lt;script type="text/javascript" src="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">src</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'">&lt;/'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'script>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">	</span><span class="NAME">included</span><span class="PUNC">[</span><span class="NAME">src</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>103</span> 
+<span class='line'>104</span> </span><span class="COMM">/**
+<span class='line'>105</span> 	Use this to load script files! (only script files right now)
+<span class='line'>106</span> 	@function
+<span class='line'>107</span> 	@public
+<span class='line'>108</span> */</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="NAME">LAB.require</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">	</span><span class="NAME">src</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">included</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"already included"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">LAB.writeScriptTag_</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> 
+<span class='line'>113</span> </span><span class="NAME">LAB.getScriptPath</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">filename</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">scripts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.getElementsByTagName</span><span class="PUNC">(</span><span class="STRN">'script'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>115</span> 
+<span class='line'>116</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">scripts.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">--</span><span class="NAME">i</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">src</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">scripts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">src</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">src.length</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">length</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">filename.length</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">		</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">src.substr</span><span class="PUNC">(</span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">filename</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">        	</span><span class="COMM">// set a global propery here</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">        	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">src.substr</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>127</span> 
+<span class='line'>128</span> </span><span class="NAME">LAB.toScriptPath</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">className</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">LAB.src</span><span class="PUNC">+</span><span class="NAME">className</span><span class="PUNC">+</span><span class="STRN">".js"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>131</span> 
+<span class='line'>132</span> </span><span class="NAME">LAB.src</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LAB.getScriptPath</span><span class="PUNC">(</span><span class="STRN">"LabBase.js"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>133</span> 
+<span class='line'>134</span> </span><span class="COMM">// start including stuff</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="COMM">//LAB.require( LAB.src+"EventDispatcher.js" );</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="COMM">//LAB.require( LAB.src+"app/BaseApp.js" );</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="COMM">//LAB.require( LAB.src+"Utils.js" );</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="COMM">// key constants</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="NAME">LAB.SHIFT</span><span class="WHIT"> 	</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">16</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="NAME">LAB.CONTROL</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">17</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="NAME">LAB.ALT</span><span class="WHIT">		</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">18</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="NAME">LAB.COMMAND</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">91</span><span class="PUNC">;</span></pre></body></html>
