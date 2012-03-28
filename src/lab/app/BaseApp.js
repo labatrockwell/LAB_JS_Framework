@@ -122,9 +122,9 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	*/
 	LAB.app.BaseApp.prototype.registerWindowEvents = function(){
 		if (this.windowEventsRegistered) return;
-		window.addEventListener("onfocus", this._onWindowFocus.bind(this));
-		window.addEventListener("onblur", this._onWindowBlur.bind(this));
-		window.addEventListener("onresize", this._onWindowResized.bind(this));
+		window.addEventListener("focus", this._onWindowFocus.bind(this));
+		window.addEventListener("blur", this._onWindowBlur.bind(this));
+		window.addEventListener("resize", this._onWindowResized.bind(this));
 		this.windowEventsRegistered = true;
 	}
 
@@ -135,9 +135,9 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	*/
 	LAB.app.BaseApp.prototype.unregisterWindowEvents = function(){
 		if (!this.windowEventsRegistered) return;
-		window.removeEventListener("onfocus", this._onWindowFocus.bind(this));
-		window.removeEventListener("onblur", this._onWindowBlur.bind(this));
-		window.removeEventListener("onresize", this._onWindowResized.bind(this));
+		window.removeEventListener("focus", this._onWindowFocus.bind(this));
+		window.removeEventListener("blur", this._onWindowBlur.bind(this));
+		window.removeEventListener("resize", this._onWindowResized.bind(this));
 		this.windowEventsRegistered = false;
 	}
 
