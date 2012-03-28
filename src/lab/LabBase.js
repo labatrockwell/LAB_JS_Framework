@@ -6,7 +6,7 @@ var LAB = LAB || {};
 LAB.global = this;
 
 // version
-LAB.version = "r1";
+LAB.version = "r2";
 
 // require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js
 
