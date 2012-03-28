@@ -1,10 +1,4 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-LAB.require(LAB.src + "app/BaseApp.js");
-LAB.require(LAB.src +"agents/Agent.js");
-LAB.require(LAB.src +"agents/Group.js");
-LAB.require(LAB.src +"agents/Behavior.js");
-
+// include your custom classes here
 LAB.require("js/app/cooldivs.js");
 LAB.require("js/app/orbit.js");
 LAB.require("js/app/scaler.js");

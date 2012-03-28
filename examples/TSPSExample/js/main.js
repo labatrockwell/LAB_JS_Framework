@@ -1,6 +1,6 @@
 // load graphics base, because this is a graphics app
 // ...this doesn't really work yet
-LAB.require(LAB.src+"app/TSPSApp.js");
+LAB.require("../../libs/tsps/TSPSApp.js");
 
 var demoApp;
 
@@ -17,8 +17,7 @@ $(document).ready( function() {
 // ===========================================
 
 	DemoApp = function(){
-		LAB.app.TSPSApp.call( this );	
-		console.log("go!");	
+		LAB.app.TSPSApp.call( this );
 				
 		this.canvas = null;
 		ctx 		= null;

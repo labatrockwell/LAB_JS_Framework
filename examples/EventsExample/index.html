@@ -12,49 +12,10 @@
 		<!-- LAB Base -->
 	    <script type="text/javascript" src="../../build/labjs.js"></script>
 
-		<!-- Event Examples -->
-		<script src="js/ClassA.js"></script>
-		<script src="js/ClassB.js"></script>
-		<script src="js/ClassC.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 
 	<body>
-		<script>
-		$(document).ready(function() {
-			
-			var a = new ClassA();
-			var b = new ClassB();
-			var c = new ClassC();
-			
-			a.addEventListener("timeout", onTimeout);
-			b.addEventListener("timeout", onTimeout);
-			
-			// Class c tests not passing a reference to the target to the
-			// EventDispatcher constructor
-			c.addEventListener("timeout", onTimeoutNoTarget);
-			
-			// testing hasEventListener method
-			if (c.hasEventListener("timeout")) {
-				console.log("class c has registered a listener for timeout");
-			} else {
-				console.log("no timeout listener found for class c");
-			}
-			
-			function onTimeout(evt) {
-				console.log("target = " + evt.target.className);
-				console.log("secret = " + evt.secret);
-				console.log(evt);
-			}
-			
-			function onTimeoutNoTarget(evt) {
-				console.log("no reference to target in ClassC");
-				console.log(evt);
-			}
-					
-		});		
-		</script>
-		
-		<h1>Check the console log</h1>
-	
+		<h1>Check the console log</h1>	
 	</body>
 </html>

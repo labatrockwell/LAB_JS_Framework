@@ -1,4 +1,4 @@
-LAB.require(LAB.src+"app/TSPSApp.js");
+LAB.require("../../libs/tsps/TSPSApp.js");
 
 var app;
 

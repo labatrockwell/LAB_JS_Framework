@@ -31,29 +31,18 @@ DemoApp = function() {
       stats.domElement.style.left = '10px';
       this.container.appendChild( stats.domElement );
       stats.domElement.hidden = !bStats;
-      
-		// catch mouse events!
-		this.registerMouseEvents();
-      
-      //camera
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight);
-      camera.position.set( 0, 10, 30 );
-      camera.lookAt( new THREE.Vector3(0, 0, 0) );
-      this.scene.add( camera );
-      
+            
       //lights
       var pointLight = new THREE.PointLight( );
-      pointLight.position = camera.position;
+      pointLight.position = this.camera.position;
       this.scene.add( pointLight );
       
-      console.log
-
       //load some geometry
       geo = new LAB.three.Mesh();
       geo.load( "models/emitterGeometry.js", new THREE.MeshPhongMaterial(), this.scene );
       
       //particle emitter
-      emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 10000 });
+      emitter = new LAB.three.ParticleEmitter( { maxParticleCount: 10000, renderer:this.renderer });
 	}
    
 	// ===========================================
@@ -105,7 +94,7 @@ DemoApp = function() {
 	// ===========================================
 	this.draw = function() {
       gl.clearColor( 1, 1, 1, 1 );
-      this.renderer.render( this.scene, camera, null, true );
+      this.renderer.render( this.scene, this.camera, null, true );
 	}
    
    

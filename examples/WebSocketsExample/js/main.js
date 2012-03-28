@@ -16,7 +16,7 @@ $(document).ready( function() {
 		/**/
 		/* START EXAMPLE */
 		/**/
-		this.s = new LAB.utils.WebSocket( "ws://localhost:7682", {} );
+		this.s = new LAB.utils.WebSocket( "ws://localhost:7682" );
 
 		this.s.onMessageReceived = myReceiveFunction;
 		this.s.onConnectionOpened = myOpenFunction;
