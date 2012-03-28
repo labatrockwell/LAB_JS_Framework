@@ -37,6 +37,7 @@ THREE_FILES = [
 'three/MouseHandler3D.js',
 'three/Object.js',
 'three/ParticleEmitter.js',
+'three/Ray.js',
 'three/Shader.js',
 'three/TouchHandler3D.js'
 ]
