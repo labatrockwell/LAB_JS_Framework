@@ -263,7 +263,7 @@ LAB.three.TouchHandler3D.prototype = LAB.inherit(LAB.EventDispatcher.prototype);
 LAB.three.TouchHandler3D.prototype.constructor = LAB.three.TouchHandler3D;
 
 
-LAB.namespace("LAB.three.TouchEvent3D");
+namespace("LAB.three.TouchEvent3D");
 
 /**
  * @namespace LAB.three
