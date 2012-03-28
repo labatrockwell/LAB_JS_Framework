@@ -1,4 +1,4 @@
-LAB.require("js/lab/EventDispatcher.js");
+//LAB.require("js/lab/EventDispatcher.js");
 
 /** @namespace LAB.utils */
 LAB.utils = LAB.utils || {};
