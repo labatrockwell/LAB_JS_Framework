@@ -257,7 +257,7 @@ LAB.three.MouseHandler3D = function(scene, camera) {
 LAB.three.MouseHandler3D.prototype = LAB.inherit(LAB.EventDispatcher.prototype);
 LAB.three.MouseHandler3D.prototype.constructor = LAB.three.MouseHandler3D;
 
-LAB.namespace("LAB.three.MouseEvent3D");
+namespace("LAB.three.MouseEvent3D");
 
 /**
  * @namespace LAB.three
