@@ -10,6 +10,7 @@ except ImportError:
 import os
 import tempfile
 import sys
+import re
 
 COMMON_FILES = [
 'LabBase.js',
