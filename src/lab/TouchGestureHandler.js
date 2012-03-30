@@ -1,4 +1,4 @@
-//LAB.require(LAB.src+"geom/Point.js");
+LAB.require(LAB.src+"geom/Point.js");
 
 // TO DO: refactor to add functions to prototype
 

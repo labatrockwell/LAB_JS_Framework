@@ -50,7 +50,11 @@ def merge(files):
 		with open(os.path.join('../src', 'lab', filename), 'r') as f:
 			buffer.append(f.read())
 
-	return "".join(buffer)
+	joined = "".join(buffer)
+	#remove LAB.require (but not the function LAB.require)
+	joined = re.sub(r"LAB.require\(.*\);","",joined)
+
+	return joined
 
 
 def output(text, filename):
@@ -99,20 +103,18 @@ def makeDebug(text):
 	return text
 
 
-def buildLib(files, minified, filename, fname_externs):
+def buildLib(files, filename, fname_externs, version):
 
 	text = merge(files)
 
 	folder = ''
 
-	filename = filename + '.js'
+	filename = filename + '-' + version + '.js'
 
 	print "=" * 40
 	print "Compiling", filename
 	print "=" * 40
-
-	if minified:
-		text = compress(text, fname_externs)
+	text = compress(text, fname_externs)
 
 	output(addHeader(text, filename), folder + filename)
 
@@ -131,7 +133,7 @@ def parse_args():
 		parser = argparse.ArgumentParser(description='Build and compress Three.js')
 		parser.add_argument('--common', help='Build LAB Framework', action='store_const', const=True)
 		parser.add_argument('--three', help='Build LAB THREE utils', action='store_const', const=True)
-		parser.add_argument('--minified', help='Generate minified versions', action='store_const', const=True, default=False)
+		parser.add_argument('--version', help='Name of version', default='r1')
 		parser.add_argument('--all', help='Build all LAB JS files', action='store_true')
 
 		args = parser.parse_args()
@@ -140,7 +142,7 @@ def parse_args():
 		parser = optparse.OptionParser(description='Build and compress LAB Framework')
 		parser.add_option('--common', dest='common', help='Build LAB Framework', action='store_const', const=True)
 		parser.add_option('--three', dest='three', help='Build LAB THREE utils', action='store_const', const=True)
-		parser.add_option('--minified', help='Generate minified versions', action='store_const', const=True, default=False)
+		parser.add_option('--version', dest='version', help='Name of version',default='r1')
 		parser.add_option('--all', dest='all', help='Build all Three.js versions', action='store_true')
 
 		args, remainder = parser.parse_args()
@@ -156,7 +158,8 @@ def parse_args():
 def main(argv=None):
 
 	args = parse_args()
-	minified = args.minified
+
+	version = args.version
 
 	config = [
 	['labjs', 'includes', '', COMMON_FILES, args.common],
@@ -166,7 +169,7 @@ def main(argv=None):
 
 	for fname_lib, fname_inc, fname_externs, files, enabled in config:
 		if enabled or args.all:
-			buildLib(files, minified, fname_lib, fname_externs)
+			buildLib(files, fname_lib, fname_externs, version)
 			#buildIncludes(files, fname_inc)
 
 if __name__ == "__main__":

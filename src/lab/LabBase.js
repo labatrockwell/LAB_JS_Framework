@@ -1,4 +1,4 @@
-// include required files
+	// include required files
 /** @namespace LAB*/
 var LAB = LAB || {};
 
@@ -106,9 +106,9 @@ LAB.toScriptPath = function( className ){
 LAB.src= LAB.getScriptPath("LabBase.js");
 
 // start including stuff
-//LAB.require( LAB.src+"EventDispatcher.js" );
-//LAB.require( LAB.src+"app/BaseApp.js" );
-//LAB.require( LAB.src+"Utils.js" );
+LAB.require( LAB.src+"EventDispatcher.js" );
+LAB.require( LAB.src+"app/BaseApp.js" );
+LAB.require( LAB.src+"Utils.js" );
 
 // key constants
 LAB.SHIFT 	= 16;

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python build.py --common --minified
+python build.py --all --version=r2
