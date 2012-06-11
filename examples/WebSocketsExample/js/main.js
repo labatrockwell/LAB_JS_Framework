@@ -1,12 +1,3 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-// it might work now...
-
-LAB.require(LAB.src+"app/BaseApp.js");
-
-// INCLUDE THE WEBSOCKET STUFF
-LAB.require(LAB.src+"utils/WebSocket.js");
-
 var demoApp;
 
 $(document).ready( function() {
@@ -25,7 +16,7 @@ $(document).ready( function() {
 		/**/
 		/* START EXAMPLE */
 		/**/
-		this.s = new LAB.utils.WebSocket( "ws://localhost:7682", {} );
+		this.s = new LAB.utils.WebSocket( "ws://localhost:7682" );
 
 		this.s.onMessageReceived = myReceiveFunction;
 		this.s.onConnectionOpened = myOpenFunction;

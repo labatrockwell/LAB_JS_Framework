@@ -1,12 +1,13 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-LAB.require(LAB.src+"app/BaseApp.js");
-
 var demoApp;
 
 $(document).ready( function() {
+
+	// using jquery extend:
+	// YourAppName.prototype = $.extend(true, whatYouWantToExtend.prototype, ..., YourApp.prototype)
+	// ... = extend as many classes as you want (within reason, dude)
+	
+	DemoApp.prototype = $.extend(true, LAB.app.BaseApp.prototype, DemoApp.prototype);
 	demoApp 	= new DemoApp();
-	// is there a good way to call this automatically?
 	demoApp.begin();
 });
 
@@ -43,8 +44,3 @@ $(document).ready( function() {
 		}	
 	}
 	
-	// using jquery extend:
-	// YourAppName.prototype = $.extend(true, whatYouWantToExtend.prototype, ..., YourApp.prototype)
-	// ... = extend as many classes as you want (within reason, dude)
-	
-	DemoApp.prototype = $.extend(true, LAB.app.BaseApp.prototype, DemoApp.prototype);

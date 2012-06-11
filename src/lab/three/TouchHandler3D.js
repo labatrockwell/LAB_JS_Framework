@@ -1,6 +1,6 @@
 LAB.require(LAB.src+"TouchGestureHandler.js");
 
-LAB.namespace("LAB.three.TouchHandler3D");
+namespace("LAB.three.TouchHandler3D");
 
 /**
  * @namespace LAB.three
@@ -25,8 +25,7 @@ LAB.three.TouchHandler3D = function(scene, camera) {
 	projector = new THREE.Projector();
 	
 	gestureHandler = new LAB.TouchGestureHandler();
-	gestureHandler.register(window);
-	
+	gestureHandler.register(window);	
 	
 	/**
 	 * @private
@@ -83,7 +82,7 @@ LAB.three.TouchHandler3D = function(scene, camera) {
 		
 		ray = new THREE.Ray( camera.position, vec.subSelf( camera.position ).normalize() );
 		
-		intersects = ray.intersectScene( scene );
+		intersects = ray.intersectObjects( scene.children );
 				
 		return intersects;	
 	}
@@ -264,7 +263,7 @@ LAB.three.TouchHandler3D.prototype = LAB.inherit(LAB.EventDispatcher.prototype);
 LAB.three.TouchHandler3D.prototype.constructor = LAB.three.TouchHandler3D;
 
 
-LAB.namespace("LAB.three.TouchEvent3D");
+namespace("LAB.three.TouchEvent3D");
 
 /**
  * @namespace LAB.three

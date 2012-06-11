@@ -1,6 +1,4 @@
-// load graphics base, because this is a graphics app
-LAB.require(LAB.src+"app/ThreeApp.js");
-LAB.require(LAB.src+"three/MouseHandler3D.js");
+// load custom class(es) here
 LAB.require("js/Sphere.js");
 
 var demoApp;
@@ -33,18 +31,16 @@ DemoApp = function() {
 	// ===== SETUP
 	// ===========================================	
 	this.setup = function() {
-        this.camera.usePushPop( true );
-
 		ambientLight = new THREE.AmbientLight( 0x666666 );
-        this.scene.addObject( ambientLight );
+        this.scene.add( ambientLight );
 
 		var light = new THREE.DirectionalLight( 0x666666, 2 );
 		light.position.set( 1, 1, 1 ).normalize();
-		this.scene.addObject( light );
+		this.scene.add( light );
 		
 		var light = new THREE.DirectionalLight( 0xffffff );
 		light.position.set( -1, -1, -1 ).normalize();
-		this.scene.addObject( light );
+		this.scene.add( light );
 		
 		// register handler for a specific scene and camera
 		mouseHandler3D = new LAB.three.MouseHandler3D(this.scene, this.camera);
@@ -102,23 +98,18 @@ DemoApp = function() {
 		// get a reference to the object that the down event was fired on
 		target = event.object.prt;
 
-		// get this set up like you'd expect in processing
-		this.camera.pushMatrix();
-		this.camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );		
-		this.camera.translateMatrix( -window.innerWidth/2, -window.innerHeight/2, 0 );
-		this.camera.rotateMatrix( translatePoint.x * Math.PI/180, 0,1,0 );
-		this.camera.rotateMatrix( translatePoint.y * Math.PI/180, 1,0,0 );
+		this.camera.rotation.y = translatePoint.x * Math.PI/180;
+		this.camera.rotation.x = translatePoint.y * Math.PI/180;
 		
 		// translate to the target
 		if (target != null){			
 			easedTarget.x -= (easedTarget.x - target.x)/10;
 			easedTarget.y -= (easedTarget.y - target.y)/10;
 			easedTarget.z -= (easedTarget.z - target.z)/10;
-			this.camera.translateMatrix(easedTarget.x, easedTarget.y, easedTarget.z);
+			this.camera.position.x = easedTarget.x;
+			this.camera.position.y = easedTarget.y;
+			this.camera.position.z = easedTarget.z;
 		}
-		
-		this.camera.updateMatrix();
-		this.camera.popMatrix();
 			
 		target.scaleX += .1;
 		target.scaleY += .1;
@@ -147,23 +138,18 @@ DemoApp = function() {
 		gl.clearColor( 1, 1, 1, 1 );
 	    gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
 		
-		// get this set up like you'd expect in processing
-		this.camera.pushMatrix();
-		this.camera.lookAt( window.innerWidth/2, window.innerHeight/2, 0 );		
-		this.camera.translateMatrix( -window.innerWidth/2, -window.innerHeight/2, 0 );
-		this.camera.rotateMatrix( translatePoint.x * Math.PI/180, 0,1,0 );
-		this.camera.rotateMatrix( translatePoint.y * Math.PI/180, 1,0,0 );
-
+		this.camera.rotation.y = translatePoint.x * Math.PI/180;
+		this.camera.rotation.x = translatePoint.y * Math.PI/180;
+		
 		// translate to the target
 		if (target != null){			
 			easedTarget.x -= (easedTarget.x - target.x)/10;
 			easedTarget.y -= (easedTarget.y - target.y)/10;
 			easedTarget.z -= (easedTarget.z - target.z)/10;
-			this.camera.translateMatrix(easedTarget.x, easedTarget.y, easedTarget.z);
+			this.camera.position.x = easedTarget.x;
+			this.camera.position.y = easedTarget.y;
+			this.camera.position.z = easedTarget.z;
 		}
-		
-		this.camera.updateMatrix();
-		this.camera.popMatrix();
 			
 		this.renderer.render( this.scene, this.camera );
 	}

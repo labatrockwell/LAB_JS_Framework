@@ -1,0 +1,4 @@
+html, body { width: 100%; height: 100%; overflow:hidden; /*cursor:none;*/ }
+canvas { background-color: gray; }
+
+#labCanvas { width:1920px; height:1080px; }

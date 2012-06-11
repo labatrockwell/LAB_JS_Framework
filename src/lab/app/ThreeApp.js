@@ -1,9 +1,14 @@
 // include LabBase files
 /** @namespace LAB.app */
-LAB.require(LAB.src+"../../libs/three/Three.js");
 LAB.require(LAB.src+"app/BaseApp.js");
 
 // LAB Three includes
+
+LAB.require(LAB.src+"three/Camera.js");
+LAB.require(LAB.src+"three/Geometry.js");
+LAB.require(LAB.src+"three/Mesh.js");
+LAB.require(LAB.src+"three/Object.js");
+LAB.require(LAB.src+"three/ParticleEmitter.js");
 LAB.require(LAB.src+"three/Shader.js");
 
 /**
@@ -20,10 +25,16 @@ LAB.app.ThreeApp = function()
 {
 	LAB.app.BaseApp.call( this );
 	
-	this.container;
-	this.camera, this.scene, this.projector, this.renderer;
+	this.container = null;
+	this.camera = null;
+	this.scene = null;
+	this.projector = null;
+	this.renderer = null;
+	this._canvas = null;
 
 	this.mouse = { x: 0, y: 0 };
+	this._width = 0;
+	this._height = 0;
 }
 
 LAB.app.ThreeApp.prototype = new LAB.app.BaseApp();
@@ -39,49 +50,61 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		and start animate() loop
 		@function 
 		@public
+		@param width (optional) width of renderer
+		@param height (optional) height of renderer
 	*/
 
-	LAB.app.ThreeApp.prototype.begin = function()
+	LAB.app.ThreeApp.prototype.begin = function(parameters)
 	{
-      LAB.self = this;
-      
-      
-		// listen to mouse + keys by default
-		this.registerKeyEvents();
-		this.registerMouseEvents();
-
-		/**
-		* default THREE scene
-		* @type THREE.Scene
-		*/
-		this.scene = new THREE.Scene();
-      
+		parameters = parameters || {};
 		/**
 		* default THREE camera
 		* @type THREE.Camera
 		*/
 		console.log("base app set up");
-      this.camera = new THREE.OrthographicCamera(-window.innerWidth/2, window.innerWidth/2,
-                                                 -window.height/2, window.innerHeight/2,
-                                                 -10, 10000 );
-      this.scene.add( this.camera );
 		
+		// listen to mouse + keys + window by default
+		this.registerWindowEvents();
+		this.registerKeyEvents();
+		this.registerMouseEvents();
+			
+		/**
+		* default THREE renderer with anti-aliasing, depth sorting off
+		* @type THREE.WebGLRenderer
+		*/
+		this._width = parameters.width || window.innerWidth;
+		this._height = parameters.height || window.innerHeight;
+
+		// create canvas so we can customize it a bit
+		this._canvas = parameters.canvas !== undefined ? parameters.canvas : document.createElement( 'canvas' );
+		this._canvas.id = parameters.canvasId !== undefined ? parameters.canvasId : "labCanvas";
+
+		this.renderer = new THREE.WebGLRenderer( { antialias: (parameters.antialias !== undefined ? parameters.antialias : true), canvas:this._canvas } );
+		this.renderer.sortObjects = false;
+		this.renderer.setSize( this._width, this._height );
+      	//this.renderer.autoClear = false;
+
+		this.camera = new THREE.PerspectiveCamera(60, this._width / this._height, .1, 2000);
+	    this.camera.position.set( 0, 0, 50 );
+	    this.camera.lookAt( new THREE.Vector3(0, 0, 0) );
+
+		//this.camera = new LAB.three.Camera( 60, this._width / this._height, .1, 2000 );
+        //this.camera.setPerspective( 60, this._width, this._height );
+        //this.camera.usePushPop( true );
 		
+		/**
+		* default THREE scene
+		* @type THREE.Scene
+		*/
+		this.scene = parameters.scene || new THREE.Scene();
+		this.scene.add(this.camera);
+      			
 		/**
 		* default THREE projector
 		* @type THREE.Projector
 		*/
 		this.projector = new THREE.Projector();
-		
-		/**
-		* default THREE renderer with anti-aliasing, depth sorting off
-		* @type THREE.WebGLRenderer
-		*/
-		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
-		this.renderer.sortObjects = false;
-		this.renderer.setSize( window.innerWidth, window.innerHeight );
-      	this.renderer.autoClear = false;
-
+      	
 		// do we have a container?
 	
 		if (document.getElementById("labContainer") != null){
@@ -89,17 +112,16 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		} else {
 			console.log("no labContainer in document, generating container div")
 			this.container = document.createElement( 'div' );
-			if (document.body)
+			if (document.body){
 				document.body.appendChild( this.container );
-			else
-				return;
+			} else {
+ 				return;
+			}
 		}
 		
-		this.container.appendChild(this.renderer.domElement);
+		this.container.appendChild(this.renderer.domElement);	
 		
 		gl = gl || this.renderer.getContext();
-		
-		this.scene.add(this.camera);
 		
 		this.setup();
 		this.animate();
@@ -108,3 +130,25 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 /************************************************************
 	DRAW: override the draw function in your app!
 ************************************************************/
+
+
+/************************************************************
+	THREE APP SETTERS
+************************************************************/
+
+	LAB.app.ThreeApp.prototype.__defineSetter__("canvasWidth", function(val){
+		console.log("error: please don't set this variable");
+	})
+
+	LAB.app.ThreeApp.prototype.__defineSetter__("canvasHeight", function(val){
+		console.log("error: please don't set this variable");
+	})
+
+	LAB.app.ThreeApp.prototype.__defineGetter__("canvasWidth", function(){
+		return this._width;
+	})
+
+	LAB.app.ThreeApp.prototype.__defineGetter__("canvasHeight", function(){
+		return this._height;
+	})
+

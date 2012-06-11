@@ -191,12 +191,6 @@ ul.inheritsList
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/ECS.html">ECS</a></li>
-	
-	<li><a href="../symbols/ECS.ApplicationMessageHandler.html">ECS.ApplicationMessageHandler</a></li>
-	
-	<li><a href="../symbols/ECS.Socket.html">ECS.Socket</a></li>
-	
 	<li><a href="../symbols/LAB.html">LAB</a></li>
 	
 	<li><a href="../symbols/LAB.agents.html">LAB.agents</a></li>
@@ -211,13 +205,9 @@ ul.inheritsList
 	
 	<li><a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a></li>
 	
-	<li><a href="../symbols/LAB.app.ECSApp.html">LAB.app.ECSApp</a></li>
-	
 	<li><a href="../symbols/LAB.app.TDLApp.html">LAB.app.TDLApp</a></li>
 	
 	<li><a href="../symbols/LAB.app.ThreeApp.html">LAB.app.ThreeApp</a></li>
-	
-	<li><a href="../symbols/LAB.app.TSPSApp.html">LAB.app.TSPSApp</a></li>
 	
 	<li><a href="../symbols/LAB.Event.html">LAB.Event</a></li>
 	
@@ -227,19 +217,13 @@ ul.inheritsList
 	
 	<li><a href="../symbols/LAB.geom.Point.html">LAB.geom.Point</a></li>
 	
+	<li><a href="../symbols/LAB.geom.Rect.html">LAB.geom.Rect</a></li>
+	
 	<li><a href="../symbols/LAB.sound.html">LAB.sound</a></li>
 	
 	<li><a href="../symbols/LAB.sound.Player.html">LAB.sound.Player</a></li>
 	
 	<li><a href="../symbols/LAB.sound.WAPlayer.html">LAB.sound.WAPlayer</a></li>
-	
-	<li><a href="../symbols/LAB.tdl.html">LAB.tdl</a></li>
-	
-	<li><a href="../symbols/LAB.tdl.Mesh.html">LAB.tdl.Mesh</a></li>
-	
-	<li><a href="../symbols/LAB.tdl.Object.html">LAB.tdl.Object</a></li>
-	
-	<li><a href="../symbols/LAB.tdl.Shader.html">LAB.tdl.Shader</a></li>
 	
 	<li><a href="../symbols/LAB.three.html">LAB.three</a></li>
 	
@@ -247,21 +231,33 @@ ul.inheritsList
 	
 	<li><a href="../symbols/LAB.three.Geometry.html">LAB.three.Geometry</a></li>
 	
+	<li><a href="../symbols/LAB.three.Mesh.html">LAB.three.Mesh</a></li>
+	
+	<li><a href="../symbols/LAB.three.MouseEvent3D.html">LAB.three.MouseEvent3D</a></li>
+	
+	<li><a href="../symbols/LAB.three.MouseHandler3D.html">LAB.three.MouseHandler3D</a></li>
+	
 	<li><a href="../symbols/LAB.three.Object.html">LAB.three.Object</a></li>
+	
+	<li><a href="../symbols/LAB.three.Ray.html">LAB.three.Ray</a></li>
 	
 	<li><a href="../symbols/LAB.three.Shader.html">LAB.three.Shader</a></li>
 	
+	<li><a href="../symbols/LAB.three.TouchEvent3D.html">LAB.three.TouchEvent3D</a></li>
+	
+	<li><a href="../symbols/LAB.three.TouchHandler3D.html">LAB.three.TouchHandler3D</a></li>
+	
+	<li><a href="../symbols/LAB.TouchEvent.html">LAB.TouchEvent</a></li>
+	
+	<li><a href="../symbols/LAB.TouchGestureHandler.html">LAB.TouchGestureHandler</a></li>
+	
 	<li><a href="../symbols/LAB.utils.html">LAB.utils</a></li>
+	
+	<li><a href="../symbols/LAB.utils.DOMElement.html">LAB.utils.DOMElement</a></li>
 	
 	<li><a href="../symbols/LAB.utils.WebSocket.html">LAB.utils.WebSocket</a></li>
 	
 	<li><a href="../symbols/Number.html">Number</a></li>
-	
-	<li><a href="../symbols/TSPS.html">TSPS</a></li>
-	
-	<li><a href="../symbols/TSPS.Dispatcher.html">TSPS.Dispatcher</a></li>
-	
-	<li><a href="../symbols/TSPS.person.html">TSPS.person</a></li>
 	
 </ul>
 <hr />
@@ -328,12 +324,12 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;private&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#projector">projector</a></b>
+								<b><a href="../symbols/LAB.app.ThreeApp.html#_width">_width</a></b>
 								</div>
-								<div class="description">default THREE projector</div>
+								<div class="description">default THREE renderer with anti-aliasing, depth sorting off</div>
 							</td>
 						</tr>
 					
@@ -341,9 +337,9 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
-								<b><a href="../symbols/LAB.app.ThreeApp.html#renderer">renderer</a></b>
+								<b><a href="../symbols/LAB.app.ThreeApp.html#projector">projector</a></b>
 								</div>
-								<div class="description">default THREE renderer with anti-aliasing, depth sorting off</div>
+								<div class="description">default THREE projector</div>
 							</td>
 						</tr>
 					
@@ -385,7 +381,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/LAB.app.ThreeApp.html#begin">begin</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/LAB.app.ThreeApp.html#begin">begin</a></b>(width, height)
 								</div>
 								<div class="description">Call to set up Webgl, initialize the canvas, provide default THREE vars
 		and start animate() loop</div>
@@ -398,7 +394,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeMillis">getElapsedTimeMillis</a>, <a href="../symbols/LAB.app.BaseApp.html#getElapsedTimeSeconds">getElapsedTimeSeconds</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/LAB.app.BaseApp.html">LAB.app.BaseApp</a>: </dt><dd><a href="../symbols/LAB.app.BaseApp.html#_onMouseDragged">_onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseMoved">_onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMousePressed">_onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#_onMouseReleased">_onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#animate">animate</a>, <a href="../symbols/LAB.app.BaseApp.html#draw">draw</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseDragged">onMouseDragged</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseMoved">onMouseMoved</a>, <a href="../symbols/LAB.app.BaseApp.html#onMousePressed">onMousePressed</a>, <a href="../symbols/LAB.app.BaseApp.html#onMouseReleased">onMouseReleased</a>, <a href="../symbols/LAB.app.BaseApp.html#postdraw">postdraw</a>, <a href="../symbols/LAB.app.BaseApp.html#predraw">predraw</a>, <a href="../symbols/LAB.app.BaseApp.html#preupdate">preupdate</a>, <a href="../symbols/LAB.app.BaseApp.html#registerKeyEvents">registerKeyEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#registerMouseEvents">registerMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#registerWindowEvents">registerWindowEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#setup">setup</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterKeyEvents">unregisterKeyEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterMouseEvents">unregisterMouseEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#unregisterWindowEvents">unregisterWindowEvents</a>, <a href="../symbols/LAB.app.BaseApp.html#update">update</a></dd><dt>Methods borrowed from class <a href="../symbols/LAB.EventDispatcher.html">LAB.EventDispatcher</a>: </dt><dd><a href="../symbols/LAB.EventDispatcher.html#addEventListener">addEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#dispatchEvent">dispatchEvent</a>, <a href="../symbols/LAB.EventDispatcher.html#hasEventListener">hasEventListener</a>, <a href="../symbols/LAB.EventDispatcher.html#removeEventListener">removeEventListener</a></dd>
 				</dl>
 				
 			
@@ -441,15 +437,15 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
-					<a name="projector"> </a>
-					<div class="fixedFont">
+					<a name="_width"> </a>
+					<div class="fixedFont">&lt;private&gt; 
 					
-					<span class="light">{THREE.Projector}</span>
-					<b>projector</b>
+					<span class="light">{THREE.WebGLRenderer}</span>
+					<b>_width</b>
 					
 					</div>
 					<div class="description">
-						default THREE projector
+						default THREE renderer with anti-aliasing, depth sorting off
 						
 						
 					</div>
@@ -463,15 +459,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="renderer"> </a>
+					<a name="projector"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{THREE.WebGLRenderer}</span>
-					<b>renderer</b>
+					<span class="light">{THREE.Projector}</span>
+					<b>projector</b>
 					
 					</div>
 					<div class="description">
-						default THREE renderer with anti-aliasing, depth sorting off
+						default THREE projector
 						
 						
 					</div>
@@ -519,7 +515,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>begin</b>()
+					<b>begin</b>(width, height)
 					
 					</div>
 					<div class="description">
@@ -531,6 +527,23 @@ ul.inheritsList
 					
 					
 					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>width</b>
+									
+								</dt>
+								<dd>(optional) width of renderer</dd>
+							
+								<dt>
+									<b>height</b>
+									
+								</dt>
+								<dd>(optional) height of renderer</dd>
+							
+							</dl>
 						
 						
 						
@@ -553,7 +566,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Oct 10 2011 09:38:22 GMT-0400 (EDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Mar 28 2012 12:47:20 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

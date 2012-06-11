@@ -67,12 +67,11 @@ LAB.three.Camera.prototype.updateMatrix = function () {
    } else {
 
       //this.projectionMatrix = THREE.Matrix4.makePerspective( this.fov, this.aspect, this.near, this.far );
-		this.position.setPositionFromMatrix(this.matrix);
-		this.position.setRotationFromMatrix(this.matrix);
+		this.position.getPositionFromMatrix(this.matrix);
+		this.position.getRotationFromMatrix(this.matrix);
 		this.matrixWorldNeedsUpdate = true;
 	}
 };
-
 
 
 /**
@@ -83,15 +82,26 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
 
    var fov = _fov || 60;
    
-	var viewW = window.innerWidth;
-	var viewH = window.innerHeight;
+   var viewW = window.innerWidth;
+   var viewH = window.innerHeight;
+
+   this.setPerspective( _fov, viewW, viewH, _nearClip, _farClip );
+};
+
+/**
+ @function
+ @public
+ */
+LAB.three.Camera.prototype.setPerspective = function( _fov, _width, _height, _nearClip, _farClip ){
+
+   var fov = _fov || 60;
    
-	var eyeX = viewW / 2;
-	var eyeY = viewH / 2;
+	var eyeX = _width / 2;
+	var eyeY = _height / 2;
 	var halfFov = Math.PI * fov / 360;
 	var theTan = Math.tan(halfFov);
 	var dist = eyeY / theTan;
-	var aspect = viewW / viewH;
+	var aspect = _width / _height;
    
    var near = _nearClip || dist / 10;
    var far = _farClip || dist * 10;
@@ -121,7 +131,7 @@ LAB.three.Camera.prototype.setToWindowPerspective = function( _fov, _nearClip, _
 LAB.three.Camera.prototype.projectToScreen = function( worldPos ){
    //adaptded from https://github.com/mrdoob/three.js/issues/78
    var pos = worldPos.clone();
-   projScreenMat = new THREE.Matrix4();
+   var projScreenMat = new THREE.Matrix4();
    projScreenMat.multiply( this.projectionMatrix, this.matrixWorldInverse );
    projScreenMat.multiplyVector3( pos );
    

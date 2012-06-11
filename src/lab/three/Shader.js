@@ -7,7 +7,7 @@ LAB.three = LAB.three || {};
  */
 
 LAB.three.Shader = function ( parameters ) {
-//   THREE.ShaderMaterial.call( this );
+  THREE.ShaderMaterial.call( this );
    
    parameters = parameters || {};
    if(parameters.name){
@@ -17,7 +17,7 @@ LAB.three.Shader = function ( parameters ) {
       $.ajax({ async: false, type: 'GET', url: parameters.name.concat( ".frag"),
              success: function(data) { parameters.fragmentShader = data.slice( 0, data.length ); }});
       
-      THREE.ShaderMaterial.call( this, parameters ); // Is it okay to do this twice??
+      THREE.ShaderMaterial.call( this, parameters );
    }   
    
 };

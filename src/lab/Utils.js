@@ -156,7 +156,12 @@ LAB.log				= function( text ) {
 		else
 			return qs[1];
 	}
-	
+
+/********************************************
+	GENERIC UTILS
+********************************************/
+
+	LAB.alphabet = LAB.alphabet || ['#','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];	
 
 /********************************************
 	COMPATIBILITY
@@ -186,3 +191,30 @@ LAB.log				= function( text ) {
 		return fBound;  
 	  };  
 	} 
+
+
+/********************************************
+	NAMESPACE
+********************************************/
+/**
+ * Use this function to safely create a new namespace
+ * if a namespace already exists, it won't be recreated.
+ *
+ * @function
+ * @param {String} nsString The namespace as a string.
+ * @return {Object} The namespace object.
+ */
+window.namespace = function (namespaceString) {
+	var parts = namespaceString.split('.'),
+		parent = window,
+		i;
+
+	for (i=0; i<parts.length; i +=1) {
+		// create a property if it doesn't exist
+		if (typeof parent[parts[i]] === "undefined") {
+			parent[parts[i]] = {};
+		}
+		parent = parent[parts[i]];
+	}
+	return parent;
+};	

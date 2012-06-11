@@ -1,7 +1,4 @@
-// load graphics base, because this is a graphics app
-// ...this doesn't really work yet
-LAB.require(LAB.src+"app/BaseApp.js");
-LAB.require(LAB.src+"app/TSPSApp.js");
+LAB.require("../../libs/tsps/TSPSApp.js");
 
 var app;
 

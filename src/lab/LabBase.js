@@ -1,9 +1,12 @@
-// include required files
+	// include required files
 /** @namespace LAB*/
 var LAB = LAB || {};
 
 // reference to global context, in most cases 'window'.
 LAB.global = this;
+
+// version
+LAB.version = "r2";
 
 // require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js
 
@@ -27,7 +30,7 @@ var included = {};
  * @return {Object} A copy of the prototype of the Parent object.
  */
 LAB.inherit = function(p) {
-	if (p == null) throw TypeError(); // p must be a non-null object
+	if (p == null) return; // p must be a non-null object
 	if (Object.create) { // If Object.create() is defined...
 		return Object.create(p); // then just use it
 	}
@@ -58,33 +61,7 @@ LAB.inherit = function(p) {
 //	C.prototype.constructor = C;
 //}
 
-/**
- * Use this function to safely create a new namespace
- * if a namespace already exists, it won't be recreated.
- *
- * @function
- * @param {String} nsString The namespace as a string.
- * @return {Object} The namespace object.
- */
-LAB.namespace = function (nsString) {
-	var parts = nsString.split('.'),
-		parent = LAB,
-		i;
-		
-	// strip redundant leading global
-	if (parts[0] === "LAB") {
-		parts = parts.slice(1);
-	}
-	
-	for (i=0; i<parts.length; i +=1) {
-		// create a property if it doesn't exist
-		if (typeof parent[parts[i]] === "undefined") {
-			parent[parts[i]] = {};
-		}
-		parent = parent[parts[i]];
-	}
-	return parent;
-};
+
 
 /**
 @function
