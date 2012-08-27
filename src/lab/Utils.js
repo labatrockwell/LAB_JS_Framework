@@ -77,39 +77,6 @@ LAB.log				= function( text ) {
    }
 }
 
-
-/********************************************
-	ANIMATION
-********************************************/
-//v.1 of a custom loading animation JQuery extension
-// TODO: optional width/height, speed, degrees of rotation, img src.
-// $(".loading-gif").animateLoading()
-// will rotate an image 45 degrees clockwise continuously every 80ms
-/**
- @function
- */
-
-(function($) {
-	$.fn.animateLoading = function(settings) {
-		var counter = 0;
-
-		this.each( function() {
-			var el = this;
-			setInterval( function() {
-				var rot = counter * 45;
-				$(el).css({
-					"-webkit-transform": "rotate("+rot+"deg)"
-				});
-				counter++;
-				if( rot >= 315 ) { counter = 0; }
-			}, 80);
-		})
-
-		return this;
-	}
-
-})(jQuery);
-
 /********************************************
 	ANIMATION
 ********************************************/

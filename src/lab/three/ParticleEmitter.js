@@ -53,7 +53,7 @@ LAB.three.ParticleEmitter = function ( parameters ) {
    this.geometry = new THREE.Geometry();
    
    for(var i=0; i<this.particles.length;i++){
-      this.geometry.vertices[i] = new THREE.Vertex( this.particles[i].pos );
+      this.geometry.vertices[i] = this.particles[i].pos;
       this.attributes.pColor.value[i] = new THREE.Vector3(1, 0, 0);//this.particles[i].col;
       this.particles[i].col = this.attributes.pColor.value[i];
       this.attributes.radius.value[i] = this.particles[i].radius;

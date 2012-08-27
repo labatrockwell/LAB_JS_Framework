@@ -172,7 +172,7 @@ LAB.sound.Player.prototype.setAutoplay = function( bAutoplay )
 	} else {
 		this.playerElement.removeAttribute('autoplay');
 	}
-}
+};
 /**
 @function
 */
@@ -184,4 +184,4 @@ LAB.sound.Player.prototype.setControls = function( bControls )
 	} else {
 		this.playerElement.removeAttribute('controls');
 	}
-}
+};

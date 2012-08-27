@@ -365,7 +365,7 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	LAB.getElapsedTimeMillis = LAB.app.BaseApp.prototype.getElapsedTimeMillis	= function()
 	{
 		return this.elapsedTime;
-	}
+	};
 	
 	/**
 		get ellapsed time in seconds
@@ -376,4 +376,4 @@ LAB.app.BaseApp.prototype.animate	= function(time){
 	LAB.getElapsedTimeSeconds = LAB.app.BaseApp.prototype.getElapsedTimeSeconds	= function()
 	{
 		return this.elapsedTime/1000;
-	}
+	};

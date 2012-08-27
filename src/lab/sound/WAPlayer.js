@@ -88,4 +88,4 @@ LAB.sound.WAPlayer.prototype.setPan	= function(x, y, z){
 
 LAB.sound.WAPlayer.prototype.setPitch	= function(pitch){
 	this.pitch = Math.pow(2.0, pitch / 1200.0);
-}
+};

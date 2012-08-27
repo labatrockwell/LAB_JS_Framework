@@ -7,4 +7,4 @@ LAB.agents.Behavior = function() {
 
 LAB.agents.Behavior.prototype.checkIt = function() {
 	console.log("behaving");
-}
+};

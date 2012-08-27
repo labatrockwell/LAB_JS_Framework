@@ -10,4 +10,4 @@ LAB.geom.Rect = function( x, y, z, w, h){
 	this.z = z || 0;
 	this.width 	= w || 0;
 	this.height = h || 0;
-}
+};

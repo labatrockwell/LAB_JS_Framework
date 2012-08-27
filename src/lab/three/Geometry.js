@@ -36,9 +36,9 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
    if( model.positions.length > 0 ){
       this.vertices = [];
       for(var i=0; i<model.positions.length; i++){
-         this.vertices[i] = new THREE.Vertex( new THREE.Vector3(model.positions[i][0],
+         this.vertices[i] = new THREE.Vector3(model.positions[i][0],
                                                                 model.positions[i][1],
-                                                                model.positions[i][2]));
+                                                                model.positions[i][2]);
       }
    }
    
@@ -82,7 +82,7 @@ LAB.three.Geometry.prototype.loadLabModel = function( model ){
  */
 LAB.three.Geometry.prototype.addVertex = function( x,y,z){
    
-   this.vertices.push( new THREE.Vertex( new THREE.Vector3(x,y,z)));
+   this.vertices.push( new THREE.Vector3(x,y,z));
    return this.vertices.length - 1;
 };
 

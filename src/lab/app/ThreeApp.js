@@ -138,17 +138,17 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 
 	LAB.app.ThreeApp.prototype.__defineSetter__("canvasWidth", function(val){
 		console.log("error: please don't set this variable");
-	})
+	});
 
 	LAB.app.ThreeApp.prototype.__defineSetter__("canvasHeight", function(val){
 		console.log("error: please don't set this variable");
-	})
+	});
 
 	LAB.app.ThreeApp.prototype.__defineGetter__("canvasWidth", function(){
 		return this._width;
-	})
+	});
 
 	LAB.app.ThreeApp.prototype.__defineGetter__("canvasHeight", function(){
 		return this._height;
-	})
+	});
 
