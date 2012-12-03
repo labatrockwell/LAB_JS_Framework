@@ -1,9 +1,5 @@
 /** @namespace LAB.three */
 LAB.three = LAB.three || {};
-
-/** 
-
-*/
 var labParticle = function(){
    this.pos = new THREE.Vector3();
    this.vel = new THREE.Vector3();

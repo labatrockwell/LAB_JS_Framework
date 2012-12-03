@@ -2,7 +2,7 @@
  * 
  * @namespace LAB 
  * @constructor
- * param {Class} target The instance of the class that implements the EventDispatcher
+ * @param {Class} target The instance of the class that implements the EventDispatcher
  */
 LAB.EventDispatcher = function(target)
 {

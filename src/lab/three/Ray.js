@@ -2,8 +2,8 @@
 LAB.three = LAB.three || {};
 
 /** 
- @constructor 
- // this is THREE.Ray verbatim with old hierarchy support added back in
+ * this is THREE.Ray verbatim with old hierarchy support added back in
+ * @constructor 
  */
 LAB.three.Ray = function ( origin, direction ) {
 

@@ -50,8 +50,9 @@ LAB.app.ThreeApp.prototype.supr = LAB.app.BaseApp.prototype;
 		and start animate() loop
 		@function 
 		@public
-		@param width (optional) width of renderer
-		@param height (optional) height of renderer
+		@param {Object} parameters Options are:<br>width = {Integer} width of canvas <br>height = {Integer} height of canvas
+		<br>canvas = {DOMCanvasElement} canvas element in the DOM (creates automatically if not passed) <br>canvasId = {String} ID of canvas;
+		<br>antialias = {Boolean} antialias the renderer <br>scene = {THREE.Scene} scene object to use (this.scene)
 	*/
 
 	LAB.app.ThreeApp.prototype.begin = function(parameters)
