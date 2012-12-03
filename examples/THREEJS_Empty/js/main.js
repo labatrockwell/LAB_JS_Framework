@@ -1,10 +1,9 @@
 var demoApp;
 
 $(document).ready( function() {
-      DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
-      demoApp = new DemoApp();
-                  
-      demoApp.begin();
+   DemoApp.prototype = $.extend(true, LAB.app.ThreeApp.prototype, DemoApp.prototype);
+   demoApp = new DemoApp();
+   demoApp.begin();
 });
 
 // ===========================================
@@ -18,35 +17,24 @@ DemoApp = function() {
    var camera;
    var cube;
    
-   
    // ===========================================
 	// ===== SETUP
 	// ===========================================	
 	this.setup = function() {
-            //stats
-            stats = new Stats();
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.top = '10px';
-            stats.domElement.style.left = '10px';
-            this.container.appendChild( stats.domElement );
-            stats.domElement.hidden = !bStats;
-            this.registerMouseEvents()
-            
-            this.camera.position.z = 200;
+      // customize the built-in camera
+      this.camera.position.z = 200;
 
-            //make some geometry
-            cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshNormalMaterial() );
-            this.scene.add( cube );      
+      //make some geometry
+      cube = new THREE.Mesh( new THREE.CubeGeometry( 50, 50, 50 ), new THREE.MeshNormalMaterial() );
+      this.scene.add( cube );      
 	}
    
 	// ===========================================
 	// ===== UPDATE
 	// ===========================================
 	this.update = function() {
-            if(bStats) stats.update();
-            
-            cube.rotation.x += .01;
-            cube.rotation.y += .005;
+      cube.rotation.x += .01;
+      cube.rotation.y += .005;
 	}  
    
 	
@@ -54,7 +42,8 @@ DemoApp = function() {
 	// ===== DRAW
 	// ===========================================
 	this.draw = function() {
-            this.renderer.render( this.scene, this.camera, null, true );
+      // you must call this in draw!
+      this.renderer.render( this.scene, this.camera, null, true );
 	}   
    
 	// ===========================================
