@@ -115,7 +115,7 @@ LAB.log				= function( text ) {
 	 * @param  {String} default_ (Optional) what to return if param not found
 	 * @return {String}          Returns value of key or default
 	 */
-	LAB.getQuerystring = function(key, default_)
+	LAB.getQueryString = function(key, default_)
 	{
 		if (default_==null) default_=""; 
 		key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
