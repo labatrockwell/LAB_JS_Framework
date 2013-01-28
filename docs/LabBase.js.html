@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: LabBase.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: LabBase.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>	// include required files
+/** @namespace LAB*/
+var LAB = LAB || {};
+
+// reference to global context, in most cases 'window'.
+LAB.global = this;
+
+// version
+LAB.version = "r2";
+
+// require based on: http://closure-library.googlecode.com/svn/trunk/closure/goog/base.js
+
+/*
+ * helper (for javascript importing within javascript).
+ */
+
+var included = {};
+
+/**
+ * Copied from Flanagan, David. Javascript: The Definitive Guide.
+ * Use this function to inherit objects.
+ *
+ * @function
+ * @example
+ * Child.prototype = LAB.inherit(Parent.prototype);
+ * Child.prototype.constructor = Child;
+ *
+ * @param {Object} p The Parent object to inherit. The object can either be the prototype of the Parent
+ * object (Parent.prototype) or a new instance of the parent (new Parent())
+ * @return {Object} A copy of the prototype of the Parent object.
+ */
+LAB.inherit = function(p) {
+	if (p == null) return; // p must be a non-null object
+	if (Object.create) { // If Object.create() is defined...
+		return Object.create(p); // then just use it
+	}
+	var t = typeof p; // otherwise do some more type checking
+	if (t !== "object" && t !== "function") throw TypeError();
+	function f() {}; // define a dummy constructor function
+	f.prototype = p; // Set its prototype property to p
+	return new f(); // use f() to create an 'heir' of p.
+};
+
+// alternate version of inherit:
+///**
+// * Copied from Stefanov, Stoyan. JavaScript Patterns.
+// * Use this function to inherit objects
+// *
+// * @function
+// * @example
+// * LAB.inherit(Child, Parent);
+// *
+// * @param {Object} C The Child object.
+// * @param {Object} P The Parent object.
+// */
+//LAB.utils.inherit = function(C, P) {
+//	var F = function() {};
+//	F.prototype = P.prototype;
+//	C.prototype = new F();
+//	C.uber = P.prototype;
+//	C.prototype.constructor = C;
+//}
+
+
+
+/**
+@function
+@private
+*/
+LAB.writeScriptTag_ = function(src) {
+	var doc = LAB.global.document;
+	doc.write(
+		'&lt;script type="text/javascript" src="' + src + '">&lt;/' + 'script>');
+	included[src] = true;
+	return true;
+};
+
+/**
+	Use this to load script files! (only script files right now)
+	@function
+	@public
+*/
+LAB.require = function(src) {
+	src in included ? console.log("already included") : LAB.writeScriptTag_(src);
+};
+
+LAB.getScriptPath = function(filename) {
+	var scripts = document.getElementsByTagName('script');
+
+    for (var i = scripts.length - 1; i >= 0; --i) {
+		var src = scripts[i].src;
+		var l = src.length;
+		var length = filename.length;
+		if (src.substr(l - length) == filename) {
+        	// set a global propery here
+        	return src.substr(0, l - length);
+		}
+    }
+	return "";
+};
+
+LAB.toScriptPath = function( className ){
+	return LAB.src+className+".js";
+};
+
+LAB.src= LAB.getScriptPath("LabBase.js");
+
+// start including stuff
+LAB.require( LAB.src+"EventDispatcher.js" );
+LAB.require( LAB.src+"app/BaseApp.js" );
+LAB.require( LAB.src+"Utils.js" );
+
+// key constants
+LAB.SHIFT 	= 16;
+LAB.CONTROL = 17;
+LAB.ALT		= 18;
+LAB.COMMAND = 91;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LAB.html">LAB</a></li><li><a href="LAB.agents.Agent.html">Agent</a></li><li><a href="LAB.agents.Behavior.html">Behavior</a></li><li><a href="LAB.agents.Group.html">Group</a></li><li><a href="LAB.app.BaseApp.html">BaseApp</a></li><li><a href="LAB.app.ThreeApp.html">ThreeApp</a></li><li><a href="LAB.Event.html">Event</a></li><li><a href="LAB.geom.Point.html">Point</a></li><li><a href="LAB.geom.Rect.html">Rect</a></li><li><a href="LAB.sound.Player.html">Player</a></li><li><a href="LAB.sound.WAPlayer.html">WAPlayer</a></li><li><a href="LAB.three.html">three</a></li><li><a href="LAB.three.Camera.html">Camera</a></li><li><a href="LAB.three.Geometry.html">Geometry</a></li><li><a href="LAB.three.Mesh.html">Mesh</a></li><li><a href="LAB.three.Object.html">Object</a></li><li><a href="LAB.three.Ray.html">Ray</a></li><li><a href="LAB.three.Shader.html">Shader</a></li><li><a href="LAB.utils.html">utils</a></li><li><a href="LAB.utils.WebSocket.html">WebSocket</a></li></ul><h3>Namespaces</h3><ul><li><a href="LAB.agents.html">agents</a></li><li><a href="LAB.app.html">app</a></li><li><a href="LAB.geom.html">geom</a></li><li><a href="LAB.sound.html">sound</a></li></ul><h3>Global</h3><ul><li><a href="global.html#gl">gl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Jan 28 2013 10:33:34 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

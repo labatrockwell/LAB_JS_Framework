@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: three/Object.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: three/Object.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/** @namespace LAB.three */
+LAB.three = LAB.three || {};
+
+/** 
+	@constructor 
+*/
+
+LAB.three.Object = function( _renderer, _scene ) {
+   
+   this.renderer = _renderer;
+   this.scene = _scene || new THREE.Scene();;
+   this.autoClear = true;
+   this.labObj = new THREE.Object3D();
+   
+   //this isn't great. temporary stop gap
+   this.posStack = [];
+   this.rotStack = [];
+   this.sclStack = [];
+   
+   this.scene.add( this.labObj );
+};
+
+
+LAB.three.Object.prototype = {
+   
+constructor: LAB.three.Object,
+
+/**
+	@function
+	@public
+*/
+addGeometry: function( _geometry, _material){
+   this.labObj.addChild( new THREE.Mesh( _geometry, _material  ) );
+},
+
+/**
+	@function
+	@public
+*/
+addObject: function( _object ){
+   this.labObj.add( _object );
+},
+
+/**
+	@function
+	@public
+*/
+addChild: function( _child ){
+   this.labObj.add( _child );
+},
+
+/**
+	@function
+	@public
+*/
+addLight: function( _light ){
+   this.scene.add( _light );
+},
+
+/**
+	@function
+	@public
+*/ 
+draw: function( _camera, _material, _renderTarget )
+{   
+   this.scene.overrideMaterial = _material || null;
+   this.renderer.render(this.scene, 
+                        _camera,
+                        _renderTarget || null,
+                        this.autoClear );
+},
+
+/**
+	@function
+	@public
+*/
+translate: function( x,y,z ){
+   this.labObj.position.x += x;
+   this.labObj.position.y += y;
+   this.labObj.position.z += z;
+},
+   
+/**
+	@function
+	@public
+*/
+setTranslation: function( x,y,z ){
+   this.labObj.position.x = x;
+   this.labObj.position.y = y;
+   this.labObj.position.z = z;
+},
+   
+//rotate: function(angle, x,y,z ){
+//   var rotMat = new THREE.Matrix4().setRotationAxis( new THREE.Vector3(x,y,z), angle * 0.0174532925 );
+//   var rotVec = new THREE.Vector3();
+//   rotVec.setRotationFromMatrix( rotMat );
+//   this.labObj.rotation.addSelf( rotVec );
+//},
+
+/**
+	@function
+	@public
+*/
+setRotation: function( angle, x,y,z ){
+   var rotMat = new THREE.Matrix4().setRotationAxis( new THREE.Vector3(x,y,z).normalize(), angle * 0.0174532925 );
+   
+   this.labObj.rotation.setRotationFromMatrix( rotMat );
+},
+   
+/**
+	@function
+	@public
+*/
+scale: function( x, y, z){
+   this.labObj.scale.set(this.labObj.scale.x * x,
+                       this.labObj.scale.y * y,
+                       this.labObj.scale.z * z);
+},
+
+/**
+	@function
+	@public
+*/
+setScale: function( x, y, z){
+   this.labObj.scale.set( x, y, z );
+},
+   
+/**
+	@function
+	@public
+*/
+multMatrix: function( m ){
+  //TODO: we might need to make this an extension of THREE.Object3D so that we can override updateMatrix() which is called by the render  er
+},
+   
+/**
+	@function
+	@public
+*/
+pushMatrix: function(){
+   this.posStack.push( this.labObj.position );
+   this.rotStack.push( this.labObj.rotation );
+   this.sclStack.push( this.labObj.scale );
+},
+   
+/**
+	@function
+	@public
+*/
+popMatrix: function(){
+   if( this.posStack.length ){
+   this.labObj.position.copy( this.posStack.pop() );
+   this.labObj.rotation.copy( this.rotStack.pop() );
+   this.labObj.scale.copy( this.sclStack.pop() );
+   }
+},
+   
+///**
+// @function
+// @public
+// */ 
+//updateModelViewMatrices: function(){
+//      //   smoothMat.__webglInit = false;//true
+//      //   smoothMat._modelViewMatrix = new THREE.Matrix4();
+//      //   smoothMat._normalMatrixArray = new Float32Array( 9 );
+//      //   smoothMat._modelViewMatrixArray = new Float32Array( 16 );
+//      //   smoothMat._objectMatrixArray = new Float32Array( 16 );
+//      //   smoothMat.matrixWorld.flattenToArray( smoothMat._objectMatrixArray );
+//   },
+//
+///**
+// @function
+// @public
+// */
+//setupMatrices: function( object, camera, computeNormalMatrix ) {
+//      
+//      this._modelViewMatrix.multiplyT�oArray( camera.matrixWorldInverse, this.matrixWorld, this._modelViewMatrixArray );
+//      
+//      if ( computeNormalMatrix ) {
+//         
+//         THREE.Matrix4.makeInvert3x3( this._modelViewMatrix ).transposeIntoArray( this._normalMatrixArray );
+//         
+//      }
+//      
+//   },
+      
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LAB.html">LAB</a></li><li><a href="LAB.agents.Agent.html">Agent</a></li><li><a href="LAB.agents.Behavior.html">Behavior</a></li><li><a href="LAB.agents.Group.html">Group</a></li><li><a href="LAB.app.BaseApp.html">BaseApp</a></li><li><a href="LAB.app.ThreeApp.html">ThreeApp</a></li><li><a href="LAB.Event.html">Event</a></li><li><a href="LAB.geom.Point.html">Point</a></li><li><a href="LAB.geom.Rect.html">Rect</a></li><li><a href="LAB.sound.Player.html">Player</a></li><li><a href="LAB.sound.WAPlayer.html">WAPlayer</a></li><li><a href="LAB.three.html">three</a></li><li><a href="LAB.three.Camera.html">Camera</a></li><li><a href="LAB.three.Geometry.html">Geometry</a></li><li><a href="LAB.three.Mesh.html">Mesh</a></li><li><a href="LAB.three.Object.html">Object</a></li><li><a href="LAB.three.Ray.html">Ray</a></li><li><a href="LAB.three.Shader.html">Shader</a></li><li><a href="LAB.utils.html">utils</a></li><li><a href="LAB.utils.WebSocket.html">WebSocket</a></li></ul><h3>Namespaces</h3><ul><li><a href="LAB.agents.html">agents</a></li><li><a href="LAB.app.html">app</a></li><li><a href="LAB.geom.html">geom</a></li><li><a href="LAB.sound.html">sound</a></li></ul><h3>Global</h3><ul><li><a href="global.html#gl">gl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Jan 28 2013 10:33:35 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

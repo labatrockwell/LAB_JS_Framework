@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: three/Ray.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: three/Ray.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/** @namespace LAB.three */
+LAB.three = LAB.three || {};
+
+/** 
+ * this is THREE.Ray verbatim with old hierarchy support added back in
+ * @constructor 
+ */
+LAB.three.Ray = function ( origin, direction ) {
+
+	this.origin = origin || new THREE.Vector3();
+	this.direction = direction || new THREE.Vector3();
+
+	this.intersectObjects = function ( objects ) {
+
+		var i, l, object,
+		intersects = [];
+
+		for ( i = 0, l = objects.length; i &lt; l; i ++ ) {
+			Array.prototype.push.apply( intersects, this.intersectObject( objects[ i ] ) );
+		}
+
+		intersects.sort( function ( a, b ) { return a.distance - b.distance; } );
+
+		return intersects;
+
+	};
+
+	var precision = 0.0001;
+
+	this.setPrecision = function ( value ) {
+		precision = value;
+	};
+
+	var a = new THREE.Vector3();
+	var b = new THREE.Vector3();
+	var c = new THREE.Vector3();
+	var d = new THREE.Vector3();
+
+	var originCopy = new THREE.Vector3();
+	var directionCopy = new THREE.Vector3();
+
+	var vector = new THREE.Vector3();
+	var normal = new THREE.Vector3();
+	var intersectPoint = new THREE.Vector3()
+
+	this.intersectObject = function ( object ) {
+
+		var intersect, intersects = [];
+
+		// BR look for children if no radius
+		if (object.boundRadius == 0){
+			for ( var i = 0, l = object.children.length; i &lt; l; i ++ ) {
+				Array.prototype.push.apply( intersects, this.intersectObject( object.children[ i ] ) );
+			}			
+		}
+
+		if ( object instanceof THREE.Particle ) {
+
+			var distance = distanceFromIntersection( this.origin, this.direction, object.matrixWorld.getPosition() );
+
+			if ( distance > object.scale.x ) {
+
+				return [];
+
+			}
+
+			intersect = {
+
+				distance: distance,
+				point: object.position,
+				face: null,
+				object: object
+
+			};
+
+			intersects.push( intersect );
+
+		} else if ( object instanceof THREE.Mesh ) {
+
+			// Checking boundingSphere
+
+			var distance = distanceFromIntersection( this.origin, this.direction, object.matrixWorld.getPosition() );
+			var scale = THREE.Frustum.__v1.set( object.matrixWorld.getColumnX().length(), object.matrixWorld.getColumnY().length(), object.matrixWorld.getColumnZ().length() );
+
+			if ( distance > object.geometry.boundingSphere.radius * Math.max( scale.x, Math.max( scale.y, scale.z ) ) ) {
+
+				return intersects;
+
+			}
+
+			// Checking faces
+
+			var f, fl, face, dot, scalar,
+			geometry = object.geometry,
+			vertices = geometry.vertices,
+			objMatrix;
+
+			object.matrixRotationWorld.extractRotation( object.matrixWorld );
+
+			for ( f = 0, fl = geometry.faces.length; f &lt; fl; f ++ ) {
+
+				face = geometry.faces[ f ];
+
+				originCopy.copy( this.origin );
+				directionCopy.copy( this.direction );
+
+				objMatrix = object.matrixWorld;
+
+				// determine if ray intersects the plane of the face
+				// note: this works regardless of the direction of the face normal
+
+				vector = objMatrix.multiplyVector3( vector.copy( face.centroid ) ).subSelf( originCopy );
+				normal = object.matrixRotationWorld.multiplyVector3( normal.copy( face.normal ) );
+				dot = directionCopy.dot( normal );
+
+				// bail if ray and plane are parallel
+
+				if ( Math.abs( dot ) &lt; precision ) continue;
+
+				// calc distance to plane
+
+				scalar = normal.dot( vector ) / dot;
+
+				// if negative distance, then plane is behind ray
+
+				if ( scalar &lt; 0 ) continue;
+
+				if ( object.doubleSided || ( object.flipSided ? dot > 0 : dot &lt; 0 ) ) {
+
+					intersectPoint.add( originCopy, directionCopy.multiplyScalar( scalar ) );
+
+					if ( face instanceof THREE.Face3 ) {
+
+						a = objMatrix.multiplyVector3( a.copy( vertices[ face.a ].position ) );
+						b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ].position ) );
+						c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ].position ) );
+
+						if ( pointInFace3( intersectPoint, a, b, c ) ) {
+
+							intersect = {
+
+								distance: originCopy.distanceTo( intersectPoint ),
+								point: intersectPoint.clone(),
+								face: face,
+								object: object
+
+							};
+
+							intersects.push( intersect );
+
+						}
+
+					} else if ( face instanceof THREE.Face4 ) {
+
+						a = objMatrix.multiplyVector3( a.copy( vertices[ face.a ].position ) );
+						b = objMatrix.multiplyVector3( b.copy( vertices[ face.b ].position ) );
+						c = objMatrix.multiplyVector3( c.copy( vertices[ face.c ].position ) );
+						d = objMatrix.multiplyVector3( d.copy( vertices[ face.d ].position ) );
+
+						if ( pointInFace3( intersectPoint, a, b, d ) || pointInFace3( intersectPoint, b, c, d ) ) {
+
+							intersect = {
+
+								distance: originCopy.distanceTo( intersectPoint ),
+								point: intersectPoint.clone(),
+								face: face,
+								object: object
+
+							};
+
+							intersects.push( intersect );
+
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+		return intersects;
+
+	}
+
+	var v0 = new THREE.Vector3(), v1 = new THREE.Vector3(), v2 = new THREE.Vector3();
+	var dot, intersect, distance;
+
+	function distanceFromIntersection( origin, direction, position ) {
+
+		v0.sub( position, origin );
+		dot = v0.dot( direction );
+
+		intersect = v1.add( origin, v2.copy( direction ).multiplyScalar( dot ) );
+		distance = position.distanceTo( intersect );
+
+		return distance;
+
+	}
+
+	// http://www.blackpawn.com/texts/pointinpoly/default.html
+
+	var dot00, dot01, dot02, dot11, dot12, invDenom, u, v;
+
+	function pointInFace3( p, a, b, c ) {
+
+		v0.sub( c, a );
+		v1.sub( b, a );
+		v2.sub( p, a );
+
+		dot00 = v0.dot( v0 );
+		dot01 = v0.dot( v1 );
+		dot02 = v0.dot( v2 );
+		dot11 = v1.dot( v1 );
+		dot12 = v1.dot( v2 );
+
+		invDenom = 1 / ( dot00 * dot11 - dot01 * dot01 );
+		u = ( dot11 * dot02 - dot01 * dot12 ) * invDenom;
+		v = ( dot00 * dot12 - dot01 * dot02 ) * invDenom;
+
+		return ( u >= 0 ) && ( v >= 0 ) && ( u + v &lt; 1 );
+
+	}
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LAB.html">LAB</a></li><li><a href="LAB.agents.Agent.html">Agent</a></li><li><a href="LAB.agents.Behavior.html">Behavior</a></li><li><a href="LAB.agents.Group.html">Group</a></li><li><a href="LAB.app.BaseApp.html">BaseApp</a></li><li><a href="LAB.app.ThreeApp.html">ThreeApp</a></li><li><a href="LAB.Event.html">Event</a></li><li><a href="LAB.geom.Point.html">Point</a></li><li><a href="LAB.geom.Rect.html">Rect</a></li><li><a href="LAB.sound.Player.html">Player</a></li><li><a href="LAB.sound.WAPlayer.html">WAPlayer</a></li><li><a href="LAB.three.html">three</a></li><li><a href="LAB.three.Camera.html">Camera</a></li><li><a href="LAB.three.Geometry.html">Geometry</a></li><li><a href="LAB.three.Mesh.html">Mesh</a></li><li><a href="LAB.three.Object.html">Object</a></li><li><a href="LAB.three.Ray.html">Ray</a></li><li><a href="LAB.three.Shader.html">Shader</a></li><li><a href="LAB.utils.html">utils</a></li><li><a href="LAB.utils.WebSocket.html">WebSocket</a></li></ul><h3>Namespaces</h3><ul><li><a href="LAB.agents.html">agents</a></li><li><a href="LAB.app.html">app</a></li><li><a href="LAB.geom.html">geom</a></li><li><a href="LAB.sound.html">sound</a></li></ul><h3>Global</h3><ul><li><a href="global.html#gl">gl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Jan 28 2013 10:33:35 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

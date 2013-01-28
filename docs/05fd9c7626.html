@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sound/Player.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: sound/Player.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/** @namespace LAB.sound*/
+LAB.sound = LAB.sound || {};
+
+LAB.require(LAB.src+"EventDispatcher.js");
+
+/** 
+ @constructor 
+ @augments LAB.EventDispatcher
+ @param {HTMLElement} parent pass in an element to attach the player to
+ @param {Boolean} loop 
+ @param {Boolean} autoplay
+ @param {Boolean} controls
+ */
+LAB.sound.Player = function( parent, loop, autoplay, controls ){		
+	LAB.EventDispatcher.call( this, this );
+	
+	this.loop 		= loop || false;
+	this.autoplay 	= autoplay || false;
+	this.controls	= controls || false;
+	
+	this.eventsRegistered = false;
+	
+	if (!parent){
+		console.log ("ERROR! please pass in an HTML element to attach the player to");
+	} else {
+		this.playerElement = document.createElement("audio");
+		this.playerElement.style.border = "0px none";
+		if (this.loop){
+			this.playerElement.setAttribute('loop', 'loop');			
+		}
+		if (this.autoplay){
+			this.playerElement.setAttribute('autoplay', 'autoplay');			
+		}
+		if (this.controls){
+			this.playerElement.setAttribute('controls', 'controls');			
+		}
+		parent.appendChild(this.playerElement);
+		this.playerElement.parent = parent;
+	}	
+}
+
+// extend Event Dispatcher
+
+LAB.sound.Player.prototype = new LAB.EventDispatcher();
+LAB.sound.Player.prototype.constructor = LAB.sound.Player;
+LAB.sound.Player.prototype.supr = LAB.EventDispatcher.prototype;
+
+// METHODS
+
+LAB.sound.Player.prototype.loadFile 		= function( url )
+{	
+	this.registerEvents();
+	this.playerElement.setAttribute('src', url );
+	this.playerElement.load();
+}
+
+// PLAYBACK METHODS
+
+LAB.sound.Player.prototype.play	= function(){
+	this.playerElement.play();
+}
+
+LAB.sound.Player.prototype.pause	= function(){
+	this.playerElement.pause();
+}
+
+LAB.sound.Player.prototype.setVolume	= function(volume){
+	this.playerElement.volume = volume;
+}
+
+LAB.sound.Player.prototype.seekTo	= function(time){
+	this.playerElement.currentTime = time;
+}
+
+// EVENTS
+
+/**
+@function
+@private
+*/
+LAB.sound.Player.prototype.registerEvents = function(){
+	if (this.eventsRegistered) return;
+	
+	// register events
+	this.playerElement.addEventListener("load", this.onLoad);
+	this.playerElement.addEventListener("ended", this.onEnded);
+	this.playerElement.addEventListener("error", this.onError);
+	this.eventsRegistered = true;
+}
+
+/**
+@function
+@private
+*/
+LAB.sound.Player.prototype.onLoad	= function(event){
+	this.dispatchEvent("onLoad", event);
+}
+
+/**
+@function
+@private
+*/
+LAB.sound.Player.prototype.onEnded	= function(event){
+	this.dispatchEvent("onEnded", event);	
+}
+
+/**
+@function
+@private
+*/
+LAB.sound.Player.prototype.onError	= function(event){
+	console.log(event);
+	this.dispatchEvent("onError", event);	
+}
+
+// Getters
+/**
+@function
+*/
+LAB.sound.Player.prototype.getElement = function()
+{
+	return this.playerElement;
+}
+/**
+@function
+@param {boolean} bLoop
+*/
+LAB.sound.Player.prototype.isLooping = function( bLoop )
+{
+	return this.loop;
+}
+/**
+@function
+@param {boolean} bAutoplay
+*/
+LAB.sound.Player.prototype.isAutoplay = function( bAutoplay )
+{
+	return this.autoplay;
+}
+
+/**
+@function
+@param {boolean} bControls
+*/
+LAB.sound.Player.prototype.hasControls = function( bControls )
+{
+	return this.controls;
+}
+
+// Setters
+/**
+@function
+*/
+
+LAB.sound.Player.prototype.setLooping = function( bLoop )
+{
+	this.loop = bLoop;
+	if (this.loop){
+		this.playerElement.setAttribute('loop', 'loop');			
+	} else {
+		this.playerElement.removeAttribute('loop');
+	}
+}
+/**
+@function
+*/
+LAB.sound.Player.prototype.setAutoplay = function( bAutoplay )
+{
+	this.autoplay = bAutoplay;
+	if (this.autoplay){
+		this.playerElement.setAttribute('autoplay', 'autoplay');			
+	} else {
+		this.playerElement.removeAttribute('autoplay');
+	}
+};
+/**
+@function
+*/
+LAB.sound.Player.prototype.setControls = function( bControls )
+{
+	this.controls = bControls;
+	if (this.controls){
+		this.playerElement.setAttribute('controls', 'controls');			
+	} else {
+		this.playerElement.removeAttribute('controls');
+	}
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LAB.html">LAB</a></li><li><a href="LAB.agents.Agent.html">Agent</a></li><li><a href="LAB.agents.Behavior.html">Behavior</a></li><li><a href="LAB.agents.Group.html">Group</a></li><li><a href="LAB.app.BaseApp.html">BaseApp</a></li><li><a href="LAB.app.ThreeApp.html">ThreeApp</a></li><li><a href="LAB.Event.html">Event</a></li><li><a href="LAB.geom.Point.html">Point</a></li><li><a href="LAB.geom.Rect.html">Rect</a></li><li><a href="LAB.sound.Player.html">Player</a></li><li><a href="LAB.sound.WAPlayer.html">WAPlayer</a></li><li><a href="LAB.three.html">three</a></li><li><a href="LAB.three.Camera.html">Camera</a></li><li><a href="LAB.three.Geometry.html">Geometry</a></li><li><a href="LAB.three.Mesh.html">Mesh</a></li><li><a href="LAB.three.Object.html">Object</a></li><li><a href="LAB.three.Ray.html">Ray</a></li><li><a href="LAB.three.Shader.html">Shader</a></li><li><a href="LAB.utils.html">utils</a></li><li><a href="LAB.utils.WebSocket.html">WebSocket</a></li></ul><h3>Namespaces</h3><ul><li><a href="LAB.agents.html">agents</a></li><li><a href="LAB.app.html">app</a></li><li><a href="LAB.geom.html">geom</a></li><li><a href="LAB.sound.html">sound</a></li></ul><h3>Global</h3><ul><li><a href="global.html#gl">gl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Jan 28 2013 10:33:35 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+html, body { width: 100%; height: 100%; overflow:hidden; /*cursor:none;*/ }
+body {
+	color: #ff0000;
+	font-family:arial;
+	font-size:13px;
+	text-align:center;
+	font-weight: bold;
+	background-color: #000000;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#info {
+	position: absolute;
+	top: 0px; width: 100%;
+	padding: 5px;
+}
+
+a {
+	color: #ffffff;
+}
+canvas { background-color: gray; }

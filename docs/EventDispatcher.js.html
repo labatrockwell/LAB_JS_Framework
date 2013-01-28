@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: EventDispatcher.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: EventDispatcher.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/** 
+ * 
+ * @namespace LAB 
+ * @constructor
+ * @param {Class} target The instance of the class that implements the EventDispatcher
+ */
+LAB.EventDispatcher = function(target)
+{
+	var _target = target || null;
+	this.getTarget = function() {
+		return _target;
+	}
+	this.events = [];
+}
+
+LAB.EventDispatcher.prototype = {
+	constructor:LAB.EventDispatcher,
+	/**
+	 * @param {String} event The event type
+	 * @param {Function} callback The function to be called when the event is dispatched
+	 */
+	addEventListener: function(type, callback){
+		this.events[type] = this.events[type] || []; // check for undefined arg
+		if (this.events[type]){
+			this.events[type].push(callback);
+		}
+	},
+	/**
+	 * @param {String} event The event type
+	 * @param {Function} callback The function to be called when the event is dispatched
+	 * return {boolean} True if is successful, false if not.
+	 */
+	removeEventListener: function(type,callback){
+		if ( this.events[type] ) {
+			var listeners = this.events[type];
+			for ( var i = listeners.length-1; i>=0; --i ){
+				if ( listeners[i] === callback ) {
+					listeners.splice( i, 1 );
+					return true;
+				}
+			}
+		}
+		return false
+	},
+	/**
+	 * @param {String} event The event type
+	 * return {boolean} True if listener exists for thie event type, false if not
+	 */
+	hasEventListener:function(type) {
+		if (this.events[type]) {
+			return true;
+		} else {
+			return false;
+		}
+	},
+	/**
+	 * There are 2 ways to use dispatchEvent. The first is to send an Event object (including
+	 * objects that extend the Event class) and any optionl parameters. For example:
+	 *
+	 * @example
+	 * someObject.dispatchEvent(new LAB.Event(Event.CHANGE));
+	 * @example
+	 * var params = {secret: "my secret", message: "hi"};
+	 * someObject.dispatchEvent(new LAB.Event("customEventType"), params);
+	 * &lt;p>The second is to pass a string as the event type and any optional params&lt;/p>
+	 * @example
+	 * someObject.dispatchEvent("customEventType");
+	 * @example
+	 * var params = {secret: "my secret", message: "hi"};
+	 * someObject.dispatchEvent("customEventType", params);	 
+	 *
+	 * @param {string|Event} typeOrEvent The event type as a string or an Event object
+	 * @param {Object} optionalParams Optional parameters passed as an object.
+	 * return {boolean} True if dispatch is successful, false if not.
+	 */
+	dispatchEvent:function(typeOrEvent, optionalParams){
+		
+		if (typeof typeOrEvent === 'string') {
+			var event = new LAB.Event(typeOrEvent);
+		} else if (typeof typeOrEvent=== 'object') {
+			var event = typeOrEvent;
+		} else {
+			throw "First parameter of dispatchEvent must be of type object or string";
+		}
+		
+		event.target = this.getTarget();
+		
+		for (var obj in optionalParams) {
+			event[obj.toString()] = optionalParams[obj];
+		}
+		
+		if ( this.events[event.type] ) {
+			var listeners = this.events[event.type], len = listeners.length;
+			while ( len-- ) {
+				listeners[len](event);	//callback with self
+			}		
+			return true; // return success
+		} else {
+			return false;
+		}
+	}
+}
+
+/** 
+ * Event 'base class' (but it can also be instantiated directly)
+ *
+ * @constructor
+ * @param {String} type event type
+ */
+LAB.Event = function(type) {
+	this.type = type;
+	this.target = null;
+}
+
+/** @constant */
+LAB.Event.CONNECTED = "connected";
+/** @constant */
+LAB.Event.CHANGE	= "change";
+/** @constant */
+LAB.Event.COMPLETE	= "complete";</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="LAB.html">LAB</a></li><li><a href="LAB.agents.Agent.html">Agent</a></li><li><a href="LAB.agents.Behavior.html">Behavior</a></li><li><a href="LAB.agents.Group.html">Group</a></li><li><a href="LAB.app.BaseApp.html">BaseApp</a></li><li><a href="LAB.app.ThreeApp.html">ThreeApp</a></li><li><a href="LAB.Event.html">Event</a></li><li><a href="LAB.geom.Point.html">Point</a></li><li><a href="LAB.geom.Rect.html">Rect</a></li><li><a href="LAB.sound.Player.html">Player</a></li><li><a href="LAB.sound.WAPlayer.html">WAPlayer</a></li><li><a href="LAB.three.html">three</a></li><li><a href="LAB.three.Camera.html">Camera</a></li><li><a href="LAB.three.Geometry.html">Geometry</a></li><li><a href="LAB.three.Mesh.html">Mesh</a></li><li><a href="LAB.three.Object.html">Object</a></li><li><a href="LAB.three.Ray.html">Ray</a></li><li><a href="LAB.three.Shader.html">Shader</a></li><li><a href="LAB.utils.html">utils</a></li><li><a href="LAB.utils.WebSocket.html">WebSocket</a></li></ul><h3>Namespaces</h3><ul><li><a href="LAB.agents.html">agents</a></li><li><a href="LAB.app.html">app</a></li><li><a href="LAB.geom.html">geom</a></li><li><a href="LAB.sound.html">sound</a></li></ul><h3>Global</h3><ul><li><a href="global.html#gl">gl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon Jan 28 2013 10:33:34 GMT-0500 (EST)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>
