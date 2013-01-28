@@ -43,6 +43,27 @@ LAB.lerp			= function(start, stop, amt) {
 }
 
 /**
+ * Lerp values of two objects. Note: will return an object with same props as start; if stop 
+ * Object does not have a value, it will return start value. 
+ * e.g. LAB.lerpObject( {x:0,y:15}, {x:50}, .5 ) returns {x:25,y:15} 
+ * @param {Float} start 	Start value
+ * @param {Float} stop 		End value
+ * @param {Float} amount 	Where between values we're at (0-1.0)
+ * @return {Float}      	Lerped value
+ */
+LAB.lerpObjects		= function(start,stop,amt) {
+	var returnObj = {};
+	for ( var prop in start ){
+		if ( stop.hasOwnProperty(prop) ){
+			returnObj[prop] = LAB.lerp( start[prop], stop[prop], amt );
+		} else {
+			returnObj[prop] = start[prop];
+		}
+	}
+	return returnObj;
+}
+
+/**
  @function
  */
 LAB.clamp 			= function( value, _min, _max ){
