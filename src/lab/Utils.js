@@ -100,15 +100,50 @@ Number.prototype.sign = function() {
 /********************************************
 	LOGGING
 ********************************************/
+
+/** @type {Number} */
+LAB.DEBUG 		= 0;
+
+/** @type {Number} */
+LAB.WARNING		= 1;
+
+/** @type {Number} */
+LAB.ERROR 		= 2;
+
+/** @type {Number} */
+LAB.FATAL_ERROR	= 3;
+
 /**
- @function
+ * Global LAB log level 
+ * @type {Number} 
+*/
+LAB.logLevel = LAB.WARNING;
+
+/**
+ * Set LAB.logLevel
+ * @param {Integer} logLevel
  */
-LAB.log				= function( text ) {
-   if (window.console && window.console.log) {
-      window.console.log( text );
-   } else if (window.dump) {
-      window.dump( text );
-   }
+LAB.setLogLevel 	= function( logLevel ){
+	if ( logLevel > LAB.FATAL_ERROR ) logLevel = LAB.FATAL_ERROR;
+	if ( logLevel < LAB.DEBUG ) logLevel = LAB.DEBUG;
+	LAB.logLevel = logLevel;
+}
+
+/**
+ * Simple wrapper for console.log /  window.dump. Will only log if level is greater
+ * than or equal to current level
+ * @param  {String} 	text 
+ * @param  {Integer} 	level (optional) LAB log level (defaults to LOG.DEBUG)
+ */
+LAB.log				= function( text, level ) {
+	level = (level == null ? LAB.DEBUG : level);
+	if ( LAB.logLevel > level ) return;
+
+	if (window.console && window.console.log) {
+	  window.console.log( text );
+	} else if (window.dump) {
+	  window.dump( text );
+	}
 }
 
 /********************************************
