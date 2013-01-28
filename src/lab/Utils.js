@@ -109,17 +109,20 @@ LAB.log				= function( text ) {
 	BROWSER UTILS
 ********************************************/
 	
-	// get string from url. e.g. www.lab.com/index.html?sandwich=turkey returns 'turkey'
 	/**
-	 @function
+	 * get string from url. e.g. www.lab.com/index.html?sandwich=turkey returns 'turkey'
+	 * @param  {String} key      Query param (not including ? or &)
+	 * @param  {String} default_ (Optional) what to return if param not found
+	 * @return {String}          Returns value of key or default
 	 */
-	LAB.getQueryString = function (key)
+	LAB.getQuerystring = function(key, default_)
 	{
+		if (default_==null) default_=""; 
 		key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
 		var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
 		var qs = regex.exec(window.location.href);
 		if(qs == null)
-			return '';
+			return default_;
 		else
 			return qs[1];
 	}
