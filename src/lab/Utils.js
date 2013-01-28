@@ -23,12 +23,25 @@ LAB.randomInt  		= function( _min, _max) {
 LAB.randomObject  	= function( _array ){
    return _array[ Math.min(LAB.randomInt(0, _array.length ), _array.length-1)];
 }
+
 /**
  @function
  */
 LAB.map				= function(value, _oldMin, _oldMax, _min, _max){    
    return _min + ((value-_oldMin)/(_oldMax-_oldMin)) * (_max-_min);
 }
+
+/**
+ * Lerp between two values
+ * @param {Float} start 	Start value
+ * @param {Float} stop 		End value
+ * @param {Float} amount 	Where between values we're at (0-1.0)
+ * @return {Float}      	Lerped value
+ */
+LAB.lerp			= function(start, stop, amt) {
+	return start + (stop-start) * amt;
+}
+
 /**
  @function
  */
